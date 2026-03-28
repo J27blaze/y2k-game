@@ -1,0 +1,33 @@
+extends PlayerState
+
+var timer: int = 0
+
+func start():
+	print("fall")
+	
+	timer = 0
+	player.gravity = player.fall_gravity
+
+func process_physics(delta: float):
+	player.calc_wall_slide()
+	player.state_wall_slide_check()
+	player.state_landing_check()
+	
+	if timer <= player.jump_coyote_frames && Input.is_action_just_pressed("jump") && player.can_jump:
+		change_state("jump")
+		return
+	
+	var move_dir = player.target_speed * player.direction
+	player.vel_move_toward(move_dir, player.fall_accel, delta)
+	#player.vel_accel_speed(player.run_speed, player.run_max_speed, player.jump_speed_accel, player.jump_speed_accel, delta)
+	
+	#debug
+	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
+	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
+	
+	timer += 1
+	
+	return
+	
+func process_input(event: InputEvent):
+	return
