@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
-[ext_resource type="PackedScene" uid="uid://bgmkdeenlgpcf" path="res://Player/Models/Player/lan_body_v3.1.glb" id="3_5htga"]
+[ext_resource type="PackedScene" uid="uid://tfn828db8toe" path="res://Player/Models/Player/lan_body_v3.1.glb" id="3_5htga"]
 [ext_resource type="Script" uid="uid://cytivlmd53dq1" path="res://Player/Scripts/States/player_run.gd" id="4_fhl08"]
 [ext_resource type="Script" uid="uid://cm7oot430s7nb" path="res://Player/Scripts/States/player_idle.gd" id="4_gwnis"]
 [ext_resource type="Script" uid="uid://x6qieh6rdkpk" path="res://Player/Scripts/States/player_jump.gd" id="5_k53q1"]
@@ -81,7 +81,7 @@ mesh = SubResource("BoxMesh_v0iea")
 skeleton = NodePath("../../../camera_twist")
 
 [node name="lan_body_v3_1" parent="model_twist" instance=ExtResource("3_5htga")]
-transform = Transform3D(1.2155162e-07, 0, 1.61, 0, 1.61, 0, -1.61, 0, 1.2155162e-07, 0, 1.1194868, 0)
+transform = Transform3D(-6.884544e-08, 0, 1.575, 0, 1.575, 0, -1.575, 0, -6.884544e-08, 0, 1.0985769, 0)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
