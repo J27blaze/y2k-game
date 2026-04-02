@@ -1,10 +1,13 @@
 class_name Player
 extends CharacterBody3D
 
+#camera
 @onready var camera_twist := $camera_twist
 @onready var camera_pitch := $camera_twist/camera_pitch
+
 @onready var model_twist := $model_twist
 @onready var standing_collider := $standing_collider
+
 #wall slide
 @onready var wall_slide_colliders := $wall_slide_colliders
 var wall_slide_rays: Array[Node]
@@ -75,6 +78,8 @@ var can_jump: bool = true
 @export_range(0, 80, 0.05) var wall_slide_gravity: float = 10.
 @export_range(0, 15, 0.05) var wall_slide_pull_force: float = 10.
 
+@export var camera_wall_slide_offset: Vector3 = Vector3.ZERO
+
 
 @export_group("wall slide jump")
 @export_range(0, 8, 0.05) var wall_slide_jump_speed_increase: float = 5
@@ -94,6 +99,7 @@ var can_jump: bool = true
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
+	camera_set_offset(Vector3.ZERO)
 	
 	#set wall slide range
 	var ray_amount = wall_slide_colliders.get_child_count()
@@ -162,15 +168,20 @@ func _process(delta: float):
 	
 	centre = position + Vector3.UP * height/2
 
+#camera controls, inherets camera_controls.gd
+func camera_set_offset(camera_offset: Vector3):
+	camera_twist.set_offset(camera_offset)
 
+func camera_set_offset_smoothing(input_offset):
+	camera_twist.set_offset_smoothing(input_offset)
 
-#Global Velocity Functions
+#Global Movement Functions
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):
 	velocity.x = velocity.move_toward(target_vector, accel * delta).x
 	velocity.z = velocity.move_toward(target_vector, accel * delta).z
-
-
-
+	
+	
+#Add air strafe
 
 # State changes check
 func state_landing_check():

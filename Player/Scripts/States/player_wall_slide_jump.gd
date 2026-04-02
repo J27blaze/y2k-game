@@ -58,19 +58,18 @@ func process_physics(delta: float):
 		DebugDraw3D.draw_line(player.centre, player.centre + dir.rotated(Vector3.UP, deg_to_rad(angle)) * 3, Color.SANDY_BROWN)
 		DebugDraw3D.draw_line(player.centre, player.centre + initial_move_dir.normalized() * 3, Color.BLUE)
 		
-		print(wall_side)
-		print(angle)
-		print(clamped_angle)
+		#print(wall_side)
+		#print(angle)
+		#print(clamped_angle)
 		
 		player.vel_move_toward(initial_move_dir, player.jump_inital_accel, delta)
 	else:
-		player.vel_move_toward(move_dir, player.jump_accel, delta)
+		#player.vel_move_toward(move_dir, player.jump_accel, delta)
 		
 		#debug
 		DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 		DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
-
-	player.vel_move_toward(move_dir, player.jump_accel, delta)
+		player.vel_move_toward(move_dir, player.jump_accel, delta)
 	
 	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity
