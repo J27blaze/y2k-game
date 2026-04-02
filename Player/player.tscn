@@ -81,7 +81,7 @@ mesh = SubResource("BoxMesh_v0iea")
 skeleton = NodePath("../../../camera_twist")
 
 [node name="lan_body_v3_1" parent="model_twist" instance=ExtResource("3_5htga")]
-transform = Transform3D(-6.884544e-08, 0, 1.575, 0, 1.575, 0, -1.575, 0, -6.884544e-08, 0, 1.0985769, 0)
+transform = Transform3D(1.575, 0, 0, 0, 1.575, 0, 0, 0, 1.575, 0, 1.0985769, 0)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
