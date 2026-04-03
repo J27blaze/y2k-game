@@ -221,6 +221,7 @@ func calc_wall_slide():
 	#print(wall_point)
 	DebugDraw3D.draw_square(wall_point, 0.2, Color.GREEN)
 	DebugDraw3D.draw_line(wall_point, wall_point + wall_normal * 1.2, Color.GREEN)
+	
 	return
 	
 func state_wall_slide_check():

@@ -22,6 +22,8 @@ func start():
 
 func exit():
 	player.gravity = player.fall_gravity
+	player.camera_set_offset(Vector3.ZERO)
+	player.camera_set_offset_smoothing("slow")
 
 func process_physics(delta: float):
 	if player.velocity.y < 0:
@@ -44,15 +46,19 @@ func process_physics(delta: float):
 	
 	#player.state_wall_slide_jump_check()
 	
+	var wall_side: int = 0
+	if player.wall_normal.rotated(Vector3.UP, PI/2).dot(player.hor_velocity) > player.wall_normal.rotated(Vector3.UP, -PI/2).dot(player.hor_velocity):
+		wall_side = 1
+	else:
+		wall_side = -1 
+	
+	var camera_offset = Vector3(player.camera_wall_slide_offset.x * wall_side * int(player.on_wall), player.camera_wall_slide_offset.y, player.camera_wall_slide_offset.z)
+	player.camera_set_offset(camera_offset)
+	player.camera_set_offset_smoothing("slow")
+
+	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
 	
-	#Add like a air strafing equivelent. as a player controller fucntion.
-	
-	#DebugDraw3D.draw_line(player.centre, player.centre + initial_vel * 3, Color(0, 0, 1))
-	#DebugDraw3D.draw_line(player.centre, player.centre + initial_vel.rotated(Vector3.UP, PI/2) * 3, Color(0, 0, 1))
-	#DebugDraw3D.draw_line(player.centre, player.centre + initial_vel.rotated(Vector3.UP, PI/-2)* 3, Color(0, 0, 1))
-	
 	timer += 1
-	

@@ -531,13 +531,13 @@ wall_slide_speed = 9.0
 wall_slide_min_speed = 0.1
 wall_slide_gravity = 1.2
 wall_slide_pull_force = 5.0
-camera_wall_slide_offset = Vector3(0.4, 0, 0)
+camera_wall_slide_offset = Vector3(1, 0, 0)
 wall_slide_jump_speed_increase = 0.5
 wall_slide_jump_speed_increase_scaling = SubResource("Curve_00tjw")
 wall_slide_jump_vel_pulse = 12.0
 wall_slide_jump_min_angle = 40.0
 wall_slide_jump_max_angle = 100.0
-wall_slide_jump_inital_accel_frames = 11.0
+wall_slide_jump_inital_accel_frames = 8.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
@@ -854,8 +854,8 @@ target_position = Vector3(0, 0, 0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2191012, 0)
 script = ExtResource("10_apopc")
 fast_offset_smoothing = 6.0
-mid_offset_smoothing = 3.2
-slow_offset_smoothing = 1.5
+mid_offset_smoothing = 3.0
+slow_offset_smoothing = 1.0
 
 [node name="camera_pitch" type="Node3D" parent="camera_twist"]
 
