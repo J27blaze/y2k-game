@@ -2,29 +2,62 @@ extends PlayerState
 
 var initial_dir: Vector3
 var move_dir: Vector3
+var timer: int = 0
+var perfect_slided: bool = false
+
+var slide_timer: int = 0
 
 func start():
 	print("slide")
 	
-	initial_dir = player.hor_velocity.normalized()
+	perfect_slided = false
+	slide_timer = 0
+	
+	initial_dir = player.hor_velocity
 	player.target_speed = player.speed
-	move_dir = initial_dir * player.target_speed
+	move_dir = initial_dir.normalized() * player.target_speed
 
-func process_physics(delta: float):
+func always_process_physics(delta: float):
+	if player.is_on_floor():
+		if timer <= player.perfect_slide_after_frame_window:
+			timer += 1
+	else:
+		timer = 0
 		
+	print(timer)
+	
+func process_physics(delta: float):
 	if input_handler.is_action_buffered("jump") && player.can_jump:
 		change_state("jump")
 		return
 	if Input.is_action_just_released("slide"):
 		change_state("run")
 		return
-		
+	
+	if timer <= player.perfect_slide_after_frame_window && !perfect_slided && input_handler.is_action_buffered("slide"):
+		perfect_slide()
+	
+	if slide_timer > player.slide_friction_start_time:
+		move_dir *= player.slide_friction
+	
 	player.vel_move_toward(move_dir, 999999, delta)
+	
+	slide_timer += 1
 	
 	if !player.is_on_floor():
 		change_state("fall")
 		return
 	
+	play_anim("slide")
+	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
+
+func perfect_slide():
+	var calc_speed = initial_dir.length() + (player.perfect_slide_speed_boost * player.perfect_slide_speed_boost_scaling.sample(player.target_speed - player.run_speed))
+	
+	player.target_speed = calc_speed
+	move_dir = initial_dir.normalized() * player.target_speed
+	
+	perfect_slided = true

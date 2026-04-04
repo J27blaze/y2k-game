@@ -43,13 +43,14 @@ var mouse_dir: Vector2
 
 @export_range(0,1,0.01) var camera_smoothing: float = 0.6
 @export_range(0,1,0.01) var rotation_smoothing: float = 0.6
-
-
+#endregion
+#region run
 @export_group("run") 
 @export_range(0, 20, 0.1) var run_speed: float = 10.0
 @export_range(0, 50, 0.1) var run_accel: float = 10.0
 @export_range(0, 20, 0.05) var run_accel_speed: float = 10.0
-
+#endregion
+#region fall jump
 @export_group("fall | jump")
 var can_jump: bool = true
 @export_range(0, 80, 0.05) var fall_gravity: float = 10.
@@ -66,7 +67,8 @@ var can_jump: bool = true
 @export_range(0, 20, 1) var jump_inital_accel_frames: float = 4
 @export_range(0, 20, 1) var jump_coyote_frames: float = 4
 
-
+#endregion
+#region wall slide
 @export_group("wall slide")
 @export_range(0, 2, 0.05) var wall_slide_range: float = 0.5
 @export_range(0, 360, 0.5) var wall_slide_angle_range: float = 0.4
@@ -81,7 +83,8 @@ var can_jump: bool = true
 
 @export_range(0, 10, 0.005) var camera_wall_slide_offset: float = 1.0
 
-
+#endregion
+#region wall slide jump
 @export_group("wall slide jump")
 @export_range(0, 8, 0.05) var wall_slide_jump_speed_increase: float = 5
 @export var wall_slide_jump_speed_increase_scaling: Curve
@@ -91,10 +94,16 @@ var can_jump: bool = true
 @export_range(0, 180, 0.05) var wall_slide_jump_max_angle: float = 45
 
 @export_range(0, 20, 1) var wall_slide_jump_inital_accel_frames: float = 4
-
+#endregion
+#region run
 @export_group("slide")
-##@export_range(0, 20, 0.1) var slide_speed: float = 12.
+#@export_range(0, 20, 0.1) var slide_speed: float = 12.0
+@export_range(0, 1, 0.001) var slide_friction: float = 0.95
+@export_range(0, 15, 1) var slide_friction_start_time: float = 3
 
+@export_range(0, 15, 1) var perfect_slide_after_frame_window: float = 3
+@export_range(0, 15, 0.05) var perfect_slide_speed_boost: float = 3.0
+@export var perfect_slide_speed_boost_scaling: Curve
 #endregion 
 
 func _ready() -> void:
@@ -139,6 +148,7 @@ func _physics_process(delta: float):
 	
 	input_handler.process_physics(delta)
 	state_machine.process_physics(delta)
+	state_machine.always_physics_update(delta)
 	
 	move_and_slide()
 	
@@ -148,6 +158,8 @@ func _physics_process(delta: float):
 	#gravity
 	if !is_on_floor():
 		velocity.y = clampf(velocity.y - gravity * delta, -fall_terminal_vel, 999999)
+	
+	#player_slide
 	
 	#player rotation
 	if direction.length() > 0.5:

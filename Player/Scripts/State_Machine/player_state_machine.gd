@@ -2,12 +2,15 @@ class_name PlayerStateMachine
 extends Node
 
 @export var states: Dictionary[String, PlayerState]
+@onready var all_states: Array[Node]
 
 var current_state: PlayerState
 var prev_state: PlayerState
 
 func init(player: Player):
-	for child in get_children():
+	all_states = get_children()
+	
+	for child in all_states:
 		child.player = player
 		child.input_handler = player.input_handler
 	
@@ -31,3 +34,7 @@ func process_frame(delta: float):
 	
 func process_physics(delta: float):
 	current_state.process_physics(delta)
+
+func always_physics_update(delta: float):
+	for child in all_states:
+		child.always_process_physics(delta)

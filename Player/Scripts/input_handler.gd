@@ -2,8 +2,6 @@ class_name InputHandler
 var camera_controller_sensitivity = 0.04
 var camera_mouse_sensitivity = 0.001
 
-#input buffer system
-const buffer_length := 5
 var buffered_inputs: Dictionary[String, int]
 
 func process_physics(delta: float):
@@ -22,12 +20,14 @@ func process_input(event: InputEvent):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	#idk how else to program this to be scalable for menus and different buffer windows
-	#but for now the buffered onputs are hard coded EW
+	#but for now the buffered inputs are hard coded EW
 	
 	if Input.is_action_just_pressed("jump"):
-		buffered_inputs["jump"] = buffer_length
-	#if Input.is_action_just_pressed("slide"):
-	#	buffered_inputs["slide"] = buffer_length
+		buffered_inputs["jump"] = 7
+	#
+	if Input.is_action_just_pressed("slide"):
+		# perfect slide
+		buffered_inputs["slide"] = 6
 		
 	#if Input.is_action_just_pressed("kick"):
 	#	buffered_inputs["kick"] = buffer_length
