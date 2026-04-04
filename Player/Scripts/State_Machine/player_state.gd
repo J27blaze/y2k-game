@@ -18,18 +18,22 @@ func exit():
 
 func change_state(state: String):
 	player.state_machine.change_state(state)
+	
+func play_anim(animation_name: String):
+	player.play_anim(animation_name)
 
 # process_input
 func process_input(event: InputEvent):
+	#write on input event code here
 	return null
 
 # process_frame
 func process_frame(delta: float):
+	#write visual code here
 	return null
 
 # process_physics
 func process_physics(delta: float):
 	#Write state changing code here
-	
 	#Write player velocity changing code here.
 	return null

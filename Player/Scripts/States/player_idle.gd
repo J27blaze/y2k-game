@@ -12,4 +12,5 @@ func process_physics(delta: float):
 		change_state("jump")
 		return
 	
+	play_anim("idle")
 	player.vel_move_toward(Vector3.ZERO, player.run_accel, delta)

@@ -10,13 +10,14 @@ var offset_smoothing: float = 3.0
 
 @onready var pitch := $"camera_pitch"
 @onready var camera := $camera_pitch/Camera3D
+#@onready var player = parent()
 
 func _ready() -> void:
-	default_offset = camera.position
+	default_offset = position
 	set_offset_smoothing("slow")
 	
 func _process(delta: float):
-	camera.position = lerp(camera.position, offset + default_offset, offset_smoothing * delta)
+	position = lerp(position, offset + default_offset, offset_smoothing * delta)
 
 func set_offset(camera_offset: Vector3):
 	offset = camera_offset

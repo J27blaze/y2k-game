@@ -19,8 +19,6 @@ func start():
 	else:
 		wall_side = -1 
 	
-	var camera_offset = Vector3(player.camera_wall_slide_offset.x * wall_side, player.camera_wall_slide_offset.y, player.camera_wall_slide_offset.z)
-	player.camera_set_offset(camera_offset)
 	player.camera_set_offset_smoothing("mid")
 
 func exit():
@@ -50,7 +48,9 @@ func process_physics(delta: float):
 	
 	player.vel_move_toward((dir * inital_speed) + wall_pull_force, 999999, delta)
 	
+	var camera_offset = player.wall_normal.normalized() * player.camera_wall_slide_offset
+	player.camera_set_offset(camera_offset)
+	
 	#change rot
 	player.wall_slide_colliders.global_rotation.y = Vector3.FORWARD.signed_angle_to(dir, Vector3.UP)
-	
 	player.state_wall_slide_jump_check()

@@ -61,8 +61,10 @@ func process_physics(delta: float):
 		#print(wall_side)
 		#print(angle)
 		#print(clamped_angle)
-		
-		player.vel_move_toward(initial_move_dir, player.jump_inital_accel, delta)
+		if timer <= 1:
+			player.vel_move_toward(initial_move_dir, 999999, delta)
+		else:
+			player.vel_move_toward(initial_move_dir, player.jump_inital_accel, delta)
 	else:
 		#player.vel_move_toward(move_dir, player.jump_accel, delta)
 		
@@ -75,9 +77,5 @@ func process_physics(delta: float):
 		player.gravity = player.fall_gravity
 		player.velocity.y *= player.jump_vel_height_cut
 		jump_cut = false
-	
-	#DebugDraw3D.draw_line(player.centre, player.centre + initial_vel * 3, Color(0, 0, 1))
-	#DebugDraw3D.draw_line(player.centre, player.centre + initial_vel.rotated(Vector3.UP, PI/2) * 3, Color(0, 0, 1))
-	#DebugDraw3D.draw_line(player.centre, player.centre + initial_vel.rotated(Vector3.UP, PI/-2)* 3, Color(0, 0, 1))
 	
 	timer += 1

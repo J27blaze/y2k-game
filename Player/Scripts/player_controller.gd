@@ -5,10 +5,10 @@ extends CharacterBody3D
 @onready var camera_twist := $camera_twist
 @onready var camera_pitch := $camera_twist/camera_pitch
 
+#player related
 @onready var model_twist := $model_twist
+@onready var animation_player := $model_twist/AnimationPlayer
 @onready var standing_collider := $standing_collider
-
-#wall slide
 @onready var wall_slide_colliders := $wall_slide_colliders
 var wall_slide_rays: Array[Node]
 var wall_rel_centre: Vector3 #0, 1.5, 0
@@ -22,6 +22,7 @@ var style: int = 0 # 0-100 = one style point
 var direction: Vector3
 var last_dir: Vector3 = Vector3.FORWARD
 var hor_velocity: Vector3
+var last_velocity: Vector3 = Vector3.ZERO
 
 var speed: float
 var target_speed: float
@@ -78,7 +79,7 @@ var can_jump: bool = true
 @export_range(0, 80, 0.05) var wall_slide_gravity: float = 10.
 @export_range(0, 15, 0.05) var wall_slide_pull_force: float = 10.
 
-@export var camera_wall_slide_offset: Vector3 = Vector3.ZERO
+@export_range(0, 10, 0.005) var camera_wall_slide_offset: float = 1.0
 
 
 @export_group("wall slide jump")
@@ -151,6 +152,9 @@ func _physics_process(delta: float):
 	#player rotation
 	if direction.length() > 0.5:
 		last_dir = direction.normalized()
+		
+	if velocity.length() > 0.5:
+		last_velocity = velocity
 	
 func _process(delta: float):	
 	#camera Rot
@@ -164,7 +168,7 @@ func _process(delta: float):
 	state_machine.process_frame(delta)
 	
 	#player.rotation
-	model_twist.global_rotation.y = Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
+	model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z), 0.1)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
 	
 	centre = position + Vector3.UP * height/2
 
@@ -174,6 +178,9 @@ func camera_set_offset(camera_offset: Vector3):
 
 func camera_set_offset_smoothing(input_offset):
 	camera_twist.set_offset_smoothing(input_offset)
+
+func play_anim(animation_name: String):
+	animation_player.play(animation_name)
 
 #Global Movement Functions
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):
