@@ -10,8 +10,10 @@ extends CharacterBody3D
 @onready var animation_player := $model_twist/AnimationPlayer
 @onready var standing_collider := $standing_collider
 @onready var wall_slide_colliders := $wall_slide_colliders
+@onready var floor_collider := $floor_collider
 var wall_slide_rays: Array[Node]
 var wall_rel_centre: Vector3 #0, 1.5, 0
+var floor_normal: Vector3 = Vector3.ZERO
 
 #other
 var centre: Vector3 = Vector3.ZERO
@@ -95,11 +97,15 @@ var can_jump: bool = true
 
 @export_range(0, 20, 1) var wall_slide_jump_inital_accel_frames: float = 4
 #endregion
-#region run
+#region slide
 @export_group("slide")
 #@export_range(0, 20, 0.1) var slide_speed: float = 12.0
 @export_range(0, 1, 0.001) var slide_friction: float = 0.95
 @export_range(0, 15, 1) var slide_friction_start_time: float = 3
+@export_range(0, 15, 0.01) var slide_handling: float = 3
+@export_range(0, 30, 0.005) var slide_tangent_scaling: float = 3
+@export_range(0, 20, 0.05) var slide_tangent_max_speed: float = 3
+@export_range(0, 1, 0.005) var slide_tangent_max_speed_slow: float = 3
 
 @export_range(0, 15, 1) var perfect_slide_after_frame_window: float = 3
 @export_range(0, 15, 0.05) var perfect_slide_speed_boost: float = 3.0
@@ -160,6 +166,7 @@ func _physics_process(delta: float):
 		velocity.y = clampf(velocity.y - gravity * delta, -fall_terminal_vel, 999999)
 	
 	#player_slide
+	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
 	
 	#player rotation
 	if direction.length() > 0.5:
