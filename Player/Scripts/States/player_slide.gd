@@ -24,7 +24,7 @@ func always_process_physics(delta: float):
 	else:
 		timer = 0
 		
-	print(timer)
+	#print(timer)
 	
 func process_physics(delta: float):
 	if input_handler.is_action_buffered("jump") && player.can_jump:

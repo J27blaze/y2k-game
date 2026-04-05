@@ -19,7 +19,7 @@ func start():
 	else:
 		wall_side = -1 
 	
-	player.camera_set_offset_smoothing("mid")
+	player.camera_set_offset_smoothing("fast")
 
 func exit():
 	player.camera_set_offset(Vector3.ZERO)
