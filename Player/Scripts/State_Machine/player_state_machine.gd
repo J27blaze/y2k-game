@@ -21,10 +21,14 @@ func change_state(new_state: String):
 	if current_state:
 		current_state.exit()
 		prev_state = current_state
+		#print( current_state.name)
 	#else:
 	#	push_error(new_state + " does not exist.")
 	current_state = states[new_state]
 	current_state.start()
+func previous_state():
+	var name = prev_state.name
+	return name
 
 func process_input(event: InputEvent):
 	current_state.process_input(event)

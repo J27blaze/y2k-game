@@ -39,7 +39,7 @@ func process_physics(delta: float):
 		perfect_slide()
 	if slide_timer > player.slide_friction_start_time:
 		move_dir *= player.slide_friction
-		floor_accel *= player.slide_friction
+	floor_accel *= player.slide_friction
 	
 	# Calculate tangent of the slope angle
 	var floor_normal: Vector3 = player.floor_normal

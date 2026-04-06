@@ -19,6 +19,7 @@ func start():
 	
 	player.gravity = player.jump_gravity
 	player.velocity.y = player.jump_vel_pulse
+	play_anim("jump_1")
 
 func exit():
 	player.gravity = player.fall_gravity
@@ -48,7 +49,6 @@ func process_physics(delta: float):
 	
 	var camera_offset = player.wall_normal.normalized() * player.camera_wall_slide_offset * int(player.on_wall)
 	player.camera_set_offset(camera_offset)
-	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)

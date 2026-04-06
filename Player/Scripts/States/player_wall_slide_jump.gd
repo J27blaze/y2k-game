@@ -31,6 +31,8 @@ func start():
 	player.target_speed = clampf(player_calc_speed, player.run_speed, 99999)
 
 	initial_vel = player.hor_velocity.normalized()
+	
+	play_anim("jump_1")
 
 func exit():
 	player.gravity = player.fall_gravity

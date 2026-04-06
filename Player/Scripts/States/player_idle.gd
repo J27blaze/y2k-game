@@ -3,6 +3,7 @@ extends PlayerState
 func start():
 	print("idle")
 	player.target_speed = 0
+	play_anim("idle")
 
 func process_physics(delta: float):
 	if player.direction != Vector3.ZERO:
@@ -12,5 +13,4 @@ func process_physics(delta: float):
 		change_state("jump")
 		return
 	
-	play_anim("idle")
 	player.vel_move_toward(Vector3.ZERO, player.run_accel, delta)

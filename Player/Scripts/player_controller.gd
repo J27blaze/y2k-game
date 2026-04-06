@@ -101,7 +101,7 @@ var can_jump: bool = true
 @export_group("slide")
 #@export_range(0, 20, 0.1) var slide_speed: float = 12.0
 @export_range(0, 1, 0.001) var slide_friction: float = 0.95
-@export_range(0, 15, 1) var slide_friction_start_time: float = 3
+@export_range(0, 120, 1) var slide_friction_start_time: float = 3
 @export_range(0, 15, 0.01) var slide_handling: float = 3
 @export_range(0, 30, 0.005) var slide_tangent_scaling: float = 3
 @export_range(0, 20, 0.05) var slide_tangent_max_speed: float = 3
@@ -207,7 +207,7 @@ func vel_move_toward(target_vector: Vector3, accel: float, delta: float):
 	velocity.z = velocity.move_toward(target_vector, accel * delta).z
 	
 	
-#Add air strafe
+#Add air strafe BY USING SLIDE CODE
 
 # State changes check
 func state_landing_check():

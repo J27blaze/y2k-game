@@ -7,6 +7,16 @@ func start():
 	
 	timer = 0
 	player.gravity = player.fall_gravity
+	
+	#anim
+	match previous_state():
+		"jump":
+			play_anim("jump_1_fall")
+			return
+		_:
+			play_anim("jump_1_fall")
+			return
+	#print(previous_state())
 
 func process_physics(delta: float):
 	player.calc_wall_slide()

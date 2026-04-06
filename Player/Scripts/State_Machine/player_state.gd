@@ -18,6 +18,8 @@ func exit():
 
 func change_state(state: String):
 	player.state_machine.change_state(state)
+func previous_state():
+	return player.state_machine.previous_state()
 	
 func play_anim(animation_name: String):
 	player.play_anim(animation_name)
