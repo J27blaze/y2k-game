@@ -113,6 +113,18 @@ var can_jump: bool = true
 @export_range(0, 15, 0.05) var perfect_slide_speed_boost: float = 3.0
 @export var perfect_slide_speed_boost_scaling: Curve
 #endregion 
+#region slide
+@export_group("dodges")
+@export_range(0, 30, 0.05) var dodge_min_speed:float = 15.0
+@export_range(0, 30, 0.05) var dodge_add_speed:float = 15.0
+@export_range(0, 20, 0.05) var dodge_accel_speed: float = 10.0
+@export_range(0, 10, 1) var dodge_initial_redirect_frame:int = 2
+
+@export_range(0, 25, 0.05) var air_dodge_vel_pulse:float = 3.0
+@export_range(0, 80, 0.05) var air_dodge_gravity: float = 10.
+
+
+#endregion 
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -154,6 +166,12 @@ func _physics_process(delta: float):
 	#wall_slide_colliders rot
 	if velocity.length() > 0.4:
 		wall_slide_colliders.global_rotation.y = Vector3.FORWARD.signed_angle_to(hor_velocity, Vector3.UP)
+	#player rotation
+	if direction.length() > 0.5:
+		last_dir = direction.normalized()
+		
+	if velocity.length() > 0.5:
+		last_velocity = velocity
 	
 	input_handler.process_physics(delta)
 	state_machine.process_physics(delta)
@@ -175,13 +193,6 @@ func _physics_process(delta: float):
 	
 	#player_slide
 	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
-	
-	#player rotation
-	if direction.length() > 0.5:
-		last_dir = direction.normalized()
-		
-	if velocity.length() > 0.5:
-		last_velocity = velocity
 	
 func _process(delta: float):	
 	#camera Rot
@@ -229,6 +240,16 @@ func state_landing_check():
 				state_machine.change_state("slide")
 			else:
 				state_machine.change_state("run")
+
+func state_dodge_check():
+	if input_handler.is_action_buffered("dodge"):
+		match state_machine.current_state.name:
+			"jump":
+				state_machine.change_state("air_dodge")
+			"wall_slide_jump":
+				state_machine.change_state("air_dodge")
+			"fall":
+				state_machine.change_state("air_dodge")
 
 var wall_normal: Vector3
 var on_wall: bool = false

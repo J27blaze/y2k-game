@@ -32,6 +32,7 @@ func process_physics(delta: float):
 		return
 	
 	player.calc_wall_slide()
+	player.state_dodge_check()
 	
 	#accel
 	var move_dir = player.target_speed * player.direction

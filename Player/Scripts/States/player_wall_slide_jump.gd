@@ -43,6 +43,7 @@ func process_physics(delta: float):
 		return
 	
 	player.calc_wall_slide()
+	player.state_dodge_check()
 	
 	#similiar as player jump state
 	

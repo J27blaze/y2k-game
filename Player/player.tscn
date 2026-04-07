@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=45 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -12,15 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://begqktbcthhwn" path="res://Player/Scripts/Player_UI/player_ui.tscn" id="9_00tjw"]
 [ext_resource type="Script" uid="uid://cjykmhg417d6j" path="res://Player/Scripts/States/player_slide.gd" id="9_x3vf3"]
 [ext_resource type="Script" uid="uid://g15577j150lf" path="res://Player/Scripts/camera_controls.gd" id="10_apopc"]
+[ext_resource type="Script" uid="uid://6wrk1sup8xb7" path="res://Player/Scripts/States/player_air_dodge.gd" id="11_p5o4e"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
-_limits = [0.0, 1.0, 0.0, 7.0]
-_data = [Vector2(0, 1), 0.0, -0.29157263, 0, 1, Vector2(1.7753623, 0.48235297), -0.29157263, -0.06361263, 1, 1, Vector2(7, 0.15), -0.06361263, 0.0, 1, 0]
-point_count = 3
+_limits = [0.0, 1.0, 0.0, 11.0]
+_data = [Vector2(0, 1), 0.0, -0.27321324, 0, 0, Vector2(11, 0), -0.001122127, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_apopc"]
-_limits = [0.0, 1.0, 0.0, 5.0]
-_data = [Vector2(0, 1), 0.0, -0.8188235, 0, 0, Vector2(3, 0.1), -0.043949064, 0.0, 0, 0]
+_limits = [0.0, 1.0, 0.0, 6.0]
+_data = [Vector2(0, 1), 0.0, -0.37074143, 0, 0, Vector2(6, 0.05), -0.007876531, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_00tjw"]
@@ -2552,7 +2553,7 @@ camera_smoothing = 0.35
 rotation_smoothing = 0.23
 run_speed = 6.4
 run_accel = 50.0
-run_accel_speed = 2.45
+run_accel_speed = 1.0
 fall_gravity = 35.0
 jump_gravity = 17.0
 jump_vel_pulse = 9.0
@@ -2563,35 +2564,42 @@ fall_accel = 20.0
 jump_inital_accel = 100.0
 jump_min_hold_frames = 6.0
 jump_inital_accel_frames = 3.0
-jump_coyote_frames = 5.0
+jump_coyote_frames = 7.0
 wall_slide_range = 0.3
 wall_slide_angle_range = 165.0
 wall_slide_angle_threshold = 0.6
-wall_slide_direction_threshold = 0.0
-wall_slide_speed = 9.0
+wall_slide_direction_threshold = 0.2
+wall_slide_speed = 7.4
 wall_slide_min_speed = 0.1
 wall_slide_gravity = 1.2
 wall_slide_pull_force = 5.0
 camera_wall_slide_offset = 1.27
-wall_slide_jump_speed_increase = 0.5
+wall_slide_jump_speed_increase = 0.65
 wall_slide_jump_speed_increase_scaling = SubResource("Curve_00tjw")
 wall_slide_jump_vel_pulse = 12.0
 wall_slide_jump_min_angle = 35.0
 wall_slide_jump_max_angle = 110.0
 wall_slide_jump_inital_accel_frames = 8.0
-slide_friction = 0.997
-slide_friction_start_time = 32.0
+slide_friction = 0.996
+slide_friction_start_time = 30.0
 slide_handling = 0.65
-slide_min_speed = 8.5
+slide_min_speed = 7.4
 slide_tangent_scaling = 8.555
 slide_tangent_max_speed = 13.7
 slide_tangent_max_speed_slow = 0.795
 perfect_slide_speed_boost = 1.75
 perfect_slide_speed_boost_scaling = SubResource("Curve_apopc")
+dodge_min_speed = 7.4
+dodge_add_speed = 10.0
+dodge_accel_speed = 6.0
+dodge_initial_redirect_frame = 5
+air_dodge_vel_pulse = 9.5
+air_dodge_gravity = 37.95
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
 states = {
+"air_dodge": NodePath("air_dodge"),
 "fall": NodePath("fall"),
 "god_mode": NodePath("god_mode"),
 "idle": NodePath("idle"),
@@ -2625,6 +2633,16 @@ script = ExtResource("8_od3ui")
 
 [node name="slide" type="Node" parent="state_machine"]
 script = ExtResource("9_x3vf3")
+
+[node name="air_dodge" type="Node" parent="state_machine"]
+script = ExtResource("11_p5o4e")
+
+[node name="dodge_length" type="Timer" parent="state_machine/air_dodge"]
+process_callback = 0
+wait_time = 0.48
+one_shot = true
+
+[node name="invunerable_length" type="Timer" parent="state_machine/air_dodge"]
 
 [node name="standing_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0140625, 0)
@@ -2920,3 +2938,5 @@ transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237
 
 [node name="player_ui" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_00tjw")]
 player = NodePath("..")
+
+[connection signal="timeout" from="state_machine/air_dodge/dodge_length" to="state_machine/air_dodge" method="_on_dodge_length_timeout"]

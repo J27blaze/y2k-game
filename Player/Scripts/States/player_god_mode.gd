@@ -18,7 +18,9 @@ func process_physics(delta: float):
 	var move_dir: Vector3
 	move_dir += player.direction * speed
 	player.target_speed = move_dir.length()
-	player.vel_move_toward(move_dir, 999999, delta)
+	
+	player.velocity.x = move_dir.x
+	player.velocity.z = move_dir.z
 	player.velocity.y = Input.get_axis("slide", "jump") * speed
 
 func process_input(event: InputEvent):

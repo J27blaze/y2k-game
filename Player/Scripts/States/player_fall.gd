@@ -13,6 +13,8 @@ func start():
 		"jump":
 			play_anim("jump_1_fall")
 			return
+		"air_dodge":
+			return
 		_:
 			play_anim("jump_1_fall")
 			return
@@ -22,6 +24,7 @@ func process_physics(delta: float):
 	player.calc_wall_slide()
 	player.state_wall_slide_check()
 	player.state_landing_check()
+	player.state_dodge_check()
 	
 	if timer <= player.jump_coyote_frames && Input.is_action_just_pressed("jump") && player.can_jump:
 		change_state("jump")
