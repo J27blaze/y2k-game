@@ -84,6 +84,14 @@ radius = 9.0
 height = 35.5
 sides = 16
 
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5, 10.3125, -71.5)
+material_override = ExtResource("1_dc6q1")
+use_collision = true
+radius = 20.0
+height = 60.875
+sides = 32
+
 [node name="Player" parent="." instance=ExtResource("1_g54tn")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7965355, -0.096811295, -63.401367)

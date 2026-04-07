@@ -17,7 +17,7 @@ func init(player: Player):
 	prev_state = states["idle"]
 	change_state("idle")
 
-func change_state(new_state: String):
+func change_state(new_state: String, data = null):
 	if current_state:
 		current_state.exit()
 		prev_state = current_state
@@ -25,7 +25,9 @@ func change_state(new_state: String):
 	#else:
 	#	push_error(new_state + " does not exist.")
 	current_state = states[new_state]
+	current_state.data = data
 	current_state.start()
+
 func previous_state():
 	var name = prev_state.name
 	return name

@@ -245,11 +245,24 @@ func state_dodge_check():
 	if input_handler.is_action_buffered("dodge"):
 		match state_machine.current_state.name:
 			"jump":
-				state_machine.change_state("air_dodge")
+				state_machine.change_state("dodge", "air")
+				return
 			"wall_slide_jump":
-				state_machine.change_state("air_dodge")
+				state_machine.change_state("dodge", "air")
+				return
 			"fall":
-				state_machine.change_state("air_dodge")
+				state_machine.change_state("dodge", "air")
+				return
+			"run":
+				state_machine.change_state("dodge", "ground")
+				return
+			"idle":
+				state_machine.change_state("dodge", "ground")
+				return
+			"slide":
+				state_machine.change_state("dodge", "ground")
+				return
+
 
 var wall_normal: Vector3
 var on_wall: bool = false

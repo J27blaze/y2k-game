@@ -24,13 +24,13 @@ func process_input(event: InputEvent):
 	
 	if Input.is_action_just_pressed("jump"):
 		buffered_inputs["jump"] = 7
-	#
+	
+	if Input.is_action_just_pressed("dodge"):
+		buffered_inputs["dodge"] = 7
+		
 	if Input.is_action_just_pressed("slide"):
 		# perfect slide
 		buffered_inputs["slide"] = 6
-	if Input.is_action_just_pressed("dodge"):
-		# perfect slide
-		buffered_inputs["dodge"] = 7
 		
 	#if Input.is_action_just_pressed("kick"):
 	#	buffered_inputs["kick"] = buffer_length

@@ -12,5 +12,6 @@ func process_physics(delta: float):
 	if input_handler.is_action_buffered("jump") && player.can_jump:
 		change_state("jump")
 		return
+	player.state_dodge_check()
 	
 	player.vel_move_toward(Vector3.ZERO, player.run_accel, delta)

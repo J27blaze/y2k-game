@@ -17,6 +17,7 @@ func process_physics(delta: float):
 	if !player.is_on_floor():
 		change_state("fall")
 		return
+	player.state_dodge_check()
 		
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, player.run_accel, delta)

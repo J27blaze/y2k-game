@@ -27,6 +27,9 @@ func always_process_physics(delta: float):
 		timer = 0
 	#print(timer)
 
+func exit():
+	player.speed = player.target_speed
+
 func process_physics(delta: float):
 	if input_handler.is_action_buffered("jump") && player.can_jump:
 		change_state("jump")
@@ -34,8 +37,9 @@ func process_physics(delta: float):
 	if Input.is_action_just_released("slide"):
 		change_state("run")
 		return
+	player.state_dodge_check()
 	
-	if timer <= player.perfect_slide_after_frame_window && !perfect_slided && input_handler.is_action_buffered("slide"):
+	if !perfect_slided && input_handler.is_action_buffered("slide"):
 		perfect_slide()
 	if slide_timer > player.slide_friction_start_time:
 		move_dir *= player.slide_friction
