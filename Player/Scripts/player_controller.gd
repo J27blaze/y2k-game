@@ -14,6 +14,7 @@ extends CharacterBody3D
 var wall_slide_rays: Array[Node]
 var wall_rel_centre: Vector3 #0, 1.5, 0
 var floor_normal: Vector3 = Vector3.ZERO
+var god_mode: bool = false
 
 #other
 var centre: Vector3 = Vector3.ZERO
@@ -103,6 +104,7 @@ var can_jump: bool = true
 @export_range(0, 1, 0.001) var slide_friction: float = 0.95
 @export_range(0, 120, 1) var slide_friction_start_time: float = 3
 @export_range(0, 15, 0.01) var slide_handling: float = 3
+@export_range(0, 20, 0.01) var slide_min_speed: float = 3
 @export_range(0, 30, 0.005) var slide_tangent_scaling: float = 3
 @export_range(0, 20, 0.05) var slide_tangent_max_speed: float = 3
 @export_range(0, 1, 0.005) var slide_tangent_max_speed_slow: float = 3
@@ -138,7 +140,8 @@ func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			mouse_dir =  input_handler.get_mouse_camera_dir(event)
-			
+	#debug stuff
+	
 	raw_input_dir =  input_handler.get_raw_input_dir()
 	input_dir =  input_handler.get_input_dir()
 	
@@ -155,6 +158,11 @@ func _physics_process(delta: float):
 	input_handler.process_physics(delta)
 	state_machine.process_physics(delta)
 	state_machine.always_physics_update(delta)
+	
+	if Input.is_action_just_pressed("debug_mode"):
+		god_mode = !god_mode
+		if god_mode:
+			state_machine.change_state("god_mode")
 	
 	move_and_slide()
 	

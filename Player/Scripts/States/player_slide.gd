@@ -16,7 +16,7 @@ func start():
 	floor_accel = Vector3.ZERO
 	
 	initial_dir = player.hor_velocity
-	player.target_speed = player.speed
+	player.target_speed = clampf(player.speed, player.slide_min_speed, 999999)
 	move_dir = initial_dir.normalized() * player.target_speed
 
 func always_process_physics(delta: float):
@@ -58,7 +58,7 @@ func process_physics(delta: float):
 	var angle = rad_to_deg(move_dir.signed_angle_to(player.direction, Vector3.UP))
 	angle = clampf(angle, -player.slide_handling, player.slide_handling)
 	move_dir = move_dir.rotated(Vector3.UP, deg_to_rad(angle))
-	print(angle)
+	#print(angle)
 	#print(scaled_floor_accel.length())
 	
 	var final_move_dir: Vector3 = move_dir + scaled_floor_accel
