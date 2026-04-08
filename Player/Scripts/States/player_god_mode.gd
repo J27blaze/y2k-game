@@ -1,6 +1,6 @@
 extends PlayerState
 
-const speed: float = 20
+const speed: float = 25
 
 func start():
 	print("god_mode")
