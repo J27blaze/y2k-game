@@ -20,31 +20,36 @@ func start():
 	timer = 0
 	
 	initial_dir = player.hor_velocity.normalized()* player.target_speed
-	player.target_speed = clampf(player.target_speed, player.dodge_min_speed, 999999)
 	
-	get_player_dir()
-	
-	speed = clampf(player.speed + player.dodge_add_speed, player.dodge_min_speed + player.dodge_add_speed, 999999)
-	print(speed)
+	#print(speed)
 	
 func get_player_dir():
 	if player.direction.length() > 0.1:
 		input_dir = player.direction.normalized()
 	else:
 		input_dir = player.last_dir
-		print(player.last_dir)
+		#print(player.last_dir)
 
 func exit():
 	player.velocity.y *= 0.9
-	player.speed = player.target_speed
+	#player.velocity = player.velocity.normalized() * player.target_speed
+	#player.speed = player.target_speed
 	dodge_length.stop()
+	print(player.speed)
 	return
 
 func process_physics(delta: float):
 	if timer < player.dodge_initial_redirect_frame:
 		get_player_dir()
+		
+		var angle_clamp_amount: float = player.dodge_angle_clamp.sample(initial_dir.normalized().dot(input_dir.normalized()))
+		var dodge_speed: float = (player.speed) * angle_clamp_amount
+		
+		player.target_speed = clampf(player.target_speed * angle_clamp_amount, player.dodge_min_speed, 999999)
+		speed = clampf(player.speed, player.dodge_min_speed + player.dodge_add_speed, 999999)
+	else:
+		speed = lerpf(speed, player.target_speed, player.dodge_accel_speed * delta)
 	
-	speed = lerpf(speed, player.target_speed, player.dodge_accel_speed * delta)
 	final_dir = input_dir * speed
 	
 	player.velocity.x = final_dir.x
@@ -54,6 +59,8 @@ func process_physics(delta: float):
 	
 	if data == "air":
 		player.calc_wall_slide()
+		player.state_landing_check()
+	elif dodge_length.is_stopped():
 		player.state_landing_check()
 	
 	#debug

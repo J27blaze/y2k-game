@@ -115,10 +115,12 @@ var can_jump: bool = true
 #endregion 
 #region slide
 @export_group("dodges")
+var dodges: int = 2
 @export_range(0, 30, 0.05) var dodge_min_speed:float = 15.0
 @export_range(0, 30, 0.05) var dodge_add_speed:float = 15.0
 @export_range(0, 20, 0.05) var dodge_accel_speed: float = 10.0
 @export_range(0, 10, 1) var dodge_initial_redirect_frame:int = 2
+@export var dodge_angle_clamp : Curve
 
 @export_range(0, 25, 0.05) var air_dodge_vel_pulse:float = 3.0
 @export_range(0, 80, 0.05) var air_dodge_gravity: float = 10.
@@ -245,22 +247,22 @@ func state_dodge_check():
 	if input_handler.is_action_buffered("dodge"):
 		match state_machine.current_state.name:
 			"jump":
-				state_machine.change_state("dodge", "air")
+				state_machine.change_state("air_dodge", "air")
 				return
 			"wall_slide_jump":
-				state_machine.change_state("dodge", "air")
+				state_machine.change_state("air_dodge", "air")
 				return
 			"fall":
-				state_machine.change_state("dodge", "air")
+				state_machine.change_state("air_dodge", "air")
 				return
 			"run":
-				state_machine.change_state("dodge", "ground")
+				state_machine.change_state("ground_dodge", "ground")
 				return
 			"idle":
-				state_machine.change_state("dodge", "ground")
+				state_machine.change_state("ground_dodge", "ground")
 				return
 			"slide":
-				state_machine.change_state("dodge", "ground")
+				state_machine.change_state("ground_dodge", "ground")
 				return
 
 
