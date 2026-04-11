@@ -122,6 +122,8 @@ var dodges: int = 2
 @export_range(0, 10, 1) var dodge_initial_redirect_frame:int = 2
 @export var dodge_angle_clamp : Curve
 
+@export_range(0, 25, 0.05) var ground_dodge_vel_pulse:float = 3.0
+
 @export_range(0, 25, 0.05) var air_dodge_vel_pulse:float = 3.0
 @export_range(0, 80, 0.05) var air_dodge_gravity: float = 10.
 

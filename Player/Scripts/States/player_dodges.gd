@@ -13,13 +13,18 @@ func start():
 	print(data + " dodge")
 	dodge_length.start()
 	
-	if data == "air":
-		player.velocity.y = player.air_dodge_vel_pulse
-		player.gravity = player.air_dodge_gravity
+	match data:
+		"air":
+			player.velocity.y = player.air_dodge_vel_pulse
+			player.gravity = player.air_dodge_gravity
+		"ground":
+			player.velocity.y = player.ground_dodge_vel_pulse
+			player.gravity = player.air_dodge_gravity
 	
 	timer = 0
 	
 	initial_dir = player.hor_velocity.normalized()* player.target_speed
+	play_anim("dodge_old")
 	
 	#print(speed)
 	
@@ -32,10 +37,11 @@ func get_player_dir():
 
 func exit():
 	player.velocity.y *= 0.9
+	player.gravity = player.fall_gravity
 	#player.velocity = player.velocity.normalized() * player.target_speed
 	#player.speed = player.target_speed
 	dodge_length.stop()
-	print(player.speed)
+	#print(player.speed)
 	return
 
 func process_physics(delta: float):
@@ -57,11 +63,17 @@ func process_physics(delta: float):
 	
 	timer += 1
 	
-	if data == "air":
-		player.calc_wall_slide()
-		player.state_landing_check()
-	elif dodge_length.is_stopped():
-		player.state_landing_check()
+	match data:
+		"air":
+			player.calc_wall_slide()
+			player.state_landing_check()
+		"ground":
+			if dodge_length.is_stopped():
+				print("sdfsdf")
+				if player.is_on_floor():
+					player.state_landing_check()
+				else:
+					change_state("fall")
 	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
@@ -70,5 +82,5 @@ func process_physics(delta: float):
 func _on_dodge_length_timeout() -> void:
 	if data == "air":
 		change_state("fall")
-	else:
-		player.state_landing_check()
+	#else:
+	#	player.state_landing_check()

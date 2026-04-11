@@ -3,6 +3,7 @@ extends PlayerState
 func start():
 	print("run")
 	player.target_speed = clampf(player.speed, player.run_speed, 999999)
+	play_anim("run")
 
 func process_physics(delta: float):
 	if player.direction == Vector3.ZERO:
@@ -21,8 +22,6 @@ func process_physics(delta: float):
 		
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, player.run_accel, delta)
-	
-	play_anim("run")
 	player.target_speed = lerpf(player.target_speed, player.run_speed, player.run_accel_speed * delta)
 	
 	#debug

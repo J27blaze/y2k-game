@@ -14,6 +14,7 @@ func start():
 			play_anim("jump_1_fall")
 			return
 		"air_dodge":
+			play_anim("jump_1_fall")
 			return
 		_:
 			play_anim("jump_1_fall")

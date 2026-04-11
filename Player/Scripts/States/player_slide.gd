@@ -18,6 +18,8 @@ func start():
 	initial_dir = player.hor_velocity
 	player.target_speed = clampf(player.speed, player.slide_min_speed, 999999)
 	move_dir = initial_dir.normalized() * player.target_speed
+	
+	play_anim("slide")
 
 func always_process_physics(delta: float):
 	if player.is_on_floor():
@@ -73,8 +75,6 @@ func process_physics(delta: float):
 	if !player.is_on_floor():
 		change_state("fall")
 		return
-	
-	play_anim("slide")
 	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
