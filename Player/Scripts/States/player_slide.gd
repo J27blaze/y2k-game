@@ -41,7 +41,7 @@ func process_physics(delta: float):
 		return
 	player.state_dodge_check()
 	
-	if !perfect_slided && input_handler.is_action_buffered("slide"):
+	if !perfect_slided && input_handler.is_action_buffered("slide") && timer < player.perfect_slide_after_frame_window:
 		perfect_slide()
 	if slide_timer > player.slide_friction_start_time:
 		move_dir *= player.slide_friction
