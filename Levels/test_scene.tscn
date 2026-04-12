@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d06ffiscqvn0t"]
+[gd_scene load_steps=5 format=3 uid="uid://d06ffiscqvn0t"]
 
 [ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_dc6q1"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="1_g54tn"]
 [ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="2_dc6q1"]
+[ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="4_q5m1e"]
 
 [node name="TestScene" type="Node3D"]
 
@@ -27,6 +28,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5, -8, -52.5)
 material_override = ExtResource("1_dc6q1")
 use_collision = true
 size = Vector3(46, 6, 44)
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.5, -2, -39.5)
+material_override = ExtResource("1_dc6q1")
+use_collision = true
+size = Vector3(16, 18, 18)
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 0, -68.5)
+material_override = ExtResource("1_dc6q1")
+use_collision = true
+size = Vector3(27, 22, 40)
 
 [node name="CSGBox3D28" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.222196e-08, 0.25881907, 0.96592593, 1.13133405e-08, 0.96592593, -0.25881907, -1, 0, -4.371139e-08, 29.5, -9, -43.5)
@@ -120,6 +133,15 @@ sides = 32
 
 [node name="Player" parent="." instance=ExtResource("1_g54tn")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7965355, -0.096811295, -63.401367)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66)
 
 [node name="Debug UI" parent="." instance=ExtResource("2_dc6q1")]
+
+[node name="TestEnemy" parent="." instance=ExtResource("4_q5m1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 11.5, -60)
+
+[node name="TestEnemy2" parent="." instance=ExtResource("4_q5m1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 11.5, -72)
+
+[node name="TestEnemy3" parent="." instance=ExtResource("4_q5m1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 11.5, -77)

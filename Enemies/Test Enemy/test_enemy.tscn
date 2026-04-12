@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmujqc3agkm0h"]
+
+[node name="TestEnemy" type="CharacterBody3D"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radial_segments = 10
