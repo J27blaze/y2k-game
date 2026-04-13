@@ -127,6 +127,10 @@ var dodges: int = 2
 @export_range(0, 25, 0.05) var air_dodge_vel_pulse:float = 3.0
 @export_range(0, 80, 0.05) var air_dodge_gravity: float = 10.
 
+@export_group("dodges - jump")
+var can_dodge_jump: bool = false
+@export_range(0, 50, 0.05) var dodge_jump_vel_pulse: float = 10.
+@export_range(0, 50, 0.05) var dodge_jump_speed: float = 10.
 
 #endregion 
 
@@ -244,6 +248,14 @@ func state_landing_check():
 				state_machine.change_state("slide")
 			else:
 				state_machine.change_state("run")
+
+func can_jump_check():
+	if input_handler.is_action_buffered("jump") && can_jump:
+		var is_dodge_jump: String = ""
+		if can_dodge_jump:
+			is_dodge_jump = "dodge_jump"
+		state_machine.change_state("jump", is_dodge_jump)
+		return
 
 func state_dodge_check():
 	if input_handler.is_action_buffered("dodge"):

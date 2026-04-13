@@ -2895,6 +2895,9 @@ process_callback = 0
 wait_time = 0.3
 one_shot = true
 
+[node name="dodge_jump" type="Node" parent="state_machine"]
+script = ExtResource("5_k53q1")
+
 [node name="standing_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0140625, 0)
 shape = SubResource("CylinderShape3D_00tjw")

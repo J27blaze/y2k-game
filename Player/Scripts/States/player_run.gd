@@ -9,9 +9,8 @@ func process_physics(delta: float):
 	if player.direction == Vector3.ZERO:
 		change_state("idle")
 		return
-	if input_handler.is_action_buffered("jump") && player.can_jump:
-		change_state("jump")
-		return
+	player.can_jump_check()
+	
 	if Input.is_action_pressed("slide"):
 		change_state("slide")
 		return

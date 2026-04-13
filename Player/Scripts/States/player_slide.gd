@@ -33,9 +33,8 @@ func exit():
 	player.speed = player.target_speed
 
 func process_physics(delta: float):
-	if input_handler.is_action_buffered("jump") && player.can_jump:
-		change_state("jump")
-		return
+	player.can_jump_check()
+	
 	if Input.is_action_just_released("slide"):
 		change_state("run")
 		return

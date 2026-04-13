@@ -40,9 +40,19 @@ func exit():
 	player.gravity = player.fall_gravity
 	#player.velocity = player.velocity.normalized() * player.target_speed
 	#player.speed = player.target_speed
+	if data == "ground":
+		player.can_dodge_jump = true
+		can_dodge_jump_timer = 5
 	dodge_length.stop()
 	#print(player.speed)
 	return
+
+var can_dodge_jump_timer: int = 5
+func always_process_physics(delta: float):
+	if can_dodge_jump_timer > 0:
+		can_dodge_jump_timer -= 1
+	else:
+		player.can_dodge_jump = false
 
 func process_physics(delta: float):
 	if timer < player.dodge_initial_redirect_frame:
