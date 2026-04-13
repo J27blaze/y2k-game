@@ -25,7 +25,8 @@ func process_physics(delta: float):
 	player.calc_wall_slide()
 	player.state_wall_slide_check()
 	player.state_landing_check()
-	player.state_dodge_check()
+	if player.state_machine.prev_state.name != "dodge_jump":
+		player.state_dodge_check()
 	
 	if timer <= player.jump_coyote_frames && Input.is_action_just_pressed("jump") && player.can_jump:
 		change_state("jump")

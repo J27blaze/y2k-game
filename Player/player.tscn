@@ -2829,11 +2829,15 @@ dodge_angle_clamp = SubResource("Curve_p5o4e")
 ground_dodge_vel_pulse = 0.0
 air_dodge_vel_pulse = 11.0
 air_dodge_gravity = 37.95
+dodge_jump_vel_pulse = 12.4
+dodge_jump_speed = 11.75
+dodge_jump_frames = 3.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
 states = {
 "air_dodge": NodePath("air_dodge"),
+"dodge_jump": NodePath("dodge_jump"),
 "fall": NodePath("fall"),
 "god_mode": NodePath("god_mode"),
 "ground_dodge": NodePath("ground_dodge"),
@@ -2871,6 +2875,7 @@ script = ExtResource("9_x3vf3")
 
 [node name="ground_dodge" type="Node" parent="state_machine"]
 script = ExtResource("11_p5o4e")
+is_dodge_jump = true
 
 [node name="dodge_length" type="Timer" parent="state_machine/ground_dodge"]
 process_callback = 0
@@ -2897,6 +2902,7 @@ one_shot = true
 
 [node name="dodge_jump" type="Node" parent="state_machine"]
 script = ExtResource("5_k53q1")
+is_dodge_jump = true
 
 [node name="standing_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0140625, 0)

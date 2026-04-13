@@ -1,6 +1,7 @@
 extends PlayerState
 
 @onready var dodge_length := $dodge_length
+@export var is_dodge_jump : bool = false
 
 var initial_dir: Vector3
 var input_dir: Vector3
@@ -42,17 +43,20 @@ func exit():
 	#player.speed = player.target_speed
 	if data == "ground":
 		player.can_dodge_jump = true
-		can_dodge_jump_timer = 5
+		can_dodge_jump_timer = player.dodge_jump_frames
 	dodge_length.stop()
 	#print(player.speed)
 	return
 
-var can_dodge_jump_timer: int = 5
+var can_dodge_jump_timer: int = 0
+
 func always_process_physics(delta: float):
-	if can_dodge_jump_timer > 0:
-		can_dodge_jump_timer -= 1
-	else:
-		player.can_dodge_jump = false
+	if is_dodge_jump:
+		if can_dodge_jump_timer > 0:
+			can_dodge_jump_timer -= 1
+		else:
+			player.can_dodge_jump = false
+		#print(can_dodge_jump_timer)
 
 func process_physics(delta: float):
 	if timer < player.dodge_initial_redirect_frame:
@@ -79,7 +83,7 @@ func process_physics(delta: float):
 			player.state_landing_check()
 		"ground":
 			if dodge_length.is_stopped():
-				print("sdfsdf")
+				#print("sdfsdf")
 				if player.is_on_floor():
 					player.state_landing_check()
 				else:

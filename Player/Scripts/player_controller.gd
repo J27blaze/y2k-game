@@ -130,7 +130,8 @@ var dodges: int = 2
 @export_group("dodges - jump")
 var can_dodge_jump: bool = false
 @export_range(0, 50, 0.05) var dodge_jump_vel_pulse: float = 10.
-@export_range(0, 50, 0.05) var dodge_jump_speed: float = 10.
+@export_range(0, 20, 0.01) var dodge_jump_speed: float = 10.
+@export_range(0, 60, 1) var dodge_jump_frames: float = 10
 
 #endregion 
 
@@ -249,13 +250,12 @@ func state_landing_check():
 			else:
 				state_machine.change_state("run")
 
-func can_jump_check():
-	if input_handler.is_action_buffered("jump") && can_jump:
-		var is_dodge_jump: String = ""
-		if can_dodge_jump:
-			is_dodge_jump = "dodge_jump"
-		state_machine.change_state("jump", is_dodge_jump)
-		return
+func state_jump():
+	if can_dodge_jump:
+		state_machine.change_state("dodge_jump")
+	else:
+		state_machine.change_state("jump")
+	return
 
 func state_dodge_check():
 	if input_handler.is_action_buffered("dodge"):

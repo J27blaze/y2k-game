@@ -1,5 +1,7 @@
 extends PlayerState
 
+@export var is_dodge_jump: bool = false
+
 #var initial_vel: Vector3
 var timer: int = 0
 var jump_cut: bool = true
@@ -7,18 +9,30 @@ var initial_vel: Vector3
 var wall_normal: Vector3
 
 func start():
-	print("jump")
 	player.can_jump = false
 	
 	timer = 0
 	jump_cut = true
 	
-	player.target_speed = clampf(player.speed, player.run_speed, 99999)
+	var min_speed : float = player.run_speed
+	var jump_vel : float = player.jump_vel_pulse
+	if is_dodge_jump:
+		print("dodge_jump")
+		min_speed = player.dodge_jump_speed
+		jump_vel = player.dodge_jump_vel_pulse
+		
+		var initial_vel : Vector3 = player.direction * player.dodge_jump_speed
+		player.velocity.x = initial_vel.x
+		player.velocity.z = initial_vel.z
+	else:
+		print("jump")
+	
+	player.target_speed = clampf(player.speed, min_speed, 99999)
 	wall_normal = player.wall_normal
 	#initial_vel = player.target_speed
 	
 	player.gravity = player.jump_gravity
-	player.velocity.y = player.jump_vel_pulse
+	player.velocity.y = jump_vel
 	play_anim("jump_1")
 
 func exit():
@@ -32,7 +46,8 @@ func process_physics(delta: float):
 		return
 	
 	player.calc_wall_slide()
-	player.state_dodge_check()
+	if !is_dodge_jump:
+		player.state_dodge_check()
 	
 	#accel
 	var move_dir = player.target_speed * player.direction
