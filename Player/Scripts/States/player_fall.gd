@@ -28,6 +28,7 @@ func process_physics(delta: float):
 	if player.state_machine.prev_state.name != "dodge_jump":
 		player.state_dodge_check()
 	
+	#coyote time, lockey buggy but its cool
 	if timer <= player.jump_coyote_frames && Input.is_action_just_pressed("jump") && player.can_jump:
 		change_state("jump")
 		return
@@ -35,6 +36,8 @@ func process_physics(delta: float):
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, player.fall_accel, delta)
 	#player.vel_accel_speed(player.run_speed, player.run_max_speed, player.jump_speed_accel, player.jump_speed_accel, delta)
+	
+	player.lerp_target_speed(player.air_target_speed_margin, player.air_target_speed_accel, delta)
 	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)

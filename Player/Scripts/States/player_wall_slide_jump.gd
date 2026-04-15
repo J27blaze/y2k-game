@@ -81,4 +81,6 @@ func process_physics(delta: float):
 		player.velocity.y *= player.jump_vel_height_cut
 		jump_cut = false
 	
+	player.lerp_target_speed(player.air_target_speed_margin, player.air_target_speed_accel, delta)
+	
 	timer += 1

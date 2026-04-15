@@ -60,15 +60,18 @@ var can_jump: bool = true
 @export_range(0, 80, 0.05) var jump_gravity: float = 10.
 @export_range(0, 50, 0.05) var jump_vel_pulse: float = 10.
 @export_range(0, 1, 0.001) var jump_vel_height_cut: float = 0.8
-@export_range(0, 50, 0.05) var fall_terminal_vel: float = 25
+@export_range(0, 50, 0.05) var fall_terminal_vel: float = 25.
 
 @export_range(0, 50, 0.05) var jump_accel: float = 10.
 @export_range(0, 50, 0.05) var fall_accel: float = 10.
 @export_range(0, 1000, 1) var jump_inital_accel: float = 10.
 
-@export_range(0, 20, 1) var jump_min_hold_frames: float = 4
-@export_range(0, 20, 1) var jump_inital_accel_frames: float = 4
-@export_range(0, 20, 1) var jump_coyote_frames: float = 4
+@export_range(0, 20, 1) var jump_min_hold_frames: float = 4.
+@export_range(0, 20, 1) var jump_inital_accel_frames: float = 4.
+@export_range(0, 20, 1) var jump_coyote_frames: float = 4.
+
+@export_range(0, 15, 0.05) var air_target_speed_margin: float = 4.
+@export_range(0, 20, 0.05) var air_target_speed_accel: float = 1.
 
 #endregion
 #region wall slide
@@ -89,27 +92,27 @@ var can_jump: bool = true
 #endregion
 #region wall slide jump
 @export_group("wall slide jump")
-@export_range(0, 8, 0.05) var wall_slide_jump_speed_increase: float = 5
+@export_range(0, 8, 0.05) var wall_slide_jump_speed_increase: float = 5.
 @export var wall_slide_jump_speed_increase_scaling: Curve
 @export_range(0, 50, 0.05) var wall_slide_jump_vel_pulse: float = 17 #  slightly more than base jump
 
-@export_range(0, 180, 0.05) var wall_slide_jump_min_angle: float = 5
+@export_range(0, 180, 0.05) var wall_slide_jump_min_angle: float = 5.
 @export_range(0, 180, 0.05) var wall_slide_jump_max_angle: float = 45
 
-@export_range(0, 20, 1) var wall_slide_jump_inital_accel_frames: float = 4
+@export_range(0, 20, 1) var wall_slide_jump_inital_accel_frames: float = 4.
 #endregion
 #region slide
 @export_group("slide")
 #@export_range(0, 20, 0.1) var slide_speed: float = 12.0
 @export_range(0, 1, 0.001) var slide_friction: float = 0.95
-@export_range(0, 120, 1) var slide_friction_start_time: float = 3
-@export_range(0, 15, 0.01) var slide_handling: float = 3
-@export_range(0, 20, 0.01) var slide_min_speed: float = 3
-@export_range(0, 30, 0.005) var slide_tangent_scaling: float = 3
-@export_range(0, 20, 0.05) var slide_tangent_max_speed: float = 3
-@export_range(0, 1, 0.005) var slide_tangent_max_speed_slow: float = 3
+@export_range(0, 120, 1) var slide_friction_start_time: float = 3.
+@export_range(0, 15, 0.01) var slide_handling: float = 3.
+@export_range(0, 20, 0.01) var slide_min_speed: float = 3.
+@export_range(0, 30, 0.005) var slide_tangent_scaling: float = 3.
+@export_range(0, 20, 0.05) var slide_tangent_max_speed: float = 3.
+@export_range(0, 1, 0.005) var slide_tangent_max_speed_slow: float = 3.
 
-@export_range(0, 15, 1) var perfect_slide_after_frame_window: float = 3
+@export_range(0, 15, 1) var perfect_slide_after_frame_window: float = 3.
 @export_range(0, 15, 0.05) var perfect_slide_speed_boost: float = 3.0
 @export var perfect_slide_speed_boost_scaling: Curve
 #endregion 
@@ -131,7 +134,7 @@ var dodges: int = 2
 var can_dodge_jump: bool = false
 @export_range(0, 50, 0.05) var dodge_jump_vel_pulse: float = 10.
 @export_range(0, 20, 0.01) var dodge_jump_speed: float = 10.
-@export_range(0, 60, 1) var dodge_jump_frames: float = 10
+@export_range(0, 60, 1) var dodge_jump_frames: float = 10.
 
 #endregion 
 
@@ -233,7 +236,11 @@ func play_anim(animation_name: String):
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):
 	velocity.x = velocity.move_toward(target_vector, accel * delta).x
 	velocity.z = velocity.move_toward(target_vector, accel * delta).z
-	
+
+func lerp_target_speed(speed_margin: float, accel: float, delta: float):
+	var condition: bool = speed > target_speed + speed_margin || speed < target_speed - speed_margin
+	if condition:
+		target_speed = lerpf(target_speed, speed, accel * delta)
 	
 #Add air strafe BY USING SLIDE CODE
 

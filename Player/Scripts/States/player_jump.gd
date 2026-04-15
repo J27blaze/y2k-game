@@ -11,7 +11,7 @@ var wall_normal: Vector3
 func start():
 	player.can_jump = false
 	
-	timer = 0
+	timer = 0 + (int(is_dodge_jump)*-9999)
 	jump_cut = true
 	
 	var min_speed : float = player.run_speed
@@ -62,6 +62,7 @@ func process_physics(delta: float):
 		jump_cut = false
 	
 	#player.state_wall_slide_jump_check()
+	player.lerp_target_speed(player.air_target_speed_margin, player.air_target_speed_accel, delta)
 	
 	var camera_offset = player.wall_normal.normalized() * player.camera_wall_slide_offset * int(player.on_wall)
 	player.camera_set_offset(camera_offset)
