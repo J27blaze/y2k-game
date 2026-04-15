@@ -1,6 +1,14 @@
-[gd_scene format=3 uid="uid://bmujqc3agkm0h"]
+[gd_scene load_steps=2 format=3 uid="uid://bmujqc3agkm0h"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nnqns"]
+height = 1.0
 
 [node name="TestEnemy" type="CharacterBody3D"]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 radial_segments = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_nnqns")
