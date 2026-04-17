@@ -4,6 +4,7 @@
 height = 1.0
 
 [node name="TestEnemy" type="CharacterBody3D"]
+collision_layer = 4
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

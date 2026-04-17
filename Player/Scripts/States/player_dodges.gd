@@ -1,7 +1,6 @@
 extends PlayerState
 
 @onready var dodge_length := $dodge_length
-@export var is_dodge_jump : bool = false
 
 var initial_dir: Vector3
 var input_dir: Vector3
@@ -41,22 +40,9 @@ func exit():
 	player.gravity = player.fall_gravity
 	#player.velocity = player.velocity.normalized() * player.target_speed
 	#player.speed = player.target_speed
-	if data == "ground":
-		player.can_dodge_jump = true
-		can_dodge_jump_timer = player.dodge_jump_frames
 	dodge_length.stop()
 	#print(player.speed)
 	return
-
-var can_dodge_jump_timer: int = 0
-
-func always_process_physics(delta: float):
-	if is_dodge_jump:
-		if can_dodge_jump_timer > 0:
-			can_dodge_jump_timer -= 1
-		else:
-			player.can_dodge_jump = false
-		#print(can_dodge_jump_timer)
 
 func process_physics(delta: float):
 	if timer < player.dodge_initial_redirect_frame:
@@ -88,7 +74,18 @@ func process_physics(delta: float):
 					player.state_landing_check()
 				else:
 					change_state("fall")
-	
+			
+			#dodge jump
+			if player.input_handler.is_action_buffered("jump"):
+				final_dir = input_dir * player.target_speed
+				
+				player.velocity.x = final_dir.x
+				player.velocity.z = final_dir.z
+				player.speed = player.target_speed
+				
+				change_state("dodge_jump")
+				return
+
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)

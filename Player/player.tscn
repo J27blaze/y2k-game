@@ -20,8 +20,8 @@ _data = [Vector2(0, 1), 0.0, -0.27321324, 0, 0, Vector2(5, 0), -0.001122127, 0.0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_apopc"]
-_limits = [0.0, 1.0, 0.0, 6.0]
-_data = [Vector2(0, 0.75294113), 0.0, -0.27933058, 0, 0, Vector2(6, 0), -0.03879615, 0.0, 0, 0]
+_limits = [0.0, 1.0, 0.0, 15.0]
+_data = [Vector2(0, 0.5058824), 0.0, -0.12550542, 0, 0, Vector2(15, 0), -0.010869925, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
@@ -2785,19 +2785,18 @@ camera_smoothing = 0.35
 rotation_smoothing = 0.23
 run_speed = 6.4
 run_accel = 50.0
-run_accel_speed = 1.0
+run_accel_speed = 3.0
 fall_gravity = 35.0
 jump_gravity = 17.0
 jump_vel_pulse = 11.2
 jump_vel_height_cut = 0.5
 fall_terminal_vel = 35.0
-jump_accel = 14.0
-fall_accel = 20.0
+jump_accel = 24.4
+fall_accel = 40.25
 jump_inital_accel = 100.0
 jump_min_hold_frames = 6.0
 jump_inital_accel_frames = 3.0
 jump_coyote_frames = 7.0
-air_target_speed_margin = 2.5
 air_target_speed_accel = 1.3
 wall_slide_range = 0.3
 wall_slide_angle_range = 165.0
@@ -2877,7 +2876,6 @@ script = ExtResource("9_x3vf3")
 
 [node name="ground_dodge" type="Node" parent="state_machine"]
 script = ExtResource("11_p5o4e")
-is_dodge_jump = true
 
 [node name="dodge_length" type="Timer" parent="state_machine/ground_dodge"]
 process_callback = 0

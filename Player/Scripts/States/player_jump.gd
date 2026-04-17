@@ -11,8 +11,8 @@ var wall_normal: Vector3
 func start():
 	player.can_jump = false
 	
-	timer = 0 + (int(is_dodge_jump)*-9999)
-	jump_cut = true
+	timer = 0 
+	jump_cut = !is_dodge_jump
 	
 	var min_speed : float = player.run_speed
 	var jump_vel : float = player.jump_vel_pulse
