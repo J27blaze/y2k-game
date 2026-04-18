@@ -74,7 +74,7 @@ func process_physics(delta: float):
 		#debug
 		DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 		DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
-		player.vel_move_toward(move_dir, player.jump_accel, delta)
+		player.vel_move_toward(move_dir, player.wall_slide_jump_accel, delta)
 	
 	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity

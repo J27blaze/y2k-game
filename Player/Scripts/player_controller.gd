@@ -4,6 +4,7 @@ extends CharacterBody3D
 #camera
 @onready var camera_twist := $camera_twist
 @onready var camera_pitch := $camera_twist/camera_pitch
+@onready var camera := $camera_twist/camera_pitch/Camera3D
 
 #player related
 @onready var model_twist := $model_twist
@@ -26,6 +27,7 @@ var direction: Vector3
 var last_dir: Vector3 = Vector3.FORWARD
 var hor_velocity: Vector3
 var last_velocity: Vector3 = Vector3.ZERO
+var camera_normal: Vector3 = Vector3.ZERO
 
 var speed: float
 var target_speed: float
@@ -99,6 +101,7 @@ var can_jump: bool = true
 @export_range(0, 180, 0.05) var wall_slide_jump_min_angle: float = 5.
 @export_range(0, 180, 0.05) var wall_slide_jump_max_angle: float = 45
 
+@export_range(0, 50, 0.05) var wall_slide_jump_accel: float = 10.
 @export_range(0, 20, 1) var wall_slide_jump_inital_accel_frames: float = 4.
 #endregion
 #region slide
@@ -137,7 +140,8 @@ var dodges: int = 2
 #endregion 
 #region weapon_dash
 @export_group("dash")
-@export_range(4, 30, 0.5) var dash_radius: float = 14
+@export_range(4, 30, 0.5) var dash_radius: float = 14.
+@export_range(4, 30, 0.5) var dash_height: float = 14.
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -208,12 +212,13 @@ func _physics_process(delta: float):
 	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
 	
 func _process(delta: float):	
-	#camera Rot
+	#camera Rot | Add this to the camera controlls
 	camera_twist.rotate_y(-camera_dir.x - mouse_dir.x)
 	camera_pitch.rotate_x(-camera_dir.y - mouse_dir.y)
 	camera_pitch.rotation.x = clamp(camera_pitch.rotation.x, -1.4, 0.45)
 	#adds the camera rot to movement
 	direction = (camera_twist.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	camera_normal = -camera.global_transform.basis.z
 	
 	mouse_dir = Vector2.ZERO
 	state_machine.process_frame(delta)
