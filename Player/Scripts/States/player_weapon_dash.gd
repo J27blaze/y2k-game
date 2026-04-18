@@ -2,6 +2,7 @@ extends PlayerState
 
 @onready var area_collider := $enemy_targeting_collider/shape
 var enemies: Array[Node] = []
+@export var enemy_pos_targeting_offset: Vector3 = Vector3.ZERO
 var target_pos: Vector3 = Vector3.ZERO
 
 func init() -> void:
@@ -26,15 +27,18 @@ func _on_enemy_targeting_collider_area_exited(area: Area3D) -> void:
 	print(enemies)
 
 func calc_target():
+	#gets normals
 	for enemy in enemies:
-		var enemy_pos: Vector3 = enemy.global_position
+		var enemy_pos: Vector3 = enemy.global_position + enemy_pos_targeting_offset
 		var camera_dir: Vector3 = player.camera_normal
 		var enemy_dir: Vector3 = player.position.direction_to(enemy_pos)
 		
-		DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir, Color.CHARTREUSE)
-		DebugDraw3D.draw_line(player.position, player.position + camera_dir * 4, Color.CHOCOLATE)
-		print(player.camera_normal)
-
+		DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
+		DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 5, Color.CHOCOLATE)
+		#print(player.camera_normal)
+	
+	#get raycast
+	
 func start():
 	return
 

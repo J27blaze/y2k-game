@@ -218,7 +218,7 @@ func _process(delta: float):
 	camera_pitch.rotation.x = clamp(camera_pitch.rotation.x, -1.4, 0.45)
 	#adds the camera rot to movement
 	direction = (camera_twist.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	camera_normal = -camera.global_transform.basis.z
+	camera_normal = (-camera.global_transform.basis.z).normalized()
 	
 	mouse_dir = Vector2.ZERO
 	state_machine.process_frame(delta)
