@@ -116,7 +116,7 @@ var can_jump: bool = true
 @export_range(0, 15, 0.05) var perfect_slide_speed_boost: float = 3.0
 @export var perfect_slide_speed_boost_scaling: Curve
 #endregion 
-#region slide
+#region dodges
 @export_group("dodges")
 var dodges: int = 2
 @export_range(0, 30, 0.05) var dodge_min_speed:float = 15.0
@@ -134,8 +134,10 @@ var dodges: int = 2
 @export_range(0, 50, 0.05) var dodge_jump_vel_pulse: float = 10.
 @export_range(0, 20, 0.01) var dodge_jump_speed: float = 10.
 @export_range(0, 60, 1) var dodge_jump_frames: float = 10.
-
 #endregion 
+#region weapon_dash
+@export_group("dash")
+@export_range(4, 30, 0.5) var dash_radius: float = 14
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

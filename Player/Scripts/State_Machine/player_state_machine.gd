@@ -13,6 +13,7 @@ func init(player: Player):
 	for child in all_states:
 		child.player = player
 		child.input_handler = player.input_handler
+		child.init()
 	
 	prev_state = states["idle"]
 	change_state("idle")

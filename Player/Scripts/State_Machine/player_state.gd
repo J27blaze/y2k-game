@@ -9,6 +9,10 @@ var input_handler: InputHandler
 
 @onready var state_machine = get_parent()
 
+# ready state
+func init():
+	pass
+
 # enter state
 func start():
 	pass
