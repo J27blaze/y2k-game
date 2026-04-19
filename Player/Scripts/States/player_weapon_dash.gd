@@ -43,7 +43,7 @@ func _on_enemy_targeting_collider_area_entered(area: Area3D) -> void:
 		new_ray.enabled = true
 		
 		active_rays.append(new_ray)
-		print(active_rays)
+		#print(active_rays)
 func filter_deactive_rays():
 	var filtered_rays: Array[Node]
 	for ray in rays:
@@ -61,11 +61,13 @@ func _on_enemy_targeting_collider_area_exited(area: Area3D) -> void:
 		new_ray.target_position = Vector3.ZERO
 		active_rays.erase(new_ray)
 		
-		print(active_rays)
+		#print(active_rays)
 
 func calc_target():
 	var i: int = 0
 	var vector_dots: Array[float] = []
+	var targetable_ememies: Array[Node] = []
+	
 	for enemy in enemies:
 		#get raycast
 		var enemy_pos: Vector3 = enemy.global_position + enemy_pos_targeting_offset
@@ -74,28 +76,29 @@ func calc_target():
 		
 		#get on screen
 		var enemy_on_screen: bool = enemy.get_parent().is_on_screen()
-		
-		if !active_rays[i].is_colliding() && enemy_on_screen: # enemy can be targeted
+		print(active_rays.size())
+		if !active_rays[i].is_colliding() && enemy.get_parent().is_on_screen(): # enemy can be targeted
+			targetable_ememies.append(enemy)
 			#gets normals
 			var camera_dir: Vector3 = player.camera_normal.normalized()
 			var enemy_dir: Vector3 = player.centre.direction_to(enemy_pos).normalized()
 			
-			DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 5, Color.CHARTREUSE)
-			DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 5, Color.CHOCOLATE)
+			DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
+			DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 2, Color.CHOCOLATE)
 			
 			var dot = camera_dir.dot(enemy_dir)
-			if dot <= player.weapon_dash_min_angle:
-				dot += 999999
 			vector_dots.append(dot)
 			
 			#print(player.camera_normal)
 			
-			i += 1
+		i += 1
 		
-	print(vector_dots)
-	target = enemies[vector_dots.find(vector_dots.max())]
-	
-	DebugDraw3D.draw_square(target.global_position, 1, Color.GREEN)
+	#print(vector_dots)
+	if vector_dots.find(vector_dots.max()) != -1:
+		target = targetable_ememies[vector_dots.find(vector_dots.max())]
+		DebugDraw3D.draw_square(target.global_position, 1, Color.GREEN)
+	else:
+		target = null 
 	
 func start():
 	return
