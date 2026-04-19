@@ -2,7 +2,7 @@ extends PlayerState
 
 #raycast pool
 @export_range(0, 64, 1) var raycast_pool_size: int = 1 
-@onready var area_collider := $enemy_targeting_collider/shape
+@onready var area_collider := $enemy_targeting_collider
 @onready var ray_node := $base/ray
 @onready var base := $base
 
@@ -10,21 +10,22 @@ var rays : Array[Node] = []
 var active_rays : Array[Node] = []
 var enemies: Array[Node] = []
 
+var target: Node = null
+
 @export var enemy_pos_targeting_offset: Vector3 = Vector3.ZERO
-var target_pos: Vector3 = Vector3.ZERO
 
 func init() -> void:
-	var shape = CylinderShape3D.new()
-	shape.radius = player.dash_radius
-	shape.height = player.dash_radius
-	area_collider.shape = shape
+	#var shape = CylinderShape3D.new()
+	#shape.radius = player.dash_radius
+	#shape.height = player.dash_radius
+	#area_collider.shape = shape
 	
+	#add rays
 	for i in raycast_pool_size-1:
 		base.add_child(ray_node.duplicate(true))
 	for ray in base.get_children():
 		rays.append(ray)
 	print(rays)
-		
 
 func always_process_physics(delta: float):
 	area_collider.position = player.position
@@ -64,21 +65,37 @@ func _on_enemy_targeting_collider_area_exited(area: Area3D) -> void:
 
 func calc_target():
 	var i: int = 0
+	var vector_dots: Array[float] = []
 	for enemy in enemies:
-		#gets normals
-		var enemy_pos: Vector3 = enemy.global_position + enemy_pos_targeting_offset
-		var camera_dir: Vector3 = player.camera_normal
-		var enemy_dir: Vector3 = player.centre.direction_to(enemy_pos)
-		
-		DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
-		DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 5, Color.CHOCOLATE)
-		#print(player.camera_normal)
-		
 		#get raycast
+		var enemy_pos: Vector3 = enemy.global_position + enemy_pos_targeting_offset
 		var ray_target_pos = enemy_pos - player.centre
 		active_rays[i].target_position = ray_target_pos
 		
-		i += 1
+		#get on screen
+		var enemy_on_screen: bool = enemy.get_parent().is_on_screen()
+		
+		if !active_rays[i].is_colliding() && enemy_on_screen: # enemy can be targeted
+			#gets normals
+			var camera_dir: Vector3 = player.camera_normal.normalized()
+			var enemy_dir: Vector3 = player.centre.direction_to(enemy_pos).normalized()
+			
+			DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 5, Color.CHARTREUSE)
+			DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 5, Color.CHOCOLATE)
+			
+			var dot = camera_dir.dot(enemy_dir)
+			if dot <= player.weapon_dash_min_angle:
+				dot += 999999
+			vector_dots.append(dot)
+			
+			#print(player.camera_normal)
+			
+			i += 1
+		
+	print(vector_dots)
+	target = enemies[vector_dots.find(vector_dots.max())]
+	
+	DebugDraw3D.draw_square(target.global_position, 1, Color.GREEN)
 	
 func start():
 	return

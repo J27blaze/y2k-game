@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=50 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -31,7 +31,11 @@ _data = [Vector2(-1, 1), 0.0, 0.058823425, 0, 0]
 point_count = 1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
-radius = 4.0
+height = 18.0
+radius = 18.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gu6f8"]
+radius = 18.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_00tjw"]
 height = 2.028125
@@ -2836,10 +2840,9 @@ ground_dodge_vel_pulse = 0.0
 air_dodge_vel_pulse = 11.0
 air_dodge_gravity = 37.95
 dodge_jump_vel_pulse = 8.9
-dodge_jump_speed = 11.0
+dodge_jump_speed = 11.5
 dodge_jump_frames = 3.0
-dash_radius = 18.0
-dash_height = 20.0
+weapon_dash_min_angle = -0.050000000000000044
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
@@ -2914,7 +2917,7 @@ is_dodge_jump = true
 
 [node name="weapon_dash" type="Node" parent="state_machine"]
 script = ExtResource("12_gu6f8")
-raycast_pool_size = 30
+raycast_pool_size = 8
 enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
 
 [node name="enemy_targeting_collider" type="Area3D" parent="state_machine/weapon_dash"]
@@ -2924,7 +2927,11 @@ collision_mask = 8
 
 [node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
 shape = SubResource("CylinderShape3D_gu6f8")
-debug_color = Color(0.97, 0, 0.4526667, 0.12941177)
+debug_color = Color(0.97, 0.37183332, 0, 0.38039216)
+
+[node name="shape2" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
+shape = SubResource("SphereShape3D_gu6f8")
+debug_color = Color(0.95, 0, 0.58583343, 0.44313726)
 
 [node name="base" type="Node3D" parent="state_machine/weapon_dash"]
 

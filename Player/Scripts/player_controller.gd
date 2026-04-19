@@ -140,8 +140,7 @@ var dodges: int = 2
 #endregion 
 #region weapon_dash
 @export_group("dash")
-@export_range(4, 30, 0.5) var dash_radius: float = 14.
-@export_range(4, 30, 0.5) var dash_height: float = 14.
+@export_range(-1, 1, 0.01) var weapon_dash_min_angle: float = 0.1
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
