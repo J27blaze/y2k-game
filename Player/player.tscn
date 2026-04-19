@@ -2914,6 +2914,7 @@ is_dodge_jump = true
 
 [node name="weapon_dash" type="Node" parent="state_machine"]
 script = ExtResource("12_gu6f8")
+raycast_pool_size = 30
 enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
 
 [node name="enemy_targeting_collider" type="Area3D" parent="state_machine/weapon_dash"]
@@ -2924,6 +2925,13 @@ collision_mask = 8
 [node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
 shape = SubResource("CylinderShape3D_gu6f8")
 debug_color = Color(0.97, 0, 0.4526667, 0.12941177)
+
+[node name="base" type="Node3D" parent="state_machine/weapon_dash"]
+
+[node name="ray" type="RayCast3D" parent="state_machine/weapon_dash/base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+enabled = false
+target_position = Vector3(0, 0, 0)
 
 [node name="standing_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0140625, 0)
