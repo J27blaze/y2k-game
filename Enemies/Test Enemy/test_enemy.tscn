@@ -15,6 +15,7 @@ script = ExtResource("1_vraic")
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+enable_node_path = NodePath("../CSGSphere3D")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

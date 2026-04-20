@@ -76,17 +76,18 @@ func calc_target():
 		
 		#get on screen
 		var enemy_on_screen: bool = enemy.get_parent().is_on_screen()
-		print(active_rays.size())
-		if !active_rays[i].is_colliding() && enemy.get_parent().is_on_screen(): # enemy can be targeted
+		
+		#gets normals
+		var camera_dir: Vector3 = player.camera_normal.normalized()
+		var enemy_dir: Vector3 = player.centre.direction_to(enemy_pos).normalized()
+		var dot = camera_dir.dot(enemy_dir)
+		
+		DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
+		DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 2, Color.CHOCOLATE)
+		
+		if !active_rays[i].is_colliding() && enemy.get_parent().is_on_screen() && dot > player.weapon_dash_min_angle: # enemy can be targeted
 			targetable_ememies.append(enemy)
-			#gets normals
-			var camera_dir: Vector3 = player.camera_normal.normalized()
-			var enemy_dir: Vector3 = player.centre.direction_to(enemy_pos).normalized()
 			
-			DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
-			DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 2, Color.CHOCOLATE)
-			
-			var dot = camera_dir.dot(enemy_dir)
 			vector_dots.append(dot)
 			
 			#print(player.camera_normal)
