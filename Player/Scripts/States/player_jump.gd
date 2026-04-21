@@ -42,7 +42,7 @@ func exit():
 
 func process_physics(delta: float) -> void:
 	if player.velocity.y < 0:
-		change_state("fall")
+		change_state("fall", is_dodge_jump)
 		return
 	
 	if player.state_weapon_dash_check():
@@ -50,7 +50,8 @@ func process_physics(delta: float) -> void:
 	
 	player.calc_wall_slide()
 	if !is_dodge_jump:
-		player.state_dodge_check()
+		if player.state_dodge_check():
+			return
 	
 	#accel
 	var move_dir = player.target_speed * player.direction

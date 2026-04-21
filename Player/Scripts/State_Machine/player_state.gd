@@ -21,8 +21,8 @@ func start():
 func exit():
 	pass
 
-func change_state(state: String):
-	player.state_machine.change_state(state)
+func change_state(state: String, data = null):
+	player.state_machine.change_state(state, data)
 func previous_state():
 	return player.state_machine.previous_state()
 	
