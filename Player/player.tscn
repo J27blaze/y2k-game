@@ -2842,7 +2842,7 @@ air_dodge_gravity = 37.95
 dodge_jump_vel_pulse = 8.9
 dodge_jump_speed = 11.5
 dodge_jump_frames = 3.0
-weapon_dash_min_angle = 0.050000000000000044
+weapon_dash_min_angle = 0.05000000000000004
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")

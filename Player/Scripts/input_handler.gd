@@ -32,6 +32,10 @@ func process_input(event: InputEvent):
 		# perfect slide
 		buffered_inputs["slide"] = 6
 		
+	if Input.is_action_just_pressed("weapon_dash"):
+		# perfect slide
+		buffered_inputs["weapon_dash"] = 8
+		
 	#if Input.is_action_just_pressed("kick"):
 	#	buffered_inputs["kick"] = buffer_length
 

@@ -71,3 +71,5 @@ func process_physics(delta: float):
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
 	
 	timer += 1
+	
+	player.state_weapon_dash_check()

@@ -85,7 +85,7 @@ func calc_target():
 		DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
 		DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 2, Color.CHOCOLATE)
 		
-		if !active_rays[i].is_colliding() && enemy.get_parent().is_on_screen() && dot > player.weapon_dash_min_angle: # enemy can be targeted
+		if !active_rays[i].is_colliding() && enemy_on_screen && dot > player.weapon_dash_min_angle: # enemy can be targeted
 			targetable_ememies.append(enemy)
 			
 			vector_dots.append(dot)

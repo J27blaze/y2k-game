@@ -334,3 +334,7 @@ func state_wall_slide_jump_check():
 	if on_wall && input_handler.is_action_buffered("jump"):
 		state_machine.change_state("wall_slide_jump")
 	return
+
+func state_weapon_dash_check():
+	if input_handler.is_action_buffered("weapon_dash"):
+		state_machine.change_state("weapon_dash")
