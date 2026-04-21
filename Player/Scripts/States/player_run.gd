@@ -9,17 +9,17 @@ func process_physics(delta: float):
 	if player.direction == Vector3.ZERO:
 		change_state("idle")
 		return
-	if input_handler.is_action_buffered("jump") && player.can_jump:
-		player.state_jump()
+	if player.state_jump():
 		return
-	
+	if player.state_dodge_check():
+		return
 	if Input.is_action_pressed("slide"):
 		change_state("slide")
 		return
+	
 	if !player.is_on_floor():
 		change_state("fall")
 		return
-	player.state_dodge_check()
 		
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, player.run_accel, delta)

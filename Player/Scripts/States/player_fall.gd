@@ -21,12 +21,16 @@ func start():
 			return
 	#print(previous_state())
 
-func process_physics(delta: float):
+func process_physics(delta: float) -> void:
 	player.calc_wall_slide()
-	player.state_wall_slide_check()
-	player.state_landing_check()
-	if player.state_machine.prev_state.name != "dodge_jump":
-		player.state_dodge_check()
+	if player.state_wall_slide_check():
+		return
+	if player.state_landing_check():
+		return
+	if player.state_weapon_dash_check():
+		return
+	if player.state_dodge_check():
+		return
 	
 	#coyote time, lockey buggy but its cool
 	if timer <= player.jump_coyote_frames && Input.is_action_just_pressed("jump") && player.can_jump:

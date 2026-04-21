@@ -66,17 +66,18 @@ func process_physics(delta: float):
 	match data:
 		"air":
 			player.calc_wall_slide()
-			player.state_landing_check()
+			if player.state_landing_check():
+				return
 		"ground":
 			if dodge_length.is_stopped():
 				#print("sdfsdf")
-				if player.is_on_floor():
-					player.state_landing_check()
+				if player.state_landing_check():
+					return
 				else:
 					change_state("fall")
 			
 			#dodge jump
-			if player.input_handler.is_action_buffered("jump"):
+			if player.input_handler.is_action_buffered("jump") && player.is_on_floor():
 				final_dir = input_dir * player.target_speed
 				
 				player.velocity.x = final_dir.x

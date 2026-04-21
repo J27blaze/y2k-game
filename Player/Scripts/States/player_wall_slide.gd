@@ -38,11 +38,12 @@ func process_physics(delta: float):
 		#player.velocity -= wall_pull_force
 		change_state("fall")
 		return
-	player.state_landing_check()
+	if player.state_landing_check():
+		return
 	
 	#player wall angle too steep
 	if abs(last_wall_normal.dot(player.wall_normal)) < player.wall_slide_angle_threshold:
-		#bonk state
+		#NETUAL WALL SLIDE STATE, #CHANHGE LATER
 		change_state("jump")
 		return
 	
@@ -53,4 +54,6 @@ func process_physics(delta: float):
 	
 	#change rot
 	player.wall_slide_colliders.global_rotation.y = Vector3.FORWARD.signed_angle_to(dir, Vector3.UP)
-	player.state_wall_slide_jump_check()
+	
+	if player.state_wall_slide_jump_check():
+		return

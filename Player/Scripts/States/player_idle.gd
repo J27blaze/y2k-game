@@ -9,9 +9,9 @@ func process_physics(delta: float):
 	if player.direction != Vector3.ZERO:
 		change_state("run")
 		return
-	if input_handler.is_action_buffered("jump") && player.can_jump:
-		player.state_jump()
+	if player.state_jump():
 		return
-	player.state_dodge_check()
+	if player.state_dodge_check():
+		return
 	
 	player.vel_move_toward(Vector3.ZERO, player.run_accel, delta)

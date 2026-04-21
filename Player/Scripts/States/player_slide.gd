@@ -36,10 +36,10 @@ func process_physics(delta: float):
 	if Input.is_action_just_released("slide"):
 		change_state("run")
 		return
-	if input_handler.is_action_buffered("jump") && player.can_jump:
-		player.state_jump()
+	if player.state_jump():
 		return
-	player.state_dodge_check()
+	if player.state_dodge_check():
+		return
 	
 	if !perfect_slided && input_handler.is_action_buffered("slide") && timer < player.perfect_slide_after_frame_window:
 		perfect_slide()

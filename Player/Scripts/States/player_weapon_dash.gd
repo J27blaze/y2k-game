@@ -33,7 +33,8 @@ func always_process_physics(delta: float):
 	if !enemies.is_empty():
 		calc_target()
 	else:
-		return
+		target = null
+		player.target = target
 
 func _on_enemy_targeting_collider_area_entered(area: Area3D) -> void:
 	enemies.append(area)
@@ -100,9 +101,10 @@ func calc_target():
 		DebugDraw3D.draw_square(target.global_position, 1, Color.GREEN)
 	else:
 		target = null 
+	player.target = target
 	
 func start():
-	return
+	print("weapon_dash")
 
 func exit():
 	return

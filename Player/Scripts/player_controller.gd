@@ -141,6 +141,7 @@ var dodges: int = 2
 #region weapon_dash
 @export_group("dash")
 @export_range(-1, 1, 0.01) var weapon_dash_min_angle: float = 0.1
+var target: Node = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -250,42 +251,52 @@ func lerp_target_speed(speed_margin: float, accel: float, delta: float):
 #Add air strafe BY USING SLIDE CODE
 
 # State changes check
-func state_landing_check():
+func state_landing_check() -> bool:
 	if is_on_floor():
 		can_jump = true
 		if direction == Vector3.ZERO:
 			state_machine.change_state("idle")
-			return
 		else:
 			if Input.is_action_pressed("slide"):
 				state_machine.change_state("slide")
 			else:
 				state_machine.change_state("run")
+		return true
+	else:
+		return false
 
-func state_jump():
-	state_machine.change_state("jump")
+func state_jump() -> bool:
+	if input_handler.is_action_buffered("jump") && can_jump:
+		state_machine.change_state("jump")
+		return true
+	else:
+		return false
 
-func state_dodge_check():
+func state_dodge_check() -> bool:
 	if input_handler.is_action_buffered("dodge"):
 		match state_machine.current_state.name:
 			"jump":
 				state_machine.change_state("air_dodge", "air")
-				return
+				return true
 			"wall_slide_jump":
 				state_machine.change_state("air_dodge", "air")
-				return
+				return true
 			"fall":
 				state_machine.change_state("air_dodge", "air")
-				return
+				return true
 			"run":
 				state_machine.change_state("ground_dodge", "ground")
-				return
+				return true
 			"idle":
 				state_machine.change_state("ground_dodge", "ground")
-				return
+				return true
 			"slide":
 				state_machine.change_state("ground_dodge", "ground")
-				return
+				return true
+			_:
+				return false
+	else:
+		return false
 
 
 var wall_normal: Vector3
@@ -316,13 +327,15 @@ func calc_wall_slide():
 	
 	return
 	
-func state_wall_slide_check():
+func state_wall_slide_check() -> bool:
 	if can_wall_slide():
 		state_machine.change_state("wall_slide")
-	
+		return true
+	else:
+		return false
 	#DebugDraw3D.draw_line(wall_point - wall_tan * 0.7, wall_point + wall_tan * 0.7, Color.BLUE)
-	return
-func can_wall_slide():
+	
+func can_wall_slide() -> bool:
 	#Player is matching direction of wall normal within a certain range, then wall_slide
 	#find wall slide direction
 	var cur_vel = hor_velocity.normalized()
@@ -330,11 +343,15 @@ func can_wall_slide():
 	
 	return abs(cur_vel.dot(wall_tan)) > wall_slide_angle_threshold && on_wall && speed > wall_slide_min_speed && abs(direction.dot(wall_tan)) > wall_slide_direction_threshold && direction.length() > 0.1
 	
-func state_wall_slide_jump_check():
+func state_wall_slide_jump_check() -> bool:
 	if on_wall && input_handler.is_action_buffered("jump"):
 		state_machine.change_state("wall_slide_jump")
-	return
+		return true
+	else: return false
 
-func state_weapon_dash_check():
-	if input_handler.is_action_buffered("weapon_dash"):
+func state_weapon_dash_check() -> bool:
+	if input_handler.is_action_buffered("weapon_dash") && target != null:
 		state_machine.change_state("weapon_dash")
+		return true
+	else:
+		return false

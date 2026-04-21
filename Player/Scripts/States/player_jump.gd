@@ -40,9 +40,12 @@ func exit():
 	player.camera_set_offset(Vector3.ZERO)
 	player.camera_set_offset_smoothing("slow")
 
-func process_physics(delta: float):
+func process_physics(delta: float) -> void:
 	if player.velocity.y < 0:
 		change_state("fall")
+		return
+	
+	if player.state_weapon_dash_check():
 		return
 	
 	player.calc_wall_slide()
@@ -71,5 +74,3 @@ func process_physics(delta: float):
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
 	
 	timer += 1
-	
-	player.state_weapon_dash_check()

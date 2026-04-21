@@ -2840,7 +2840,7 @@ ground_dodge_vel_pulse = 0.0
 air_dodge_vel_pulse = 11.0
 air_dodge_gravity = 37.95
 dodge_jump_vel_pulse = 8.9
-dodge_jump_speed = 11.5
+dodge_jump_speed = 10.75
 dodge_jump_frames = 3.0
 weapon_dash_min_angle = 0.05000000000000004
 
