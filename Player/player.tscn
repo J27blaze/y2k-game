@@ -32,11 +32,11 @@ _data = [Vector2(-1, 1), 0.0, 0.058823425, 0, 0]
 point_count = 1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
-height = 18.0
-radius = 18.0
+height = 12.5
+radius = 12.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gu6f8"]
-radius = 18.0
+radius = 12.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dkpta"]
 radius = 1.4
@@ -2847,7 +2847,7 @@ dodge_jump_vel_pulse = 8.9
 dodge_jump_speed = 10.75
 dodge_jump_frames = 3.0
 weapon_dash_min_angle = 0.05000000000000004
-weapon_dash_speed = 37.0
+weapon_dash_speed = 27.0
 weapon_dash_target_speed = 19.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
@@ -2932,7 +2932,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CylinderShape3D_gu6f8")
 debug_color = Color(0.38774818, 0.68192416, 0, 0.38039216)
 
@@ -2950,17 +2950,17 @@ target_position = Vector3(0, 0, 0)
 
 [node name="min_dash_time" type="Timer" parent="state_machine/weapon_dash"]
 process_callback = 0
-wait_time = 0.6
+wait_time = 0.7
 one_shot = true
 
 [node name="weapon_hitbox" type="Area3D" parent="state_machine/weapon_dash"]
 collision_layer = 0
-collision_mask = 4
-monitoring = false
+collision_mask = 12
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="state_machine/weapon_dash/weapon_hitbox"]
+[node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/weapon_hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_dkpta")
+disabled = true
 debug_color = Color(0.953206, 2.5990605e-06, 0.56156665, 0.41960785)
 
 [node name="weapon_dash_hit" type="Node" parent="state_machine"]

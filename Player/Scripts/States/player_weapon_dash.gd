@@ -20,7 +20,7 @@ func init() -> void:
 	#shape.height = player.dash_radius
 	#area_collider.shape = shape
 	
-	weapon_hitbox.monitoring = false
+	weapon_hitbox_col.disabled = true
 	
 	#add rays
 	for i in raycast_pool_size-1:
@@ -112,6 +112,7 @@ var dir: Vector3 = Vector3.ZERO
 var target_position: Vector3 = Vector3.ZERO
 
 @onready var weapon_hitbox := $weapon_hitbox
+@onready var weapon_hitbox_col := $weapon_hitbox/shape
 
 func start():
 	#assumed target is not null.
@@ -123,7 +124,7 @@ func start():
 	player.target_speed = player.weapon_dash_target_speed #clampf(Vector3(dir.x, 0, dir.z).length(), 0, player.weapon_dash_target_speed)
 	
 	weapon_hitbox.position = player.global_position
-	weapon_hitbox.monitoring = true
+	weapon_hitbox_col.disabled = false
 	
 	min_dash_time.start()
 
@@ -131,18 +132,15 @@ func _on_min_dash_time_timeout() -> void:
 	change_state("fall")
 
 func exit():
-	weapon_hitbox.monitoring = false
-	weapon_hitbox.position.y -= 100
+	weapon_hitbox_col.disabled = true
 	return
 
 func process_physics(delta: float):
 	if player.state_dodge_check():
 		return
+	if weapon_hitbox.has_overlapping_areas():
+		change_state("jump")
+		return
 	
 	player.velocity = dir
-	
 	weapon_hitbox.position = player.global_position
-
-func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
-	#on enemy hit
-	change_state("jump")
