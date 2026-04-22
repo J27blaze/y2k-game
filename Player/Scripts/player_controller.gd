@@ -142,6 +142,8 @@ var dodges: int = 2
 @export_group("dash")
 @export_range(-1, 1, 0.01) var weapon_dash_min_angle: float = 0.1
 var target: Node = null
+@export_range(0, 60, 0.01) var weapon_dash_speed: float = 0.1
+@export_range(0, 60, 0.01) var weapon_dash_target_speed: float = 0.1
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -294,7 +296,8 @@ func state_dodge_check() -> bool:
 				state_machine.change_state("ground_dodge", "ground")
 				return true
 			_:
-				return false
+				state_machine.change_state("air_dodge", "air")
+				return true
 	else:
 		return false
 

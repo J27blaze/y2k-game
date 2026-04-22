@@ -22,5 +22,5 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="TemplateUi" type="Sprite2D" parent="top_right"]
-position = Vector2(-98, 143)
+position = Vector2(229, 94)
 texture = ExtResource("2_kc4s8")

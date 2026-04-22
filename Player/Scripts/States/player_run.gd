@@ -13,6 +13,8 @@ func process_physics(delta: float):
 		return
 	if player.state_dodge_check():
 		return
+	if player.state_weapon_dash_check():
+		return
 	if Input.is_action_pressed("slide"):
 		change_state("slide")
 		return

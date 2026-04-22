@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=52 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://g15577j150lf" path="res://Player/Scripts/camera_controls.gd" id="10_apopc"]
 [ext_resource type="Script" uid="uid://6wrk1sup8xb7" path="res://Player/Scripts/States/player_dodges.gd" id="11_p5o4e"]
 [ext_resource type="Script" uid="uid://b7ronpsf5fh6m" path="res://Player/Scripts/States/player_weapon_dash.gd" id="12_gu6f8"]
+[ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -36,6 +37,9 @@ radius = 18.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gu6f8"]
 radius = 18.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dkpta"]
+radius = 1.4
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_00tjw"]
 height = 2.028125
@@ -2843,6 +2847,8 @@ dodge_jump_vel_pulse = 8.9
 dodge_jump_speed = 10.75
 dodge_jump_frames = 3.0
 weapon_dash_min_angle = 0.05000000000000004
+weapon_dash_speed = 37.0
+weapon_dash_target_speed = 19.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
@@ -2858,7 +2864,8 @@ states = {
 "slide": NodePath("slide"),
 "wall_slide": NodePath("wall_slide"),
 "wall_slide_jump": NodePath("wall_slide_jump"),
-"weapon_dash": NodePath("weapon_dash")
+"weapon_dash": NodePath("weapon_dash"),
+"weapon_dash_hit": NodePath("weapon_dash_hit")
 }
 
 [node name="god_mode" type="Node" parent="state_machine"]
@@ -2921,17 +2928,18 @@ raycast_pool_size = 8
 enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
 
 [node name="enemy_targeting_collider" type="Area3D" parent="state_machine/weapon_dash"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 0
 collision_mask = 8
 
 [node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("CylinderShape3D_gu6f8")
-debug_color = Color(0.97, 0.37183332, 0, 0.38039216)
+debug_color = Color(0.38774818, 0.68192416, 0, 0.38039216)
 
 [node name="shape2" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("SphereShape3D_gu6f8")
-debug_color = Color(0.95, 0, 0.58583343, 0.44313726)
+debug_color = Color(0.30839157, 0.62816155, 0, 0.44313726)
 
 [node name="base" type="Node3D" parent="state_machine/weapon_dash"]
 
@@ -2939,6 +2947,24 @@ debug_color = Color(0.95, 0, 0.58583343, 0.44313726)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 enabled = false
 target_position = Vector3(0, 0, 0)
+
+[node name="min_dash_time" type="Timer" parent="state_machine/weapon_dash"]
+process_callback = 0
+wait_time = 0.6
+one_shot = true
+
+[node name="weapon_hitbox" type="Area3D" parent="state_machine/weapon_dash"]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="state_machine/weapon_dash/weapon_hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_dkpta")
+debug_color = Color(0.953206, 2.5990605e-06, 0.56156665, 0.41960785)
+
+[node name="weapon_dash_hit" type="Node" parent="state_machine"]
+script = ExtResource("13_dkpta")
 
 [node name="standing_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0140625, 0)
@@ -3240,3 +3266,5 @@ player = NodePath("..")
 [connection signal="timeout" from="state_machine/air_dodge/dodge_length" to="state_machine/air_dodge" method="_on_dodge_length_timeout"]
 [connection signal="area_entered" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_entered"]
 [connection signal="area_exited" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_exited"]
+[connection signal="timeout" from="state_machine/weapon_dash/min_dash_time" to="state_machine/weapon_dash" method="_on_min_dash_time_timeout"]
+[connection signal="area_entered" from="state_machine/weapon_dash/weapon_hitbox" to="state_machine/weapon_dash" method="_on_weapon_hitbox_area_entered"]

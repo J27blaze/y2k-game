@@ -13,5 +13,7 @@ func process_physics(delta: float):
 		return
 	if player.state_dodge_check():
 		return
+	if player.state_weapon_dash_check():
+		return
 	
 	player.vel_move_toward(Vector3.ZERO, player.run_accel, delta)

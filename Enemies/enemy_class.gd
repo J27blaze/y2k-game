@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody3D
 
-#IMPORTANT NOT TO CHANGE
+#IMPORTANT NOT TO CHANGE THE NODE TREE DIRECTORY
 @onready var visibility_notif: Node = $VisibleOnScreenEnabler3D
 
 var health: float = 10
