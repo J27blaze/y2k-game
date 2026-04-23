@@ -28,15 +28,15 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
 _limits = [0.0, 1.0, -1.0, 1.0]
-_data = [Vector2(-1, 0.97752815), 0.0, 0.058823425, 0, 0, Vector2(-0.39999998, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(-1, 0.965), 0.0, 0.058823425, 0, 0, Vector2(-0.39999998, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
-height = 12.5
-radius = 12.0
+height = 15.5625
+radius = 14.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gu6f8"]
-radius = 12.0
+radius = 14.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dkpta"]
 radius = 1.4
@@ -2832,7 +2832,7 @@ slide_handling = 0.65
 slide_min_speed = 7.4
 slide_tangent_scaling = 8.555
 slide_tangent_max_speed = 15.0
-slide_tangent_max_speed_slow = 0.0
+slide_tangent_max_speed_slow = 0.6
 perfect_slide_speed_boost = 1.75
 perfect_slide_speed_boost_scaling = SubResource("Curve_apopc")
 dodge_min_speed = 9.45
@@ -2846,12 +2846,13 @@ air_dodge_gravity = 37.95
 dodge_jump_vel_pulse = 8.9
 dodge_jump_speed = 11.3
 dodge_jump_frames = 3.0
-weapon_dash_min_angle = 0.05000000000000004
+weapon_dash_min_angle = 0.5
 weapon_dash_speed = 25.0
 weapon_dash_target_speed = 16.0
-weapon_dash_hit_speed_aceel = 20.0
+weapon_dash_hit_speed_aceel = 30.0
 weapon_dash_hit_vel_pulse = 13.0
 weapon_dash_hit_gravity = 30.0
+weapon_dash_hit_angle_range = 90.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
@@ -2927,7 +2928,7 @@ is_dodge_jump = true
 
 [node name="weapon_dash" type="Node" parent="state_machine"]
 script = ExtResource("12_gu6f8")
-raycast_pool_size = 16
+raycast_pool_size = 32
 enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
 player_pos_targeting_offset = Vector3(0, 2.2, 0)
 
@@ -2936,7 +2937,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19375, 0)
 shape = SubResource("CylinderShape3D_gu6f8")
 debug_color = Color(0.38774818, 0.68192416, 0, 0.38039216)
 

@@ -145,9 +145,12 @@ var air_dodges: int = 1
 var target: Node = null
 @export_range(0, 60, 0.01) var weapon_dash_speed: float = 0.1
 @export_range(0, 60, 0.01) var weapon_dash_target_speed: float = 0.1
-@export_range(0, 20, 0.01) var weapon_dash_hit_speed_aceel: float = 2.
+@export_range(0, 60, 0.01) var weapon_dash_hit_speed_aceel: float = 2.
+@export_range(0, 1, 0.005) var weapon_dash_hit_speed_multiplier: float = 0.8
 @export_range(0, 50, 0.01) var weapon_dash_hit_vel_pulse: float = 2.
 @export_range(0, 50, 0.01) var weapon_dash_hit_gravity: float = 2.
+@export_range(0, 360, 0.5) var weapon_dash_hit_angle_range: float = 20.
+
 #endregion
 
 func _ready() -> void:
