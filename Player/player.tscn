@@ -22,8 +22,8 @@ _data = [Vector2(0, 1), 0.0, -0.27321324, 0, 0, Vector2(5, 0), -0.001122127, 0.0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_apopc"]
-_limits = [0.0, 1.0, 0.0, 15.0]
-_data = [Vector2(0, 0.5058824), 0.0, -0.12550542, 0, 0, Vector2(15, 0), -0.010869925, 0.0, 0, 0]
+_limits = [0.0, 1.0, 0.0, 20.0]
+_data = [Vector2(0, 0.5058824), 0.0, -0.067018956, 0, 0, Vector2(20, 0.11235964), -0.009585255, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
@@ -2824,7 +2824,7 @@ wall_slide_jump_speed_increase_scaling = SubResource("Curve_00tjw")
 wall_slide_jump_vel_pulse = 12.0
 wall_slide_jump_min_angle = 35.0
 wall_slide_jump_max_angle = 110.0
-wall_slide_jump_accel = 14.0
+wall_slide_jump_accel = 12.5
 wall_slide_jump_inital_accel_frames = 8.0
 slide_friction = 0.995
 slide_friction_start_time = 37.0
@@ -2844,11 +2844,14 @@ ground_dodge_vel_pulse = 0.0
 air_dodge_vel_pulse = 11.0
 air_dodge_gravity = 37.95
 dodge_jump_vel_pulse = 8.9
-dodge_jump_speed = 10.75
+dodge_jump_speed = 11.3
 dodge_jump_frames = 3.0
 weapon_dash_min_angle = 0.05000000000000004
 weapon_dash_speed = 25.0
-weapon_dash_target_speed = 19.0
+weapon_dash_target_speed = 16.0
+weapon_dash_hit_speed_aceel = 20.0
+weapon_dash_hit_vel_pulse = 13.0
+weapon_dash_hit_gravity = 30.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")

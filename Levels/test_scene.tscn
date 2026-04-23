@@ -42,10 +42,10 @@ use_collision = true
 size = Vector3(27, 22, 40)
 
 [node name="CSGBox3D36" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, -11, -51.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, -11, -51.5)
 material_override = ExtResource("1_dc6q1")
 use_collision = true
-size = Vector3(28, 22, 40)
+size = Vector3(52, 22, 40)
 
 [node name="CSGBox3D28" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.222196e-08, 0.25881907, 0.96592593, 1.13133405e-08, 0.96592593, -0.25881907, -1, 0, -4.371139e-08, 29.5, -9, -43.5)
@@ -60,7 +60,7 @@ use_collision = true
 size = Vector3(15, 6, 44)
 
 [node name="CSGBox3D29" type="CSGBox3D" parent="."]
-transform = Transform3D(1.2964473e-07, -0.25881904, -0.9659259, 1.131334e-08, 0.9659259, -0.25881904, 1, 2.2626683e-08, 1.281553e-07, -84.387405, -25.046782, -61.499992)
+transform = Transform3D(1.2964473e-07, -0.25881904, -0.9659259, 1.131334e-08, 0.9659259, -0.25881904, 1, 2.2626683e-08, 1.281553e-07, -84.387405, -25.046782, -78.49999)
 material_override = ExtResource("1_dc6q1")
 use_collision = true
 size = Vector3(24, 6, 168)
@@ -94,6 +94,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.
 material_override = ExtResource("1_dc6q1")
 use_collision = true
 size = Vector3(2, 6, 20)
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -34, 7, -66.5)
+material_override = ExtResource("1_dc6q1")
+use_collision = true
+size = Vector3(2, 14, 43)
 
 [node name="CSGBox3D32" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -3.5, -48.5)
@@ -156,79 +162,79 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 11.1, -77)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3.1000004, -36)
 
 [node name="TestEnemy7" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.661106, 3.1000004, -62.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -62.942192)
 
 [node name="TestEnemy12" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.661106, 3.1000004, -60.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -60.942192)
 
 [node name="TestEnemy13" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.661106, 3.1000004, -58.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -58.942192)
 
 [node name="TestEnemy14" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.661106, 3.1000004, -56.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -56.942192)
 
 [node name="TestEnemy15" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.661106, 3.1000004, -54.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -54.942192)
 
 [node name="TestEnemy16" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.661106, 3.1000004, -62.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.661106, 3.1000004, -62.942192)
 
 [node name="TestEnemy17" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.661106, 3.1000004, -60.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.661106, 3.1000004, -60.942192)
 
 [node name="TestEnemy18" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.661106, 3.1000004, -58.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.661106, 3.1000004, -58.942192)
 
 [node name="TestEnemy19" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.661106, 3.1000004, -56.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.661106, 3.1000004, -56.942192)
 
 [node name="TestEnemy20" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.661106, 3.1000004, -54.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.661106, 3.1000004, -54.942192)
 
 [node name="TestEnemy21" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.661106, 3.1000004, -62.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.661106, 3.1000004, -62.942192)
 
 [node name="TestEnemy22" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.661106, 3.1000004, -60.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.661106, 3.1000004, -60.942192)
 
 [node name="TestEnemy23" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.661106, 3.1000004, -58.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.661106, 3.1000004, -58.942192)
 
 [node name="TestEnemy24" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.661106, 3.1000004, -56.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.661106, 3.1000004, -56.942192)
 
 [node name="TestEnemy25" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.661106, 3.1000004, -54.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.661106, 3.1000004, -54.942192)
 
 [node name="TestEnemy26" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.661106, 3.1000004, -62.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.661106, 3.1000004, -62.942192)
 
 [node name="TestEnemy27" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.661106, 3.1000004, -60.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.661106, 3.1000004, -60.942192)
 
 [node name="TestEnemy28" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.661106, 3.1000004, -58.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.661106, 3.1000004, -58.942192)
 
 [node name="TestEnemy29" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.661106, 3.1000004, -56.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.661106, 3.1000004, -56.942192)
 
 [node name="TestEnemy30" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.661106, 3.1000004, -54.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.661106, 3.1000004, -54.942192)
 
 [node name="TestEnemy31" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.661106, 3.1000004, -62.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.661106, 3.1000004, -62.942192)
 
 [node name="TestEnemy32" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.661106, 3.1000004, -60.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.661106, 3.1000004, -60.942192)
 
 [node name="TestEnemy33" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.661106, 3.1000004, -58.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.661106, 3.1000004, -58.942192)
 
 [node name="TestEnemy34" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.661106, 3.1000004, -56.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.661106, 3.1000004, -56.942192)
 
 [node name="TestEnemy35" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.661106, 3.1000004, -54.942192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.661106, 3.1000004, -54.942192)
 
 [node name="TestEnemy8" parent="." instance=ExtResource("4_q5m1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.661106, 3.1000004, -50.942192)

@@ -44,7 +44,7 @@ func always_process_physics(delta: float):
 func _on_enemy_targeting_collider_area_entered(area: Area3D) -> void:
 	enemies.append(area)
 	var new_ray = filter_deactive_rays().front()
-	print(new_ray)
+	#print(new_ray)
 	
 	if new_ray != null: #check if ray is within ray pool
 		new_ray.enabled = true
@@ -71,7 +71,7 @@ func _on_enemy_targeting_collider_area_exited(area: Area3D) -> void:
 		new_ray.target_position = Vector3.ZERO
 		active_rays.erase(new_ray)
 	
-	print(active_rays.size())
+	#print(active_rays.size())
 		#print(active_rays)
 
 func calc_target():
@@ -130,12 +130,12 @@ func start():
 	
 	print("weapon_dash")
 	
+	player.air_dodges = int(player.max_air_dodges)
 	target_position = target.global_position + enemy_pos_targeting_offset
-	var initial_vel: Vector3 = player.velocity
 	initial_speed = player.target_speed
 	
 	dir = player.centre.direction_to(target_position) * player.weapon_dash_speed
-	player.target_speed = player.weapon_dash_target_speed #clampf(Vector3(dir.x, 0, dir.z).length(), 0, player.weapon_dash_target_speed)
+	player.target_speed = clampf(Vector3(dir.x, 0, dir.z).length(), 0, player.weapon_dash_target_speed)
 	
 	weapon_hitbox.position = player.global_position
 	weapon_hitbox_col.disabled = false
@@ -154,7 +154,7 @@ func process_physics(delta: float):
 	if player.state_dodge_check():
 		return
 	if weapon_hitbox.has_overlapping_areas():
-		change_state("weapon_dash_hit")
+		change_state("weapon_dash_hit", dir)
 		return
 	
 	player.velocity = dir

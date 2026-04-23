@@ -17,6 +17,8 @@ func start():
 		"air":
 			player.velocity.y = player.air_dodge_vel_pulse
 			player.gravity = player.air_dodge_gravity
+			
+			player.air_dodges -= 1
 		"ground":
 			player.velocity.y = player.ground_dodge_vel_pulse
 			player.gravity = player.air_dodge_gravity

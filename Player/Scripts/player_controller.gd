@@ -121,12 +121,13 @@ var can_jump: bool = true
 #endregion 
 #region dodges
 @export_group("dodges")
-var dodges: int = 2
+var air_dodges: int = 1
 @export_range(0, 30, 0.05) var dodge_min_speed:float = 15.0
 @export_range(0, 30, 0.05) var dodge_add_speed:float = 15.0
 @export_range(0, 20, 0.05) var dodge_accel_speed: float = 10.0
 @export_range(0, 10, 1) var dodge_initial_redirect_frame:int = 2
 @export var dodge_angle_clamp : Curve
+@export_range(0, 5, 1) var max_air_dodges: float = 1
 
 @export_range(0, 25, 0.05) var ground_dodge_vel_pulse:float = 3.0
 
@@ -144,6 +145,10 @@ var dodges: int = 2
 var target: Node = null
 @export_range(0, 60, 0.01) var weapon_dash_speed: float = 0.1
 @export_range(0, 60, 0.01) var weapon_dash_target_speed: float = 0.1
+@export_range(0, 20, 0.01) var weapon_dash_hit_speed_aceel: float = 2.
+@export_range(0, 50, 0.01) var weapon_dash_hit_vel_pulse: float = 2.
+@export_range(0, 50, 0.01) var weapon_dash_hit_gravity: float = 2.
+#endregion
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -166,6 +171,7 @@ func _ready() -> void:
 	
 	height = standing_collider.shape.height
 	gravity = fall_gravity
+	air_dodges = max_air_dodges
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
@@ -249,13 +255,15 @@ func lerp_target_speed(speed_margin: float, accel: float, delta: float):
 	var condition: bool = speed > target_speed + speed_margin || speed < target_speed - speed_margin
 	if condition:
 		target_speed = lerpf(target_speed, speed, accel * delta)
-	
+		
 #Add air strafe BY USING SLIDE CODE
 
 # State changes check
 func state_landing_check() -> bool:
 	if is_on_floor():
 		can_jump = true
+		air_dodges = int(max_air_dodges)
+		
 		if direction == Vector3.ZERO:
 			state_machine.change_state("idle")
 		else:
@@ -275,7 +283,7 @@ func state_jump() -> bool:
 		return false
 
 func state_dodge_check() -> bool:
-	if input_handler.is_action_buffered("dodge"):
+	if input_handler.is_action_buffered("dodge") && air_dodges > 0:
 		match state_machine.current_state.name:
 			"jump":
 				state_machine.change_state("air_dodge", "air")
