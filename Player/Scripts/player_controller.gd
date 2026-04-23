@@ -112,7 +112,7 @@ var can_jump: bool = true
 @export_range(0, 15, 0.01) var slide_handling: float = 3.
 @export_range(0, 20, 0.01) var slide_min_speed: float = 3.
 @export_range(0, 30, 0.005) var slide_tangent_scaling: float = 3.
-@export_range(0, 20, 0.05) var slide_tangent_max_speed: float = 3.
+@export_range(0, 60, 0.05) var slide_tangent_max_speed: float = 3.
 @export_range(0, 1, 0.005) var slide_tangent_max_speed_slow: float = 3.
 
 @export_range(0, 15, 1) var perfect_slide_after_frame_window: float = 3.

@@ -21,7 +21,7 @@ func start():
 		min_speed = player.dodge_jump_speed
 		jump_vel = player.dodge_jump_vel_pulse
 		
-		var initial_vel : Vector3 = player.direction * player.dodge_jump_speed
+		var initial_vel : Vector3 = player.direction * clamp(player.target_speed, player.dodge_jump_speed, 999999)
 		player.velocity.x = initial_vel.x
 		player.velocity.z = initial_vel.z
 	else:

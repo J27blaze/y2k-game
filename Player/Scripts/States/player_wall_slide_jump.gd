@@ -43,7 +43,10 @@ func process_physics(delta: float):
 		return
 	
 	player.calc_wall_slide()
-	player.state_dodge_check()
+	if player.state_dodge_check():
+		return
+	if player.state_weapon_dash_check():
+		return
 	
 	#similiar as player jump state
 	

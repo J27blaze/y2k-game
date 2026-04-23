@@ -28,8 +28,8 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
 _limits = [0.0, 1.0, -1.0, 1.0]
-_data = [Vector2(-1, 1), 0.0, 0.058823425, 0, 0]
-point_count = 1
+_data = [Vector2(-1, 0.97752815), 0.0, 0.058823425, 0, 0, Vector2(-0.39999998, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
 height = 12.5
@@ -2847,7 +2847,7 @@ dodge_jump_vel_pulse = 8.9
 dodge_jump_speed = 10.75
 dodge_jump_frames = 3.0
 weapon_dash_min_angle = 0.05000000000000004
-weapon_dash_speed = 27.0
+weapon_dash_speed = 25.0
 weapon_dash_target_speed = 19.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
@@ -2924,8 +2924,9 @@ is_dodge_jump = true
 
 [node name="weapon_dash" type="Node" parent="state_machine"]
 script = ExtResource("12_gu6f8")
-raycast_pool_size = 8
+raycast_pool_size = 16
 enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
+player_pos_targeting_offset = Vector3(0, 2.2, 0)
 
 [node name="enemy_targeting_collider" type="Area3D" parent="state_machine/weapon_dash"]
 collision_layer = 0
