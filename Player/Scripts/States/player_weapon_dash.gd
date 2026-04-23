@@ -34,6 +34,7 @@ func init() -> void:
 func always_process_physics(delta: float):
 	area_collider.position = player.position
 	base.position = player.position
+	
 	if !enemies.is_empty():
 		calc_target()
 		#print(enemies.size())
@@ -47,9 +48,8 @@ func _on_enemy_targeting_collider_area_entered(area: Area3D) -> void:
 	#print(new_ray)
 	
 	if new_ray != null: #check if ray is within ray pool
-		new_ray.enabled = true
-		
 		active_rays.append(new_ray)
+		new_ray.enabled = true
 		#print(active_rays)
 func filter_deactive_rays():
 	var filtered_rays: Array[Node]
@@ -88,6 +88,9 @@ func calc_target():
 			var ray_target_pos = enemy_pos - player_calc_pos + player_pos_targeting_offset
 			active_rays[i].target_position = ray_target_pos
 			
+			##THIS IS SHIT CODING BUT IT WORKS v v v v v v
+			active_rays[i].force_raycast_update()
+			
 			#get on screen
 			var enemy_on_screen: bool = enemy.get_parent().is_on_screen()
 			
@@ -99,15 +102,13 @@ func calc_target():
 			DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
 			DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 2, Color.CHOCOLATE)
 			
-			if !active_rays[i].is_colliding() && enemy_on_screen && dot > player.weapon_dash_min_angle: # enemy can be targeted
+			if !active_rays[i].is_colliding() && enemy_on_screen && dot > player.weapon_dash_min_angle && active_rays[i].enabled: # enemy can be targeted
 				targetable_ememies.append(enemy)
-				
 				vector_dots.append(dot)
-				
 				#print(player.camera_normal)
-				
+			
 			i += 1
-		
+			
 	#print(vector_dots)
 	if vector_dots.find(vector_dots.max()) != -1:
 		target = targetable_ememies[vector_dots.find(vector_dots.max())]

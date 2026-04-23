@@ -226,7 +226,8 @@ func _process(delta: float):
 	#camera Rot | Add this to the camera controlls
 	camera_twist.rotate_y(-camera_dir.x - mouse_dir.x)
 	camera_pitch.rotate_x(-camera_dir.y - mouse_dir.y)
-	camera_pitch.rotation.x = clamp(camera_pitch.rotation.x, -1.4, 0.45)
+	#pitch clamp values
+	camera_pitch.rotation.x = clamp(camera_pitch.rotation.x, -PI/2, PI/2)
 	#adds the camera rot to movement
 	direction = (camera_twist.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	camera_normal = (-camera.global_transform.basis.z).normalized()

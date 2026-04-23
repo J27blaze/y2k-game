@@ -23,7 +23,7 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_apopc"]
 _limits = [0.0, 1.0, 0.0, 20.0]
-_data = [Vector2(0, 0.5058824), 0.0, -0.067018956, 0, 0, Vector2(20, 0.11235964), -0.009585255, 0.0, 0, 0]
+_data = [Vector2(0, 0.5058824), 0.0, -0.067018956, 0, 0, Vector2(20, 0.05), -0.0073646214, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
@@ -2846,10 +2846,11 @@ air_dodge_gravity = 37.95
 dodge_jump_vel_pulse = 8.9
 dodge_jump_speed = 11.3
 dodge_jump_frames = 3.0
-weapon_dash_min_angle = 0.5
+weapon_dash_min_angle = 0.3999999999999999
 weapon_dash_speed = 25.0
 weapon_dash_target_speed = 16.0
 weapon_dash_hit_speed_aceel = 30.0
+weapon_dash_hit_speed_multiplier = 0.75
 weapon_dash_hit_vel_pulse = 13.0
 weapon_dash_hit_gravity = 30.0
 weapon_dash_hit_angle_range = 90.0
