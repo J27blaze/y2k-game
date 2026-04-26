@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=53 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://6wrk1sup8xb7" path="res://Player/Scripts/States/player_dodges.gd" id="11_p5o4e"]
 [ext_resource type="Script" uid="uid://b7ronpsf5fh6m" path="res://Player/Scripts/States/player_weapon_dash.gd" id="12_gu6f8"]
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
+[ext_resource type="PackedScene" uid="uid://c53e0m50x1ccg" path="res://Player/Assets/Player/angel_body.glb" id="14_lfmf2"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -2978,7 +2979,6 @@ shape = SubResource("CylinderShape3D_00tjw")
 debug_color = Color(3.946722e-06, 0.5877552, 0.7692518, 0.41960785)
 
 [node name="model_twist" type="Node3D" parent="."]
-transform = Transform3D(1.656, 0, 0, 0, 1.656, 0, 0, 0, 1.656, 0, 0, 0)
 
 [node name="test_model" type="MeshInstance3D" parent="model_twist"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015762117, 0.63913655, -0.004388644)
@@ -3156,6 +3156,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_g5nbl")
 }
 autoplay = "idle"
+
+[node name="angel_body" parent="model_twist" instance=ExtResource("14_lfmf2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56352717, -0.055342734, 0.19025874)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
