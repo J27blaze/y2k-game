@@ -19,7 +19,7 @@ func start():
 	var initial_dir_hor: Vector3 = Vector3(initial_dir.x, 0, initial_dir.z)
 	var initial_speed: float = initial_vel.length()
 	
-	var angle: float = rad_to_deg(initial_dir_hor.signed_angle_to(player.direction, Vector3.UP))	
+	var angle: float = rad_to_deg(initial_dir_hor.signed_angle_to(player.direction, Vector3.UP))
 	angle = clampf(angle, -player.weapon_dash_hit_angle_range/2, player.weapon_dash_hit_angle_range/2)
 	var new_vel: Vector3 = initial_dir_hor.rotated(Vector3.UP, deg_to_rad(angle)) * initial_speed
 	

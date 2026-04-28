@@ -10,9 +10,9 @@ func start():
 	player.can_jump = false
 	#player.air_dodges = int(player.max_air_dodges)
 	#air dodges
-	if !player.can_wall_slide_air_dodge:
+	if player.can_wall_slide_air_dodge:
 		player.air_dodges = int(player.max_air_dodges)
-		player.can_wall_slide_air_dodge = true
+		player.can_wall_slide_air_dodge = false
 	
 	player.velocity.y = 0
 	player.gravity = player.wall_slide_gravity

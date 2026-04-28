@@ -131,7 +131,10 @@ func start():
 	
 	print("weapon_dash")
 	
+	#dodge
 	player.air_dodges = int(player.max_air_dodges)
+	player.can_wall_slide_air_dodge = true
+	
 	target_position = target.global_position + enemy_pos_targeting_offset
 	initial_speed = player.target_speed
 	

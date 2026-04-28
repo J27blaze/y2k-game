@@ -91,7 +91,7 @@ var can_jump: bool = true
 
 @export_range(0, 10, 0.005) var camera_wall_slide_offset: float = 1.0
 
-var can_wall_slide_air_dodge: bool = false
+var can_wall_slide_air_dodge: bool = true
 
 #endregion
 #region wall slide jump
@@ -268,7 +268,7 @@ func lerp_target_speed(speed_margin: float, accel: float, delta: float):
 func state_landing_check() -> bool:
 	if is_on_floor():
 		can_jump = true
-		can_wall_slide_air_dodge = false
+		can_wall_slide_air_dodge = true
 		air_dodges = int(max_air_dodges)
 		
 		if direction == Vector3.ZERO:
