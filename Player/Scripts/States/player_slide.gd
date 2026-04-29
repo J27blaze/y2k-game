@@ -40,6 +40,8 @@ func process_physics(delta: float):
 		return
 	if player.state_dodge_check():
 		return
+	if player.state_weapon_dash_check():
+		return
 	
 	if !perfect_slided && input_handler.is_action_buffered("slide") && timer < player.perfect_slide_after_frame_window:
 		perfect_slide()

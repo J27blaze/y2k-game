@@ -139,7 +139,9 @@ func start():
 	initial_speed = player.target_speed
 	
 	dir = player.centre.direction_to(target_position) * player.weapon_dash_speed
-	player.target_speed = clampf(Vector3(dir.x, 0, dir.z).length(), 0, player.weapon_dash_target_speed)
+	player.target_speed = maxf(clampf(Vector3(dir.x, 0, dir.z).length(), 0, player.weapon_dash_target_speed), initial_speed)
+	
+	#player.target_speed = clampf(initial_speed, )
 	
 	weapon_hitbox.position = player.global_position
 	weapon_hitbox_col.disabled = false
