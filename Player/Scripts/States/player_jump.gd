@@ -13,6 +13,7 @@ func start():
 	
 	timer = 0 
 	jump_cut = !is_dodge_jump
+	player.input_handler.clear_action_buffer("jump")
 	
 	var min_speed : float = player.run_speed
 	var jump_vel : float = player.jump_vel_pulse
@@ -49,6 +50,8 @@ func process_physics(delta: float) -> void:
 		return
 	
 	player.calc_wall_slide()
+	if player.state_wall_slide_jump_check():
+		return
 	if !is_dodge_jump:
 		if player.state_dodge_check():
 			return

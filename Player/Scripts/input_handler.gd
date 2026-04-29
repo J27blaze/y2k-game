@@ -50,6 +50,9 @@ func is_action_buffered(input: String):
 	else:
 		return false
 
+func clear_action_buffer(input: String):
+	buffered_inputs[input] = 0
+
 # camera
 func get_raw_controller_camera_dir():
 	return Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
