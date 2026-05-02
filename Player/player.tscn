@@ -2853,11 +2853,11 @@ dodge_jump_frames = 3.0
 weapon_dash_min_angle = 0.3999999999999999
 weapon_dash_speed = 30.0
 weapon_dash_target_speed = 16.7
-weapon_dash_hit_speed_aceel = 30.0
-weapon_dash_hit_y_cut = 0.575
-weapon_dash_hit_vel_pulse = 13.5
+weapon_dash_hit_speed_aceel = 37.5
+weapon_dash_hit_y_cut = 0.66
+weapon_dash_hit_vel_pulse = 13.3
 weapon_dash_hit_gravity = 30.0
-weapon_dash_hit_angle_range = 90.0
+weapon_dash_hit_angle_range = 120.0
 weapon_dash_hit_backward_speed = 13.0
 weapon_dash_hit_dot_threshold = -0.19999999999999996
 

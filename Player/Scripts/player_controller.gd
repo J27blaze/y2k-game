@@ -145,6 +145,7 @@ var air_dodges: int = 1
 #region weapon_dash
 @export_group("dash")
 @export_range(-1, 1, 0.01) var weapon_dash_min_angle: float = 0.1
+#refers to thew area shape, not node
 var target: Node = null
 @export_range(0, 60, 0.01) var weapon_dash_speed: float = 0.1
 @export_range(0, 60, 0.01) var weapon_dash_target_speed: float = 0.1
@@ -265,7 +266,7 @@ func vel_move_toward(target_vector: Vector3, accel: float, delta: float):
 	velocity.z = velocity.move_toward(target_vector, accel * delta).z
 
 func lerp_target_speed(speed_margin: float, accel: float, delta: float):
-	var condition: bool = speed > target_speed + speed_margin || speed < target_speed - speed_margin
+	var condition: bool = speed < target_speed - speed_margin
 	if condition:
 		target_speed = lerpf(target_speed, speed, accel * delta)
 		

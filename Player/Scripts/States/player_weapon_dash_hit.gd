@@ -28,7 +28,7 @@ func start():
 	var new_vel: Vector3 = Vector3.ZERO
 	
 	#add backwards angle + controllable hewight
-	print(initial_dir_hor.dot(player.direction))
+	#print(initial_dir_hor.dot(player.direction))
 	if initial_dir_hor.dot(player.direction) > player.weapon_dash_hit_dot_threshold:
 		#forward
 		var angle: float = clampf(initial_angle, -player.weapon_dash_hit_angle_range/2, player.weapon_dash_hit_angle_range/2)

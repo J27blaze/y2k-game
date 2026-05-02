@@ -12,6 +12,8 @@ var enemies: Array[Node] = []
 
 var target: Node = null
 
+var is_dashing: bool = false
+
 @export var enemy_pos_targeting_offset: Vector3 = Vector3.ZERO
 #make this the same as camera offset
 @export var player_pos_targeting_offset: Vector3 = Vector3.ZERO
@@ -111,14 +113,15 @@ func calc_target():
 			
 	#print(vector_dots)
 	if vector_dots.find(vector_dots.max()) != -1:
-		target = targetable_ememies[vector_dots.find(vector_dots.max())]
-		DebugDraw3D.draw_square(target.global_position, 1, Color.GREEN)
+		if !is_dashing:
+			target = targetable_ememies[vector_dots.find(vector_dots.max())]
+			DebugDraw3D.draw_square(target.global_position, 1, Color.GREEN)
 	else:
-		target = null 
+		target = null
 	player.target = target
 
 #player movement
-var initial_speed: float =0.0
+var initial_speed: float = 0.0
 @onready var min_dash_time := $min_dash_time
 var dir: Vector3 = Vector3.ZERO
 var target_position: Vector3 = Vector3.ZERO
@@ -128,8 +131,10 @@ var target_position: Vector3 = Vector3.ZERO
 
 func start():
 	#assumed target is not null.
-	
+	is_dashing = true
 	print("weapon_dash")
+	player.target.get_parent().set_player_target(true)
+	print(player.target.get_parent().is_player_target())
 	
 	#dodge
 	player.air_dodges = int(player.max_air_dodges)
@@ -148,6 +153,14 @@ func start():
 	
 	min_dash_time.start()
 
+func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
+	if area.get_parent().is_player_target():
+	#print(area.get_parent().get_groups())
+		player.target.get_parent().set_player_target(false)
+		change_state("weapon_dash_hit", dir)
+		is_dashing = false
+		return
+		
 func _on_min_dash_time_timeout() -> void:
 	change_state("fall")
 
@@ -158,9 +171,6 @@ func exit():
 
 func process_physics(delta: float):
 	if player.state_dodge_check():
-		return
-	if weapon_hitbox.has_overlapping_areas():
-		change_state("weapon_dash_hit", dir)
 		return
 	
 	player.velocity = dir
