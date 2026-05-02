@@ -77,48 +77,48 @@ func _on_enemy_targeting_collider_area_exited(area: Area3D) -> void:
 		#print(active_rays)
 
 func calc_target():
-	var i: int = 0
-	var vector_dots: Array[float] = []
-	var targetable_ememies: Array[Node] = []
-	
-	for enemy in enemies:
-		#check amount of rays in bound
-		if i < raycast_pool_size:
-			#get raycast
-			var enemy_pos: Vector3 = enemy.global_position + enemy_pos_targeting_offset
-			var player_calc_pos: Vector3 = player.centre + player_pos_targeting_offset
-			var ray_target_pos = enemy_pos - player_calc_pos + player_pos_targeting_offset
-			active_rays[i].target_position = ray_target_pos
-			
-			##THIS IS SHIT CODING BUT IT WORKS v v v v v v
-			active_rays[i].force_raycast_update()
-			
-			#get on screen
-			var enemy_on_screen: bool = enemy.get_parent().is_on_screen()
-			
-			#gets normals
-			var camera_dir: Vector3 = player.camera_normal.normalized()
-			var enemy_dir: Vector3 = player_calc_pos.direction_to(enemy_pos).normalized()
-			var dot = camera_dir.dot(enemy_dir)
-			
-			DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
-			DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 2, Color.CHOCOLATE)
-			
-			if !active_rays[i].is_colliding() && enemy_on_screen && dot > player.weapon_dash_min_angle && active_rays[i].enabled: # enemy can be targeted
-				targetable_ememies.append(enemy)
-				vector_dots.append(dot)
-				#print(player.camera_normal)
-			
-			i += 1
-			
-	#print(vector_dots)
-	if vector_dots.find(vector_dots.max()) != -1:
-		if !is_dashing:
+	if !is_dashing:
+		var i: int = 0
+		var vector_dots: Array[float] = []
+		var targetable_ememies: Array[Node] = []
+		
+		for enemy in enemies:
+			#check amount of rays in bound
+			if i < raycast_pool_size:
+				#get raycast
+				var enemy_pos: Vector3 = enemy.global_position + enemy_pos_targeting_offset
+				var player_calc_pos: Vector3 = player.centre + player_pos_targeting_offset
+				var ray_target_pos = enemy_pos - player_calc_pos + player_pos_targeting_offset
+				active_rays[i].target_position = ray_target_pos
+				
+				##THIS IS SHIT CODING BUT IT WORKS v v v v v v
+				active_rays[i].force_raycast_update()
+				
+				#get on screen
+				var enemy_on_screen: bool = enemy.get_parent().is_on_screen()
+				
+				#gets normals
+				var camera_dir: Vector3 = player.camera_normal.normalized()
+				var enemy_dir: Vector3 = player_calc_pos.direction_to(enemy_pos).normalized()
+				var dot = camera_dir.dot(enemy_dir)
+				
+				DebugDraw3D.draw_line(enemy_pos, enemy_pos - enemy_dir * 2, Color.CHARTREUSE)
+				DebugDraw3D.draw_line(enemy_pos, enemy_pos - camera_dir * 2, Color.CHOCOLATE)
+				
+				if !active_rays[i].is_colliding() && enemy_on_screen && dot > player.weapon_dash_min_angle && active_rays[i].enabled: # enemy can be targeted
+					targetable_ememies.append(enemy)
+					vector_dots.append(dot)
+					#print(player.camera_normal)
+				
+				i += 1
+				
+		#print(vector_dots)
+		if vector_dots.find(vector_dots.max()) != -1:
 			target = targetable_ememies[vector_dots.find(vector_dots.max())]
 			DebugDraw3D.draw_square(target.global_position, 1, Color.GREEN)
-	else:
-		target = null
-	player.target = target
+		else:
+			target = null
+		player.target = target
 
 #player movement
 var initial_speed: float = 0.0
@@ -133,8 +133,8 @@ func start():
 	#assumed target is not null.
 	is_dashing = true
 	print("weapon_dash")
-	player.target.get_parent().set_player_target(true)
-	print(player.target.get_parent().is_player_target())
+	target.get_parent().set_player_target(true)
+	print(target.get_parent().is_player_target())
 	
 	#dodge
 	player.air_dodges = int(player.max_air_dodges)
@@ -156,9 +156,7 @@ func start():
 func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
 	if area.get_parent().is_player_target():
 	#print(area.get_parent().get_groups())
-		if player.target != null: player.target.get_parent().set_player_target(false)
 		change_state("weapon_dash_hit", dir)
-		is_dashing = false
 		return
 		
 func _on_min_dash_time_timeout() -> void:
@@ -166,6 +164,8 @@ func _on_min_dash_time_timeout() -> void:
 
 func exit():
 	weapon_hitbox_col.disabled = true
+	if target != null: target.get_parent().set_player_target(false)
+	is_dashing = false
 	min_dash_time.stop()
 	return
 

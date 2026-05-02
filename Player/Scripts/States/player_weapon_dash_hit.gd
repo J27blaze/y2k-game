@@ -50,8 +50,8 @@ func exit():
 	return
 
 func process_physics(delta: float):
-	if player.state_landing_check():
-		return
+	#if player.state_landing_check():
+	#	return
 	if player.velocity.y < 0:
 		change_state("fall", false)
 		return
