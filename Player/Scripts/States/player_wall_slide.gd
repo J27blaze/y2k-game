@@ -11,7 +11,7 @@ func start():
 	#player.air_dodges = int(player.max_air_dodges)
 	#air dodges
 	if player.can_wall_slide_air_dodge:
-		player.air_dodges = int(player.max_air_dodges)
+		#player.air_dodges = int(player.max_air_dodges)
 		player.can_wall_slide_air_dodge = false
 	
 	player.velocity.y = 0

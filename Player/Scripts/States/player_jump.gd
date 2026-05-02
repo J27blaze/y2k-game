@@ -8,12 +8,15 @@ var jump_cut: bool = true
 var initial_vel: Vector3
 var wall_normal: Vector3
 
+var accel: float = 0.0
+
 func start():
 	player.can_jump = false
 	
 	timer = 0 
 	jump_cut = !is_dodge_jump
 	player.input_handler.clear_action_buffer("jump")
+	accel = player.jump_accel
 	
 	var min_speed : float = player.run_speed
 	var jump_vel : float = player.jump_vel_pulse
@@ -21,6 +24,7 @@ func start():
 		print("dodge_jump")
 		min_speed = player.dodge_jump_speed
 		jump_vel = player.dodge_jump_vel_pulse
+		accel = player.dodge_jump_accel
 		
 		var initial_vel : Vector3 = player.direction * clamp(player.target_speed, player.dodge_jump_speed, 999999)
 		player.velocity.x = initial_vel.x

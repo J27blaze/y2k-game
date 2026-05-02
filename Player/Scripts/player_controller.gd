@@ -140,6 +140,7 @@ var air_dodges: int = 1
 @export_range(0, 50, 0.05) var dodge_jump_vel_pulse: float = 10.
 @export_range(0, 20, 0.01) var dodge_jump_speed: float = 10.
 @export_range(0, 60, 1) var dodge_jump_frames: float = 10.
+@export_range(0, 40, 0.05) var dodge_jump_accel: float = 10.
 #endregion 
 #region weapon_dash
 @export_group("dash")
@@ -148,10 +149,16 @@ var target: Node = null
 @export_range(0, 60, 0.01) var weapon_dash_speed: float = 0.1
 @export_range(0, 60, 0.01) var weapon_dash_target_speed: float = 0.1
 @export_range(0, 60, 0.01) var weapon_dash_hit_speed_aceel: float = 2.
-@export_range(0, 1, 0.005) var weapon_dash_hit_speed_multiplier: float = 0.8
+@export_range(0, 1, 0.005) var weapon_dash_hit_y_speed_multiplier: float = 0.8
+@export_range(0, 1, 0.005) var weapon_dash_hit_y_cut: float = 0.8
 @export_range(0, 50, 0.01) var weapon_dash_hit_vel_pulse: float = 2.
 @export_range(0, 50, 0.01) var weapon_dash_hit_gravity: float = 2.
+@export_subgroup("forward")
 @export_range(0, 360, 0.5) var weapon_dash_hit_angle_range: float = 20.
+@export_subgroup("backward")
+@export_range(0, 20, 0.01) var weapon_dash_hit_backward_speed: float = 6.
+@export_range(-1, 1, 0.005) var weapon_dash_hit_dot_threshold: float = 0
+
 
 #endregion
 
@@ -165,7 +172,7 @@ func _ready() -> void:
 	print(ray_amount)
 	var i = 0
 	for ray in wall_slide_colliders.get_children():
-		ray.target_position = Vector3(0, 0, wall_slide_range + 0.5)
+		ray.target_position = Vector3(0, 0, wall_slide_range)
 		ray.rotation.y = deg_to_rad(180 - wall_slide_angle_range/2 + (i+1)*(wall_slide_angle_range/ray_amount))
 		
 		wall_slide_rays.append(ray)
