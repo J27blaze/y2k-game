@@ -47,6 +47,10 @@ func exit():
 	return
 
 func process_physics(delta: float):
+	player.calc_wall_slide()
+	if player.state_wall_slide_jump_check():
+		return
+	
 	if timer < player.dodge_initial_redirect_frame:
 		get_player_dir()
 		
