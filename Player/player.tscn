@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://6wrk1sup8xb7" path="res://Player/Scripts/States/player_dodges.gd" id="11_p5o4e"]
 [ext_resource type="Script" uid="uid://b7ronpsf5fh6m" path="res://Player/Scripts/States/player_weapon_dash.gd" id="12_gu6f8"]
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
-[ext_resource type="PackedScene" uid="uid://bw1kw5dvywmso" path="res://Player/Assets/Player/angel_body3.glb" id="14_lfmf2"]
+[ext_resource type="PackedScene" uid="uid://tgswpxnksr8h" path="res://Player/Assets/Player/angel_body4.glb" id="14_lfmf2"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -2998,6 +2998,7 @@ skeleton = NodePath("../../../camera_twist")
 
 [node name="Armature" type="Node3D" parent="model_twist"]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0, 0)
+visible = false
 
 [node name="Skeleton3D" type="Skeleton3D" parent="model_twist/Armature"]
 bones/0/name = "hip"
@@ -3163,8 +3164,8 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="angel_body3" parent="model_twist" instance=ExtResource("14_lfmf2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+[node name="angel_body4" parent="model_twist" instance=ExtResource("14_lfmf2")]
+transform = Transform3D(1.075, 0, 0, 0, 1.075, 0, 0, 0, 1.075, 0, 0, 0)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

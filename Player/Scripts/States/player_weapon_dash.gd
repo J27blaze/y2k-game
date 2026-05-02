@@ -156,7 +156,7 @@ func start():
 func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
 	if area.get_parent().is_player_target():
 	#print(area.get_parent().get_groups())
-		player.target.get_parent().set_player_target(false)
+		if player.target != null: player.target.get_parent().set_player_target(false)
 		change_state("weapon_dash_hit", dir)
 		is_dashing = false
 		return

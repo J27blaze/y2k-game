@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v7jp1u4nhdhx"
-path.s3tc="res://.godot/imported/angel_body3_256_gay_texture_template.png-ab771f4121999edae1e9668ab95add6c.s3tc.ctex"
+uid="uid://cdheof8c0byyf"
+path.s3tc="res://.godot/imported/angel_body4_256_gay_texture_template.png-7ce73f7e27aef8971305f71e667b3d04.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Player/Assets/Player/angel_body3_256_gay_texture_template.png"
-dest_files=["res://.godot/imported/angel_body3_256_gay_texture_template.png-ab771f4121999edae1e9668ab95add6c.s3tc.ctex"]
+source_file="res://Player/Assets/Player/angel_body4_256_gay_texture_template.png"
+dest_files=["res://.godot/imported/angel_body4_256_gay_texture_template.png-7ce73f7e27aef8971305f71e667b3d04.s3tc.ctex"]
 
 [params]
 

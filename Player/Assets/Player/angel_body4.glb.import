@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bw1kw5dvywmso"
-path="res://.godot/imported/angel_body3.glb-43b2d5a089b40059f689652bad005493.scn"
+uid="uid://tgswpxnksr8h"
+path="res://.godot/imported/angel_body4.glb-57f939bc4591580ec6f4e6ef1c3763d8.scn"
 
 [deps]
 
-source_file="res://Player/Assets/Player/angel_body3.glb"
-dest_files=["res://.godot/imported/angel_body3.glb-43b2d5a089b40059f689652bad005493.scn"]
+source_file="res://Player/Assets/Player/angel_body4.glb"
+dest_files=["res://.godot/imported/angel_body4.glb-57f939bc4591580ec6f4e6ef1c3763d8.scn"]
 
 [params]
 
