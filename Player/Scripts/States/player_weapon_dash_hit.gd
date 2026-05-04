@@ -57,7 +57,6 @@ func process_physics(delta: float):
 		return
 	if player.state_dodge_check():
 		return
-	
 	player.calc_wall_slide()
 	if player.state_wall_slide_jump_check():
 		return
@@ -74,3 +73,6 @@ func process_physics(delta: float):
 	
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
+	
+	#if player.state_weapon_dash_check():
+	#	return

@@ -54,7 +54,12 @@ func process_physics(delta: float):
 	if timer < player.dodge_initial_redirect_frame:
 		get_player_dir()
 		
-		var angle_clamp_amount: float = player.dodge_angle_clamp.sample(initial_dir.normalized().dot(input_dir.normalized()))
+		var angle_clamp_amount: float = 1.0
+		
+		match data:
+			"air":
+				angle_clamp_amount = player.dodge_angle_clamp.sample(initial_dir.normalized().dot(input_dir.normalized()))
+				
 		var dodge_speed: float = (player.speed) * angle_clamp_amount
 		
 		player.target_speed = clampf(player.target_speed * angle_clamp_amount, player.dodge_min_speed, 999999)

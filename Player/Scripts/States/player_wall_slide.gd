@@ -46,6 +46,8 @@ func process_physics(delta: float):
 		return
 	if player.state_landing_check():
 		return
+	if player.state_weapon_dash_check():
+		return
 	
 	#player wall angle too steep
 	if abs(last_wall_normal.dot(player.wall_normal)) < player.wall_slide_angle_threshold:

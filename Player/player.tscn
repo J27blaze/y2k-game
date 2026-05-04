@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=54 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -31,6 +31,8 @@ point_count = 2
 _limits = [0.0, 1.0, -1.0, 1.0]
 _data = [Vector2(-1, 0.95), 0.0, 0.050000016, 0, 1, Vector2(1.4901161e-08, 1), 0.050000016, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_lfmf2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
 height = 15.5625
@@ -2826,12 +2828,12 @@ wall_slide_jump_speed_increase_scaling = SubResource("Curve_00tjw")
 wall_slide_jump_vel_pulse = 12.0
 wall_slide_jump_min_angle = 35.0
 wall_slide_jump_max_angle = 110.0
-wall_slide_jump_accel = 12.5
+wall_slide_jump_accel = 18.0
 wall_slide_jump_inital_accel_frames = 8.0
-slide_friction = 0.995
-slide_friction_start_time = 37.0
+slide_friction = 0.997
+slide_friction_start_time = 15.0
 slide_handling = 0.65
-slide_min_speed = 7.4
+slide_min_speed = 10.0
 slide_tangent_scaling = 8.555
 slide_tangent_max_speed = 15.0
 slide_tangent_max_speed_slow = 0.6
@@ -2850,11 +2852,14 @@ air_dodge_gravity = 37.95
 dodge_jump_vel_pulse = 7.1
 dodge_jump_speed = 12.7
 dodge_jump_frames = 3.0
+dodge_jump_accel = 6.4
+dodge_jump_speed_boost_scaling = SubResource("Curve_lfmf2")
 weapon_dash_min_angle = 0.3999999999999999
 weapon_dash_speed = 30.0
 weapon_dash_target_speed = 16.7
 weapon_dash_hit_speed_aceel = 37.5
-weapon_dash_hit_y_cut = 0.66
+weapon_dash_hit_y_speed_multiplier = 0.0
+weapon_dash_hit_y_cut = 0.6
 weapon_dash_hit_vel_pulse = 13.3
 weapon_dash_hit_gravity = 30.0
 weapon_dash_hit_angle_range = 120.0

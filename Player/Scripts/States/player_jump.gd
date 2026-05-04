@@ -26,7 +26,7 @@ func start():
 		jump_vel = player.dodge_jump_vel_pulse
 		accel = player.dodge_jump_accel
 		
-		var initial_vel : Vector3 = player.direction * clamp(player.target_speed, player.dodge_jump_speed, 999999)
+		initial_vel = player.direction * clamp(player.target_speed, player.dodge_jump_speed, 999999)
 		player.velocity.x = initial_vel.x
 		player.velocity.z = initial_vel.z
 	else:
@@ -65,7 +65,7 @@ func process_physics(delta: float) -> void:
 	if timer <= player.jump_inital_accel_frames && move_dir.length() >= 0.5:
 		player.vel_move_toward(move_dir, player.jump_inital_accel, delta)
 	else:
-		player.vel_move_toward(move_dir, player.jump_accel, delta)
+		player.vel_move_toward(move_dir, accel, delta)
 	
 	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity

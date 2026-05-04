@@ -1,19 +1,24 @@
 extends PlayerState
 
 var timer: int = 0
-
+var accel: float = 0.0
+	
 func start():
 	print("fall")
 	
 	timer = 0
 	player.gravity = player.fall_gravity
-	
+	accel = player.fall_accel
 	#anim
 	match previous_state():
 		"jump":
 			play_anim("jump_1_fall")
 			return
 		"air_dodge":
+			play_anim("jump_1_fall")
+			return
+		"dodge_jump":
+			accel = player.dodge_jump_accel
 			play_anim("jump_1_fall")
 			return
 		_:
@@ -40,7 +45,7 @@ func process_physics(delta: float) -> void:
 		return
 	
 	var move_dir = player.target_speed * player.direction
-	player.vel_move_toward(move_dir, player.fall_accel, delta)
+	player.vel_move_toward(move_dir, accel, delta)
 	#player.vel_accel_speed(player.run_speed, player.run_max_speed, player.jump_speed_accel, player.jump_speed_accel, delta)
 	
 	player.lerp_target_speed(player.air_target_speed_margin, player.air_target_speed_accel, delta)

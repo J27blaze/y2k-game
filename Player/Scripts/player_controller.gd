@@ -141,6 +141,9 @@ var air_dodges: int = 1
 @export_range(0, 20, 0.01) var dodge_jump_speed: float = 10.
 @export_range(0, 60, 1) var dodge_jump_frames: float = 10.
 @export_range(0, 40, 0.05) var dodge_jump_accel: float = 10.
+
+@export_range(0, 20, 0.005) var dodge_jump_speed_increase: float = 10.
+@export var dodge_jump_speed_boost_scaling: Curve
 #endregion 
 #region weapon_dash
 @export_group("dash")
