@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt3wmmkhukyl5"]
+
+[ext_resource type="PackedScene" uid="uid://bx8nrb74yp0oa" path="res://Player/Assets/Player/angel_body4.glb" id="1_dxfqn"]
+[ext_resource type="Shader" uid="uid://cxg6b5w5qeh2j" path="res://Player/Assets/Player/angel_skin.tres" id="2_7jsku"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxfqn"]
+render_priority = 0
+shader = ExtResource("2_7jsku")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jsku"]
+render_priority = 0
+shader = ExtResource("2_7jsku")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qdjy"]
+render_priority = 0
+shader = ExtResource("2_7jsku")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spkc7"]
+render_priority = 0
+shader = ExtResource("2_7jsku")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1xvo"]
+render_priority = 0
+shader = ExtResource("2_7jsku")
+
+[node name="angel_body4" instance=ExtResource("1_dxfqn")]
+
+[node name="body" parent="rig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_dxfqn")
+
+[node name="feet" parent="rig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_7jsku")
+
+[node name="hands" parent="rig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_2qdjy")
+
+[node name="head" parent="rig/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_spkc7")
+
+[node name="neck" parent="rig/Skeleton3D" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_v1xvo")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=52 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://6wrk1sup8xb7" path="res://Player/Scripts/States/player_dodges.gd" id="11_p5o4e"]
 [ext_resource type="Script" uid="uid://b7ronpsf5fh6m" path="res://Player/Scripts/States/player_weapon_dash.gd" id="12_gu6f8"]
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
-[ext_resource type="PackedScene" uid="uid://tgswpxnksr8h" path="res://Player/Assets/Player/angel_body4.glb" id="14_lfmf2"]
+[ext_resource type="PackedScene" uid="uid://dt3wmmkhukyl5" path="res://Player/Assets/Player/angel_body_4.tscn" id="14_lfmf2"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -33,6 +33,9 @@ _data = [Vector2(-1, 0.95), 0.0, 0.050000016, 0, 1, Vector2(1.4901161e-08, 1), 0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_lfmf2"]
+_limits = [0.0, 1.0, 0.0, 6.0]
+_data = [Vector2(0, 1), 0.0, -0.37705687, 0, 0, Vector2(6, 0.052187204), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
 height = 15.5625
@@ -47,14 +50,6 @@ radius = 1.4
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_00tjw"]
 height = 2.028125
 radius = 0.2939453
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_f60y1"]
-radius = 0.25
-height = 1.25
-radial_segments = 12
-
-[sub_resource type="BoxMesh" id="BoxMesh_v0iea"]
-size = Vector3(0.475, 0.145, 0.175)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7id68"]
 
@@ -2853,12 +2848,13 @@ dodge_jump_vel_pulse = 7.1
 dodge_jump_speed = 12.7
 dodge_jump_frames = 3.0
 dodge_jump_accel = 6.4
+dodge_jump_speed_increase = 1.55
 dodge_jump_speed_boost_scaling = SubResource("Curve_lfmf2")
 weapon_dash_min_angle = 0.3999999999999999
 weapon_dash_speed = 30.0
 weapon_dash_target_speed = 16.7
 weapon_dash_hit_speed_aceel = 37.5
-weapon_dash_hit_y_speed_multiplier = 0.0
+weapon_dash_hit_y_speed_multiplier = 1.0
 weapon_dash_hit_y_cut = 0.6
 weapon_dash_hit_vel_pulse = 13.3
 weapon_dash_hit_gravity = 30.0
@@ -2989,17 +2985,6 @@ shape = SubResource("CylinderShape3D_00tjw")
 debug_color = Color(3.946722e-06, 0.5877552, 0.7692518, 0.41960785)
 
 [node name="model_twist" type="Node3D" parent="."]
-
-[node name="test_model" type="MeshInstance3D" parent="model_twist"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015762117, 0.63913655, -0.004388644)
-visible = false
-mesh = SubResource("CapsuleMesh_f60y1")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="model_twist/test_model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18414122, -0.16724022)
-mesh = SubResource("BoxMesh_v0iea")
-skeleton = NodePath("../../../camera_twist")
 
 [node name="Armature" type="Node3D" parent="model_twist"]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 0, 0)
@@ -3169,7 +3154,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="angel_body4" parent="model_twist" instance=ExtResource("14_lfmf2")]
-transform = Transform3D(1.075, 0, 0, 0, 1.075, 0, 0, 0, 1.075, 2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

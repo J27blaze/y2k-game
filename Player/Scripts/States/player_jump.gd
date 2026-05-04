@@ -26,13 +26,17 @@ func start():
 		jump_vel = player.dodge_jump_vel_pulse
 		accel = player.dodge_jump_accel
 		
-		initial_vel = player.direction * clamp(player.target_speed, player.dodge_jump_speed, 999999)
+		var speed_increase : float = (player.dodge_jump_speed_increase * player.dodge_jump_speed_boost_scaling.sample(player.speed - player.dodge_jump_speed))
+		print(speed_increase)
+		initial_vel = player.direction * clamp(player.target_speed + speed_increase, player.dodge_jump_speed, 999999)
 		player.velocity.x = initial_vel.x
 		player.velocity.z = initial_vel.z
+		
+		player.target_speed = player.target_speed + speed_increase
 	else:
 		print("jump")
+		player.target_speed = clampf(player.speed, min_speed, 99999)
 	
-	player.target_speed = clampf(player.speed, min_speed, 99999)
 	wall_normal = player.wall_normal
 	#initial_vel = player.target_speed
 	

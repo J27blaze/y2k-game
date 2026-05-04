@@ -1,0 +1,49 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://cxg6b5w5qeh2j"]
+
+[ext_resource type="Texture2D" uid="uid://b0gp5ra48temm" path="res://Player/Assets/Player/angel_body_textture.png" id="1_ikhu0"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ikhu0"]
+texture = ExtResource("1_ikhu0")
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_ikhu0"]
+default_input_values = [0, Vector3(1, 1, 0), 1, Vector3(0, 0, 0)]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ikehu"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// ColorOp:3
+	vec3 n_in3p0 = vec3(1.00000, 1.00000, 0.00000);
+	vec3 n_in3p1 = vec3(0.00000, 0.00000, 0.00000);
+	vec3 n_out3p0 = vec3(1.0) - (vec3(1.0) - n_in3p0) * (vec3(1.0) - n_in3p1);
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// VectorOp:4
+	vec3 n_out4p0 = n_out3p0 * vec3(n_out2p0.xyz);
+
+
+// Output:0
+	ALBEDO = n_out4p0;
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_ikhu0")
+nodes/fragment/2/position = Vector2(-280, 340)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorOp_ikhu0")
+nodes/fragment/3/position = Vector2(-280, 120)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_ikehu")
+nodes/fragment/4/position = Vector2(40, 200)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 4, 1, 4, 0, 0, 0)

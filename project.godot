@@ -31,6 +31,7 @@ window/stretch/aspect="ignore"
 folder_colors={
 "res://Enemies/": "red",
 "res://Player/": "blue",
+"res://Player/Assets/Player/": "teal",
 "res://addons/": "gray",
 "res://examples_dd3d/": "gray"
 }
@@ -137,4 +138,5 @@ common/physics_interpolation=true
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.25579318, 0.6255829, 0.8563293, 1)
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.47039998, 0.69215995, 0.84, 1)
