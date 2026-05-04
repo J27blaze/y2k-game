@@ -1,7 +1,5 @@
 extends PlayerState
 
-@onready var dodge_length := $dodge_length
-
 var initial_vel: Vector3 = Vector3.ZERO
 var initial_dir: Vector3 = Vector3.ZERO
 var move_dir: Vector3 = Vector3.ZERO

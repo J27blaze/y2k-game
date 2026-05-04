@@ -6,22 +6,27 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dxfqn"]
 render_priority = 0
 shader = ExtResource("2_7jsku")
+shader_parameter/skin_colour = Color(0.9, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7jsku"]
 render_priority = 0
 shader = ExtResource("2_7jsku")
+shader_parameter/skin_colour = Color(0.9, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2qdjy"]
 render_priority = 0
 shader = ExtResource("2_7jsku")
+shader_parameter/skin_colour = Color(0.9, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spkc7"]
 render_priority = 0
 shader = ExtResource("2_7jsku")
+shader_parameter/skin_colour = Color(0.9, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v1xvo"]
 render_priority = 0
 shader = ExtResource("2_7jsku")
+shader_parameter/skin_colour = Color(0.549956, 0.369949, 0.904344, 1)
 
 [node name="angel_body4" instance=ExtResource("1_dxfqn")]
 

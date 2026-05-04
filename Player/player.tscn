@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=54 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://b7ronpsf5fh6m" path="res://Player/Scripts/States/player_weapon_dash.gd" id="12_gu6f8"]
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
 [ext_resource type="PackedScene" uid="uid://dt3wmmkhukyl5" path="res://Player/Assets/Player/angel_body_4.tscn" id="14_lfmf2"]
+[ext_resource type="PackedScene" uid="uid://be173wjp7au20" path="res://Player/Scripts/CostumeController/costume_controller.tscn" id="15_pisgm"]
+[ext_resource type="Script" uid="uid://bf8d1hkn7ndkn" path="res://Player/Scripts/CostumeController/costume_controller.gd" id="16_b1ygp"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -2936,7 +2938,7 @@ is_dodge_jump = true
 
 [node name="weapon_dash" type="Node" parent="state_machine"]
 script = ExtResource("12_gu6f8")
-raycast_pool_size = 16
+raycast_pool_size = 32
 enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
 player_pos_targeting_offset = Vector3(0, 2.2, 0)
 
@@ -3155,6 +3157,10 @@ autoplay = "idle"
 
 [node name="angel_body4" parent="model_twist" instance=ExtResource("14_lfmf2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="costumer_controller" parent="model_twist" node_paths=PackedStringArray("player_scene") instance=ExtResource("15_pisgm")]
+script = ExtResource("16_b1ygp")
+player_scene = NodePath("../angel_body4")
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

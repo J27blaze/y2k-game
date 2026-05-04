@@ -27,7 +27,7 @@ func start():
 		accel = player.dodge_jump_accel
 		
 		var speed_increase : float = (player.dodge_jump_speed_increase * player.dodge_jump_speed_boost_scaling.sample(player.speed - player.dodge_jump_speed))
-		print(speed_increase)
+		#print(speed_increase)
 		initial_vel = player.direction * clamp(player.target_speed + speed_increase, player.dodge_jump_speed, 999999)
 		player.velocity.x = initial_vel.x
 		player.velocity.z = initial_vel.z
