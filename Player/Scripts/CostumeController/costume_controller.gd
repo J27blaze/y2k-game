@@ -14,7 +14,7 @@ func get_all_meshes(node):
 	
 	return meshes
 
-var skin_colour: Vector3 = Vector3(1,0,0)
+var skin_colour: Vector3 = Vector3(0,1,1)
 
 func _ready() -> void:
 	#skin colour
