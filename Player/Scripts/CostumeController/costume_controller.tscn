@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://be173wjp7au20"]
+[gd_scene load_steps=2 format=3 uid="uid://be173wjp7au20"]
 
-[node name="costumer_controller" type="Node"]
+[ext_resource type="Script" uid="uid://bf8d1hkn7ndkn" path="res://Player/Scripts/CostumeController/costume_controller.gd" id="1_fgegf"]
+
+[node name="costume_controller" type="Node"]
+script = ExtResource("1_fgegf")
