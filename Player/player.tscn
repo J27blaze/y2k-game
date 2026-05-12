@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=55 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://d2428ne2ngwb" path="res://Player/Scripts/States/player_fall.gd" id="6_fhl08"]
 [ext_resource type="Script" uid="uid://55k8t6854te" path="res://Player/Scripts/States/player_wall_slide.gd" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://baqtvausw0bvh" path="res://Player/Scripts/States/player_wall_slide_jump.gd" id="8_od3ui"]
-[ext_resource type="PackedScene" uid="uid://begqktbcthhwn" path="res://Player/Scripts/Player_UI/player_ui.tscn" id="9_00tjw"]
+[ext_resource type="PackedScene" uid="uid://begqktbcthhwn" path="res://Player/Player_UI/player_ui.tscn" id="9_00tjw"]
 [ext_resource type="Script" uid="uid://cjykmhg417d6j" path="res://Player/Scripts/States/player_slide.gd" id="9_x3vf3"]
 [ext_resource type="Script" uid="uid://g15577j150lf" path="res://Player/Scripts/camera_controls.gd" id="10_apopc"]
 [ext_resource type="Script" uid="uid://6wrk1sup8xb7" path="res://Player/Scripts/States/player_dodges.gd" id="11_p5o4e"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://be173wjp7au20" path="res://Player/Scripts/CostumeController/costume_controller.tscn" id="15_pisgm"]
 [ext_resource type="Script" uid="uid://bf8d1hkn7ndkn" path="res://Player/Scripts/CostumeController/costume_controller.gd" id="16_b1ygp"]
 [ext_resource type="PackedScene" uid="uid://dpb57wbuxquio" path="res://Player/Assets/PlayerFinal/angel_body_final.tscn" id="16_o28un"]
+[ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="19_o28un"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -3271,7 +3272,11 @@ slow_offset_smoothing = 1.0
 transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237617e-14, -1.5142069e-07, 0, 1, 0, 0.45069408, 5.3725996)
 
 [node name="player_ui" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_00tjw")]
+visible = false
 player = NodePath("..")
+
+[node name="Debug UI" parent="." instance=ExtResource("19_o28un")]
+visible = false
 
 [connection signal="timeout" from="state_machine/ground_dodge/dodge_length" to="state_machine/ground_dodge" method="_on_dodge_length_timeout"]
 [connection signal="timeout" from="state_machine/air_dodge/dodge_length" to="state_machine/air_dodge" method="_on_dodge_length_timeout"]

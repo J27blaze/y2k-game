@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 @onready var l = $Bottom_Right/LeftStick
 @onready var r = $Bottom_Right/RightStick
@@ -7,6 +7,8 @@ extends Control
 @onready var pstate = $Bottom_Right/PkayerState
 @onready var prevstate = $Bottom_Right/PkayerPrevState
 @onready var othertext = $Bottom_Right/OtherText
+
+@onready var player = self.get_parent()
 
 var l_dot
 var l_dot_raw
@@ -50,14 +52,14 @@ func _process(delta: float):
 	
 	
 	#player stats
-	pspeed.text = "speed: " + str(%Player.speed).pad_decimals(2) + "\n target speed:" + str(%Player.target_speed).pad_decimals(2)
-	pstate.text = "State: " + str(%Player.state_machine.current_state.name)
-	prevstate.text = "Previous State: " + str(%Player.state_machine.prev_state.name)
+	pspeed.text = "speed: " + str(player.speed).pad_decimals(2) + "\n target speed:" + str(player.target_speed).pad_decimals(2)
+	pstate.text = "State: " + str(player.state_machine.current_state.name)
+	prevstate.text = "Previous State: " + str(player.state_machine.prev_state.name)
 	
-	#prevstate.text = str(%Player.state_machine.slide_state.refresh.time_left)
+	#prevstate.text = str(player.state_machine.slide_state.refresh.time_left)
 	
 	#other
 	othertext.text = "FPS: " + str(Engine.get_frames_per_second())
-	othertext.text += "\non_wall: " + str(%Player.on_wall)
+	othertext.text += "\non_wall: " + str(player.on_wall)
 	
 	mouse_dir = Vector2.ZERO

@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d06ffiscqvn0t"]
+[gd_scene load_steps=4 format=3 uid="uid://d06ffiscqvn0t"]
 
 [ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_dc6q1"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="1_g54tn"]
-[ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="2_dc6q1"]
 [ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="4_q5m1e"]
 
 [node name="TestScene" type="Node3D"]
@@ -152,8 +151,6 @@ sides = 32
 [node name="Player" parent="." instance=ExtResource("1_g54tn")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66)
-
-[node name="Debug UI" parent="." instance=ExtResource("2_dc6q1")]
 
 [node name="TestEnemy3" parent="." instance=ExtResource("4_q5m1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 11.1, -77)

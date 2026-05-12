@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://begqktbcthhwn"]
+
+[ext_resource type="Script" uid="uid://hc3phsl4a5qy" path="res://Player/Player_UI/player_ui.gd" id="1_8gwm2"]
+[ext_resource type="Texture2D" uid="uid://gopof4a04g1x" path="res://Player/Player_UI/style_meter_empty.png" id="2_ef6wl"]
+[ext_resource type="Texture2D" uid="uid://jjehbrosxn6e" path="res://Player/Player_UI/style_meter.png" id="2_wtu6u"]
+[ext_resource type="Texture2D" uid="uid://dp8pko8d6v8sa" path="res://Player/Player_UI/style_meter_full.png" id="4_flvl7"]
+
+[node name="player_ui" type="CanvasLayer"]
+script = ExtResource("1_8gwm2")
+
+[node name="bottom_right" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="bottom_right"]
+layout_mode = 0
+offset_left = -534.0
+offset_top = -220.0
+offset_right = -22.0
+offset_bottom = 36.0
+max_value = 7.0
+value = 7.0
+texture_under = ExtResource("2_ef6wl")
+texture_over = ExtResource("2_wtu6u")
+texture_progress = ExtResource("4_flvl7")
+tint_progress = Color(0, 0.92075694, 0.23265329, 1)
