@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4ojkqyfbwvt"
-path="res://.godot/imported/iris.png-908dd8731ac6b99d7922141b7221fb6b.ctex"
+path="res://.godot/imported/iris.png-4e4146de6d4c3b17016801deca13062d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Assets/Player/iris.png"
-dest_files=["res://.godot/imported/iris.png-908dd8731ac6b99d7922141b7221fb6b.ctex"]
+source_file="res://Player/Assets/PlayerFinal/iris.png"
+dest_files=["res://.godot/imported/iris.png-4e4146de6d4c3b17016801deca13062d.ctex"]
 
 [params]
 

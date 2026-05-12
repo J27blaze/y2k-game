@@ -56,6 +56,8 @@ func process_physics(delta: float) -> void:
 	
 	if player.state_weapon_dash_check():
 		return
+	if player.state_landing_check():
+		return
 	
 	player.calc_wall_slide()
 	if player.state_wall_slide_jump_check():

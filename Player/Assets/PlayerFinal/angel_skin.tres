@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://cxg6b5w5qeh2j"]
 
-[ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/Player/angel_body_textture.png" id="1_ikhu0"]
+[ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/PlayerFinal/angel_body.png" id="1_ikhu0"]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ikehu"]
 parameter_name = "skin_map"

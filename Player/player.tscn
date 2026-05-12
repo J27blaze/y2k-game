@@ -15,9 +15,9 @@
 [ext_resource type="Script" uid="uid://6wrk1sup8xb7" path="res://Player/Scripts/States/player_dodges.gd" id="11_p5o4e"]
 [ext_resource type="Script" uid="uid://b7ronpsf5fh6m" path="res://Player/Scripts/States/player_weapon_dash.gd" id="12_gu6f8"]
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
-[ext_resource type="PackedScene" uid="uid://dt3wmmkhukyl5" path="res://Player/Assets/Player/angel_body_4.tscn" id="14_lfmf2"]
 [ext_resource type="PackedScene" uid="uid://be173wjp7au20" path="res://Player/Scripts/CostumeController/costume_controller.tscn" id="15_pisgm"]
 [ext_resource type="Script" uid="uid://bf8d1hkn7ndkn" path="res://Player/Scripts/CostumeController/costume_controller.gd" id="16_b1ygp"]
+[ext_resource type="PackedScene" uid="uid://dpb57wbuxquio" path="res://Player/Assets/PlayerFinal/angel_body_final.tscn" id="16_o28un"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -2817,7 +2817,7 @@ wall_slide_angle_threshold = 0.0
 wall_slide_direction_threshold = 0.0
 wall_slide_speed = 7.4
 wall_slide_min_speed = 0.1
-wall_slide_gravity = 1.2
+wall_slide_gravity = 4.0
 wall_slide_pull_force = 5.0
 camera_wall_slide_offset = 1.27
 wall_slide_jump_speed_increase = 0.3
@@ -2854,7 +2854,7 @@ dodge_jump_speed_increase = 1.55
 dodge_jump_speed_boost_scaling = SubResource("Curve_lfmf2")
 weapon_dash_min_angle = 0.3999999999999999
 weapon_dash_speed = 30.0
-weapon_dash_target_speed = 16.7
+weapon_dash_target_speed = 15.4
 weapon_dash_hit_speed_aceel = 37.5
 weapon_dash_hit_y_speed_multiplier = 1.0
 weapon_dash_hit_y_cut = 0.6
@@ -3155,12 +3155,12 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="angel_body4" parent="model_twist" instance=ExtResource("14_lfmf2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
 [node name="costumer_controller" parent="model_twist" node_paths=PackedStringArray("player_scene") instance=ExtResource("15_pisgm")]
 script = ExtResource("16_b1ygp")
-player_scene = NodePath("../angel_body4")
+player_scene = NodePath("../angel_body_final")
+
+[node name="angel_body_final" parent="model_twist" instance=ExtResource("16_o28un")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

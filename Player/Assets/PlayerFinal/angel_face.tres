@@ -1,9 +1,8 @@
 [gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://dbaha4ojrkd0u"]
 
-[ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/Player/angel_body_textture.png" id="2_kaanx"]
+[ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/PlayerFinal/angel_body.png" id="2_kaanx"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f5liw"]
-load_path = "res://.godot/imported/eyes.png-3f324f0f13865fca7dc20fb0722b5e6c.ctex"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ikehu"]
 output_port_for_preview = 0

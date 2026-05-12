@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btp3lkj3p0o2v"
-path="res://.godot/imported/angel_body_textture.png-b366cc57313f449f8bcf55439ada3851.ctex"
+uid="uid://dpjfobe31x24w"
+path="res://.godot/imported/face.png-1a8e13d12882ab4983fead2415ee4975.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Assets/Player/angel_body_textture.png"
-dest_files=["res://.godot/imported/angel_body_textture.png-b366cc57313f449f8bcf55439ada3851.ctex"]
+source_file="res://Player/Assets/PlayerFinal/face.png"
+dest_files=["res://.godot/imported/face.png-1a8e13d12882ab4983fead2415ee4975.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

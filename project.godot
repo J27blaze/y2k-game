@@ -23,7 +23,6 @@ settings/addon_root_folder="res://addons/debug_draw_3d"
 
 window/size/viewport_width=1440
 window/size/viewport_height=1080
-window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
 
 [file_customization]
@@ -31,7 +30,8 @@ window/stretch/aspect="ignore"
 folder_colors={
 "res://Enemies/": "red",
 "res://Player/": "blue",
-"res://Player/Assets/Player/": "teal",
+"res://Player/Assets/Player/": "yellow",
+"res://Player/Assets/PlayerFinal/": "teal",
 "res://addons/": "gray",
 "res://examples_dd3d/": "gray"
 }

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://begqktbcthhwn"]
+[gd_scene load_steps=2 format=3 uid="uid://begqktbcthhwn"]
 
 [ext_resource type="Script" uid="uid://hc3phsl4a5qy" path="res://Player/Scripts/Player_UI/player_ui.gd" id="1_8gwm2"]
-[ext_resource type="Texture2D" uid="uid://bd5pbxtq484no" path="res://Player/Scripts/Player_UI/template_ui.png" id="2_kc4s8"]
 
 [node name="player_ui" type="Control"]
 layout_mode = 3
@@ -12,15 +11,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8gwm2")
 
-[node name="top_right" type="Control" parent="."]
+[node name="bottom_right" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -40.0
-offset_bottom = 40.0
+offset_top = -40.0
 grow_horizontal = 0
-
-[node name="TemplateUi" type="Sprite2D" parent="top_right"]
-position = Vector2(229, 94)
-texture = ExtResource("2_kc4s8")
+grow_vertical = 0
