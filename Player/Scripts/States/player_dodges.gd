@@ -12,6 +12,7 @@ var timer: int = 0
 func start():
 	print(data + " dodge")
 	dodge_length.start()
+	player.set_hurt_box(false)
 	
 	match data:
 		"air":
@@ -40,6 +41,7 @@ func get_player_dir():
 func exit():
 	player.velocity.y *= 0.9
 	player.gravity = player.fall_gravity
+	player.set_hurt_box(true)
 	#player.velocity = player.velocity.normalized() * player.target_speed
 	#player.speed = player.target_speed
 	dodge_length.stop()

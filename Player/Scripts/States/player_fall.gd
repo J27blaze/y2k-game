@@ -35,6 +35,10 @@ func process_physics(delta: float) -> void:
 	if player.state_weapon_dash_check():
 		return
 	
+	player.hit_check()
+	if player.state_tumble_check():
+		return
+	
 	if !data:
 		if player.state_dodge_check():
 			return

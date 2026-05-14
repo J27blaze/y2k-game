@@ -15,5 +15,9 @@ func process_physics(delta: float):
 		return
 	if player.state_weapon_dash_check():
 		return
+		
+	player.hit_check()
+	if player.state_tumble_check():
+		return
 	
 	player.vel_move_toward(Vector3.ZERO, player.run_accel, delta)

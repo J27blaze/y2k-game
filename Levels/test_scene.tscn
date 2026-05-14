@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d06ffiscqvn0t"]
+[gd_scene load_steps=5 format=3 uid="uid://d06ffiscqvn0t"]
 
 [ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_dc6q1"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="1_g54tn"]
+[ext_resource type="PackedScene" uid="uid://d2cn816da5l7d" path="res://Enemies/Test Ground Enemy/test_ground_enemy.tscn" id="4_d6kn1"]
 [ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="4_q5m1e"]
 
 [node name="TestScene" type="Node3D"]
@@ -250,3 +251,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11.1, -36)
 
 [node name="TestEnemy5" parent="." instance=ExtResource("4_q5m1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 3.1000004, -45)
+
+[node name="test_ground_enemy" parent="." instance=ExtResource("4_d6kn1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -50)

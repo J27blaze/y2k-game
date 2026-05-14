@@ -41,6 +41,11 @@ var input_dir: Vector2
 var camera_dir: Vector2
 var mouse_dir: Vector2
 
+#player combbat
+var health: int = 3 
+@onready var hurt_box := $hurt_box
+@onready var on_hurt_timer := $on_hurt_timer
+
 @onready var state_machine := $state_machine
 
 #region player variables
@@ -355,7 +360,7 @@ func calc_wall_slide():
 	DebugDraw3D.draw_line(wall_point, wall_point + wall_normal * 1.2, Color.GREEN)
 	
 	return
-	
+
 func state_wall_slide_check() -> bool:
 	if can_wall_slide():
 		state_machine.change_state("wall_slide")
@@ -384,3 +389,31 @@ func state_weapon_dash_check() -> bool:
 		return true
 	else:
 		return false
+
+#hit
+var hit_boxes: Array[Area3D]
+func hit_check() -> bool:
+	if hurt_box.has_overlapping_areas():
+		hit_boxes = hurt_box.get_overlapping_areas()
+		health -= hit_boxes[0].damage
+		print(health)
+		
+		on_hit()
+		
+		return true
+	return false
+	
+func state_tumble_check() -> bool:
+	if hurt_box.has_overlapping_areas():
+		if hit_boxes[0].tumble:
+			print("tumble")
+			return true
+	return false
+	
+func on_hit() -> void:
+	set_hurt_box(false)
+	on_hurt_timer.start()
+func _on_hurt_timer_timeout() -> void:
+	set_hurt_box(true)
+func set_hurt_box(state: bool):
+	hurt_box.monitoring = state

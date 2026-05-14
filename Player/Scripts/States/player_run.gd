@@ -23,6 +23,10 @@ func process_physics(delta: float):
 		change_state("fall")
 		return
 		
+	player.hit_check()
+	if player.state_tumble_check():
+		return
+		
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, player.run_accel, delta)
 	player.target_speed = lerpf(player.target_speed, player.run_speed, player.run_accel_speed * delta)

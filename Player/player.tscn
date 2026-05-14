@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=55 format=4 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -2788,13 +2788,16 @@ _data = {
 &"slide": SubResource("Animation_8x5qs")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b1ygp"]
+radius = 0.43310547
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 floor_max_angle = 0.80285144
 floor_snap_length = 0.4
 script = ExtResource("1_v0iea")
-camera_smoothing = 0.35
-rotation_smoothing = 0.23
+camera_smoothing = 0.47
+rotation_smoothing = 0.52
 run_speed = 8.6
 run_accel = 50.0
 run_accel_speed = 3.0
@@ -2943,6 +2946,7 @@ enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
 player_pos_targeting_offset = Vector3(0, 2.2, 0)
 
 [node name="enemy_targeting_collider" type="Area3D" parent="state_machine/weapon_dash"]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -2957,6 +2961,7 @@ shape = SubResource("SphereShape3D_gu6f8")
 debug_color = Color(0.30839157, 0.62816155, 0, 0.44313726)
 
 [node name="base" type="Node3D" parent="state_machine/weapon_dash"]
+visible = false
 
 [node name="ray" type="RayCast3D" parent="state_machine/weapon_dash/base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -3269,12 +3274,24 @@ slow_offset_smoothing = 1.0
 [node name="Camera3D" type="Camera3D" parent="camera_twist/camera_pitch"]
 transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237617e-14, -1.5142069e-07, 0, 1, 0, 0.45069408, 5.3725996)
 
+[node name="hurt_box" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurt_box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_b1ygp")
+debug_color = Color(0.96228343, 1.0588765e-06, 0.508266, 0.41960785)
+
+[node name="on_hurt_timer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
 [node name="player_ui" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_00tjw")]
 visible = false
 player = NodePath("..")
 
 [node name="Debug UI" parent="." instance=ExtResource("19_o28un")]
-visible = false
 
 [connection signal="timeout" from="state_machine/ground_dodge/dodge_length" to="state_machine/ground_dodge" method="_on_dodge_length_timeout"]
 [connection signal="timeout" from="state_machine/air_dodge/dodge_length" to="state_machine/air_dodge" method="_on_dodge_length_timeout"]
@@ -3282,3 +3299,4 @@ visible = false
 [connection signal="area_exited" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_exited"]
 [connection signal="timeout" from="state_machine/weapon_dash/min_dash_time" to="state_machine/weapon_dash" method="_on_min_dash_time_timeout"]
 [connection signal="area_entered" from="state_machine/weapon_dash/weapon_hitbox" to="state_machine/weapon_dash" method="_on_weapon_hitbox_area_entered"]
+[connection signal="timeout" from="on_hurt_timer" to="." method="_on_hurt_timer_timeout"]

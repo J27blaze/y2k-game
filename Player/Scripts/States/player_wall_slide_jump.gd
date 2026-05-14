@@ -48,6 +48,10 @@ func process_physics(delta: float):
 	if player.state_weapon_dash_check():
 		return
 	
+	player.hit_check()
+	if player.state_tumble_check():
+		return
+	
 	#similiar as player jump state
 	
 	#accel

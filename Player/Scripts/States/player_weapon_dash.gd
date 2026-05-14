@@ -134,7 +134,7 @@ func start():
 	is_dashing = true
 	print("weapon_dash")
 	target.get_parent().set_player_target(true)
-	print(target.get_parent().is_player_target())
+	#print(target.get_parent().is_player_target())
 	
 	#dodge
 	player.air_dodges = int(player.max_air_dodges)
