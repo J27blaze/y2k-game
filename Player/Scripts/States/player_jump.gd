@@ -42,7 +42,7 @@ func start():
 	
 	player.gravity = player.jump_gravity
 	player.velocity.y = jump_vel
-	play_anim("jump_1")
+	#play_anim("jump_1")
 
 func exit():
 	player.gravity = player.fall_gravity

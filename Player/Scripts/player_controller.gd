@@ -268,10 +268,10 @@ func camera_set_offset(camera_offset: Vector3):
 func camera_set_offset_smoothing(input_offset):
 	camera_twist.set_offset_smoothing(input_offset)
 
-func play_anim_blend(animation_name: String):
-	animation_controller.play_anim_blend(animation_name, 6, 24)
-func play_anim(animation_name: String):
-	animation_controller.play_anim(animation_name, 4)
+func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24):
+	animation_controller.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length, fb)
+func play_anim(animation_name: String, step_frame_length: int, fb: int = 24):
+	animation_controller.play_anim(animation_name, step_frame_length, fb)
 
 #Global Movement Functions
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):

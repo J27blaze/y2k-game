@@ -9,7 +9,7 @@ var jump_cut : bool = true
 
 func start():
 	print("weapon_dash_hit")
-	play_anim("dodge_old")
+	#play_anim("dodge_old")
 	
 	player.can_jump = false
 	timer = 0

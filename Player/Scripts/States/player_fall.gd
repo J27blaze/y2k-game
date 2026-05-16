@@ -12,17 +12,17 @@ func start():
 	#anim
 	match previous_state():
 		"jump":
-			play_anim("jump_1_fall")
+			#play_anim("jump_1_fall")
 			return
 		"air_dodge":
-			play_anim("jump_1_fall")
+			#play_anim("jump_1_fall")
 			return
 		"dodge_jump":
 			accel = player.dodge_jump_accel
-			play_anim("jump_1_fall")
+			#play_anim("jump_1_fall")
 			return
 		_:
-			play_anim("jump_1_fall")
+			#play_anim("jump_1_fall")
 			return
 	#print(previous_state())
 

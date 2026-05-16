@@ -27,7 +27,7 @@ func start():
 	timer = 0
 	
 	initial_dir = player.hor_velocity.normalized()* player.target_speed
-	play_anim("dodge_old")
+	#play_anim("dodge_old")
 	
 	#print(speed)
 	

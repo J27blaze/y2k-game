@@ -3,7 +3,7 @@ extends PlayerState
 func start():
 	print("idle")
 	player.target_speed = 0
-	play_anim("idle")
+	play_anim_blend("idle", 5, 6, 2)
 
 func process_physics(delta: float):
 	if player.direction != Vector3.ZERO:
