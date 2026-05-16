@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 #player related
 @onready var model_twist := $model_twist
-@onready var animation_player := $model_twist/AnimationPlayer
+@onready var animation_controller : AnimationController = $model_twist/animation_controller
 @onready var standing_collider := $standing_collider
 @onready var wall_slide_colliders := $wall_slide_colliders
 @onready var floor_collider := $floor_collider
@@ -43,6 +43,7 @@ var mouse_dir: Vector2
 
 #player combbat
 var health: int = 3 
+var can_check_hurt_box: bool = true
 @onready var hurt_box := $hurt_box
 @onready var on_hurt_timer := $on_hurt_timer
 
@@ -83,6 +84,8 @@ var can_jump: bool = true
 #endregion
 #region wall slide
 @export_group("wall slide")
+@export_range(0, 1, 0.01) var wall_slide_y_vel_cut: float = 0.5
+
 @export_range(0, 2, 0.05) var wall_slide_range: float = 0.5
 @export_range(0, 360, 0.5) var wall_slide_angle_range: float = 0.4
 @export_range(0, 1, 0.05) var wall_slide_angle_threshold: float = 12.
@@ -265,8 +268,10 @@ func camera_set_offset(camera_offset: Vector3):
 func camera_set_offset_smoothing(input_offset):
 	camera_twist.set_offset_smoothing(input_offset)
 
+func play_anim_blend(animation_name: String):
+	animation_controller.play_anim_blend(animation_name, 6, 24)
 func play_anim(animation_name: String):
-	animation_player.play(animation_name)
+	animation_controller.play_anim(animation_name, 4)
 
 #Global Movement Functions
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):
@@ -393,21 +398,24 @@ func state_weapon_dash_check() -> bool:
 #hit
 var hit_boxes: Array[Area3D]
 func hit_check() -> bool:
-	if hurt_box.has_overlapping_areas():
-		hit_boxes = hurt_box.get_overlapping_areas()
-		health -= hit_boxes[0].damage
-		print(health)
-		
-		on_hit()
-		
-		return true
+	if can_check_hurt_box:
+		if hurt_box.has_overlapping_areas():
+			hit_boxes = hurt_box.get_overlapping_areas()
+			health -= hit_boxes[0].damage
+			print(health)
+			
+			on_hit()
+			
+			return true
 	return false
 	
 func state_tumble_check() -> bool:
-	if hurt_box.has_overlapping_areas():
-		if hit_boxes[0].tumble:
-			print("tumble")
-			return true
+	if can_check_hurt_box:
+		if hurt_box.has_overlapping_areas():
+			if hit_boxes[0].tumble:
+				print("tumble")
+				#add tumble state
+				return true
 	return false
 	
 func on_hit() -> void:
@@ -417,3 +425,4 @@ func _on_hurt_timer_timeout() -> void:
 	set_hurt_box(true)
 func set_hurt_box(state: bool):
 	hurt_box.monitoring = state
+	can_check_hurt_box = state

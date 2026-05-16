@@ -14,7 +14,7 @@ func start():
 		#player.air_dodges = int(player.max_air_dodges)
 		player.can_wall_slide_air_dodge = false
 	
-	player.velocity.y = 0
+	player.velocity.y *= player.wall_slide_y_vel_cut
 	player.gravity = player.wall_slide_gravity
 	
 	inital_speed = clampf(player.target_speed, player.wall_slide_speed, 999999)

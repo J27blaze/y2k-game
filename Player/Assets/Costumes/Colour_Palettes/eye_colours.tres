@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ColourPalette" load_steps=2 format=3 uid="uid://dugtcoc5mb7wf"]
 
-[ext_resource type="Script" uid="uid://bvjqgrfnfd7hx" path="res://Player/Scripts/CostumeController/colour_palette.gd" id="1_dlnf8"]
+[ext_resource type="Script" uid="uid://bvjqgrfnfd7hx" path="res://Player/Scripts/Costume_Controller/colour_palette.gd" id="1_dlnf8"]
 
 [resource]
 script = ExtResource("1_dlnf8")
