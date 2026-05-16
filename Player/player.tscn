@@ -267,7 +267,6 @@ player_scene = NodePath("../angel_body_final")
 
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
-delete_skeleton = false
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
