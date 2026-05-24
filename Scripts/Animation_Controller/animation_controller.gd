@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 		t = 0
 	
 	if blend_step_t > 0:
-		if blend_t < blend_step_t:
+		if blend_t <= blend_step_t:
 			blend_t += delta
 		else:
 			start_t(await_anim_step)
@@ -73,6 +73,7 @@ func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 func start_t(length: float) -> void:
 	step_time = length
 	t = 0
+	
 func start_blend_t(length: float, end_length) -> void:
 	blend_step_t = length
 	blend_t = 0
