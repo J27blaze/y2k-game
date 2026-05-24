@@ -4,11 +4,3 @@
 
 [node name="animation_controller" type="Node"]
 script = ExtResource("1_x7f1u")
-
-[node name="timer_step" type="Timer" parent="."]
-
-[node name="blend_step" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="timer_step" to="." method="_on_timer_step_timeout"]
-[connection signal="timeout" from="blend_step" to="." method="_on_blend_step_timeout"]
