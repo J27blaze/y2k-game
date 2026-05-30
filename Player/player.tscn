@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=30 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b7ronpsf5fh6m" path="res://Player/Scripts/States/player_weapon_dash.gd" id="12_gu6f8"]
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
 [ext_resource type="PackedScene" uid="uid://be173wjp7au20" path="res://Player/Scripts/Costume_Controller/costume_controller.tscn" id="15_pisgm"]
+[ext_resource type="PackedScene" uid="uid://drfs17egjbdsw" path="res://Player/Assets/Scythes/Default/scythe.tscn" id="16_7emwf"]
 [ext_resource type="PackedScene" uid="uid://d1nfk70qrelol" path="res://Scripts/Animation_Controller/animation_controller.tscn" id="16_n471f"]
 [ext_resource type="PackedScene" uid="uid://dpb57wbuxquio" path="res://Player/Assets/PlayerFinal/angel_body_final.tscn" id="16_o28un"]
 [ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="19_o28un"]
@@ -264,6 +265,9 @@ debug_color = Color(3.946722e-06, 0.5877552, 0.7692518, 0.41960785)
 
 [node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("player_scene") instance=ExtResource("15_pisgm")]
 player_scene = NodePath("../angel_body_final")
+attachables = Dictionary[String, PackedScene]({
+"weapon": ExtResource("16_7emwf")
+})
 
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
@@ -394,6 +398,7 @@ visible = false
 player = NodePath("..")
 
 [node name="Debug UI" parent="." instance=ExtResource("19_o28un")]
+visible = false
 
 [connection signal="timeout" from="state_machine/ground_dodge/dodge_length" to="state_machine/ground_dodge" method="_on_dodge_length_timeout"]
 [connection signal="timeout" from="state_machine/air_dodge/dodge_length" to="state_machine/air_dodge" method="_on_dodge_length_timeout"]

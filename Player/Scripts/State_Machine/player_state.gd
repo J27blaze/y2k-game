@@ -49,6 +49,5 @@ func process_physics(delta: float):
 
 # process physics every frame regaurdless of state. Good for updating global player variables
 func always_process_physics(delta: float):
-	#Write state changing code here
-	#Write player velocity changing code here.
+	#write code that needs to change all the time, think wepaon dash
 	return null

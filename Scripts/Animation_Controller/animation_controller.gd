@@ -35,6 +35,9 @@ var await_anim_step : float = 0.4
 
 func _process(delta: float) -> void:
 	t += delta
+	
+	#print(step_time)
+	
 	if t >= step_time:
 		copy_skeleton_pose()
 		t = 0
@@ -75,7 +78,7 @@ func start_t(length: float) -> void:
 	t = 0
 	
 func start_blend_t(length: float, end_length) -> void:
-	blend_step_t = length
+	blend_step_t = length + 0.025
 	blend_t = 0
 	await_anim_step = end_length
 	

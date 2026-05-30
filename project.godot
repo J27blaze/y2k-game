@@ -32,6 +32,7 @@ folder_colors={
 "res://Player/": "blue",
 "res://Player/Assets/Player/": "yellow",
 "res://Player/Assets/PlayerFinal/": "teal",
+"res://Player/Assets/Scythes/": "orange",
 "res://addons/": "gray",
 "res://examples_dd3d/": "gray"
 }
