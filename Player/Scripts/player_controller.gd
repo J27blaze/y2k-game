@@ -226,6 +226,9 @@ func _physics_process(delta: float):
 	state_machine.process_physics(delta)
 	state_machine.always_physics_update(delta)
 	
+	#player.rotation
+	model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z), 0.1)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
+	
 	if Input.is_action_just_pressed("debug_mode"):
 		god_mode = !god_mode
 		if god_mode:
@@ -255,9 +258,6 @@ func _process(delta: float):
 	
 	mouse_dir = Vector2.ZERO
 	state_machine.process_frame(delta)
-	
-	#player.rotation
-	model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z), 0.1)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
 	
 	centre = position + Vector3.UP * height/2
 

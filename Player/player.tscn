@@ -65,7 +65,7 @@ floor_snap_length = 0.4
 script = ExtResource("1_v0iea")
 camera_smoothing = 0.47
 rotation_smoothing = 0.52
-run_speed = 8.6
+run_speed = 7.0
 run_accel = 50.0
 run_accel_speed = 3.0
 fall_gravity = 35.0
@@ -401,7 +401,6 @@ visible = false
 player = NodePath("..")
 
 [node name="Debug UI" parent="." instance=ExtResource("19_o28un")]
-visible = false
 
 [connection signal="timeout" from="state_machine/ground_dodge/dodge_length" to="state_machine/ground_dodge" method="_on_dodge_length_timeout"]
 [connection signal="timeout" from="state_machine/air_dodge/dodge_length" to="state_machine/air_dodge" method="_on_dodge_length_timeout"]
