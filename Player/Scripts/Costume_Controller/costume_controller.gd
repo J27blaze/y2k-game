@@ -21,19 +21,20 @@ func get_all_meshes(node, filter=null):
 	return meshes
 
 @export var attachables: Dictionary[String, PackedScene]
-var attachable_points: Array[Node] = []
+@export var attachable_offset: Dictionary[String, Vector3]
+var attachable_points: Dictionary[String, Node]
 
 func get_attach_points():
 	for scene in attachables:
-		attachable_points.append(player_scene.find_child(scene, true))
+		attachable_points[scene] = player_scene.find_child(scene, true)
 		#print(scene)
 	#print(attachable_points)
 		
 func attach_mesh(bone_name: String):
-	if attachables.has(bone_name):
-		var index = attachables.find_key(bone_name)
+	if attachables.has(bone_name) && attachables.has(bone_name):
 		var attach = attachables[bone_name].instantiate()
-		attachable_points[0].add_child(attach)
+		attach.position += attachable_offset[bone_name]
+		attachable_points[bone_name].add_child(attach)
 		
 var skin_colour: Vector3 = Vector3(1,0,1)
 var iris_colour: Vector3 = Vector3(1,0,0)
