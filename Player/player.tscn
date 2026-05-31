@@ -65,6 +65,7 @@ floor_snap_length = 0.4
 script = ExtResource("1_v0iea")
 camera_smoothing = 0.47
 rotation_smoothing = 0.52
+frame_step_length = 30
 run_speed = 7.2
 run_accel = 50.0
 run_accel_speed = 3.0

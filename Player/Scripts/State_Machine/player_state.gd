@@ -26,9 +26,9 @@ func change_state(state: String, data = null):
 func previous_state():
 	return player.state_machine.previous_state()
 	
-func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24):
+func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = player.frame_step_length):
 	player.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length, fb)
-func play_anim(animation_name: String, step_frame_length: int, fb: int = 24):
+func play_anim(animation_name: String, step_frame_length: int, fb: int = player.frame_step_length):
 	player.play_anim(animation_name, step_frame_length, fb)
 
 # process_input

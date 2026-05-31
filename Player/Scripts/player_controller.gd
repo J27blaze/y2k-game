@@ -54,6 +54,7 @@ var can_check_hurt_box: bool = true
 
 @export_range(0,1,0.01) var camera_smoothing: float = 0.6
 @export_range(0,1,0.01) var rotation_smoothing: float = 0.6
+@export var frame_step_length: int = 24
 #endregion
 #region run
 @export_group("run") 
@@ -268,9 +269,10 @@ func camera_set_offset(camera_offset: Vector3):
 func camera_set_offset_smoothing(input_offset):
 	camera_twist.set_offset_smoothing(input_offset)
 
-func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24):
+func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = frame_step_length):
 	animation_controller.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length, fb)
-func play_anim(animation_name: String, step_frame_length: int, fb: int = 24):
+	
+func play_anim(animation_name: String, step_frame_length: int, fb: int = frame_step_length):
 	animation_controller.play_anim(animation_name, step_frame_length, fb)
 
 #Global Movement Functions
