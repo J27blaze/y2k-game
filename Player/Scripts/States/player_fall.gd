@@ -10,20 +10,7 @@ func start():
 	player.gravity = player.fall_gravity
 	accel = player.fall_accel
 	#anim
-	match previous_state():
-		"jump":
-			#play_anim("jump_1_fall")
-			return
-		"air_dodge":
-			#play_anim("jump_1_fall")
-			return
-		"dodge_jump":
-			accel = player.dodge_jump_accel
-			#play_anim("jump_1_fall")
-			return
-		_:
-			#play_anim("jump_1_fall")
-			return
+	play_anim_blend("fall_default", 2, 6, 2)
 	#print(previous_state())
 
 func process_physics(delta: float) -> void:

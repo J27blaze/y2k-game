@@ -75,6 +75,7 @@ func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 
 func start_t(length: float) -> void:
 	step_time = length
+	blend_step_t = 0
 	t = 0
 	
 func start_blend_t(length: float, end_length) -> void:
