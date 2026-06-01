@@ -2,6 +2,7 @@ class_name PlayerState
 extends Node
 
 var player: Player
+var camera_controller: CameraController
 var data = null
 #var cur_speed = Player.cur_speed
 	# Used for having a target speed, or reference speed of the player, the actualy CURRENT speed is player.speed

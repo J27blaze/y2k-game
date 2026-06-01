@@ -7,6 +7,7 @@ func _ready() -> void:
 	# Detach the visual sprite so it doesn't move with the physics jitter
 	top_level = true
 	target_position = target.global_position
+	position = target_position
 
 func _physics_process(delta: float) -> void:
 	target_position = target.global_position
@@ -16,5 +17,6 @@ func _process(delta: float) -> void:
 	var interpolation_fraction: float = Engine.get_physics_interpolation_fraction()
 	
 	# Smoothly set the visual position between the old and new physics ticks
-	position = target_position.lerp(target_position, interpolation_fraction)
-	print(target_position)
+	#idk why 2x works but it does
+	position = lerp(position, target_position, interpolation_fraction)
+	#print(target_position)

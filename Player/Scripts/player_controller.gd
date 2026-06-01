@@ -171,9 +171,14 @@ var target: Node = null
 #endregion
 
 func _ready() -> void:
+	#debug
+	DebugDraw3D.set_debug_enabled(false)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
-	camera_set_offset(Vector3.ZERO)
+	camera_controller.set_smoothing("mid")
+	camera_controller.set_offset_smoothing("slow")
+	camera_controller.set_offset(Vector3.ZERO)
 	
 	#set wall slide range
 	var ray_amount = wall_slide_colliders.get_child_count()
@@ -247,13 +252,6 @@ func _process(delta: float):
 	state_machine.process_frame(delta)
 	
 	centre = position + Vector3.UP * height/2
-
-#camera controls, inherets camera_controls.gd
-func camera_set_offset(camera_offset: Vector3):
-	camera_controller.set_offset(camera_offset)
-
-func camera_set_offset_smoothing(input_offset):
-	camera_controller.set_offset_smoothing(input_offset)
 
 func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = frame_step_length):
 	animation_controller.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length, fb)

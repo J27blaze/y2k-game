@@ -46,8 +46,6 @@ func start():
 
 func exit():
 	player.gravity = player.fall_gravity
-	player.camera_set_offset(Vector3.ZERO)
-	player.camera_set_offset_smoothing("slow")
 
 func process_physics(delta: float) -> void:
 	if player.velocity.y < 0:
@@ -86,8 +84,6 @@ func process_physics(delta: float) -> void:
 	#player.state_wall_slide_jump_check()
 	player.lerp_target_speed(player.air_target_speed_margin, player.air_target_speed_accel, delta)
 	
-	var camera_offset = player.wall_normal.normalized() * player.camera_wall_slide_offset * int(player.on_wall)
-	player.camera_set_offset(camera_offset)
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)

@@ -94,7 +94,7 @@ wall_slide_pull_force = 5.0
 camera_wall_slide_offset = 1.27
 wall_slide_jump_speed_increase = 0.3
 wall_slide_jump_speed_increase_scaling = SubResource("Curve_00tjw")
-wall_slide_jump_vel_pulse = 12.0
+wall_slide_jump_vel_pulse = 9.65
 wall_slide_jump_min_angle = 35.0
 wall_slide_jump_max_angle = 110.0
 wall_slide_jump_accel = 18.0
@@ -116,8 +116,8 @@ dodge_initial_redirect_frame = 3
 dodge_angle_clamp = SubResource("Curve_p5o4e")
 max_air_dodges = 2.0
 ground_dodge_vel_pulse = 0.0
-air_dodge_vel_pulse = 11.0
-air_dodge_gravity = 35.0
+air_dodge_vel_pulse = 6.7
+air_dodge_gravity = 18.0
 dodge_jump_vel_pulse = 7.1
 dodge_jump_speed = 12.7
 dodge_jump_frames = 3.0
@@ -139,9 +139,12 @@ weapon_dash_hit_dot_threshold = -0.19999999999999996
 [node name="player_camera_controller" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("10_apopc")
 player = NodePath("..")
-fast_smoothing = 9.9
-mid_smoothing = 10.0
-slow_smoothing = 10.0
+fast_smoothing = 16.2
+mid_smoothing = 9.9
+slow_smoothing = 3.9
+fast_offset_smoothing = 6.7
+mid_offset_smoothing = 4.3
+slow_offset_smoothing = 1.9
 
 [node name="camera_twist" type="Node3D" parent="player_camera_controller"]
 
@@ -276,7 +279,6 @@ shape = SubResource("CylinderShape3D_00tjw")
 debug_color = Color(3.946722e-06, 0.5877552, 0.7692518, 0.41960785)
 
 [node name="model_twist" type="Node3D" parent="." node_paths=PackedStringArray("target")]
-top_level = true
 script = ExtResource("15_7emwf")
 target = NodePath("..")
 
