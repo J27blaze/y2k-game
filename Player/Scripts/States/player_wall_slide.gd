@@ -61,8 +61,8 @@ func process_physics(delta: float):
 	
 	player.vel_move_toward((dir * inital_speed) + wall_pull_force, 999999, delta)
 	
-	var camera_offset = player.wall_normal.normalized() * player.camera_wall_slide_offset
-	player.camera_set_offset(camera_offset)
+	#var camera_offset = player.wall_normal.normalized() * player.camera_wall_slide_offset
+	player.camera_set_offset(Vector3(player.camera_wall_slide_offset, 0, 0))
 	
 	#change rot
 	player.wall_slide_colliders.global_rotation.y = Vector3.FORWARD.signed_angle_to(dir, Vector3.UP)

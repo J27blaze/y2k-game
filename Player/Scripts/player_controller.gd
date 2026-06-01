@@ -2,9 +2,7 @@ class_name Player
 extends CharacterBody3D
 
 #camera
-@onready var camera_twist := $camera_twist
-@onready var camera_pitch := $camera_twist/camera_pitch
-@onready var camera := $camera_twist/camera_pitch/Camera3D
+@onready var camera_controller := $player_camera_controller
 
 #player related
 @onready var model_twist := $model_twist
@@ -38,8 +36,6 @@ var gravity: float
 var input_handler = InputHandler.new()
 var raw_input_dir: Vector2
 var input_dir: Vector2
-var camera_dir: Vector2
-var mouse_dir: Vector2
 
 #player combbat
 var health: int = 3 
@@ -52,7 +48,6 @@ var can_check_hurt_box: bool = true
 #region player variables
 @export_category("Player Variables")
 
-@export_range(0,1,0.01) var camera_smoothing: float = 0.6
 @export_range(0,1,0.01) var rotation_smoothing: float = 0.6
 @export var frame_step_length: int = 24
 #endregion
@@ -199,15 +194,10 @@ func _ready() -> void:
 	air_dodges = max_air_dodges
 
 func _input(event: InputEvent):
-	if event is InputEventMouseMotion:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			mouse_dir =  input_handler.get_mouse_camera_dir(event)
 	#debug stuff
 	
 	raw_input_dir =  input_handler.get_raw_input_dir()
 	input_dir =  input_handler.get_input_dir()
-	
-	camera_dir = lerp(camera_dir, input_handler.get_controller_camera_dir(), camera_smoothing)
 	
 	input_handler.process_input(event)
 	state_machine.process_input(event)
@@ -247,27 +237,23 @@ func _physics_process(delta: float):
 	#player_slide
 	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
 	
-func _process(delta: float):	
-	#camera Rot | Add this to the camera controlls
-	camera_twist.rotate_y(-camera_dir.x - mouse_dir.x)
-	camera_pitch.rotate_x(-camera_dir.y - mouse_dir.y)
-	#pitch clamp values
-	camera_pitch.rotation.x = clamp(camera_pitch.rotation.x, -PI/2, PI/2)
+func _process(delta: float):
 	#adds the camera rot to movement
-	direction = (camera_twist.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	camera_normal = (-camera.global_transform.basis.z).normalized()
+	camera_controller.process(delta)
 	
-	mouse_dir = Vector2.ZERO
+	direction = (camera_controller.twist_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	camera_normal = (-camera_controller.global_transform.basis.z).normalized()
+	
 	state_machine.process_frame(delta)
 	
 	centre = position + Vector3.UP * height/2
 
 #camera controls, inherets camera_controls.gd
 func camera_set_offset(camera_offset: Vector3):
-	camera_twist.set_offset(camera_offset)
+	camera_controller.set_offset(camera_offset)
 
 func camera_set_offset_smoothing(input_offset):
-	camera_twist.set_offset_smoothing(input_offset)
+	camera_controller.set_offset_smoothing(input_offset)
 
 func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = frame_step_length):
 	animation_controller.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length, fb)
