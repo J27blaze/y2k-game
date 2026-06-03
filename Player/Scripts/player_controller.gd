@@ -48,7 +48,7 @@ var can_check_hurt_box: bool = true
 #region player variables
 @export_category("Player Variables")
 
-@export_range(0,1,0.01) var rotation_smoothing: float = 0.6
+@export_range(0,20,0.01) var rotation_smoothing: float = 0.6
 @export var frame_step_length: int = 24
 #endregion
 #region run
@@ -172,7 +172,7 @@ var target: Node = null
 
 func _ready() -> void:
 	#debug
-	DebugDraw3D.set_debug_enabled(false)
+	#DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
@@ -222,9 +222,6 @@ func _physics_process(delta: float):
 	state_machine.process_physics(delta)
 	state_machine.always_physics_update(delta)
 	
-	#player.rotation
-	model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z), 0.1)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
-	
 	if Input.is_action_just_pressed("debug_mode"):
 		god_mode = !god_mode
 		if god_mode:
@@ -248,6 +245,8 @@ func _process(delta: float):
 	
 	direction = (camera_controller.twist_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	camera_normal = (-camera_controller.global_transform.basis.z).normalized()
+	#player.rotation
+	model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z),  rotation_smoothing * delta)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
 	
 	state_machine.process_frame(delta)
 	

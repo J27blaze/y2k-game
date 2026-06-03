@@ -4,7 +4,7 @@ extends Node
 @export var player: Player
 
 var offset: Vector3 = Vector3.ZERO
-var default_offset: Vector3 = Vector3.ZERO
+var target_offset: Vector3 = Vector3.ZERO
 
 var target_position: Vector3 = Vector3.ZERO
 
@@ -27,6 +27,8 @@ var pos_smoothing: float = 3.0
 @onready var camera := $camera_twist/camera_pitch
 #@onready var player = parent()
 
+#@export var global_offset: bool = true
+
 var twist_basis
 var global_transform
 
@@ -35,7 +37,6 @@ var mouse_dir: Vector2
 
 func _ready() -> void:
 	twist.position = player.global_position
-	default_offset = camera.position
 	set_offset_smoothing("slow")
 	
 func _input(event: InputEvent) -> void:
@@ -59,11 +60,11 @@ func process(delta: float):
 	
 	#position
 	target_position = player.global_position
-	twist.position = lerp(twist.position, target_position, pos_smoothing * delta)
-	camera.position = lerp(camera.position, offset + default_offset , offset_smoothing * delta) 
+	offset = lerp(offset, target_offset, offset_smoothing * delta) 
+	twist.position = lerp(twist.position, target_position + offset, pos_smoothing * delta)
 
 func set_offset(camera_offset: Vector3):
-	offset = camera_offset
+	target_offset = camera_offset
 
 func set_smoothing(input_offset):
 	if input_offset is String:
