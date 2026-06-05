@@ -10,7 +10,7 @@ func start():
 	player.gravity = player.fall_gravity
 	accel = player.fall_accel
 	#anim
-	play_anim_blend("fall_default", 2, 4, 2)
+	play_anim_blend("fall_default", 2, 8, 2)
 	#print(previous_state())
 
 func process_physics(delta: float) -> void:
