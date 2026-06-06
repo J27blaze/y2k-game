@@ -248,9 +248,10 @@ func _process(delta: float):
 	direction = (camera_controller.twist_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	camera_normal = (-camera_controller.global_transform.basis.z).normalized()
 	#player.rotation
-	model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z),  rotation_smoothing * delta)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
 	if model_twist_override_angle != -999:
 		model_twist.global_rotation.y = model_twist_override_angle
+	else:
+		model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z),  rotation_smoothing * delta)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
 	
 	state_machine.process_frame(delta)
 	

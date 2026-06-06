@@ -17,6 +17,10 @@ var can_cancel: bool = false
 func start():
 	print("slide")
 	
+	#MODEL TWIST
+	target_vel_dir = atan2(player.velocity.x, player.velocity.z) + -PI
+	target_player_dir = 0
+	
 	can_cancel = false
 	can_input = false
 	input_delay.start()
@@ -50,15 +54,20 @@ func exit():
 	player.model_twist_override_angle = -999
 
 var target_player_dir: float = 0.0
-@export_range(0, 4, 0.05) var model_twist_smoothing: float = 4.0
+var target_vel_dir: float = 0.0
+@export_range(0, 8, 0.05) var model_twist_smoothing: float = 4.0
+@export_range(4, 16, 0.05) var model_twist_smoothing2: float = 4.0
 @export_range(0, 3.14, 0.05) var model_twist_clamp: float = 1
+
 func process_frame(delta: float):
 	var vel_dir: float = atan2(player.velocity.x, player.velocity.z) + -PI
 	var player_dir: float = move_dir.signed_angle_to(player.direction, Vector3.UP)
 	player_dir = clampf(player_dir, -model_twist_clamp, model_twist_clamp)
-	target_player_dir = lerpf(target_player_dir, player_dir, model_twist_smoothing * delta)
 	
-	player.model_twist_override_angle = vel_dir + target_player_dir
+	target_vel_dir = lerp_angle(target_vel_dir, vel_dir, model_twist_smoothing2 * delta)
+	target_player_dir = lerp_angle(target_player_dir, player_dir, model_twist_smoothing * delta)
+	
+	player.model_twist_override_angle = target_vel_dir + target_player_dir
 	
 func process_physics(delta: float):
 	if !Input.is_action_pressed("slide") && can_cancel:
@@ -78,6 +87,7 @@ func process_physics(delta: float):
 	
 	if !perfect_slided && input_handler.is_action_buffered("slide") && timer < player.perfect_slide_after_frame_window:
 		perfect_slide()
+		#print("perfect")
 	if slide_timer > player.slide_friction_start_time:
 		move_dir *= player.slide_friction
 	floor_accel *= player.slide_friction
@@ -126,7 +136,9 @@ func perfect_slide():
 	move_dir = initial_dir.normalized() * player.target_speed
 	
 	perfect_slided = true
-
+	
+	print("perfect slide")
+	play_anim("slide", 2)
 
 func _on_input_delay_timeout() -> void:
 	can_input = true

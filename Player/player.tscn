@@ -29,7 +29,7 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_apopc"]
 _limits = [0.0, 1.0, 0.0, 20.0]
-_data = [Vector2(0, 0.5056181), 0.0, -0.064673014, 0, 0, Vector2(20, 0), -0.0007923704, 0.0, 0, 0]
+_data = [Vector2(0, 0.5056181), 0.0, -0.064673014, 0, 0, Vector2(20, 0.10112369), -0.0007923704, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
@@ -53,8 +53,7 @@ radius = 14.0
 radius = 1.4
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_00tjw"]
-height = 2.028125
-radius = 0.2939453
+radius = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b1ygp"]
 radius = 0.43310547
@@ -106,8 +105,8 @@ slide_min_speed = 10.0
 slide_tangent_scaling = 8.555
 slide_tangent_max_speed = 15.0
 slide_tangent_max_speed_slow = 0.6
-perfect_slide_after_frame_window = 6.0
-perfect_slide_speed_boost = 0.8
+perfect_slide_after_frame_window = 4.0
+perfect_slide_speed_boost = 1.2
 perfect_slide_speed_boost_scaling = SubResource("Curve_apopc")
 dodge_min_speed = 9.45
 dodge_add_speed = 6.6
@@ -122,7 +121,7 @@ dodge_jump_vel_pulse = 7.1
 dodge_jump_speed = 12.7
 dodge_jump_frames = 3.0
 dodge_jump_accel = 6.4
-dodge_jump_speed_increase = 1.55
+dodge_jump_speed_increase = 0.3
 dodge_jump_speed_boost_scaling = SubResource("Curve_lfmf2")
 weapon_dash_min_angle = 0.3999999999999999
 weapon_dash_speed = 23.63
@@ -195,17 +194,18 @@ script = ExtResource("8_od3ui")
 
 [node name="slide" type="Node" parent="state_machine"]
 script = ExtResource("9_x3vf3")
-model_twist_smoothing = 0.65
-model_twist_clamp = 1.65
+model_twist_smoothing = 1.15
+model_twist_smoothing2 = 9.7
+model_twist_clamp = 2.2
 
 [node name="input_delay" type="Timer" parent="state_machine/slide"]
 process_callback = 0
-wait_time = 0.064
+wait_time = 0.065
 one_shot = true
 
 [node name="cancel_delay" type="Timer" parent="state_machine/slide"]
 process_callback = 0
-wait_time = 0.5
+wait_time = 0.35
 one_shot = true
 
 [node name="ground_dodge" type="Node" parent="state_machine"]
@@ -286,7 +286,7 @@ debug_color = Color(0.953206, 2.5990605e-06, 0.56156665, 0.41960785)
 script = ExtResource("13_dkpta")
 
 [node name="standing_collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0140625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_00tjw")
 debug_color = Color(3.946722e-06, 0.5877552, 0.7692518, 0.41960785)
 

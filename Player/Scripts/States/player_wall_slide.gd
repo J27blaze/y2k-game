@@ -20,16 +20,25 @@ func start():
 	inital_speed = clampf(player.target_speed, player.wall_slide_speed, 999999)
 	player.target_speed = inital_speed
 	
+	#dictates wall side
 	if player.wall_normal.rotated(Vector3.UP, PI/2).dot(player.hor_velocity) > player.wall_normal.rotated(Vector3.UP, -PI/2).dot(player.hor_velocity):
 		wall_side = 1
+		play_anim("wall_slide_l", 2)
 	else:
 		wall_side = -1 
+		play_anim("wall_slide_r", 2)
 	
 	camera_controller.set_offset_smoothing("mid")
 
 func exit():
 	camera_controller.set_offset(Vector3.ZERO)
 	camera_controller.set_offset_smoothing("slow")
+	
+	player.model_twist_override_angle = -999
+
+func process_frame(delta: float):
+	var dir = player.wall_normal.rotated(Vector3.UP, PI/2*wall_side)
+	player.model_twist_override_angle = atan2(dir.x, dir.z) + -PI
 
 func process_physics(delta: float):
 	last_wall_normal = player.wall_normal

@@ -62,22 +62,22 @@ func copy_skeleton_pose() -> void:
 			mesh_skeleton.set_bone_pose(bone_idx, pose)
 			
 func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24) -> void:
-	if current_anim != anim_name:
-		skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
-		
-		start_t(f2f(blend_frame_length, fb))
-		start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
-		
-		skeleton_animplayer.advance(0)
-		copy_skeleton_pose()
+	#if current_anim != anim_name:
+	skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
+	
+	start_t(f2f(blend_frame_length, fb))
+	start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
+	
+	skeleton_animplayer.advance(0)
+	copy_skeleton_pose()
 
 func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
-	if current_anim != anim_name:
-		skeleton_animplayer.play(anim_name, 0.0)
-		start_t(f2f(step_frame_length, fb))
-		
-		skeleton_animplayer.advance(0)
-		copy_skeleton_pose()
+	#if current_anim != anim_name:
+	skeleton_animplayer.play(anim_name, 0.0)
+	start_t(f2f(step_frame_length, fb))
+	
+	skeleton_animplayer.advance(0)
+	copy_skeleton_pose()
 
 func start_t(length: float) -> void:
 	step_time = length

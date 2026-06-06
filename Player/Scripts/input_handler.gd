@@ -30,7 +30,7 @@ func process_input(event: InputEvent):
 		
 	if Input.is_action_just_pressed("slide"):
 		# perfect slide
-		buffered_inputs["slide"] = 9
+		buffered_inputs["slide"] = 3
 		
 	if Input.is_action_just_pressed("weapon_dash"):
 		# perfect slide
