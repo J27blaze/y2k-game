@@ -49,11 +49,17 @@ func exit():
 	
 	player.model_twist_override_angle = -999
 
+var target_player_dir: float = 0.0
+@export_range(0, 4, 0.05) var model_twist_smoothing: float = 4.0
+@export_range(0, 3.14, 0.05) var model_twist_clamp: float = 1
 func process_frame(delta: float):
 	var vel_dir: float = atan2(player.velocity.x, player.velocity.z) + -PI
-	var player_dir: float = atan2(player.direction.x, player.direction.z) + -PI
-	player.model_twist_override_angle = vel_dir + (player_dir * player.direction.dot(player.velocity))
-
+	var player_dir: float = move_dir.signed_angle_to(player.direction, Vector3.UP)
+	player_dir = clampf(player_dir, -model_twist_clamp, model_twist_clamp)
+	target_player_dir = lerpf(target_player_dir, player_dir, model_twist_smoothing * delta)
+	
+	player.model_twist_override_angle = vel_dir + target_player_dir
+	
 func process_physics(delta: float):
 	if !Input.is_action_pressed("slide") && can_cancel:
 		change_state("run")

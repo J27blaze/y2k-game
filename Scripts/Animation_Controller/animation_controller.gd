@@ -37,7 +37,7 @@ var blend_step_t: float = 0
 var await_anim_step : float = 0.4
 
 func _process(delta: float) -> void:
-	current_anim = skeleton_animplayer.current_animation
+	current_anim = str(skeleton_animplayer.current_animation)
 	t += delta
 	
 	#print(step_time)
