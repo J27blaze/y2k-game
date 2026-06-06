@@ -29,7 +29,7 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_apopc"]
 _limits = [0.0, 1.0, 0.0, 20.0]
-_data = [Vector2(0, 0.5056181), 0.0, -0.064673014, 0, 0, Vector2(20, 0.10112369), -0.0007923704, 0.0, 0, 0]
+_data = [Vector2(10, 1), 0.0, -0.011541068, 0, 0, Vector2(20, 0.10112369), -0.0007923704, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
@@ -90,7 +90,7 @@ wall_slide_speed = 7.4
 wall_slide_min_speed = 0.1
 wall_slide_gravity = 4.0
 wall_slide_pull_force = 5.0
-camera_wall_slide_offset = 1.27
+camera_wall_slide_offset = 2.235
 wall_slide_jump_speed_increase = 0.3
 wall_slide_jump_speed_increase_scaling = SubResource("Curve_00tjw")
 wall_slide_jump_vel_pulse = 9.65
@@ -106,7 +106,7 @@ slide_tangent_scaling = 8.555
 slide_tangent_max_speed = 15.0
 slide_tangent_max_speed_slow = 0.6
 perfect_slide_after_frame_window = 4.0
-perfect_slide_speed_boost = 1.2
+perfect_slide_speed_boost = 0.5
 perfect_slide_speed_boost_scaling = SubResource("Curve_apopc")
 dodge_min_speed = 9.45
 dodge_add_speed = 6.6
@@ -148,10 +148,10 @@ slow_offset_smoothing = 3.3
 [node name="camera_twist" type="Node3D" parent="player_camera_controller"]
 
 [node name="camera_pitch" type="Node3D" parent="player_camera_controller/camera_twist"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.219, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.348071, 0)
 
 [node name="Camera3D" type="Camera3D" parent="player_camera_controller/camera_twist/camera_pitch"]
-transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237617e-14, -1.5142069e-07, 0, 1, 0, 0, 4.585)
+transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237617e-14, -1.5142069e-07, 0, 1, 0, 0, 4.3883185)
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")

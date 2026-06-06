@@ -130,7 +130,7 @@ func process_physics(delta: float):
 	DebugDraw3D.draw_line(player.centre, player.centre + floor_normal * 1, Color.BLUE)
 
 func perfect_slide():
-	var calc_speed = initial_dir.length() + (player.perfect_slide_speed_boost * player.perfect_slide_speed_boost_scaling.sample(player.target_speed - player.slide_min_speed))
+	var calc_speed = initial_dir.length() + (player.perfect_slide_speed_boost * player.perfect_slide_speed_boost_scaling.sample(player.speed))
 	
 	player.target_speed = calc_speed
 	move_dir = initial_dir.normalized() * player.target_speed
