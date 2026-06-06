@@ -1,10 +1,13 @@
 extends Node
 class_name AnimationController
 
+## Still has anim bug where current step is inccorrect in some blend_anims
+
 @export var parent: Node
 @export var delete_skeleton: bool = true
 
 @onready var skeleton_animplayer : AnimationPlayer = parent.find_child("AnimationPlayer", false)
+var current_anim: String
 @onready var skeleton : Skeleton3D = parent.find_child("Skeleton3D", true)
 @onready var mesh_skeleton : Skeleton3D = skeleton.duplicate()
 
@@ -34,6 +37,7 @@ var blend_step_t: float = 0
 var await_anim_step : float = 0.4
 
 func _process(delta: float) -> void:
+	current_anim = skeleton_animplayer.current_animation
 	t += delta
 	
 	#print(step_time)
@@ -58,20 +62,22 @@ func copy_skeleton_pose() -> void:
 			mesh_skeleton.set_bone_pose(bone_idx, pose)
 			
 func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24) -> void:
-	skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
-	
-	start_t(f2f(blend_frame_length, fb))
-	start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
-	
-	skeleton_animplayer.advance(0)
-	copy_skeleton_pose()
+	if current_anim != anim_name:
+		skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
+		
+		start_t(f2f(blend_frame_length, fb))
+		start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
+		
+		skeleton_animplayer.advance(0)
+		copy_skeleton_pose()
 
 func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
-	skeleton_animplayer.play(anim_name, 0.0)
-	start_t(f2f(step_frame_length, fb))
-	
-	skeleton_animplayer.advance(0)
-	copy_skeleton_pose()
+	if current_anim != anim_name:
+		skeleton_animplayer.play(anim_name, 0.0)
+		start_t(f2f(step_frame_length, fb))
+		
+		skeleton_animplayer.advance(0)
+		copy_skeleton_pose()
 
 func start_t(length: float) -> void:
 	step_time = length
@@ -79,9 +85,10 @@ func start_t(length: float) -> void:
 	t = 0
 	
 func start_blend_t(length: float, end_length) -> void:
-	blend_step_t = length + 0.025
+	blend_step_t = length + 0.01
 	blend_t = 0
 	await_anim_step = end_length
+	#print("#####START"+ str(length) +"######")
 	
 func f2f(frame_length, frame_base) -> float:
 	return float(frame_length)/float(frame_base)

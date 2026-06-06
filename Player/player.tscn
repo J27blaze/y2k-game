@@ -196,6 +196,16 @@ script = ExtResource("8_od3ui")
 [node name="slide" type="Node" parent="state_machine"]
 script = ExtResource("9_x3vf3")
 
+[node name="input_delay" type="Timer" parent="state_machine/slide"]
+process_callback = 0
+wait_time = 0.064
+one_shot = true
+
+[node name="cancel_delay" type="Timer" parent="state_machine/slide"]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
 [node name="ground_dodge" type="Node" parent="state_machine"]
 script = ExtResource("11_p5o4e")
 
@@ -411,6 +421,8 @@ player = NodePath("..")
 
 [node name="Debug UI" parent="." instance=ExtResource("19_o28un")]
 
+[connection signal="timeout" from="state_machine/slide/input_delay" to="state_machine/slide" method="_on_input_delay_timeout"]
+[connection signal="timeout" from="state_machine/slide/cancel_delay" to="state_machine/slide" method="_on_cancel_delay_timeout"]
 [connection signal="timeout" from="state_machine/ground_dodge/dodge_length" to="state_machine/ground_dodge" method="_on_dodge_length_timeout"]
 [connection signal="timeout" from="state_machine/air_dodge/dodge_length" to="state_machine/air_dodge" method="_on_dodge_length_timeout"]
 [connection signal="area_entered" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_entered"]

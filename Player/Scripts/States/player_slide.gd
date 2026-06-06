@@ -8,8 +8,19 @@ var floor_accel: Vector3 = Vector3.ZERO
 
 var slide_timer: int = 0
 
+@onready var input_delay := $input_delay
+var can_input: bool = false
+
+@onready var cancel_delay := $cancel_delay
+var can_cancel: bool = false
+
 func start():
 	print("slide")
+	
+	can_cancel = false
+	can_input = false
+	input_delay.start()
+	cancel_delay.start()
 	
 	perfect_slided = false
 	slide_timer = 0
@@ -19,7 +30,7 @@ func start():
 	player.target_speed = clampf(player.speed, player.slide_min_speed, 999999)
 	move_dir = initial_dir.normalized() * player.target_speed
 	
-	play_anim_blend("slide", 2, 3, 1)
+	play_anim_blend("slide", 2, 2, 1)
 
 func always_process_physics(delta: float):
 	if player.is_on_floor():
@@ -31,18 +42,30 @@ func always_process_physics(delta: float):
 
 func exit():
 	player.speed = player.target_speed
+	input_delay.stop()
+	cancel_delay.stop()
+	can_cancel = false
+	can_input = false
+	
+	player.model_twist_override_angle = -999
+
+func process_frame(delta: float):
+	var vel_dir: float = atan2(player.velocity.x, player.velocity.z) + -PI
+	var player_dir: float = atan2(player.direction.x, player.direction.z) + -PI
+	player.model_twist_override_angle = vel_dir + (player_dir * player.direction.dot(player.velocity))
 
 func process_physics(delta: float):
-	if Input.is_action_just_released("slide"):
+	if !Input.is_action_pressed("slide") && can_cancel:
 		change_state("run")
 		return
-	if player.state_jump():
-		return
-	if player.state_dodge_check():
-		return
-	if player.state_weapon_dash_check():
-		return
-	
+	if can_input:
+		if player.state_jump():
+			return
+		if player.state_dodge_check():
+			return
+		if player.state_weapon_dash_check():
+			return
+		
 	player.hit_check()
 	if player.state_tumble_check():
 		return
@@ -97,3 +120,10 @@ func perfect_slide():
 	move_dir = initial_dir.normalized() * player.target_speed
 	
 	perfect_slided = true
+
+
+func _on_input_delay_timeout() -> void:
+	can_input = true
+
+func _on_cancel_delay_timeout() -> void:
+	can_cancel = true
