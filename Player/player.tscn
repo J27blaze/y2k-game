@@ -38,8 +38,8 @@ _data = [Vector2(-1, 0.95), 0.0, 0.050000016, 0, 1, Vector2(1.4901161e-08, 1), 0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_lfmf2"]
-_limits = [0.0, 1.0, 0.0, 6.0]
-_data = [Vector2(0, 1), 0.0, -0.37705687, 0, 0, Vector2(6, 0.052187204), 0.0, 0.0, 0, 0]
+_limits = [0.0, 1.0, 0.0, 20.0]
+_data = [Vector2(10, 1), 0.0, -0.5206301, 0, 0, Vector2(14, 0.1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
