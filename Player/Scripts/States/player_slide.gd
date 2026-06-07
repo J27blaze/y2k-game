@@ -108,14 +108,15 @@ func process_physics(delta: float):
 	var floor_hor_tan: Vector3 = Vector3(floor_tan.x, 0, floor_tan.z).normalized()
 	var floor_hor_tan_scale: float = floor_tan.y * -player.slide_tangent_scaling
 	
+	var incline: bool = player.velocity.dot(floor_normal) > 0
+	
 	if player.speed < player.slide_tangent_max_speed:
 		floor_accel = floor_hor_tan * delta * floor_hor_tan_scale
 	else:
 		floor_accel = floor_hor_tan * delta * floor_hor_tan_scale * player.slide_tangent_max_speed_slow 
 	
 	#print(floor_hor_tan)
-	print(floor_accel)
-	player.model_pitch = 0
+	player.model_pitch = floor_tan.y * (int(incline) * 2 - 1)
 	
 	move_dir += floor_accel
 	
