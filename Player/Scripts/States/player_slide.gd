@@ -2,9 +2,9 @@ extends PlayerState
 
 var initial_dir: Vector3
 var move_dir: Vector3
+
 var timer: int = 0
 var perfect_slided: bool = false
-var floor_accel: Vector3 = Vector3.ZERO
 
 var slide_timer: int = 0
 
@@ -28,7 +28,6 @@ func start():
 	
 	perfect_slided = false
 	slide_timer = 0
-	floor_accel = Vector3.ZERO
 	
 	initial_dir = player.hor_velocity
 	player.target_speed = clampf(player.speed, player.slide_min_speed, 999999)
@@ -62,7 +61,7 @@ var target_vel_dir: float = 0.0
 
 func process_frame(delta: float):
 	var vel_dir: float = atan2(player.velocity.x, player.velocity.z) + -PI
-	var player_dir: float = move_dir.signed_angle_to(player.direction, Vector3.UP)
+	var player_dir: float = player.hor_velocity.signed_angle_to(player.direction, Vector3.UP)
 	player_dir = clampf(player_dir, -model_twist_clamp, model_twist_clamp)
 	
 	target_vel_dir = lerp_angle(target_vel_dir, vel_dir, model_twist_smoothing2 * delta)
@@ -86,14 +85,16 @@ func process_physics(delta: float):
 	if player.state_tumble_check():
 		return
 	
+	#perfect slide / start slide
 	if !perfect_slided && input_handler.is_action_buffered("slide") && timer < player.perfect_slide_after_frame_window:
 		perfect_slide()
 		#print("perfect")
 	if slide_timer > player.slide_friction_start_time:
 		move_dir *= player.slide_friction
-	floor_accel *= player.slide_friction
+	#floor_accel *= player.slide_friction
 	
 	# Calculate tangent of the slope angle
+	var floor_accel: Vector3 = Vector3.ZERO
 	var floor_normal: Vector3 = player.floor_normal
 	#var floor_tan: Vector3 = (floor_normal - Vector3.UP).normalized()
 	
@@ -106,28 +107,28 @@ func process_physics(delta: float):
 	
 	var floor_hor_tan: Vector3 = Vector3(floor_tan.x, 0, floor_tan.z).normalized()
 	var floor_hor_tan_scale: float = floor_tan.y * -player.slide_tangent_scaling
-	var scaled_floor_accel: Vector3
 	
 	if player.speed < player.slide_tangent_max_speed:
-		floor_accel += floor_hor_tan * delta * floor_hor_tan_scale
+		floor_accel = floor_hor_tan * delta * floor_hor_tan_scale
 	else:
-		floor_accel += floor_hor_tan * delta * floor_hor_tan_scale * player.slide_tangent_max_speed_slow 
+		floor_accel = floor_hor_tan * delta * floor_hor_tan_scale * player.slide_tangent_max_speed_slow 
 	
 	#print(floor_hor_tan)
-	print(floor_normal)
+	print(floor_accel)
 	player.model_pitch = 0
-	scaled_floor_accel = floor_accel
+	
+	move_dir += floor_accel
 	
 	#slide handling
 	var angle = rad_to_deg(move_dir.signed_angle_to(player.direction, Vector3.UP))
 	angle = clampf(angle, -player.slide_handling, player.slide_handling)
+	#dir_angle = lerp_angle(dir_angle, -angle, player.slide_handling * delta)
 	move_dir = move_dir.rotated(Vector3.UP, deg_to_rad(angle))
 	#print(angle)
 	#print(scaled_floor_accel.length())
 	
-	var final_move_dir: Vector3 = move_dir + scaled_floor_accel
-	player.vel_move_toward(final_move_dir, 999999, delta)
-	player.target_speed = final_move_dir.length()
+	player.vel_move_toward(move_dir, 999999, delta)
+	player.target_speed = move_dir.length()
 	slide_timer += 1
 	
 	if !player.is_on_floor():
@@ -136,11 +137,11 @@ func process_physics(delta: float):
 	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
-	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
+	DebugDraw3D.draw_line(player.centre, player.centre + move_dir *0.5, Color.ORANGE)
 	
 	const ds: float = 1
 	DebugDraw3D.draw_line(player.centre, player.centre + floor_tan * ds, Color.RED)
-	DebugDraw3D.draw_line(player.centre, player.centre + Vector3.UP * floor_hor_tan_scale * ds, Color.RED)
+	#DebugDraw3D.draw_line(player.centre, player.centre + Vector3.UP * floor_hor_tan_scale * ds, Color.RED)
 	DebugDraw3D.draw_line(player.centre, player.centre + floor_hor_tan * ds, Color.PINK)
 	DebugDraw3D.draw_line(player.centre, player.centre + floor_normal * ds, Color.BLUE)
 
