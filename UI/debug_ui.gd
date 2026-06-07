@@ -8,7 +8,7 @@ extends Node
 @onready var prevstate = $Bottom_Right/PkayerPrevState
 @onready var othertext = $Bottom_Right/OtherText
 
-@onready var player = self.get_parent()
+@onready var player: Player = self.get_parent()
 
 var l_dot
 var l_dot_raw
@@ -61,5 +61,9 @@ func _process(delta: float):
 	#other
 	othertext.text = "FPS: " + str(Engine.get_frames_per_second())
 	othertext.text += "\non_wall: " + str(player.on_wall)
+	
+	#anim
+	othertext.text += "\nT: " + str(player.animation_controller.t)
+	othertext.text += "\nBLEND T: " + str(player.animation_controller.blend_t)
 	
 	mouse_dir = Vector2.ZERO

@@ -36,16 +36,19 @@ func attach_mesh(bone_name: String):
 		attach.position += attachable_offset[bone_name]
 		attachable_points[bone_name].add_child(attach)
 		
-var skin_colour: Vector3 = Vector3(1,0,1)
-var iris_colour: Vector3 = Vector3(1,0,0)
+@export var skin_colour: Color = Color.GRAY
+@export var iris_colour: Color = Color.RED
+
+func color2vec(color: Color) -> Vector3:
+	return Vector3(color.r, color.b, color.g)
 
 func set_materials():
 	#skin colour
 	for mesh in meshes:
-		mesh.get_active_material(0).set_shader_parameter("skin_colour", skin_colour)
+		mesh.get_active_material(0).set_shader_parameter("skin_colour", color2vec(skin_colour))
 	var head = get_all_meshes(player_scene, "head")
 	for mesh in head:
-		mesh.get_active_material(0).set_shader_parameter("iris_colour", iris_colour)
+		mesh.get_active_material(0).set_shader_parameter("iris_colour", color2vec(iris_colour))
 
 func set_attachables():
 	for scene in attachables:

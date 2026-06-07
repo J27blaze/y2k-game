@@ -36,7 +36,7 @@ func start():
 	
 	play_anim_blend("slide", 2, 2, 1)
 
-func always_process_physics(delta: float):
+func always_process_physics(delta : float):
 	if player.is_on_floor():
 		if timer <= player.perfect_slide_after_frame_window:
 			timer += 1
@@ -52,6 +52,7 @@ func exit():
 	can_input = false
 	
 	player.model_twist_override_angle = -999
+	player.model_pitch = 0
 
 var target_player_dir: float = 0.0
 var target_vel_dir: float = 0.0
@@ -94,15 +95,27 @@ func process_physics(delta: float):
 	
 	# Calculate tangent of the slope angle
 	var floor_normal: Vector3 = player.floor_normal
-	var floor_tan: Vector3 = (floor_normal - Vector3.UP).normalized()
+	#var floor_tan: Vector3 = (floor_normal - Vector3.UP).normalized()
+	
+	#tangent
+	var ref_axis := Vector3.UP
+	var right_vector := floor_normal.cross(ref_axis).normalized()
+	var floor_tan := right_vector.cross(floor_normal).normalized() * -1
+	#if abs(floor_normal.dot(ref_axis)) > 0.99:
+	#	ref_axis = Vector3.FORWARD # axis if on a perfectly flat surface
+	
 	var floor_hor_tan: Vector3 = Vector3(floor_tan.x, 0, floor_tan.z).normalized()
-	
+	var floor_hor_tan_scale: float = floor_tan.y * -player.slide_tangent_scaling
 	var scaled_floor_accel: Vector3
-	if player.speed < player.slide_tangent_max_speed:
-		floor_accel += floor_hor_tan * player.slide_tangent_scaling * delta
-	else:
-		floor_accel += floor_hor_tan * player.slide_tangent_scaling * delta * player.slide_tangent_max_speed_slow
 	
+	if player.speed < player.slide_tangent_max_speed:
+		floor_accel += floor_hor_tan * delta * floor_hor_tan_scale
+	else:
+		floor_accel += floor_hor_tan * delta * floor_hor_tan_scale * player.slide_tangent_max_speed_slow 
+	
+	#print(floor_hor_tan)
+	print(floor_normal)
+	player.model_pitch = 0
 	scaled_floor_accel = floor_accel
 	
 	#slide handling
@@ -125,9 +138,11 @@ func process_physics(delta: float):
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
 	
-	DebugDraw3D.draw_line(player.centre, player.centre +floor_tan * 2, Color.RED)
-	DebugDraw3D.draw_line(player.centre, player.centre +floor_hor_tan * 2, Color.PINK)
-	DebugDraw3D.draw_line(player.centre, player.centre + floor_normal * 1, Color.BLUE)
+	const ds: float = 1
+	DebugDraw3D.draw_line(player.centre, player.centre + floor_tan * ds, Color.RED)
+	DebugDraw3D.draw_line(player.centre, player.centre + Vector3.UP * floor_hor_tan_scale * ds, Color.RED)
+	DebugDraw3D.draw_line(player.centre, player.centre + floor_hor_tan * ds, Color.PINK)
+	DebugDraw3D.draw_line(player.centre, player.centre + floor_normal * ds, Color.BLUE)
 
 func perfect_slide():
 	var calc_speed = initial_dir.length() + (player.perfect_slide_speed_boost * player.perfect_slide_speed_boost_scaling.sample(player.speed))

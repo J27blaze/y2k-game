@@ -141,4 +141,4 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.47039998, 0.69215995, 0.84, 1)
+environment/defaults/default_clear_color=Color(0.3882353, 0.7058824, 1, 1)

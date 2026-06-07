@@ -23,10 +23,10 @@ func start():
 	#dictates wall side
 	if player.wall_normal.rotated(Vector3.UP, PI/2).dot(player.hor_velocity) > player.wall_normal.rotated(Vector3.UP, -PI/2).dot(player.hor_velocity):
 		wall_side = 1
-		play_anim("wall_slide_l", 2)
+		play_anim_blend("wall_slide_l", 2, 2, 2)
 	else:
 		wall_side = -1 
-		play_anim("wall_slide_r", 2)
+		play_anim_blend("wall_slide_r", 2, 2, 2)
 	
 	camera_controller.set_offset_smoothing("mid")
 

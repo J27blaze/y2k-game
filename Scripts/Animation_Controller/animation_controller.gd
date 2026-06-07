@@ -40,8 +40,6 @@ func _process(delta: float) -> void:
 	current_anim = str(skeleton_animplayer.current_animation)
 	t += delta
 	
-	#print(step_time)
-	
 	if t >= step_time:
 		copy_skeleton_pose()
 		t = 0
@@ -74,6 +72,8 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 	#if current_anim != anim_name:
 	skeleton_animplayer.play(anim_name, 0.0)
+	blend_step_t = 0
+	blend_t = 0
 	start_t(f2f(step_frame_length, fb))
 	
 	skeleton_animplayer.advance(0)
@@ -81,7 +81,6 @@ func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 
 func start_t(length: float) -> void:
 	step_time = length
-	blend_step_t = 0
 	t = 0
 	
 func start_blend_t(length: float, end_length) -> void:

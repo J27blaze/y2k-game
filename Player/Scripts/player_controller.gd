@@ -8,6 +8,8 @@ extends CharacterBody3D
 @onready var model_twist := $model_twist
 #-999 is default value
 var model_twist_override_angle : float = -999
+var model_pitch : float = 0
+
 @onready var animation_controller : AnimationController = $model_twist/animation_controller
 @onready var standing_collider := $standing_collider
 @onready var wall_slide_colliders := $wall_slide_colliders
@@ -174,7 +176,7 @@ var target: Node = null
 
 func _ready() -> void:
 	#debug
-	DebugDraw3D.set_debug_enabled(false)
+	#DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
@@ -252,6 +254,7 @@ func _process(delta: float):
 		model_twist.global_rotation.y = model_twist_override_angle
 	else:
 		model_twist.global_rotation.y = lerp_angle(model_twist.global_rotation.y, atan2(-last_dir.x, -last_dir.z),  rotation_smoothing * delta)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
+	model_twist.global_rotation.x = lerp_angle(model_twist.global_rotation.x, model_pitch,  rotation_smoothing * delta)
 	
 	state_machine.process_frame(delta)
 	
