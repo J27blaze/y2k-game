@@ -33,7 +33,7 @@ func start():
 	player.target_speed = clampf(player.speed, player.slide_min_speed, 999999)
 	move_dir = initial_dir.normalized() * player.target_speed
 	
-	play_anim_blend("slide", 2, 2, 1)
+	play_anim_blend("slide", 3, 3, 1)
 
 func always_process_physics(delta : float):
 	if player.is_on_floor():
@@ -155,7 +155,7 @@ func perfect_slide():
 	perfect_slided = true
 	
 	print("perfect slide")
-	play_anim("slide", 2)
+	play_anim("slide", 3)
 
 func _on_input_delay_timeout() -> void:
 	can_input = true

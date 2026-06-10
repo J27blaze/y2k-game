@@ -13,6 +13,8 @@ var current_anim: String
 
 var bone_count: int = 0
 
+var debug_status: String = ""
+
 func _ready() -> void:
 	parent.add_child(mesh_skeleton)
 	#print(skeleton.get_children())
@@ -37,7 +39,7 @@ var blend_step_t: float = 0
 var await_anim_step : float = 0.4
 
 func _process(delta: float) -> void:
-	current_anim = str(skeleton_animplayer.current_animation)
+	#current_anim = str(skeleton_animplayer.current_animation)
 	t += delta
 	
 	if t >= step_time:
@@ -45,12 +47,13 @@ func _process(delta: float) -> void:
 		t = 0
 	
 	if blend_step_t > 0:
-		if blend_t <= blend_step_t:
+		if blend_t < blend_step_t:
 			blend_t += delta
 		else:
-			start_t(await_anim_step)
 			blend_t = 0
 			blend_step_t = 0
+			
+			start_t(await_anim_step)
 			return
 	
 func copy_skeleton_pose() -> void:
@@ -61,20 +64,29 @@ func copy_skeleton_pose() -> void:
 			
 func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24) -> void:
 	#if current_anim != anim_name:
+	current_anim = anim_name
+	if blend_t > 0:
+		skeleton_animplayer.play(skeleton_animplayer.current_animation, 0.0) 
+	
+	start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
+	start_t(f2f(blend_frame_length, fb))
+	
+	#skeleton_animplayer.pause()
 	skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
 	
-	start_t(f2f(blend_frame_length, fb))
-	start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
-	
-	skeleton_animplayer.advance(0)
+	#skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
 
 func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 	#if current_anim != anim_name:
-	skeleton_animplayer.play(anim_name, 0.0)
+	current_anim = anim_name
+	
 	blend_step_t = 0
 	blend_t = 0
 	start_t(f2f(step_frame_length, fb))
+	
+	#skeleton_animplayer.pause()
+	skeleton_animplayer.play(anim_name, 0.0)
 	
 	skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
@@ -82,12 +94,23 @@ func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 func start_t(length: float) -> void:
 	step_time = length
 	t = 0
+	#debug
+	skeleton_animplayer.advance(0)
+	debug_status = (str(length) + " : " + current_anim + ", " + str(blend_step_t) + ", blend length : ")
+	
+	#print(debug_status)
 	
 func start_blend_t(length: float, end_length) -> void:
 	blend_step_t = length + 0.01
 	blend_t = 0
 	await_anim_step = end_length
+	#print(blend_step_t)
 	#print("#####START"+ str(length) +"######")
 	
 func f2f(frame_length, frame_base) -> float:
 	return float(frame_length)/float(frame_base)
+
+func set_bone_position(bone_name: String, pos: Vector3):
+	var bone := skeleton.find_bone(bone_name)
+	print(bone)
+	skeleton.set_bone_pose_position(bone, pos)

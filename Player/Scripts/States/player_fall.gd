@@ -9,11 +9,13 @@ func start():
 	timer = 0
 	player.gravity = player.fall_gravity
 	accel = player.fall_accel
-	#anim
-	play_anim_blend("fall_default", 3, 12, 2)
 	#print(previous_state())
+	
+	#calc state before playing anim
+	play_anim_blend("fall_default", 3, 12, 2)
 
 func process_physics(delta: float) -> void:
+	
 	player.calc_wall_slide()
 	if player.state_wall_slide_check():
 		return

@@ -63,7 +63,6 @@ func _process(delta: float):
 	othertext.text += "\non_wall: " + str(player.on_wall)
 	
 	#anim
-	othertext.text += "\nT: " + str(player.animation_controller.t)
-	othertext.text += "\nBLEND T: " + str(player.animation_controller.blend_t)
+	othertext.text += "\nT: " + str(player.animation_controller.debug_status)
 	
 	mouse_dir = Vector2.ZERO
