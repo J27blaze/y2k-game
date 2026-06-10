@@ -81,6 +81,8 @@ func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 	#if current_anim != anim_name:
 	current_anim = anim_name
 	
+	skeleton_animplayer.stop() 
+	
 	blend_step_t = 0
 	blend_t = 0
 	start_t(f2f(step_frame_length, fb))
@@ -96,12 +98,12 @@ func start_t(length: float) -> void:
 	t = 0
 	#debug
 	skeleton_animplayer.advance(0)
-	debug_status = (str(length) + " : " + current_anim + ", " + str(blend_step_t) + ", blend length : ")
+	debug_status = (str(length) + " : " + current_anim + ", blend length : " + str(blend_step_t))
 	
 	#print(debug_status)
 	
 func start_blend_t(length: float, end_length) -> void:
-	blend_step_t = length + 0.01
+	blend_step_t = length + 0.017
 	blend_t = 0
 	await_anim_step = end_length
 	#print(blend_step_t)

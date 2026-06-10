@@ -32,10 +32,11 @@ func start():
 
 	initial_vel = player.hor_velocity.normalized()
 	
-	#play_anim("jump_1")
+	play_anim("wall_slide_jump",1)
 
 func exit():
 	player.gravity = player.fall_gravity
+	player.model_twist_override_angle = -999
 
 func process_physics(delta: float):
 	if player.velocity.y < 0:
@@ -73,8 +74,10 @@ func process_physics(delta: float):
 		#print(clamped_angle)
 		if timer <= 1:
 			player.vel_move_toward(initial_move_dir, 999999, delta)
+			player.model_twist_override_angle = atan2(initial_move_dir.x, initial_move_dir.z) + -PI
 		else:
 			player.vel_move_toward(initial_move_dir, player.jump_inital_accel, delta)
+			player.model_twist_override_angle = -999
 	else:
 		#player.vel_move_toward(move_dir, player.jump_accel, delta)
 		

@@ -33,7 +33,7 @@ func start():
 	player.target_speed = clampf(player.speed, player.slide_min_speed, 999999)
 	move_dir = initial_dir.normalized() * player.target_speed
 	
-	play_anim_blend("slide", 3, 3, 1)
+	play_anim_blend("slide", 3, 4, 1)
 
 func always_process_physics(delta : float):
 	if player.is_on_floor():
