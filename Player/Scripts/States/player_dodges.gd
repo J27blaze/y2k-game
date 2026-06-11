@@ -46,6 +46,10 @@ func exit():
 	#player.speed = player.target_speed
 	dodge_length.stop()
 	#print(player.speed)
+	if data == "ground":
+		if !player.is_on_floor():
+			player.can_jump = false
+			
 	return
 
 func process_physics(delta: float):
