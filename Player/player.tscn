@@ -86,7 +86,7 @@ wall_slide_range = 0.55
 wall_slide_angle_range = 165.0
 wall_slide_angle_threshold = 0.0
 wall_slide_direction_threshold = 0.0
-wall_slide_speed = 7.4
+wall_slide_speed = 1.3
 wall_slide_min_speed = 0.1
 wall_slide_gravity = 4.0
 wall_slide_pull_force = 5.0
@@ -431,5 +431,4 @@ player = NodePath("..")
 [connection signal="area_entered" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_entered"]
 [connection signal="area_exited" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_exited"]
 [connection signal="timeout" from="state_machine/weapon_dash/min_dash_time" to="state_machine/weapon_dash" method="_on_min_dash_time_timeout"]
-[connection signal="area_entered" from="state_machine/weapon_dash/weapon_hitbox" to="state_machine/weapon_dash" method="_on_weapon_hitbox_area_entered"]
 [connection signal="timeout" from="on_hurt_timer" to="." method="_on_hurt_timer_timeout"]

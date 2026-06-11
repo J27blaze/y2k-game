@@ -152,12 +152,14 @@ func start():
 	weapon_hitbox_col.disabled = false
 	
 	min_dash_time.start()
-
-func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
-	if area.get_parent().is_player_target():
-	#print(area.get_parent().get_groups())
-		change_state("weapon_dash_hit", dir)
-		return
+	
+	play_anim("weapon_dash", 2)
+	player.model_twist_override_angle = atan2(dir.x, dir.z) + -PI
+#func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
+#	if area.get_parent().is_player_target():
+#	#print(area.get_parent().get_groups())
+#		change_state("weapon_dash_hit", dir)
+#		return
 		
 func _on_min_dash_time_timeout() -> void:
 	change_state("fall")
@@ -167,6 +169,8 @@ func exit():
 	if target != null: target.get_parent().set_player_target(false)
 	is_dashing = false
 	min_dash_time.stop()
+	
+	player.model_twist_override_angle = -999
 	return
 
 func process_physics(delta: float):
@@ -175,3 +179,11 @@ func process_physics(delta: float):
 	
 	player.velocity = dir
 	weapon_hitbox.position = player.global_position
+	
+	#bad code DONT CARE
+	var enemies = weapon_hitbox.get_overlapping_areas()
+	#print(area.get_parent().get_groups())
+	for enemy in enemies:
+		if enemy.get_parent().is_player_target():
+			change_state("weapon_dash_hit", dir)
+			return
