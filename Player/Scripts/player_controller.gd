@@ -159,6 +159,7 @@ var air_dodges: int = 1
 #refers to thew area shape, not node
 var target: Node = null
 @export_range(0, 60, 0.01) var weapon_dash_speed: float = 0.1
+@export var weapon_dash_speed_timer_scaler: Curve #x = physics frames
 @export_range(0, 60, 0.01) var weapon_dash_target_speed: float = 0.1
 @export_range(0, 60, 0.01) var weapon_dash_hit_speed_aceel: float = 2.
 @export_range(0, 1, 0.005) var weapon_dash_hit_y_speed_multiplier: float = 0.8
@@ -176,7 +177,7 @@ var target: Node = null
 
 func _ready() -> void:
 	#debug
-	#DebugDraw3D.set_debug_enabled(false)
+	DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)

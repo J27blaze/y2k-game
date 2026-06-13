@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=32 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -41,6 +41,11 @@ point_count = 2
 _limits = [0.0, 1.0, 0.0, 20.0]
 _data = [Vector2(10, 1), 0.0, -0.5206301, 0, 0, Vector2(14, 0.1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_7emwf"]
+_limits = [0.0, 1.0, 0.0, 9.0]
+_data = [Vector2(0, 0), 0.0, 0.035528827, 0, 0, Vector2(8.099999, 0.1), 0.0, 0.0, 0, 0, Vector2(9, 1), 0.5476719, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
 height = 15.5625
@@ -124,7 +129,8 @@ dodge_jump_accel = 6.4
 dodge_jump_speed_increase = 0.3
 dodge_jump_speed_boost_scaling = SubResource("Curve_lfmf2")
 weapon_dash_min_angle = 0.3999999999999999
-weapon_dash_speed = 23.63
+weapon_dash_speed = 30.0
+weapon_dash_speed_timer_scaler = SubResource("Curve_7emwf")
 weapon_dash_target_speed = 13.95
 weapon_dash_hit_speed_aceel = 37.5
 weapon_dash_hit_y_speed_multiplier = 1.0
@@ -200,7 +206,7 @@ model_twist_clamp = 0.7
 
 [node name="input_delay" type="Timer" parent="state_machine/slide"]
 process_callback = 0
-wait_time = 0.065
+wait_time = 0.009999999999999998
 one_shot = true
 
 [node name="cancel_delay" type="Timer" parent="state_machine/slide"]

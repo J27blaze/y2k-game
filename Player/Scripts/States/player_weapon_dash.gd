@@ -122,6 +122,7 @@ func calc_target():
 
 #player movement
 var initial_speed: float = 0.0
+var timer: int = 0
 @onready var min_dash_time := $min_dash_time
 var dir: Vector3 = Vector3.ZERO
 var target_position: Vector3 = Vector3.ZERO
@@ -131,6 +132,7 @@ var target_position: Vector3 = Vector3.ZERO
 
 func start():
 	#assumed target is not null.
+	timer = 0
 	is_dashing = true
 	print("weapon_dash")
 	target.get_parent().set_player_target(true)
@@ -155,6 +157,10 @@ func start():
 	
 	play_anim("weapon_dash", 2)
 	player.model_twist_override_angle = atan2(dir.x, dir.z) + -PI
+	var pos_diff: Vector3 = player.centre - target_position
+	var pitch: float = atan2(-pos_diff.y, pos_diff.length())
+	print(pitch)
+	player.model_pitch = pitch
 #func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
 #	if area.get_parent().is_player_target():
 #	#print(area.get_parent().get_groups())
@@ -171,14 +177,17 @@ func exit():
 	min_dash_time.stop()
 	
 	player.model_twist_override_angle = -999
+	player.model_pitch = 0
 	return
 
 func process_physics(delta: float):
 	if player.state_dodge_check():
 		return
 	
-	player.velocity = dir
+	player.velocity = dir * player.weapon_dash_speed_timer_scaler.sample(timer)
 	weapon_hitbox.position = player.global_position
+	
+	timer += 1
 	
 	#bad code DONT CARE
 	var enemies = weapon_hitbox.get_overlapping_areas()

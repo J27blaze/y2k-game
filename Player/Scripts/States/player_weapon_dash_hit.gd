@@ -41,6 +41,8 @@ func start():
 	
 	player.velocity.y = clampf(player.velocity.y * player.weapon_dash_hit_y_speed_multiplier, player.weapon_dash_hit_vel_pulse, 999999)
 	
+	#anim
+	player.model_pitch = 0
 	#print(data)
 	
 func exit():
