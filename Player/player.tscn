@@ -43,8 +43,8 @@ _data = [Vector2(10, 1), 0.0, -0.5206301, 0, 0, Vector2(14, 0.1), 0.0, 0.0, 0, 0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_7emwf"]
-_limits = [0.0, 1.0, 0.0, 9.0]
-_data = [Vector2(0, 0), 0.0, 0.035528827, 0, 0, Vector2(8.099999, 0.1), 0.0, 0.0, 0, 0, Vector2(9, 1), 0.5476719, 0.0, 0, 0]
+_limits = [0.0, 1.0, 0.0, 8.0]
+_data = [Vector2(0, 0), 0.0, 0.035528827, 0, 0, Vector2(6.839694, 0.43811393), 0.1643015, 0.1643015, 0, 0, Vector2(7, 1), 0.5476719, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gu6f8"]
