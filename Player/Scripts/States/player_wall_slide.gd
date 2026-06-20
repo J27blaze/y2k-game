@@ -29,16 +29,18 @@ func start():
 		play_anim_blend("wall_slide_r", 2, 3, 1)
 	
 	camera_controller.set_offset_smoothing("mid")
-
+	
+	var dir = player.wall_normal.rotated(Vector3.UP, PI/2*wall_side)
+	player.model_twist_override_angle = atan2(dir.x, dir.z) + -PI
 func exit():
 	camera_controller.set_offset(Vector3.ZERO)
 	camera_controller.set_offset_smoothing("slow")
 	
 	player.model_twist_override_angle = -999
-
 func process_frame(delta: float):
 	var dir = player.wall_normal.rotated(Vector3.UP, PI/2*wall_side)
-	player.model_twist_override_angle = atan2(dir.x, dir.z) + -PI
+	var angle_dir: float = atan2(dir.x, dir.z) + -PI
+	player.model_twist_override_angle = lerp_angle(player.model_twist_override_angle, angle_dir, 9 * delta)
 	
 func process_physics(delta: float):
 	last_wall_normal = player.wall_normal

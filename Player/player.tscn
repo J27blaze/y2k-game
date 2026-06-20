@@ -206,7 +206,7 @@ model_twist_clamp = 0.7
 
 [node name="input_delay" type="Timer" parent="state_machine/slide"]
 process_callback = 0
-wait_time = 0.009999999999999998
+wait_time = 0.00999999999999999
 one_shot = true
 
 [node name="cancel_delay" type="Timer" parent="state_machine/slide"]
