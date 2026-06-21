@@ -1,6 +1,7 @@
 extends PlayerState
 
 @export var is_dodge_jump: bool = false
+@export var jump_stage: int = 0
 
 #var initial_vel: Vector3
 var timer: int = 0
@@ -8,7 +9,10 @@ var jump_cut: bool = true
 var initial_vel: Vector3
 var wall_normal: Vector3
 
-var accel: float = 0.0
+var accel: float = 0.1
+
+var jump_vel : float = 0
+var jump_cut_amount : float = 0
 
 func start():
 	player.can_jump = false
@@ -19,9 +23,23 @@ func start():
 	accel = player.jump_accel
 	
 	var min_speed : float = player.run_speed
-	var jump_vel : float = player.jump_vel_pulse
+	jump_vel = player.jump_vel_pulse
+	jump_cut_amount = player.jump_vel_height_cut
+	
+	match player.jump_stage:
+		2: 
+			jump_vel = player.double_jump_vel_pulse
+			jump_cut_amount = player.double_jump_vel_cut
+		3:
+			jump_vel = player.triple_jump_vel_pulse
+			jump_cut_amount = player.triple_jump_vel_cut
+		_: pass
+	
 	if is_dodge_jump:
 		print("dodge_jump")
+		#jump stage
+		player.jump_stage = 0
+		
 		min_speed = player.dodge_jump_speed
 		jump_vel = player.dodge_jump_vel_pulse
 		accel = player.dodge_jump_accel
@@ -35,7 +53,12 @@ func start():
 		
 		player.target_speed = player.target_speed + speed_increase
 	else:
-		print("jump")
+		if player.jump_stage == 0:
+			player.jump_stage = 1
+		print(str(jump_stage) + "_jump")
+		#jump stage 
+		player.jump_stage_timer.stop()
+		
 		player.target_speed = clampf(player.speed, min_speed, 99999)
 	
 	wall_normal = player.wall_normal
@@ -48,7 +71,7 @@ func start():
 func exit():
 	player.gravity = player.fall_gravity
 
-func process_physics(delta: float) -> void:
+func process_physics(delta: float) -> void:	
 	if player.velocity.y < 0:
 		change_state("fall", is_dodge_jump)
 		return
@@ -79,7 +102,7 @@ func process_physics(delta: float) -> void:
 	
 	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity
-		player.velocity.y *= player.jump_vel_height_cut
+		player.velocity.y *= jump_cut_amount
 		jump_cut = false
 	
 	#player.state_wall_slide_jump_check()

@@ -11,6 +11,8 @@ var timer: int = 0
 
 func start():
 	print(data + " dodge")
+	player.jump_stage = 0
+	
 	dodge_length.start()
 	player.set_hurt_box(false)
 	

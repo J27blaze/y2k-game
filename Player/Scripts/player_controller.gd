@@ -81,6 +81,16 @@ var can_jump: bool = true
 @export_range(0, 15, 0.05) var air_target_speed_margin: float = 4.
 @export_range(0, 20, 0.05) var air_target_speed_accel: float = 1.
 
+var jump_stage: int = 0
+
+@export_group("double_jump")
+@export_range(0, 50, 0.05) var double_jump_vel_pulse: float = 10.
+@export_range(0, 1, 0.001) var double_jump_vel_cut: float = 10.
+
+@export_group("triple_jump")
+@export_range(0, 50, 0.05) var triple_jump_vel_pulse: float = 10.
+@export_range(0, 1, 0.001) var triple_jump_vel_cut: float = 10.
+
 #endregion
 #region wall slide
 @export_group("wall slide")
@@ -244,6 +254,8 @@ func _physics_process(delta: float):
 	#player_slide
 	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
 	
+	print(jump_stage)
+	
 func _process(delta: float):
 	#adds the camera rot to movement
 	camera_controller.process(delta)
@@ -293,13 +305,34 @@ func state_landing_check() -> bool:
 				state_machine.change_state("slide")
 			else:
 				state_machine.change_state("run")
+		
+		increment_jump_stage()
+		
 		return true
 	else:
 		return false
 
+@onready var jump_stage_timer := $jump_stage_timer
+func increment_jump_stage() -> void:
+	if jump_stage >= 3:
+		jump_stage = 0
+	else: jump_stage += 1
+	jump_stage_timer.start()
+
+func _on_jump_stage_timer_timeout() -> void:
+	jump_stage = 0
+
 func state_jump() -> bool:
 	if input_handler.is_action_buffered("jump") && can_jump:
-		state_machine.change_state("jump")
+		var stage: String = ""
+		match jump_stage:
+			2:
+				stage = "double_"
+			3:
+				stage = "triple_"
+			_:
+				stage = ""
+		state_machine.change_state(stage + "jump")
 		return true
 	else:
 		return false

@@ -17,6 +17,8 @@ var can_cancel: bool = false
 func start():
 	print("slide")
 	
+	player.jump_stage = 0
+	
 	#MODEL TWIST
 	target_vel_dir = atan2(player.velocity.x, player.velocity.z) + -PI
 	target_player_dir = 0

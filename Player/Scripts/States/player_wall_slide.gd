@@ -8,6 +8,7 @@ var wall_side: int
 func start():
 	print("wall slide")
 	player.can_jump = false
+	player.jump_stage = 0
 	#player.air_dodges = int(player.max_air_dodges)
 	#air dodges
 	if player.can_wall_slide_air_dodge:

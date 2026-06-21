@@ -86,6 +86,10 @@ jump_inital_accel_frames = 3.0
 jump_coyote_frames = 7.0
 air_target_speed_margin = 1.0
 air_target_speed_accel = 1.5
+double_jump_vel_pulse = 9.5
+double_jump_vel_cut = 0.5
+triple_jump_vel_pulse = 11.5
+triple_jump_vel_cut = 1.0
 wall_slide_y_vel_cut = 0.14
 wall_slide_range = 0.55
 wall_slide_angle_range = 165.0
@@ -164,6 +168,7 @@ script = ExtResource("1_btcbx")
 states = {
 "air_dodge": NodePath("air_dodge"),
 "dodge_jump": NodePath("dodge_jump"),
+"double_jump": NodePath("double_jump"),
 "fall": NodePath("fall"),
 "god_mode": NodePath("god_mode"),
 "ground_dodge": NodePath("ground_dodge"),
@@ -171,6 +176,7 @@ states = {
 "jump": NodePath("jump"),
 "run": NodePath("run"),
 "slide": NodePath("slide"),
+"triple_jump": NodePath("triple_jump"),
 "wall_slide": NodePath("wall_slide"),
 "wall_slide_jump": NodePath("wall_slide_jump"),
 "weapon_dash": NodePath("weapon_dash"),
@@ -188,6 +194,15 @@ script = ExtResource("4_fhl08")
 
 [node name="jump" type="Node" parent="state_machine"]
 script = ExtResource("5_k53q1")
+jump_stage = 1
+
+[node name="double_jump" type="Node" parent="state_machine"]
+script = ExtResource("5_k53q1")
+jump_stage = 2
+
+[node name="triple_jump" type="Node" parent="state_machine"]
+script = ExtResource("5_k53q1")
+jump_stage = 3
 
 [node name="fall" type="Node" parent="state_machine"]
 script = ExtResource("6_fhl08")
@@ -243,6 +258,7 @@ one_shot = true
 [node name="dodge_jump" type="Node" parent="state_machine"]
 script = ExtResource("5_k53q1")
 is_dodge_jump = true
+jump_stage = -999
 
 [node name="weapon_dash" type="Node" parent="state_machine"]
 script = ExtResource("12_gu6f8")
@@ -420,6 +436,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_b1ygp")
 debug_color = Color(0.96228343, 1.0588765e-06, 0.508266, 0.41960785)
 
+[node name="jump_stage_timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.24
+one_shot = true
+
 [node name="on_hurt_timer" type="Timer" parent="."]
 process_callback = 0
 one_shot = true
@@ -437,4 +458,5 @@ player = NodePath("..")
 [connection signal="area_entered" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_entered"]
 [connection signal="area_exited" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_exited"]
 [connection signal="timeout" from="state_machine/weapon_dash/min_dash_time" to="state_machine/weapon_dash" method="_on_min_dash_time_timeout"]
+[connection signal="timeout" from="jump_stage_timer" to="." method="_on_jump_stage_timer_timeout"]
 [connection signal="timeout" from="on_hurt_timer" to="." method="_on_hurt_timer_timeout"]

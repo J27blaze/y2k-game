@@ -134,6 +134,8 @@ func start():
 	#assumed target is not null.
 	timer = 0
 	is_dashing = true
+	
+	player.jump_stage = 0
 	print("weapon_dash")
 	target.get_parent().set_player_target(true)
 	#print(target.get_parent().is_player_target())
