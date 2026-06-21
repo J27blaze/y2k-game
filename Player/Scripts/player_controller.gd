@@ -254,7 +254,7 @@ func _physics_process(delta: float):
 	#player_slide
 	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
 	
-	print(jump_stage)
+	#print(jump_stage)
 	
 func _process(delta: float):
 	#adds the camera rot to movement

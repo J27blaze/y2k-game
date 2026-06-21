@@ -24,10 +24,10 @@ func start():
 	#dictates wall side
 	if player.wall_normal.rotated(Vector3.UP, PI/2).dot(player.hor_velocity) > player.wall_normal.rotated(Vector3.UP, -PI/2).dot(player.hor_velocity):
 		wall_side = 1
-		play_anim_blend("wall_slide_l", 2, 3, 1)
+		play_anim_blend("wall_slide_l", 2, 4, 1)
 	else:
 		wall_side = -1 
-		play_anim_blend("wall_slide_r", 2, 3, 1)
+		play_anim_blend("wall_slide_r", 2, 4, 1)
 	
 	camera_controller.set_offset_smoothing("mid")
 	
@@ -38,10 +38,11 @@ func exit():
 	camera_controller.set_offset_smoothing("slow")
 	
 	player.model_twist_override_angle = -999
+	
 func process_frame(delta: float):
 	var dir = player.wall_normal.rotated(Vector3.UP, PI/2*wall_side)
 	var angle_dir: float = atan2(dir.x, dir.z) + -PI
-	player.model_twist_override_angle = lerp_angle(player.model_twist_override_angle, angle_dir, 9 * delta)
+	player.model_twist_override_angle = lerp_angle(player.model_twist_override_angle, angle_dir, 18 * delta)
 	
 func process_physics(delta: float):
 	last_wall_normal = player.wall_normal
