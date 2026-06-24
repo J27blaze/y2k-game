@@ -90,6 +90,7 @@ var jump_stage: int = 0
 @export_group("triple_jump")
 @export_range(0, 50, 0.05) var triple_jump_vel_pulse: float = 10.
 @export_range(0, 1, 0.001) var triple_jump_vel_cut: float = 10.
+@export_range(0, 10, 0.05) var triple_jump_min_speed: float = 5.
 
 #endregion
 #region wall slide
@@ -312,6 +313,7 @@ func state_landing_check() -> bool:
 	else:
 		return false
 
+#stage jumps
 @onready var jump_stage_timer := $jump_stage_timer
 func increment_jump_stage() -> void:
 	if jump_stage >= 3:
@@ -329,7 +331,11 @@ func state_jump() -> bool:
 			2:
 				stage = "double_"
 			3:
-				stage = "triple_"
+				if speed > triple_jump_min_speed:
+					stage = "triple_"
+				else:
+					stage = ""
+					jump_stage = 0
 			_:
 				stage = ""
 		state_machine.change_state(stage + "jump")

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0ia14ctlc5uj"]
+
+[ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_bgrhv"]
+[ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="2_h1awx"]
+[ext_resource type="PackedScene" uid="uid://d2cn816da5l7d" path="res://Enemies/Test Ground Enemy/test_ground_enemy.tscn" id="4_k41yu"]
+
+[node name="TestScene2" type="Node3D"]
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -3, -39)
+material_override = ExtResource("1_bgrhv")
+use_collision = true
+size = Vector3(14, 6, 27)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -51)
+material_override = ExtResource("1_bgrhv")
+use_collision = true
+size = Vector3(4, 12, 51)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -1.5, -64.5)
+material_override = ExtResource("1_bgrhv")
+use_collision = true
+size = Vector3(14, 9, 24)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -0.53125, -53.5)
+material_override = ExtResource("1_bgrhv")
+use_collision = true
+radius = 6.0
+height = 20.6875
+sides = 16
+
+[node name="test_ground_enemy" parent="." instance=ExtResource("4_k41yu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -64)
+
+[node name="Player" parent="." instance=ExtResource("2_h1awx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -33)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1.1920928e-07, -0.8660255, 0.4999999, 2.7805946e-08, 0.49999994, 0.86602545, -1, -8.933531e-08, 8.3685286e-08, 22.943048, 21.728518, 25.249004)
+shadow_enabled = true
