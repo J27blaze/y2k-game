@@ -11,8 +11,9 @@ radius = 0.8
 [node name="TestEnemy" type="CharacterBody3D" node_paths=PackedStringArray("visibility_notif")]
 collision_layer = 4
 script = ExtResource("1_vraic")
-start_health = 1.0
 visibility_notif = NodePath("VisibleOnScreenEnabler3D")
+start_health = 1.0
+gravity = 0.0
 
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

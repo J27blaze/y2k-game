@@ -346,25 +346,10 @@ func state_jump() -> bool:
 func state_dodge_check() -> bool:
 	if input_handler.is_action_buffered("dodge") && air_dodges > 0:
 		match state_machine.current_state.name:
-			"jump":
-				state_machine.change_state("air_dodge", "air")
-				return true
-			"wall_slide_jump":
-				state_machine.change_state("air_dodge", "air")
-				return true
-			"fall":
-				state_machine.change_state("air_dodge", "air")
-				return true
-			"run":
+			"run", "idle", "slide":
 				state_machine.change_state("ground_dodge", "ground")
 				return true
-			"idle":
-				state_machine.change_state("ground_dodge", "ground")
-				return true
-			"slide":
-				state_machine.change_state("ground_dodge", "ground")
-				return true
-			_:
+			"jump", "wall_slide_jump", "fall", _:
 				state_machine.change_state("air_dodge", "air")
 				return true
 	else:
@@ -443,6 +428,7 @@ func hit_check() -> bool:
 	return false
 	
 func state_tumble_check() -> bool:
+	#GENUINLY WTF DOES THIS MEAN LOLLLLLOLOLOLOLOLOOLOPL
 	if can_check_hurt_box:
 		if hurt_box.has_overlapping_areas():
 			if hit_boxes[0].tumble:
@@ -450,7 +436,22 @@ func state_tumble_check() -> bool:
 				#add tumble state
 				return true
 	return false
+
+func state_weapon_attack_check() -> bool:
+	#Append some actions onto a state
+	if input_handler.is_action_buffered("weapon_buffered"):
+		match state_machine.current_state.name:
+			"idle", "run":
+				#IDK where to start hoe
+				return true
+			_:
+				return false 
+		#general attack, used for most instanaces,
+		
+		#special attack, a entire new state.
 	
+	return false
+
 func on_hit() -> void:
 	set_hurt_box(false)
 	on_hurt_timer.start()

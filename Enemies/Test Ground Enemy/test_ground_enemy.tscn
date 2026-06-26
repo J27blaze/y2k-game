@@ -16,6 +16,8 @@ radius = 0.6
 collision_layer = 4
 script = ExtResource("1_vtnxe")
 visibility_notif = NodePath("VisibleOnScreenEnabler3D")
+start_health = 1.0
+gravity = 15.25
 
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
