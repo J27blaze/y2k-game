@@ -74,6 +74,12 @@ func process_physics(delta: float):
 		speed = clampf(player.speed, player.dodge_min_speed + player.dodge_add_speed, 999999)
 	else:
 		speed = lerpf(speed, player.target_speed, player.dodge_accel_speed * delta)
+		
+		#match data:
+		#	"ground":
+		#		if Input.is_action_pressed("slide"):
+		#			change_state("slide")
+		#		return
 	
 	final_dir = input_dir * speed
 	

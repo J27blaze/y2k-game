@@ -34,7 +34,7 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_p5o4e"]
 _limits = [0.0, 1.0, -1.0, 1.0]
-_data = [Vector2(-1, 0.95), 0.0, 0.050000016, 0, 1, Vector2(1.4901161e-08, 1), 0.050000016, 0.0, 1, 0]
+_data = [Vector2(-1, 1), 0.0, 0.0, 0, 1, Vector2(1.4901161e-08, 1), 0.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_lfmf2"]
@@ -122,7 +122,7 @@ perfect_slide_after_frame_window = 4.0
 perfect_slide_speed_boost = 0.5
 perfect_slide_speed_boost_scaling = SubResource("Curve_apopc")
 dodge_min_speed = 9.45
-dodge_add_speed = 6.6
+dodge_add_speed = 8.0
 dodge_accel_speed = 14.05
 dodge_initial_redirect_frame = 3
 dodge_angle_clamp = SubResource("Curve_p5o4e")
@@ -342,7 +342,6 @@ collision_mask = 12
 [node name="shape" type="CollisionShape3D" parent="model_twist/weapon_hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 shape = SubResource("SphereShape3D_7emwf")
-disabled = true
 debug_color = Color(0.95304054, 1.2513996e-06, 0.55806845, 0.41960785)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]

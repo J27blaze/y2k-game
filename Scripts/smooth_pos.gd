@@ -9,10 +9,11 @@ func _ready() -> void:
 	target_position = target.global_position
 	position = target_position
 
-func _physics_process(delta: float) -> void:
-	target_position = target.global_position
+#func _physics_process(delta: float) -> void:
+#	target_position = target.global_position
 
 func _process(delta: float) -> void:
+	target_position = target.global_position
 	# Get the fraction of the physics tick currently being processed (0.0 to 1.0)
 	var interpolation_fraction: float = Engine.get_physics_interpolation_fraction()
 	
