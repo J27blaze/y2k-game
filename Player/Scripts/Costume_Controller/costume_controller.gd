@@ -24,6 +24,8 @@ func get_all_meshes(node, filter=null):
 @export var attachable_offset: Dictionary[String, Vector3]
 var attachable_points: Dictionary[String, Node]
 
+@export var deform_attachables: Dictionary[String, PackedScene]
+
 func get_attach_points():
 	for scene in attachables:
 		attachable_points[scene] = player_scene.find_child(scene, true)
