@@ -324,8 +324,11 @@ target = NodePath("..")
 
 [node name="angel_body_final" parent="model_twist" instance=ExtResource("16_o28un")]
 
-[node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("player_scene") instance=ExtResource("15_pisgm")]
-player_scene = NodePath("../angel_body_final")
+[node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent") instance=ExtResource("16_n471f")]
+parent = NodePath("../angel_body_final")
+
+[node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("anim_controller") instance=ExtResource("15_pisgm")]
+anim_controller = NodePath("../animation_controller")
 attachables = Dictionary[String, PackedScene]({
 "weapon": ExtResource("16_7emwf")
 })
@@ -336,10 +339,6 @@ deform_attachables = Dictionary[String, ExtResource("19_gpjlu")]({
 "pants": ExtResource("20_8mwp6")
 })
 skin_colour = Color(0.4700758, 0.47007585, 0.47007567, 1)
-
-[node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent") instance=ExtResource("16_n471f")]
-parent = NodePath("../angel_body_final")
-delete_skeleton = false
 
 [node name="weapon_hitbox" type="Area3D" parent="model_twist"]
 collision_layer = 0

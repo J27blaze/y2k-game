@@ -1,6 +1,8 @@
 extends Node
 class_name CostumeController
 
+#MAKE SURE THIS IS IN ORDER TO THE PLAYER_FINAL FILE
+#AS SORTING THRU JUST USES INDEX, NOTHING ELSE
 var parts = [
 	"body",
 	"feet",
@@ -8,20 +10,21 @@ var parts = [
 	"head",
 	"lower_arm_l",
 	"lower_arm_r",
-	"upper_arm_l",
-	"upper_arm_r",
 	"neck",
 	"shin_l",
 	"shin_r",
 	"thigh_l",
-	"thigh_r"
+	"thigh_r",
+	"upper_arm_l",
+	"upper_arm_r"
 ]
 
-@export var player_scene: Node
+@export var anim_controller: Node
+@onready var player_scene = anim_controller.mesh_skeleton
 @onready var meshes = get_all_meshes(player_scene)
-@onready var player_skeleton := player_scene.find_child("Skeleton3D", true)
+#@onready var player_skeleton = player_scene.find_child("MeshSkeleton3D", true)
 
-func get_all_meshes(node, filter=null):
+func get_all_meshes(node, filter=null) :
 	var meshes = []
 	if filter == null:
 		
@@ -45,12 +48,12 @@ var attachable_points: Dictionary[String, Node]
 
 func get_attach_points():
 	for scene in attachables:
-		attachable_points[scene] = player_scene.find_child(scene, true)
+		attachable_points[scene] = player_scene.find_child(scene, false, false)
 		#print(scene)
-	#print(attachable_points)
+		#print(player_scene.get_tree_string())
 		
 func attach_mesh(bone_name: String):
-	if attachables.has(bone_name) && attachables.has(bone_name):
+	if attachables.has(bone_name):
 		var attach = attachables[bone_name].instantiate()
 		attach.position += attachable_offset[bone_name]
 		attachable_points[bone_name].add_child(attach)
@@ -78,14 +81,13 @@ func attach_deform(attach: String):
 	var deform_attach = resource.scene.instantiate()
 	#set skeleton
 	for mesh in get_all_meshes(deform_attach):
-		mesh.skeleton = player_skeleton.get_path()
-	player_skeleton.add_child(deform_attach)
+		mesh.skeleton = player_scene.get_path()
+	player_scene.add_child(deform_attach)
 	#print(player_skeleton)
 	
-	for part in parts:
-		if resource.get(part):
-			print("HIDDEN")
-			#hides the corridpsoning mesh
+	for i in parts.size()-1:
+		if resource.get(parts[i]):
+			meshes.get(i).visible = false
 	#remove mesh
 
 func set_deform_attachables():
@@ -93,9 +95,18 @@ func set_deform_attachables():
 		attach_deform(scene)
 		
 func _ready() -> void:
-	set_materials()
-	
-	#attachebles
+	print(player_scene.name)
 	get_attach_points()
+	
+	update_costume()
+
+func update_costume():
+	print(meshes)
+	set_materials()
+	#attaches
 	set_attachables()
 	set_deform_attachables()
+
+func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_P):
+		update_costume()

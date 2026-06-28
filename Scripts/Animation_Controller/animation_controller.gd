@@ -8,16 +8,22 @@ class_name AnimationController
 
 @onready var skeleton_animplayer : AnimationPlayer = parent.find_child("AnimationPlayer", false)
 var current_anim: String
-@onready var skeleton : Skeleton3D = parent.find_child("Skeleton3D", true)
-@onready var mesh_skeleton : Skeleton3D = skeleton.duplicate()
+@onready var skeleton : Skeleton3D = parent.find_child("Skeleton3D", true) # orignial
+@onready var mesh_skeleton : Skeleton3D = skeleton.duplicate() # copy
 
 var bone_count: int = 0
 
 var debug_status: String = ""
+var costume_controller = CostumeController.new()
 
 func _ready() -> void:
+	mesh_skeleton.name = "MeshSkeleton3D"
 	parent.add_child(mesh_skeleton)
-	#print(skeleton.get_children())
+	#print(mesh_skeleton.name)
+	
+	#mesh_skeleton.get_children()
+	for mesh in costume_controller.get_all_meshes(mesh_skeleton):
+		mesh.skeleton = mesh_skeleton.get_path()
 	
 	#delete acess mesh
 	if delete_skeleton:

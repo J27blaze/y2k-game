@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjruuwp13bghm"]
+[gd_scene load_steps=3 format=3 uid="uid://h0cloayk0wr6"]
 
-[ext_resource type="PackedScene" uid="uid://dqsk08e3hmgpj" path="res://Player/Assets/Costumes/Pants/Default_Jeans/default_jeans.glb" id="1_ythul"]
-[ext_resource type="Material" uid="uid://c1avy7rikowgf" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans.tres" id="2_ruauw"]
+[ext_resource type="PackedScene" uid="uid://ch7ub2xka3tmx" path="res://Player/Assets/Costumes/Pants/Default_Jeans/default_jeans.glb" id="1_h7l45"]
+[ext_resource type="Material" uid="uid://c1avy7rikowgf" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans.tres" id="2_tyvtm"]
 
-[node name="default_jeans" instance=ExtResource("1_ythul")]
+[node name="default_jeans" instance=ExtResource("1_h7l45")]
 
 [node name="Default Pants" parent="rig/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("2_ruauw")
+surface_material_override/0 = ExtResource("2_tyvtm")
