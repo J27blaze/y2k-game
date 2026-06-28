@@ -1,8 +1,25 @@
 extends Node
 class_name CostumeController
 
+var parts = [
+	"body",
+	"feet",
+	"hands",
+	"head",
+	"lower_arm_l",
+	"lower_arm_r",
+	"upper_arm_l",
+	"upper_arm_r",
+	"neck",
+	"shin_l",
+	"shin_r",
+	"thigh_l",
+	"thigh_r"
+]
+
 @export var player_scene: Node
 @onready var meshes = get_all_meshes(player_scene)
+@onready var player_skeleton := player_scene.find_child("Skeleton3D", true)
 
 func get_all_meshes(node, filter=null):
 	var meshes = []
@@ -24,7 +41,7 @@ func get_all_meshes(node, filter=null):
 @export var attachable_offset: Dictionary[String, Vector3]
 var attachable_points: Dictionary[String, Node]
 
-@export var deform_attachables: Dictionary[String, PackedScene]
+@export var deform_attachables: Dictionary[String, DeformClothing]
 
 func get_attach_points():
 	for scene in attachables:
@@ -56,9 +73,29 @@ func set_attachables():
 	for scene in attachables:
 		attach_mesh(scene)
 
+func attach_deform(attach: String):
+	var resource = deform_attachables[attach]
+	var deform_attach = resource.scene.instantiate()
+	#set skeleton
+	for mesh in get_all_meshes(deform_attach):
+		mesh.skeleton = player_skeleton.get_path()
+	player_skeleton.add_child(deform_attach)
+	#print(player_skeleton)
+	
+	for part in parts:
+		if resource.get(part):
+			print("HIDDEN")
+			#hides the corridpsoning mesh
+	#remove mesh
+
+func set_deform_attachables():
+	for scene in deform_attachables:
+		attach_deform(scene)
+		
 func _ready() -> void:
 	set_materials()
 	
 	#attachebles
 	get_attach_points()
 	set_attachables()
+	set_deform_attachables()

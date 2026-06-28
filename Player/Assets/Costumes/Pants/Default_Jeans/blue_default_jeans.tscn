@@ -5,5 +5,5 @@
 
 [node name="default_jeans" instance=ExtResource("1_ythul")]
 
-[node name="Default Pants" parent="." index="0"]
+[node name="Default Pants" parent="rig/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_ruauw")

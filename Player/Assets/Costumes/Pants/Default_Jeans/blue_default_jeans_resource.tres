@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DeformClothing" load_steps=3 format=3 uid="uid://c5s2yrpnmkol3"]
+
+[ext_resource type="PackedScene" uid="uid://cjruuwp13bghm" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans.tscn" id="1_psex8"]
+[ext_resource type="Script" uid="uid://dw8ebs1h7ueu1" path="res://Player/Assets/Costumes/deform_clothing.gd" id="1_sraon"]
+
+[resource]
+script = ExtResource("1_sraon")
+display_name = "Dark Blue Jeans"
+scene = ExtResource("1_psex8")
+shin_l = true
+shin_r = true
+thigh_l = true
+thigh_r = true
+metadata/_custom_type_script = "uid://dw8ebs1h7ueu1"
