@@ -40,8 +40,7 @@ func get_all_meshes(node, filter=null) :
 		
 	return meshes
 
-@export var attachables: Dictionary[String, PackedScene]
-@export var attachable_offset: Dictionary[String, Vector3]
+@export var attachables: Dictionary[String, AttachClothing]
 var attachable_points: Dictionary[String, Node]
 
 @export var deform_attachables: Dictionary[String, DeformClothing]
@@ -54,8 +53,8 @@ func get_attach_points():
 		
 func attach_mesh(bone_name: String):
 	if attachables.has(bone_name):
-		var attach = attachables[bone_name].instantiate()
-		attach.position += attachable_offset[bone_name]
+		var attach = attachables[bone_name].scene.instantiate()
+		attach.position += attachables[bone_name].offset
 		attachable_points[bone_name].add_child(attach)
 		
 @export var skin_colour: Color = Color.GRAY

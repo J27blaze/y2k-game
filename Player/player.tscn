@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=36 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -17,12 +17,13 @@
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
 [ext_resource type="Script" uid="uid://ba11m7xme40oe" path="res://Scripts/smooth_pos.gd" id="15_7emwf"]
 [ext_resource type="PackedScene" uid="uid://be173wjp7au20" path="res://Player/Scripts/Costume_Controller/costume_controller.tscn" id="15_pisgm"]
-[ext_resource type="PackedScene" uid="uid://drfs17egjbdsw" path="res://Player/Assets/Scythes/Default/scythe.tscn" id="16_7emwf"]
 [ext_resource type="PackedScene" uid="uid://d1nfk70qrelol" path="res://Scripts/Animation_Controller/animation_controller.tscn" id="16_n471f"]
 [ext_resource type="PackedScene" uid="uid://dpb57wbuxquio" path="res://Player/Assets/PlayerFinal/angel_body_final.tscn" id="16_o28un"]
+[ext_resource type="Script" uid="uid://c2p2ghygdxqr7" path="res://Player/Assets/Costumes/attach_clothing.gd" id="19_8mwp6"]
 [ext_resource type="Script" uid="uid://dw8ebs1h7ueu1" path="res://Player/Assets/Costumes/deform_clothing.gd" id="19_gpjlu"]
 [ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="19_o28un"]
 [ext_resource type="Resource" uid="uid://c5s2yrpnmkol3" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans_resource.tres" id="20_8mwp6"]
+[ext_resource type="Resource" uid="uid://cqrn02h02jjk0" path="res://Player/Assets/Scythes/Default/default_scythe.tres" id="20_qemgg"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -329,11 +330,8 @@ parent = NodePath("../angel_body_final")
 
 [node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("anim_controller") instance=ExtResource("15_pisgm")]
 anim_controller = NodePath("../animation_controller")
-attachables = Dictionary[String, PackedScene]({
-"weapon": ExtResource("16_7emwf")
-})
-attachable_offset = Dictionary[String, Vector3]({
-"weapon": Vector3(0, -1.3, 0)
+attachables = Dictionary[String, ExtResource("19_8mwp6")]({
+"weapon": ExtResource("20_qemgg")
 })
 deform_attachables = Dictionary[String, ExtResource("19_gpjlu")]({
 "pants": ExtResource("20_8mwp6")
