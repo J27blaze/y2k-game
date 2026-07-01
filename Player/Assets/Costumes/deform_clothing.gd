@@ -7,6 +7,8 @@ extends Resource
 
 @export_group("Hidden Body Parts")
 @export var body: bool = false
+@export var body_lower: bool = false
+@export var calvicles: bool = false
 @export var feet: bool = false
 @export var hands: bool = false
 @export var head: bool = false

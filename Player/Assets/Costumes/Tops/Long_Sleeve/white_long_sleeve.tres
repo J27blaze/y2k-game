@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DeformClothing" load_steps=3 format=3 uid="uid://bhsugdyfxpyjy"]
+
+[ext_resource type="Script" uid="uid://dw8ebs1h7ueu1" path="res://Player/Assets/Costumes/deform_clothing.gd" id="1_f8if2"]
+[ext_resource type="PackedScene" uid="uid://dye732aamev6y" path="res://Player/Assets/Costumes/Tops/Long_Sleeve/white_long_sleeve.tscn" id="1_nix3x"]
+
+[resource]
+script = ExtResource("1_f8if2")
+display_name = "White Long Sleeve Top"
+scene = ExtResource("1_nix3x")
+body = true
+upper_arm_l = true
+upper_arm_r = true
+metadata/_custom_type_script = "uid://dw8ebs1h7ueu1"

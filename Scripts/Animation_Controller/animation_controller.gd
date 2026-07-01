@@ -80,7 +80,7 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 	#skeleton_animplayer.pause()
 	skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
 	
-	#skeleton_animplayer.advance(0)
+	skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
 
 func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:

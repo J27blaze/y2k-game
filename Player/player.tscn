@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=37 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="19_o28un"]
 [ext_resource type="Resource" uid="uid://c5s2yrpnmkol3" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans_resource.tres" id="20_8mwp6"]
 [ext_resource type="Resource" uid="uid://cqrn02h02jjk0" path="res://Player/Assets/Scythes/Default/default_scythe.tres" id="20_qemgg"]
+[ext_resource type="Resource" uid="uid://bhsugdyfxpyjy" path="res://Player/Assets/Costumes/Tops/Long_Sleeve/white_long_sleeve.tres" id="23_qemgg"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -327,6 +328,7 @@ target = NodePath("..")
 
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
+delete_skeleton = false
 
 [node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("anim_controller") instance=ExtResource("15_pisgm")]
 anim_controller = NodePath("../animation_controller")
@@ -334,7 +336,8 @@ attachables = Dictionary[String, ExtResource("19_8mwp6")]({
 "weapon": ExtResource("20_qemgg")
 })
 deform_attachables = Dictionary[String, ExtResource("19_gpjlu")]({
-"pants": ExtResource("20_8mwp6")
+"pants": ExtResource("20_8mwp6"),
+"top": ExtResource("23_qemgg")
 })
 skin_colour = Color(0.4700758, 0.47007585, 0.47007567, 1)
 

@@ -1,10 +1,12 @@
 extends Node
 class_name CostumeController
 
-#MAKE SURE THIS IS IN ORDER TO THE PLAYER_FINAL FILE
-#AS SORTING THRU JUST USES INDEX, NOTHING ELSE
+# MAKE SURE THIS IS IN ORDER TO THE PLAYER_FINAL FILE
+# AS SORTING THRU JUST USES INDEX, NOTHING ELSE
 var parts = [
 	"body",
+	"body_lower",
+	"clavicles",
 	"feet",
 	"hands",
 	"head",
@@ -84,9 +86,11 @@ func attach_deform(attach: String):
 	player_scene.add_child(deform_attach)
 	#print(player_skeleton)
 	
-	for i in parts.size()-1:
+	for i in parts.size():
 		if resource.get(parts[i]):
 			meshes.get(i).visible = false
+			#print(meshes.get(i).name)
+	
 	#remove mesh
 
 func set_deform_attachables():

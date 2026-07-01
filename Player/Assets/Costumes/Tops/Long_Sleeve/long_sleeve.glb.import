@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmuvy24pt1bi6"
-path="res://.godot/imported/default_jeans.glb-f0a0be749526c845c5948b7774838935.scn"
+uid="uid://cxdh75j5s6dl"
+path="res://.godot/imported/long_sleeve.glb-cb4d45a0aebbc70a4c5a840828f8d5b8.scn"
 
 [deps]
 
-source_file="res://Player/Assets/PlayerFinal/default_jeans.glb"
-dest_files=["res://.godot/imported/default_jeans.glb-f0a0be749526c845c5948b7774838935.scn"]
+source_file="res://Player/Assets/Costumes/Tops/Long_Sleeve/long_sleeve.glb"
+dest_files=["res://.godot/imported/long_sleeve.glb-cb4d45a0aebbc70a4c5a840828f8d5b8.scn"]
 
 [params]
 

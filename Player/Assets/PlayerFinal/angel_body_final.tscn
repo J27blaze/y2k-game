@@ -28,38 +28,44 @@ shader_parameter/iris_colour = Color(1, 0, 0, 1)
 [node name="body" parent="rig/Skeleton3D" index="1" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="feet" parent="rig/Skeleton3D" index="2" groups=["material_updateable"]]
+[node name="body_lower" parent="rig/Skeleton3D" index="2" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="hands" parent="rig/Skeleton3D" index="3" groups=["material_updateable"]]
+[node name="clavicles" parent="rig/Skeleton3D" index="3" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="head" parent="rig/Skeleton3D" index="4" groups=["material_updateable"]]
+[node name="feet" parent="rig/Skeleton3D" index="4" groups=["material_updateable"]]
+surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+
+[node name="hands" parent="rig/Skeleton3D" index="5" groups=["material_updateable"]]
+surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+
+[node name="head" parent="rig/Skeleton3D" index="6" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_vyejp")
 
-[node name="lower_arm_l" parent="rig/Skeleton3D" index="5" groups=["material_updateable"]]
+[node name="lower_arm_l" parent="rig/Skeleton3D" index="7" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="lower_arm_r" parent="rig/Skeleton3D" index="6" groups=["material_updateable"]]
+[node name="lower_arm_r" parent="rig/Skeleton3D" index="8" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="neck" parent="rig/Skeleton3D" index="7" groups=["material_updateable"]]
+[node name="neck" parent="rig/Skeleton3D" index="9" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="shin_l" parent="rig/Skeleton3D" index="8" groups=["material_updateable"]]
+[node name="shin_l" parent="rig/Skeleton3D" index="10" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="shin_r" parent="rig/Skeleton3D" index="9" groups=["material_updateable"]]
+[node name="shin_r" parent="rig/Skeleton3D" index="11" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="thigh_l" parent="rig/Skeleton3D" index="10" groups=["material_updateable"]]
+[node name="thigh_l" parent="rig/Skeleton3D" index="12" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="thigh_r" parent="rig/Skeleton3D" index="11" groups=["material_updateable"]]
+[node name="thigh_r" parent="rig/Skeleton3D" index="13" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="upper_arm_l" parent="rig/Skeleton3D" index="12" groups=["material_updateable"]]
+[node name="upper_arm_l" parent="rig/Skeleton3D" index="14" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
 
-[node name="upper_arm_r" parent="rig/Skeleton3D" index="13" groups=["material_updateable"]]
+[node name="upper_arm_r" parent="rig/Skeleton3D" index="15" groups=["material_updateable"]]
 surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
