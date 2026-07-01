@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="19_o28un"]
 [ext_resource type="Resource" uid="uid://c5s2yrpnmkol3" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans_resource.tres" id="20_8mwp6"]
 [ext_resource type="Resource" uid="uid://cqrn02h02jjk0" path="res://Player/Assets/Scythes/Default/default_scythe.tres" id="20_qemgg"]
-[ext_resource type="Resource" uid="uid://bhsugdyfxpyjy" path="res://Player/Assets/Costumes/Tops/Long_Sleeve/white_long_sleeve.tres" id="23_qemgg"]
+[ext_resource type="Resource" uid="uid://bhsugdyfxpyjy" path="res://Player/Assets/Costumes/Tops/Long_Sleeve/white_long_sleeve_resource.tres" id="23_qemgg"]
 
 [sub_resource type="Curve" id="Curve_00tjw"]
 _limits = [0.0, 1.0, 0.0, 5.0]

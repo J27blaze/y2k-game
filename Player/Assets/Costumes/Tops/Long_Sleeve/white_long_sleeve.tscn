@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dye732aamev6y"]
+[gd_scene load_steps=3 format=3 uid="uid://dye732aamev6y"]
 
 [ext_resource type="PackedScene" uid="uid://cxdh75j5s6dl" path="res://Player/Assets/Costumes/Tops/Long_Sleeve/long_sleeve.glb" id="1_x1d58"]
+[ext_resource type="Material" uid="uid://dwuhpw8plx6no" path="res://Player/Assets/Costumes/Tops/Long_Sleeve/white_long_sleeve.tres" id="2_f6ios"]
 
 [node name="long_sleeve2" instance=ExtResource("1_x1d58")]
+
+[node name="long_sleeve" parent="rig/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_f6ios")
