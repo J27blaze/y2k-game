@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="y2k_game"
-run/main_scene="uid://b0ia14ctlc5uj"
+run/main_scene="uid://d06ffiscqvn0t"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,6 +29,7 @@ window/stretch/aspect="ignore"
 
 folder_colors={
 "res://Enemies/": "red",
+"res://Levels/": "yellow",
 "res://Player/": "blue",
 "res://Player/Assets/Player/": "yellow",
 "res://Player/Assets/PlayerFinal/": "teal",
@@ -36,6 +37,10 @@ folder_colors={
 "res://addons/": "gray",
 "res://examples_dd3d/": "gray"
 }
+
+[global]
+
+shadows_enabled=false
 
 [importer_defaults]
 
@@ -175,4 +180,4 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
-environment/defaults/default_clear_color=Color(0.3882353, 0.7058824, 1, 1)
+environment/defaults/default_clear_color=Color(0.6094101, 0.8611989, 1, 1)

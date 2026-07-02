@@ -63,7 +63,7 @@ func attach_mesh(bone_name: String):
 @export var iris_colour: Color = Color.RED
 
 func color2vec(color: Color) -> Vector3:
-	return Vector3(color.r, color.b, color.g)
+	return Vector3(color.r, color.g, color.b)
 
 func set_materials():
 	#skin colour

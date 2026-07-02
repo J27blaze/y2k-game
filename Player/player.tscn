@@ -95,7 +95,7 @@ air_target_speed_margin = 1.0
 air_target_speed_accel = 1.5
 double_jump_vel_pulse = 9.5
 double_jump_vel_cut = 0.655
-triple_jump_vel_pulse = 11.5
+triple_jump_vel_pulse = 12.0
 triple_jump_vel_cut = 1.0
 triple_jump_min_speed = 5.9
 wall_slide_y_vel_cut = 0.14
@@ -104,7 +104,7 @@ wall_slide_angle_range = 165.0
 wall_slide_angle_threshold = 0.0
 wall_slide_direction_threshold = 0.0
 wall_slide_speed = 1.3
-wall_slide_min_speed = 0.1
+wall_slide_min_speed = 4.5
 wall_slide_gravity = 4.0
 wall_slide_pull_force = 5.0
 camera_wall_slide_offset = 2.235
@@ -117,7 +117,7 @@ wall_slide_jump_accel = 12.0
 wall_slide_jump_inital_accel_frames = 8.0
 slide_friction = 0.999
 slide_friction_start_time = 15.0
-slide_handling = 0.63
+slide_handling = 0.9
 slide_min_speed = 10.0
 slide_tangent_scaling = 24.645
 slide_tangent_max_speed = 15.0
@@ -166,10 +166,10 @@ slow_offset_smoothing = 3.3
 [node name="camera_twist" type="Node3D" parent="player_camera_controller"]
 
 [node name="camera_pitch" type="Node3D" parent="player_camera_controller/camera_twist"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.348071, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8627555, 0)
 
 [node name="Camera3D" type="Camera3D" parent="player_camera_controller/camera_twist/camera_pitch"]
-transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237617e-14, -1.5142069e-07, 0, 1, 0, 0, 4.3883185)
+transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237617e-14, -1.5142069e-07, 0, 1, 0, 0, 3.8930988)
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
@@ -328,7 +328,6 @@ target = NodePath("..")
 
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
-delete_skeleton = false
 
 [node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("anim_controller") instance=ExtResource("15_pisgm")]
 anim_controller = NodePath("../animation_controller")
@@ -339,7 +338,8 @@ deform_attachables = Dictionary[String, ExtResource("19_gpjlu")]({
 "pants": ExtResource("20_8mwp6"),
 "top": ExtResource("23_qemgg")
 })
-skin_colour = Color(0.4700758, 0.47007585, 0.47007567, 1)
+skin_colour = Color(0.7747583, 0.75273484, 0.20942014, 1)
+iris_colour = Color(0.022200001, 0.1381334, 0.37, 1)
 
 [node name="weapon_hitbox" type="Area3D" parent="model_twist"]
 collision_layer = 0
