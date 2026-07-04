@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttachClothing" load_steps=3 format=3 uid="uid://bcb3vbtbjquhf"]
+
+[ext_resource type="PackedScene" uid="uid://bmlqrqcet7jbp" path="res://Player/Assets/Costumes/Hair/Hair_1/hair_1.tscn" id="1_1omxx"]
+[ext_resource type="Script" uid="uid://c2p2ghygdxqr7" path="res://Player/Assets/Costumes/attach_clothing.gd" id="2_xwd4w"]
+
+[resource]
+script = ExtResource("2_xwd4w")
+display_name = "Hair 1"
+scene = ExtResource("1_1omxx")
+connected_bone = "hair"
+metadata/_custom_type_script = "uid://c2p2ghygdxqr7"

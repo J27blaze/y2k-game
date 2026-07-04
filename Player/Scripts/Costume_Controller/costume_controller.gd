@@ -49,7 +49,7 @@ var attachable_points: Dictionary[String, Node]
 
 func get_attach_points():
 	for scene in attachables:
-		attachable_points[scene] = player_scene.find_child(scene, false, false)
+		attachable_points[scene] = player_scene.find_child(scene, true, false)
 		#print(scene)
 		#print(player_scene.get_tree_string())
 		
@@ -59,19 +59,26 @@ func attach_mesh(bone_name: String):
 		attach.position += attachables[bone_name].offset
 		attachable_points[bone_name].add_child(attach)
 		
+		#hair
+		if bone_name == "hair":
+			hair_scene = attach
+		
 @export var skin_colour: Color = Color.GRAY
 @export var iris_colour: Color = Color.RED
-
-func color2vec(color: Color) -> Vector3:
-	return Vector3(color.r, color.g, color.b)
+@export var hair_colour: Color = Color.BROWN
+var hair_scene
 
 func set_materials():
 	#skin colour
 	for mesh in meshes:
-		mesh.get_active_material(0).set_shader_parameter("skin_colour", color2vec(skin_colour))
+		mesh.get_active_material(0).set_shader_parameter("skin_colour", skin_colour)
 	var head = get_all_meshes(player_scene, "head")
 	for mesh in head:
-		mesh.get_active_material(0).set_shader_parameter("iris_colour", color2vec(iris_colour))
+		mesh.get_active_material(0).set_shader_parameter("iris_colour", iris_colour)
+		
+	#hair
+	#print(get_all_meshes(hair_scene))
+	get_all_meshes(hair_scene)[0].get_active_material(0).set_shader_parameter("hair_colour", hair_colour)
 
 func set_attachables():
 	for scene in attachables:
@@ -98,18 +105,20 @@ func set_deform_attachables():
 		attach_deform(scene)
 		
 func _ready() -> void:
-	print(player_scene.name)
+	#print(player_scene.name)
 	get_attach_points()
 	
 	update_costume()
 
 func update_costume():
-	print(meshes)
-	set_materials()
+	#print(meshes)
 	#attaches
 	set_attachables()
 	set_deform_attachables()
+	# meow
+	set_materials()
 
 func _process(delta: float) -> void:
+	# DEBUG
 	if Input.is_key_pressed(KEY_P):
 		update_costume()
