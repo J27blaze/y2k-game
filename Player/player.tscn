@@ -340,9 +340,9 @@ deform_attachables = Dictionary[String, ExtResource("19_gpjlu")]({
 "pants": ExtResource("20_8mwp6"),
 "top": ExtResource("23_qemgg")
 })
-skin_colour = Color(0.85812604, 0.6248933, 0.2945218, 1)
-iris_colour = Color(0.022200001, 0.1381334, 0.37, 1)
-hair_colour = Color(1, 0, 0, 1)
+skin_colour = Color(0.47788018, 0.47788018, 0.47788, 1)
+iris_colour = Color(0.46103877, 0.2899209, 0.5304494, 1)
+hair_colour = Color(0.06406576, 0.061906874, 0.083422236, 1)
 
 [node name="weapon_hitbox" type="Area3D" parent="model_twist"]
 collision_layer = 0
