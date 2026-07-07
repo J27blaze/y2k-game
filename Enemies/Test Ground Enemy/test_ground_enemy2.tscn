@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dumgs42yvje05"]
+
+[ext_resource type="Script" uid="uid://d00ms7se02nof" path="res://Enemies/Test Ground Enemy/test_ground_enemy.gd" id="1_7pg7t"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vkkcf"]
+height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vtnxe"]
+radius = 0.75
+
+[node name="test_ground_enemy2" type="CharacterBody3D" node_paths=PackedStringArray("visibility_notif")]
+collision_layer = 4
+script = ExtResource("1_7pg7t")
+visibility_notif = NodePath("VisibleOnScreenEnabler3D")
+start_health = 1.0
+gravity = 15.25
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+enable_node_path = NodePath("../CSGSphere3D")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+radial_segments = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_vkkcf")
+
+[node name="hurtbox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_vtnxe")
+debug_color = Color(3.8023293e-06, 0.6456022, 0.24789327, 0.41960785)

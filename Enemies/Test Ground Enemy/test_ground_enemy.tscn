@@ -39,7 +39,7 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_vtnxe")
-debug_color = Color(0.6833401, 0.50233984, 0, 0.41960785)
+debug_color = Color(3.8023293e-06, 0.6456022, 0.24789327, 0.41960785)
 
 [node name="hit_box" type="Area3D" parent="."]
 collision_layer = 16
@@ -50,3 +50,4 @@ tumble = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hit_box"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_o4jxs")
+debug_color = Color(0.9649026, 3.85046e-07, 0.49285442, 0.41960785)

@@ -161,7 +161,7 @@ func start():
 	player.model_twist_override_angle = atan2(dir.x, dir.z) + -PI
 	var pos_diff: Vector3 = player.centre - target_position
 	var pitch: float = atan2(-pos_diff.y, pos_diff.length())
-	print(pitch)
+	#print(pitch)
 	player.model_pitch = pitch
 #func _on_weapon_hitbox_area_entered(area: Area3D) -> void:
 #	if area.get_parent().is_player_target():
@@ -196,5 +196,7 @@ func process_physics(delta: float):
 	#print(area.get_parent().get_groups())
 	for enemy in enemies:
 		if enemy.get_parent().is_player_target():
+			enemy.get_parent().damage(1)
+			
 			change_state("weapon_dash_hit", dir)
 			return

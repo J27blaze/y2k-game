@@ -171,6 +171,7 @@ weapon_attack={
 3d_physics/layer_3="Enemies"
 3d_physics/layer_4="Dashable"
 3d_physics/layer_5="Enemy_Attacks"
+3d_physics/layer_6="Environment2"
 
 [physics]
 

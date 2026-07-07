@@ -18,11 +18,26 @@ func is_on_screen() -> bool:
 func set_player_target(input: bool):
 	is_players_target = input
 
+func damage(damage: int) -> void:
+	health -= damage
+	print(health)
+	if health <= 0:
+		death()
+
+func death() -> void:
+	#print("sdfsdf")
+	queue_free()
+
 func is_player_target() -> bool:
 	return is_players_target
 
 func _ready() -> void:
 	health = start_health
+	#print(start_health)
+	
+	ready()
+func ready():
+	pass
 
 func _physics_process(delta: float) -> void:
 	if is_players_target:
