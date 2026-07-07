@@ -151,6 +151,7 @@ weapon_dash_hit_y_speed_multiplier = 1.0
 weapon_dash_hit_y_cut = 0.6
 weapon_dash_hit_vel_pulse = 14.0
 weapon_dash_hit_gravity = 30.0
+weapon_dash_damage = 3.0
 weapon_dash_hit_angle_range = 120.0
 weapon_dash_hit_backward_speed = 8.93
 weapon_dash_hit_dot_threshold = -0.19999999999999996

@@ -196,7 +196,7 @@ func process_physics(delta: float):
 	#print(area.get_parent().get_groups())
 	for enemy in enemies:
 		if enemy.get_parent().is_player_target():
-			enemy.get_parent().damage(1)
+			enemy.get_parent().damage(player.weapon_dash_damage)
 			
 			change_state("weapon_dash_hit", dir)
 			return

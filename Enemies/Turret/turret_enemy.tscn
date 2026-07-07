@@ -14,7 +14,7 @@ radius = 0.75
 collision_layer = 36
 script = ExtResource("1_2abw4")
 visibility_notif = NodePath("VisibleOnScreenEnabler3D")
-start_health = 1.0
+start_health = 3.0
 gravity = 0.0
 
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]

@@ -177,6 +177,7 @@ var target: Node = null
 @export_range(0, 1, 0.005) var weapon_dash_hit_y_cut: float = 0.8
 @export_range(0, 50, 0.01) var weapon_dash_hit_vel_pulse: float = 2.
 @export_range(0, 50, 0.01) var weapon_dash_hit_gravity: float = 2.
+@export_range(0, 10, 1) var weapon_dash_damage: float = 1
 @export_subgroup("forward")
 @export_range(0, 360, 0.5) var weapon_dash_hit_angle_range: float = 20.
 @export_subgroup("backward")
@@ -188,7 +189,7 @@ var target: Node = null
 
 func _ready() -> void:
 	#debug
-	DebugDraw3D.set_debug_enabled(true)
+	DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
