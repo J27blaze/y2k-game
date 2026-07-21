@@ -1,7 +1,9 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c1avy7rikowgf"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c1avy7rikowgf"]
 
 [ext_resource type="Texture2D" uid="uid://8ciim2hujhy5" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans.png" id="1_7wnu1"]
+[ext_resource type="Material" uid="uid://b6hor5kjrcaor" path="res://Player/Assets/player_outline_shader.tres" id="2_ebc1p"]
 
 [resource]
+next_pass = ExtResource("2_ebc1p")
 albedo_texture = ExtResource("1_7wnu1")
 texture_filter = 0

@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmlqrqcet7jbp"]
+[gd_scene load_steps=6 format=3 uid="uid://bmlqrqcet7jbp"]
 
 [ext_resource type="PackedScene" uid="uid://df1an6ambhnnh" path="res://Player/Assets/Costumes/Hair/Hair_1/hair_1.glb" id="1_mw0ql"]
+[ext_resource type="Material" uid="uid://b6hor5kjrcaor" path="res://Player/Assets/player_outline_shader.tres" id="2_la6iu"]
 [ext_resource type="Shader" uid="uid://c8ne1tevc2rgx" path="res://Player/Assets/Costumes/Hair/hair_material.tres" id="2_qpobb"]
 [ext_resource type="Texture2D" uid="uid://cwpqh2qs1k2hc" path="res://Player/Assets/Costumes/Hair/hair_map.png" id="3_la6iu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_la6iu"]
 render_priority = 0
+next_pass = ExtResource("2_la6iu")
 shader = ExtResource("2_qpobb")
 shader_parameter/hair_colour = Color(0.861377, 2e-06, 0.479335, 1)
 shader_parameter/hair_map = ExtResource("3_la6iu")

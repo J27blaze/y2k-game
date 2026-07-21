@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpb57wbuxquio"]
+[gd_scene load_steps=11 format=3 uid="uid://dpb57wbuxquio"]
 
 [ext_resource type="PackedScene" uid="uid://dgaleh4a13yg4" path="res://Player/Assets/PlayerFinal/angel_body_final.glb" id="1_fjxwn"]
+[ext_resource type="Material" uid="uid://b6hor5kjrcaor" path="res://Player/Assets/player_outline_shader.tres" id="2_47ctx"]
 [ext_resource type="Shader" uid="uid://cxg6b5w5qeh2j" path="res://Player/Assets/PlayerFinal/angel_skin.tres" id="2_a6kb2"]
 [ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/PlayerFinal/angel_body.png" id="3_tj5kx"]
 [ext_resource type="Shader" uid="uid://dbaha4ojrkd0u" path="res://Player/Assets/PlayerFinal/angel_face.tres" id="4_47ctx"]
@@ -10,12 +11,14 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tj5kx"]
 render_priority = 0
+next_pass = ExtResource("2_47ctx")
 shader = ExtResource("2_a6kb2")
 shader_parameter/skin_colour = Color(0.861377, 2e-06, 0.479335, 1)
 shader_parameter/skin_map = ExtResource("3_tj5kx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vyejp"]
 render_priority = 0
+next_pass = ExtResource("2_47ctx")
 shader = ExtResource("4_47ctx")
 shader_parameter/skin_colour = Color(0.861377, 2e-06, 0.479335, 1)
 shader_parameter/skin_map = ExtResource("7_6axvx")
