@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=39 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://slg4dued7r0d" path="res://Player/Scripts/States/player_weapon_dash_hit.gd" id="13_dkpta"]
 [ext_resource type="Script" uid="uid://ba11m7xme40oe" path="res://Scripts/smooth_pos.gd" id="15_7emwf"]
 [ext_resource type="PackedScene" uid="uid://be173wjp7au20" path="res://Player/Scripts/Costume_Controller/costume_controller.tscn" id="15_pisgm"]
+[ext_resource type="Script" uid="uid://dqyubd0ypssit" path="res://Player/Scripts/States/player_append_attack.gd" id="15_sm0op"]
 [ext_resource type="PackedScene" uid="uid://d1nfk70qrelol" path="res://Scripts/Animation_Controller/animation_controller.tscn" id="16_n471f"]
 [ext_resource type="PackedScene" uid="uid://dpb57wbuxquio" path="res://Player/Assets/PlayerFinal/angel_body_final.tscn" id="16_o28un"]
 [ext_resource type="Script" uid="uid://c2p2ghygdxqr7" path="res://Player/Assets/Costumes/attach_clothing.gd" id="19_8mwp6"]
@@ -115,7 +116,7 @@ wall_slide_jump_speed_increase_scaling = SubResource("Curve_00tjw")
 wall_slide_jump_vel_pulse = 9.65
 wall_slide_jump_min_angle = 35.0
 wall_slide_jump_max_angle = 110.0
-wall_slide_jump_accel = 12.0
+wall_slide_jump_accel = 18.0
 wall_slide_jump_inital_accel_frames = 8.0
 slide_friction = 0.999
 slide_friction_start_time = 15.0
@@ -125,7 +126,7 @@ slide_tangent_scaling = 24.645
 slide_tangent_max_speed = 15.0
 slide_tangent_max_speed_slow = 0.235
 perfect_slide_after_frame_window = 4.0
-perfect_slide_speed_boost = 0.5
+perfect_slide_speed_boost = 0.7
 perfect_slide_speed_boost_scaling = SubResource("Curve_apopc")
 dodge_min_speed = 9.45
 dodge_add_speed = 8.0
@@ -178,6 +179,7 @@ transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237
 script = ExtResource("1_btcbx")
 states = {
 "air_dodge": NodePath("air_dodge"),
+"append_attack": NodePath("append_attack"),
 "dodge_jump": NodePath("dodge_jump"),
 "double_jump": NodePath("double_jump"),
 "fall": NodePath("fall"),
@@ -318,6 +320,14 @@ debug_color = Color(0.953206, 2.5990605e-06, 0.56156665, 0.41960785)
 [node name="weapon_dash_hit" type="Node" parent="state_machine"]
 script = ExtResource("13_dkpta")
 
+[node name="append_attack" type="Node" parent="state_machine"]
+script = ExtResource("15_sm0op")
+
+[node name="timeout" type="Timer" parent="state_machine/append_attack"]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
 [node name="standing_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_00tjw")
@@ -343,7 +353,7 @@ deform_attachables = Dictionary[String, ExtResource("19_gpjlu")]({
 "top": ExtResource("23_qemgg")
 })
 skin_colour = Color(0.47788018, 0.47788018, 0.47788, 1)
-iris_colour = Color(0.46103877, 0.2899209, 0.5304494, 1)
+iris_colour = Color(0.4876305, 0.7179396, 1, 1)
 hair_colour = Color(0.06406576, 0.061906874, 0.083422236, 1)
 
 [node name="weapon_hitbox" type="Area3D" parent="model_twist"]
@@ -482,5 +492,6 @@ player = NodePath("..")
 [connection signal="area_entered" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_entered"]
 [connection signal="area_exited" from="state_machine/weapon_dash/enemy_targeting_collider" to="state_machine/weapon_dash" method="_on_enemy_targeting_collider_area_exited"]
 [connection signal="timeout" from="state_machine/weapon_dash/min_dash_time" to="state_machine/weapon_dash" method="_on_min_dash_time_timeout"]
+[connection signal="timeout" from="state_machine/append_attack/timeout" to="state_machine/append_attack" method="_on_timeout_timeout"]
 [connection signal="timeout" from="jump_stage_timer" to="." method="_on_jump_stage_timer_timeout"]
 [connection signal="timeout" from="on_hurt_timer" to="." method="_on_hurt_timer_timeout"]

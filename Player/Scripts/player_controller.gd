@@ -183,9 +183,13 @@ var target: Node = null
 @export_subgroup("backward")
 @export_range(0, 20, 0.01) var weapon_dash_hit_backward_speed: float = 6.
 @export_range(-1, 1, 0.005) var weapon_dash_hit_dot_threshold: float = 0
-
-
 #endregion
+#region attacks
+var is_attacking: bool = false
+var attack_stage: int = 0
+@onready var append_attack_state : AppendAttackState = $state_machine/append_attack
+#endregion
+
 
 func _ready() -> void:
 	#debug
@@ -414,6 +418,17 @@ func state_weapon_dash_check() -> bool:
 	else:
 		return false
 
+#attack
+func append_weapon_attack(state: String) -> bool:
+	if input_handler.is_action_buffered("weapon_attack") && !is_attacking:
+		input_handler.clear_action_buffer("weapon_attack")
+		
+		#hard coding go crazy
+		append_attack_state.attack(state)
+		
+		return true
+	return false
+
 #hit
 var hit_boxes: Array[Area3D]
 func hit_check() -> bool:
@@ -436,21 +451,6 @@ func state_tumble_check() -> bool:
 				print("tumble")
 				#add tumble state
 				return true
-	return false
-
-func state_weapon_attack_check() -> bool:
-	#Append some actions onto a state
-	if input_handler.is_action_buffered("weapon_buffered"):
-		match state_machine.current_state.name:
-			"idle", "run":
-				#IDK where to start hoe
-				return true
-			_:
-				return false 
-		#general attack, used for most instanaces,
-		
-		#special attack, a entire new state.
-	
 	return false
 
 func on_hit() -> void:

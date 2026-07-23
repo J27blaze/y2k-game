@@ -8,6 +8,7 @@ class_name AnimationController
 
 @onready var skeleton_animplayer : AnimationPlayer = parent.find_child("AnimationPlayer", false)
 var current_anim: String
+var previous_anim: String
 @onready var skeleton : Skeleton3D = parent.find_child("Skeleton3D", true) # orignial
 @onready var mesh_skeleton : Skeleton3D = skeleton.duplicate() # copy
 
@@ -69,6 +70,7 @@ func copy_skeleton_pose() -> void:
 			mesh_skeleton.set_bone_pose(bone_idx, pose)
 			
 func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24) -> void:
+	previous_anim = current_anim
 	#if current_anim != anim_name:
 	current_anim = anim_name
 	if blend_t > 0:
@@ -84,6 +86,7 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 	copy_skeleton_pose()
 
 func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
+	previous_anim = current_anim
 	#if current_anim != anim_name:
 	current_anim = anim_name
 	

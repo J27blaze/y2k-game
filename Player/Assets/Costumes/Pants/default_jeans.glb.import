@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://72huyc352esu"
-path="res://.godot/imported/default_jeans.glb-56df95604b7c70923bc3dc84d6be0c51.scn"
+path="res://.godot/imported/default_jeans.glb-94a4c66afd28f40f784ff89e1e1eca5f.scn"
 
 [deps]
 
-source_file="res://Player/Assets/Costumes/default_jeans.glb"
-dest_files=["res://.godot/imported/default_jeans.glb-56df95604b7c70923bc3dc84d6be0c51.scn"]
+source_file="res://Player/Assets/Costumes/Pants/default_jeans.glb"
+dest_files=["res://.godot/imported/default_jeans.glb-94a4c66afd28f40f784ff89e1e1eca5f.scn"]
 
 [params]
 
