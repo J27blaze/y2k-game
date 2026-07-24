@@ -5,6 +5,7 @@ class_name AnimationController
 
 @export var parent: Node
 @export var delete_skeleton: bool = true
+@export var animation_tree: AnimationTree
 
 @onready var skeleton_animplayer : AnimationPlayer = parent.find_child("AnimationPlayer", false)
 var current_anim: String
@@ -17,9 +18,18 @@ var bone_count: int = 0
 var debug_status: String = ""
 var costume_controller = CostumeController.new()
 
+@export_category("Animation Parameters")
+@export_range(0, 240, 1) var FB := 30
+
+func _init() -> void:
+	pass
 func _ready() -> void:
 	mesh_skeleton.name = "MeshSkeleton3D"
 	parent.add_child(mesh_skeleton)
+	
+	#animation_tree.set_animation_player(get_path_to(skeleton_animplayer))
+	animation_tree.active = true
+	#skeleton_animplayer.play("idle")
 	#print(mesh_skeleton.name)
 	
 	#mesh_skeleton.get_children()
@@ -74,13 +84,15 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 	#if current_anim != anim_name:
 	current_anim = anim_name
 	if blend_t > 0:
-		skeleton_animplayer.play(skeleton_animplayer.current_animation, 0.0) 
+		#fix blend studd, ALL THIS WILL BE PERPICATED SOON
+		#skeleton_animplayer.play(skeleton_animplayer.current_animation, 0.0)
+		pass
 	
 	start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
 	start_t(f2f(blend_frame_length, fb))
 	
 	#skeleton_animplayer.pause()
-	skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
+	#skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
 	
 	skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
@@ -90,14 +102,14 @@ func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
 	#if current_anim != anim_name:
 	current_anim = anim_name
 	
-	skeleton_animplayer.stop() 
+	#skeleton_animplayer.stop() 
 	
 	blend_step_t = 0
 	blend_t = 0
 	start_t(f2f(step_frame_length, fb))
 	
 	#skeleton_animplayer.pause()
-	skeleton_animplayer.play(anim_name, 0.0)
+	#skeleton_animplayer.play(anim_name, 0.0)
 	
 	skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
