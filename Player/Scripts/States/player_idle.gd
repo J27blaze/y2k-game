@@ -4,6 +4,7 @@ func start():
 	print("idle")
 	player.target_speed = 0
 	play_anim_blend("idle", 6, 6, 2)
+	#player.animation_controller.animation_state_machine.travel("idle")
 
 func process_physics(delta: float):
 	if player.direction != Vector3.ZERO:

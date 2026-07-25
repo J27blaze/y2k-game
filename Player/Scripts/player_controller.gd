@@ -53,7 +53,7 @@ var can_check_hurt_box: bool = true
 @export_category("Player Variables")
 
 @export_range(0,20,0.01) var rotation_smoothing: float = 0.6
-@export var frame_step_length: int = 24
+#@export var frame_step_length: int = 24
 #endregion
 #region run
 @export_group("run") 
@@ -279,11 +279,11 @@ func _process(delta: float):
 	
 	centre = position + Vector3.UP * height/2
 
-func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = frame_step_length):
-	animation_controller.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length, fb)
+func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int):
+	animation_controller.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length)
 	
-func play_anim(animation_name: String, step_frame_length: int, fb: int = frame_step_length):
-	animation_controller.play_anim(animation_name, step_frame_length, fb)
+func play_anim(animation_name: String, step_frame_length: int):
+	animation_controller.play_anim(animation_name, step_frame_length)
 
 #Global Movement Functions
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):

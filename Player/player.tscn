@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=48 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://d1nfk70qrelol" path="res://Scripts/Animation_Controller/animation_controller.tscn" id="16_n471f"]
 [ext_resource type="PackedScene" uid="uid://dpb57wbuxquio" path="res://Player/Assets/PlayerFinal/angel_body_final.tscn" id="16_o28un"]
 [ext_resource type="Script" uid="uid://c2p2ghygdxqr7" path="res://Player/Assets/Costumes/attach_clothing.gd" id="19_8mwp6"]
+[ext_resource type="Script" uid="uid://bvca72by0b78t" path="res://Scripts/Animation_Controller/animation_frame.gd" id="19_76lrf"]
 [ext_resource type="Script" uid="uid://dw8ebs1h7ueu1" path="res://Player/Assets/Costumes/deform_clothing.gd" id="19_gpjlu"]
 [ext_resource type="PackedScene" uid="uid://c08qdld1bnmoa" path="res://UI/debug_ui.tscn" id="19_o28un"]
 [ext_resource type="Resource" uid="uid://c5s2yrpnmkol3" path="res://Player/Assets/Costumes/Pants/Default_Jeans/blue_default_jeans_resource.tres" id="20_8mwp6"]
@@ -66,11 +67,44 @@ radius = 1.4
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_00tjw"]
 radius = 0.3
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_sm0op"]
+[sub_resource type="Resource" id="Resource_76lrf"]
+script = ExtResource("19_76lrf")
+startF = 2
+startL = 6
+duringF = 5
+metadata/_custom_type_script = "uid://bvca72by0b78t"
+
+[sub_resource type="Resource" id="Resource_efx54"]
+script = ExtResource("19_76lrf")
+startF = 2
+startL = 6
+duringF = 2
+metadata/_custom_type_script = "uid://bvca72by0b78t"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sm0op"]
+animation = &"idle"
+advance_on_start = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_76lrf"]
+animation = &"run"
+advance_on_start = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_76lrf"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_efx54"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_755ss"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sm0op"]
-states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_sm0op")
-states/BlendSpace1D/position = Vector2(403, 100)
+states/End/position = Vector2(907, 93)
+states/Start/position = Vector2(170, 93)
+states/idle/node = SubResource("AnimationNodeAnimation_sm0op")
+states/idle/position = Vector2(329, 93)
+states/run/node = SubResource("AnimationNodeAnimation_76lrf")
+states/run/position = Vector2(540, 93)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_76lrf"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_efx54"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_755ss")]
+graph_offset = Vector2(-105, -41)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7emwf"]
 radius = 1.3000001
@@ -85,7 +119,6 @@ floor_max_angle = 0.80285144
 floor_snap_length = 0.4
 script = ExtResource("1_v0iea")
 rotation_smoothing = 13.85
-frame_step_length = 30
 run_speed = 6.1
 run_accel = 50.0
 run_accel_speed = 0.8
@@ -345,16 +378,87 @@ target = NodePath("..")
 
 [node name="angel_body_final" parent="model_twist" instance=ExtResource("16_o28un")]
 
+[node name="Skeleton3D" parent="model_twist/angel_body_final/rig" index="0"]
+bones/0/position = Vector3(-1.3816822e-08, 1.1744531, 0.04871589)
+bones/0/rotation = Quaternion(-0.14504303, -0.003055642, -0.021275595, 0.9891919)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/position = Vector3(-0.0002381312, 0.18206255, 0.0017580481)
+bones/1/rotation = Quaternion(0.25117102, -0.008581423, 0.03098204, 0.9674088)
+bones/2/rotation = Quaternion(-0.12706889, -0.0080422135, -0.017390687, 0.9917089)
+bones/3/rotation = Quaternion(0.032178927, -8.640547e-08, 3.7281687e-08, 0.99948215)
+bones/4/position = Vector3(-0.09611825, 0.24966636, 0.014868675)
+bones/4/rotation = Quaternion(0.013571509, 0.18434137, 0.96818185, 0.16869518)
+bones/4/scale = Vector3(0.9999998, 0.9999998, 0.99999994)
+bones/5/rotation = Quaternion(-0.1467676, -0.14036186, 0.06142302, 0.9772334)
+bones/5/scale = Vector3(1.0000001, 0.99999994, 0.99999994)
+bones/6/rotation = Quaternion(0.036324184, 0.7231377, -0.042369705, 0.68844557)
+bones/6/scale = Vector3(1, 1.0000002, 1.0000001)
+bones/7/position = Vector3(-0.0042095785, 0.10190299, 0.010780798)
+bones/7/rotation = Quaternion(-0.21494564, -0.70187247, 0.33148056, 0.59270066)
+bones/8/rotation = Quaternion(-0.008115897, 0.017706238, 0.36681804, 0.9300888)
+bones/9/position = Vector3(0.057508253, 0.10309794, 0.007783548)
+bones/9/rotation = Quaternion(-0.14356919, -0.6866733, 0.17319933, 0.69128126)
+bones/10/rotation = Quaternion(-0.17326234, 0.6973602, 0.20349398, 0.66502565)
+bones/11/position = Vector3(0.06740849, 0.026889557, -0.010986042)
+bones/11/rotation = Quaternion(-0.6274784, -0.32660928, 0.009245918, 0.70676154)
+bones/12/rotation = Quaternion(0.25404674, 0.056513544, 0.46075648, 0.84851044)
+bones/13/position = Vector3(0.08127153, 0.29107124, 0.012919886)
+bones/13/rotation = Quaternion(0.03335802, -0.3198051, -0.8986465, 0.29840678)
+bones/13/scale = Vector3(0.99999994, 0.9999998, 0.99999994)
+bones/14/rotation = Quaternion(-0.3072811, 0.097085945, 0.0095915515, 0.9466049)
+bones/15/rotation = Quaternion(0.27162367, -0.68861526, -0.24535424, 0.6259641)
+bones/15/scale = Vector3(1, 1.0000001, 1)
+bones/16/position = Vector3(0.0041153417, 0.10081364, 0.012551246)
+bones/16/rotation = Quaternion(-0.35503903, 0.6424747, -0.44656134, 0.5116215)
+bones/17/rotation = Quaternion(-0.00091568794, -0.019456007, -0.68764126, 0.72578937)
+bones/18/position = Vector3(-0.05750827, 0.10309803, 0.0077835005)
+bones/18/rotation = Quaternion(-0.32742316, 0.62042445, -0.35717463, 0.6166797)
+bones/19/rotation = Quaternion(-0.47994173, -0.5049816, -0.52222097, 0.49186882)
+bones/20/rotation = Quaternion(-0.55389684, 0.08184363, -0.008295853, 0.8285114)
+bones/21/rotation = Quaternion(0.34172016, -0.2645816, -0.36809537, 0.8232435)
+bones/22/position = Vector3(-0.08933695, 0.009663422, -0.04104158)
+bones/22/rotation = Quaternion(0.99139845, 0.0042448067, -0.017047301, -0.12969407)
+bones/22/scale = Vector3(1.0000001, 1.0000002, 1.0000029)
+bones/23/rotation = Quaternion(-0.09739715, -0.0020115278, -0.010059103, 0.9951928)
+bones/23/scale = Vector3(1, 1.0000004, 0.9999995)
+bones/24/rotation = Quaternion(0.58559614, -0.03880077, 0.0937269, 0.80423075)
+bones/25/position = Vector3(0.088951446, 0.0105309, -0.040408567)
+bones/25/rotation = Quaternion(0.98621434, 0.010866205, -0.002924845, -0.16509011)
+bones/25/scale = Vector3(1.0000044, 1.0074424, 1.0000058)
+bones/26/rotation = Quaternion(-0.042163633, 0.0020194186, 0.004354947, 0.9990992)
+bones/26/scale = Vector3(0.9999999, 1.0000004, 0.9999998)
+bones/27/rotation = Quaternion(0.66307974, 0.020660207, -0.04597444, 0.74685)
+bones/28/position = Vector3(-0.1234955, 0.676023, -0.8964318)
+bones/28/rotation = Quaternion(-0.706706, -0.023804935, 0.023804935, 0.70670605)
+bones/29/rotation = Quaternion(-0.706706, 0.023804935, -0.023804935, 0.70670605)
+bones/30/position = Vector3(-0.114542894, 0.075527094, 0.16139035)
+bones/30/rotation = Quaternion(0.7070358, 0.010026792, 0.01002679, 0.70703566)
+bones/31/position = Vector3(0.060791835, 0.046069287, 0.015487869)
+bones/31/rotation = Quaternion(0.7070358, -0.010026792, -0.01002679, 0.70703566)
+bones/32/position = Vector3(0.54969573, 1.022506, 0.11426337)
+bones/32/rotation = Quaternion(-0.5577056, 0.01664779, -0.70745474, 0.43381453)
+bones/33/rotation = Quaternion(0.4697942, 0.5284822, 0.52848226, 0.4697942)
+bones/34/rotation = Quaternion(-0.4697942, 0.5284822, 0.52848226, -0.4697942)
+
+[node name="head_2" parent="model_twist/angel_body_final/rig/Skeleton3D" index="0"]
+transform = Transform3D(0.99909264, 0.013660855, -0.040343266, -0.014717051, 0.99955344, -0.026000485, 0.039970085, 0.026570652, 0.9988475, 0.0011278111, 1.7161897, 0.057634618)
+
+[node name="weapon" parent="model_twist/angel_body_final/rig/Skeleton3D" index="1"]
+transform = Transform3D(-0.0015388727, 0.5952392, 0.8035471, -0.63237745, -0.6230557, 0.4603265, 0.77465886, -0.50743675, 0.3773746, 0.54969573, 1.022506, 0.11426337)
+
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent", "animation_tree") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
 delete_skeleton = false
 animation_tree = NodePath("../AnimationTree")
+animations_frames = Dictionary[String, ExtResource("19_76lrf")]({
+"idle": SubResource("Resource_76lrf"),
+"run": SubResource("Resource_efx54")
+})
 
 [node name="AnimationTree" type="AnimationTree" parent="model_twist"]
 root_node = NodePath("../angel_body_final")
 tree_root = SubResource("AnimationNodeStateMachine_sm0op")
 anim_player = NodePath("../angel_body_final/AnimationPlayer")
-parameters/BlendSpace1D/blend_position = 0.0
 
 [node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("anim_controller") instance=ExtResource("15_pisgm")]
 anim_controller = NodePath("../animation_controller")

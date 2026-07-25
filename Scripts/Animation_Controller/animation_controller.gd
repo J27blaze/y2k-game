@@ -6,10 +6,14 @@ class_name AnimationController
 @export var parent: Node
 @export var delete_skeleton: bool = true
 @export var animation_tree: AnimationTree
+@onready var animation_play_back: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
+@onready var animation_state_machine: AnimationNodeStateMachine = animation_tree.tree_root
+
+var transition_lookup: Dictionary[String, AnimationNodeStateMachineTransition]
 
 @onready var skeleton_animplayer : AnimationPlayer = parent.find_child("AnimationPlayer", false)
-var current_anim: String
-var previous_anim: String
+var current_anim: String = "Start"
+var previous_anim: String = "idle"
 @onready var skeleton : Skeleton3D = parent.find_child("Skeleton3D", true) # orignial
 @onready var mesh_skeleton : Skeleton3D = skeleton.duplicate() # copy
 
@@ -20,6 +24,7 @@ var costume_controller = CostumeController.new()
 
 @export_category("Animation Parameters")
 @export_range(0, 240, 1) var FB := 30
+@export var animations_frames: Dictionary[String, AnimationFrame]
 
 func _init() -> void:
 	pass
@@ -31,6 +36,16 @@ func _ready() -> void:
 	animation_tree.active = true
 	#skeleton_animplayer.play("idle")
 	#print(mesh_skeleton.name)
+	
+	#set lookup table for transitions
+	var tran_count: int = animation_state_machine.get_transition_count()
+	for i in range(tran_count):
+		var key : String = str(animation_state_machine.get_transition_from(i) + animation_state_machine.get_transition_to(i))
+		
+		animation_state_machine.get_transition(i).xfade_time = f2f(animations_frames[animation_state_machine.get_transition_to(i)].startL, FB)
+		
+		transition_lookup[key] = animation_state_machine.get_transition(i)
+		print(key + "" + str(i))
 	
 	#mesh_skeleton.get_children()
 	for mesh in costume_controller.get_all_meshes(mesh_skeleton):
@@ -79,7 +94,7 @@ func copy_skeleton_pose() -> void:
 			var pose = skeleton.get_bone_pose(bone_idx)
 			mesh_skeleton.set_bone_pose(bone_idx, pose)
 			
-func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = 24) -> void:
+func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = FB) -> void:
 	previous_anim = current_anim
 	#if current_anim != anim_name:
 	current_anim = anim_name
@@ -88,7 +103,9 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 		#skeleton_animplayer.play(skeleton_animplayer.current_animation, 0.0)
 		pass
 	
-	start_blend_t(f2f(blend_frames, fb), f2f(step_frame_length, fb))
+	animation_play_back.travel(anim_name, false)
+	#f2f(blend_frames, fb)
+	start_blend_t(xfade(previous_anim, current_anim), f2f(step_frame_length, fb))
 	start_t(f2f(blend_frame_length, fb))
 	
 	#skeleton_animplayer.pause()
@@ -97,7 +114,7 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 	skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
 
-func play_anim(anim_name: String, step_frame_length: int, fb: int = 24) -> void:
+func play_anim(anim_name: String, step_frame_length: int, fb: int = FB) -> void:
 	previous_anim = current_anim
 	#if current_anim != anim_name:
 	current_anim = anim_name
@@ -130,9 +147,18 @@ func start_blend_t(length: float, end_length) -> void:
 	#print(blend_step_t)
 	#print("#####START"+ str(length) +"######")
 	
+#frames to float
 func f2f(frame_length, frame_base) -> float:
 	return float(frame_length)/float(frame_base)
 
+func xfade(from_anim: String, to_anim: String) -> float:
+	var transition = transition_lookup[str(from_anim+to_anim)]
+	if transition:
+		var xfade: float = transition.xfade_time
+		return xfade
+	return 0.0
+
+# depricated??????
 func set_bone_position(bone_name: String, pos: Vector3):
 	var bone := skeleton.find_bone(bone_name)
 	print(bone)
