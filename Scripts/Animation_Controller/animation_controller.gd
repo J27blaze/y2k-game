@@ -98,14 +98,14 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 	previous_anim = current_anim
 	#if current_anim != anim_name:
 	current_anim = anim_name
-	if blend_t > 0:
-		#fix blend studd, ALL THIS WILL BE PERPICATED SOON
-		#skeleton_animplayer.play(skeleton_animplayer.current_animation, 0.0)
-		pass
 	
 	animation_play_back.travel(anim_name, false)
+	if blend_t > 0:
+		#fix blend studd, ALL THIS WILL BE PERPICATED SOON
+		animation_play_back.next()
+		pass
 	#f2f(blend_frames, fb)
-	start_blend_t(xfade(previous_anim, current_anim), f2f(step_frame_length, fb))
+	start_blend_t(f2f(animations_frames[anim_name].startL), f2f(step_frame_length, fb))
 	start_t(f2f(blend_frame_length, fb))
 	
 	#skeleton_animplayer.pause()
@@ -148,15 +148,8 @@ func start_blend_t(length: float, end_length) -> void:
 	#print("#####START"+ str(length) +"######")
 	
 #frames to float
-func f2f(frame_length, frame_base) -> float:
+func f2f(frame_length, frame_base = FB) -> float:
 	return float(frame_length)/float(frame_base)
-
-func xfade(from_anim: String, to_anim: String) -> float:
-	var transition = transition_lookup[str(from_anim+to_anim)]
-	if transition:
-		var xfade: float = transition.xfade_time
-		return xfade
-	return 0.0
 
 # depricated??????
 func set_bone_position(bone_name: String, pos: Vector3):
