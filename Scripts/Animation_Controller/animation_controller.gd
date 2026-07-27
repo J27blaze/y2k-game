@@ -23,7 +23,7 @@ var debug_status: String = ""
 var costume_controller = CostumeController.new()
 
 @export_category("Animation Parameters")
-@export_range(0, 240, 1) var FB := 30
+@export_range(0, 240, 1) var FB: int = 30
 @export var animations_frames: Dictionary[String, AnimationFrame]
 
 func _init() -> void:
@@ -40,9 +40,12 @@ func _ready() -> void:
 	#set lookup table for transitions
 	var tran_count: int = animation_state_machine.get_transition_count()
 	for i in range(tran_count):
-		var key : String = str(animation_state_machine.get_transition_from(i) + animation_state_machine.get_transition_to(i))
+		var from: String = animation_state_machine.get_transition_from(i)
+		var to: String = animation_state_machine.get_transition_to(i)
+		var key : String = from + to
 		
-		animation_state_machine.get_transition(i).xfade_time = f2f(animations_frames[animation_state_machine.get_transition_to(i)].startL, FB)
+		if animations_frames.has(to):
+			animation_state_machine.get_transition(i).xfade_time = f2f(animations_frames[to].startL, FB)
 		
 		transition_lookup[key] = animation_state_machine.get_transition(i)
 		print(key + "" + str(i))
@@ -105,8 +108,8 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 		animation_play_back.next()
 		pass
 	#f2f(blend_frames, fb)
-	start_blend_t(f2f(animations_frames[anim_name].startL), f2f(step_frame_length, fb))
-	start_t(f2f(blend_frame_length, fb))
+	start_blend_t(f2f(animations_frames[anim_name].startL), f2f(animations_frames[anim_name].duringF))
+	start_t(f2f(animations_frames[anim_name].startF))
 	
 	#skeleton_animplayer.pause()
 	#skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
@@ -116,17 +119,13 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 
 func play_anim(anim_name: String, step_frame_length: int, fb: int = FB) -> void:
 	previous_anim = current_anim
-	#if current_anim != anim_name:
 	current_anim = anim_name
 	
-	#skeleton_animplayer.stop() 
+	animation_play_back.start(anim_name)
 	
 	blend_step_t = 0
 	blend_t = 0
-	start_t(f2f(step_frame_length, fb))
-	
-	#skeleton_animplayer.pause()
-	#skeleton_animplayer.play(anim_name, 0.0)
+	start_t(f2f(animations_frames[anim_name].duringF))
 	
 	skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
@@ -148,7 +147,7 @@ func start_blend_t(length: float, end_length) -> void:
 	#print("#####START"+ str(length) +"######")
 	
 #frames to float
-func f2f(frame_length, frame_base = FB) -> float:
+func f2f(frame_length: float, frame_base: int = FB) -> float:
 	return float(frame_length)/float(frame_base)
 
 # depricated??????

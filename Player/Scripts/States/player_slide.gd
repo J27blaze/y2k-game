@@ -73,7 +73,10 @@ func process_frame(delta: float):
 	
 func process_physics(delta: float):
 	if !Input.is_action_pressed("slide") && can_cancel:
-		change_state("run")
+		if player.direction == Vector3.ZERO:
+			state_machine.change_state("idle")
+		else:
+			state_machine.change_state("run")
 		return
 	if can_input:
 		if player.state_jump():
@@ -157,7 +160,7 @@ func perfect_slide():
 	perfect_slided = true
 	
 	print("perfect slide")
-	play_anim("slide", 3)
+	#play_anim("slide", 3)
 
 func _on_input_delay_timeout() -> void:
 	can_input = true
