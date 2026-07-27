@@ -1,5 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://drfs17egjbdsw"]
+[gd_scene load_steps=8 format=3 uid="uid://drfs17egjbdsw"]
 
 [ext_resource type="PackedScene" uid="uid://cbfhhj6vecr4y" path="res://Player/Assets/Scythes/Default/scythe.glb" id="1_wgxob"]
+[ext_resource type="Material" uid="uid://b6hor5kjrcaor" path="res://Player/Assets/Costumes/player_outline_shader.tres" id="2_1oj1e"]
+[ext_resource type="Shader" uid="uid://c8ne1tevc2rgx" path="res://Player/Assets/Costumes/Hair/hair_material.tres" id="3_m8utp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_minmo"]
+render_priority = 0
+next_pass = ExtResource("2_1oj1e")
+shader = ExtResource("3_m8utp")
+shader_parameter/hair_colour = Color(5.390644e-06, 0.97836477, 0.9638364, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x46aa"]
+render_priority = 0
+next_pass = ExtResource("2_1oj1e")
+shader = ExtResource("3_m8utp")
+shader_parameter/hair_colour = Color(0.42607176, 0.20574182, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_futqk"]
+render_priority = 0
+next_pass = ExtResource("2_1oj1e")
+shader = ExtResource("3_m8utp")
+shader_parameter/hair_colour = Color(0.23031491, 0.23031494, 0.23031494, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i83wk"]
+render_priority = 0
+next_pass = ExtResource("2_1oj1e")
+shader = ExtResource("3_m8utp")
+shader_parameter/hair_colour = Color(0.42607176, 0.20574182, 0, 1)
 
 [node name="scythe" instance=ExtResource("1_wgxob")]
+
+[node name="Bladee" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_minmo")
+
+[node name="Glaive" parent="." index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_x46aa")
+
+[node name="Point" parent="." index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_futqk")
+
+[node name="Cylinder_001" parent="." index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_i83wk")
