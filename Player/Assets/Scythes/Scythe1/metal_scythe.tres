@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttachClothing" load_steps=3 format=3 uid="uid://bdhxq4jaw5ahw"]
+
+[ext_resource type="PackedScene" uid="uid://wuaji1n4yq87" path="res://Player/Assets/Scythes/Scythe1/scythe_1.tscn" id="1_3ld7n"]
+[ext_resource type="Script" uid="uid://c2p2ghygdxqr7" path="res://Player/Assets/Costumes/attach_clothing.gd" id="1_msfja"]
+
+[resource]
+script = ExtResource("1_msfja")
+display_name = "Metal Scythe"
+scene = ExtResource("1_3ld7n")
+connected_bone = "weapon"
+offset = Vector3(0, -1.3, 0)
+metadata/_custom_type_script = "uid://c2p2ghygdxqr7"
