@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://wuaji1n4yq87"]
+[gd_scene load_steps=6 format=3 uid="uid://wuaji1n4yq87"]
 
 [ext_resource type="PackedScene" uid="uid://duv2q3xqcaktj" path="res://Player/Assets/Scythes/Scythe1/scythe_1.glb" id="1_mfhe3"]
 [ext_resource type="Material" uid="uid://b6hor5kjrcaor" path="res://Player/Assets/Costumes/player_outline_shader.tres" id="2_bs5p4"]
@@ -8,31 +8,13 @@
 render_priority = 0
 next_pass = ExtResource("2_bs5p4")
 shader = ExtResource("3_ctal1")
-shader_parameter/hair_colour = Color(5.390644e-06, 0.97836477, 0.9638364, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy3tg"]
-render_priority = 0
-next_pass = ExtResource("2_bs5p4")
-shader = ExtResource("3_ctal1")
-shader_parameter/hair_colour = Color(5.390644e-06, 0.97836477, 0.9638364, 1)
+shader_parameter/hair_colour = Color(0.23031491, 0.23031494, 0.23031494, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ctal1"]
 render_priority = 0
 next_pass = ExtResource("2_bs5p4")
 shader = ExtResource("3_ctal1")
-shader_parameter/hair_colour = Color(5.390644e-06, 0.97836477, 0.9638364, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6efq"]
-render_priority = 0
-next_pass = ExtResource("2_bs5p4")
-shader = ExtResource("3_ctal1")
-shader_parameter/hair_colour = Color(0, 0.98951274, 0.8635302, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iw0cd"]
-render_priority = 0
-next_pass = ExtResource("2_bs5p4")
-shader = ExtResource("3_ctal1")
-shader_parameter/hair_colour = Color(5.390644e-06, 0.97836477, 0.9638364, 1)
+shader_parameter/hair_colour = Color(0.23031491, 0.23031494, 0.23031494, 1)
 
 [node name="scythe_1" instance=ExtResource("1_mfhe3")]
 
@@ -40,13 +22,13 @@ shader_parameter/hair_colour = Color(5.390644e-06, 0.97836477, 0.9638364, 1)
 surface_material_override/0 = SubResource("ShaderMaterial_bs5p4")
 
 [node name="bladee" parent="." index="1"]
-surface_material_override/0 = SubResource("ShaderMaterial_hy3tg")
+surface_material_override/0 = SubResource("ShaderMaterial_bs5p4")
 
 [node name="staff" parent="." index="2"]
-surface_material_override/0 = SubResource("ShaderMaterial_ctal1")
+surface_material_override/0 = SubResource("ShaderMaterial_bs5p4")
 
 [node name="hilt" parent="." index="3"]
-surface_material_override/0 = SubResource("ShaderMaterial_m6efq")
+surface_material_override/0 = SubResource("ShaderMaterial_bs5p4")
 
 [node name="staf2" parent="." index="4"]
-surface_material_override/0 = SubResource("ShaderMaterial_iw0cd")
+surface_material_override/0 = SubResource("ShaderMaterial_ctal1")

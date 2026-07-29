@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b81p2j051nrr4"]
+
+[ext_resource type="Shader" uid="uid://b53s63u88q6ai" path="res://Player/Assets/Costumes/outline_shader.gdshader" id="1_50tj8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_50tj8")
+shader_parameter/grow_amount = 0.05

@@ -1,8 +1,12 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://b6hor5kjrcaor"]
 
 [resource]
+blend_mode = 4
 cull_mode = 1
 shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
 albedo_color = Color(0, 0, 0, 1)
 disable_receive_shadows = true
 grow = true
