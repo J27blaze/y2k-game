@@ -2,73 +2,141 @@
 
 [ext_resource type="PackedScene" uid="uid://dgaleh4a13yg4" path="res://Player/Assets/PlayerFinal/angel_body_final.glb" id="1_fjxwn"]
 [ext_resource type="Material" uid="uid://b6hor5kjrcaor" path="res://Player/Assets/Costumes/player_outline_shader.tres" id="2_47ctx"]
-[ext_resource type="Shader" uid="uid://cxg6b5w5qeh2j" path="res://Player/Assets/PlayerFinal/angel_skin.tres" id="2_a6kb2"]
-[ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/PlayerFinal/angel_body.png" id="3_tj5kx"]
-[ext_resource type="Shader" uid="uid://dbaha4ojrkd0u" path="res://Player/Assets/PlayerFinal/angel_face.tres" id="4_47ctx"]
-[ext_resource type="Texture2D" uid="uid://dpjfobe31x24w" path="res://Player/Assets/PlayerFinal/face.png" id="5_7ab4w"]
-[ext_resource type="Texture2D" uid="uid://c4ojkqyfbwvt" path="res://Player/Assets/PlayerFinal/iris.png" id="6_x0owc"]
-[ext_resource type="Texture2D" uid="uid://btklvorxdt1xv" path="res://Player/Assets/PlayerFinal/head.png" id="7_6axvx"]
+[ext_resource type="Shader" uid="uid://cxg6b5w5qeh2j" path="res://Player/Assets/PlayerFinal/angel_skin.tres" id="3_7ab4w"]
+[ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/PlayerFinal/angel_body.png" id="4_x0owc"]
+[ext_resource type="Shader" uid="uid://dbaha4ojrkd0u" path="res://Player/Assets/PlayerFinal/angel_face.tres" id="5_6axvx"]
+[ext_resource type="Texture2D" uid="uid://dpjfobe31x24w" path="res://Player/Assets/PlayerFinal/face.png" id="6_0xkwq"]
+[ext_resource type="Texture2D" uid="uid://c4ojkqyfbwvt" path="res://Player/Assets/PlayerFinal/iris.png" id="7_kxqga"]
+[ext_resource type="Texture2D" uid="uid://btklvorxdt1xv" path="res://Player/Assets/PlayerFinal/head.png" id="8_3qre8"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tj5kx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdru4"]
 render_priority = 0
 next_pass = ExtResource("2_47ctx")
-shader = ExtResource("2_a6kb2")
+shader = ExtResource("3_7ab4w")
 shader_parameter/skin_colour = Color(0.861377, 2e-06, 0.479335, 1)
-shader_parameter/skin_map = ExtResource("3_tj5kx")
+shader_parameter/skin_map = ExtResource("4_x0owc")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyejp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h4ayb"]
 render_priority = 0
 next_pass = ExtResource("2_47ctx")
-shader = ExtResource("4_47ctx")
+shader = ExtResource("5_6axvx")
 shader_parameter/skin_colour = Color(0.861377, 2e-06, 0.479335, 1)
-shader_parameter/skin_map = ExtResource("7_6axvx")
-shader_parameter/face_map = ExtResource("5_7ab4w")
-shader_parameter/iris_map = ExtResource("6_x0owc")
+shader_parameter/skin_map = ExtResource("8_3qre8")
+shader_parameter/face_map = ExtResource("6_0xkwq")
+shader_parameter/iris_map = ExtResource("7_kxqga")
 shader_parameter/iris_colour = Color(1, 0, 0, 1)
 
 [node name="angel_body_final" instance=ExtResource("1_fjxwn")]
 
-[node name="body" parent="rig/Skeleton3D" index="2" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="Skeleton3D" parent="rig" index="0"]
+bones/0/position = Vector3(-1.3830727e-08, 1.1637701, 0.048715875)
+bones/0/rotation = Quaternion(-0.1531474, 9.354705e-05, 0.00019055755, 0.98820335)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/position = Vector3(-1.6607226e-11, 0.17653203, -7.0354076e-08)
+bones/1/rotation = Quaternion(0.21213065, -5.4102893e-05, -0.0002989344, 0.9772413)
+bones/2/rotation = Quaternion(-0.12810475, -4.0693176e-05, 0.00011818876, 0.9917607)
+bones/3/rotation = Quaternion(0.05979025, -8.804088e-08, 3.864749e-08, 0.99821097)
+bones/4/position = Vector3(-0.09125547, 0.27296573, -0.0024980519)
+bones/4/rotation = Quaternion(-0.026746742, 0.057817437, 0.7067499, 0.7045895)
+bones/4/scale = Vector3(0.9999991, 0.9999995, 0.9999999)
+bones/5/rotation = Quaternion(-0.044555634, -0.10714819, -0.0007619373, 0.99324393)
+bones/5/scale = Vector3(1.0000001, 0.99999976, 1)
+bones/6/rotation = Quaternion(0.015636917, 0.77876985, 0.016213644, 0.6269052)
+bones/6/scale = Vector3(1, 1.0000002, 0.99999994)
+bones/7/position = Vector3(-0.0041153464, 0.10081387, 0.012551325)
+bones/7/rotation = Quaternion(0.0443422, -0.73270756, 0.10303515, 0.67123556)
+bones/8/rotation = Quaternion(-0.012852706, 0.01463512, 0.08468608, 0.9962173)
+bones/9/position = Vector3(0.057508253, 0.10309807, 0.007783566)
+bones/9/rotation = Quaternion(-0.010386436, -0.7014445, 0.038599886, 0.7116023)
+bones/10/rotation = Quaternion(-0.029248092, 0.72458154, 0.05198795, 0.6866028)
+bones/11/position = Vector3(0.06740847, 0.026889607, -0.010986029)
+bones/11/rotation = Quaternion(-0.5193799, -0.4802574, -0.17711514, 0.6842716)
+bones/12/rotation = Quaternion(0.1171814, 0.014052663, 0.14597136, 0.9822237)
+bones/13/position = Vector3(0.0912651, 0.27301043, -0.0024888047)
+bones/13/rotation = Quaternion(-0.06787703, -0.09910714, -0.7021236, 0.7018497)
+bones/14/scale = Vector3(1.0000001, 0.9999999, 0.99999994)
+bones/15/rotation = Quaternion(-0.006122305, -0.7402249, 0.0070087123, 0.67229503)
+bones/15/scale = Vector3(0.99999994, 1.0000001, 1)
+bones/16/position = Vector3(0.0041153436, 0.100813806, 0.0125512015)
+bones/16/rotation = Quaternion(0.044342246, 0.73270756, -0.10303517, 0.67123556)
+bones/17/rotation = Quaternion(-0.012852714, -0.014635108, -0.08468602, 0.9962173)
+bones/18/position = Vector3(-0.057508256, 0.10309804, 0.007783365)
+bones/18/rotation = Quaternion(-0.010386439, 0.7014445, -0.038599886, 0.7116023)
+bones/19/rotation = Quaternion(-0.02924808, -0.7245814, -0.051987957, 0.6866029)
+bones/20/rotation = Quaternion(-0.5193799, 0.48025742, 0.17711508, 0.6842716)
+bones/21/rotation = Quaternion(0.11718145, -0.014052779, -0.14597139, 0.9822237)
+bones/22/position = Vector3(-0.089336924, 0.00966365, -0.04104165)
+bones/22/rotation = Quaternion(0.9838843, 0.009625889, -0.00045462983, -0.17854674)
+bones/22/scale = Vector3(1.0000002, 1.0000002, 1.0000026)
+bones/23/rotation = Quaternion(-0.05258142, -0.0020184063, -0.0054309233, 0.9985998)
+bones/23/scale = Vector3(0.99999976, 1.0000001, 1)
+bones/24/rotation = Quaternion(0.6632014, -0.018454758, 0.04419055, 0.7469073)
+bones/24/scale = Vector3(1.0000001, 1.0000008, 1.0000001)
+bones/25/position = Vector3(0.089355126, 0.009591482, -0.041019034)
+bones/25/rotation = Quaternion(0.9838804, -0.010002062, 0.00065138144, -0.17854722)
+bones/25/scale = Vector3(0.9999999, 1.0000005, 1.0000067)
+bones/26/rotation = Quaternion(-0.052580968, 0.0020184077, 0.005430869, 0.99859995)
+bones/26/scale = Vector3(0.99999934, 1.0000002, 0.99999976)
+bones/27/rotation = Quaternion(0.6632015, 0.018454857, -0.044190604, 0.7469072)
+bones/27/scale = Vector3(1.0000001, 1.0000018, 1.0000001)
+bones/28/rotation = Quaternion(-0.706706, -0.023804935, 0.023804935, 0.70670605)
+bones/29/rotation = Quaternion(-0.706706, 0.023804935, -0.023804935, 0.70670605)
+bones/30/position = Vector3(-0.06079184, 0.046069287, 0.015487869)
+bones/30/rotation = Quaternion(0.7070358, 0.010026792, 0.01002679, 0.70703566)
+bones/31/position = Vector3(0.060791835, 0.046069287, 0.015487869)
+bones/31/rotation = Quaternion(0.7070358, -0.010026792, -0.01002679, 0.70703566)
+bones/32/position = Vector3(0.7986389, 1.3003142, -0.008076936)
+bones/32/rotation = Quaternion(0.0010580336, 0.031782806, 0.0010580517, 0.99949366)
+bones/33/rotation = Quaternion(0.4697942, 0.5284822, 0.52848226, 0.4697942)
+bones/34/rotation = Quaternion(-0.4697942, 0.5284822, 0.52848226, -0.4697942)
 
-[node name="body_lower" parent="rig/Skeleton3D" index="3" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="head_2" parent="rig/Skeleton3D" index="0"]
+transform = Transform3D(1, -7.029044e-11, -5.2580162e-12, -7.1828765e-11, 0.9998508, 0.017258234, -1.429612e-11, -0.017258286, 0.99985087, -1.8567645e-09, 1.7030898, 0.019077864)
 
-[node name="clavicles" parent="rig/Skeleton3D" index="4" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="weapon" parent="rig/Skeleton3D" index="1"]
+transform = Transform3D(0.9979775, -0.0020477776, 0.063535675, 0.0021822867, 0.9999955, -0.0020477402, -0.06353119, 0.0021822515, 0.9979775, 0.7986389, 1.3003142, -0.008076936)
 
-[node name="feet" parent="rig/Skeleton3D" index="5" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="body" parent="rig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="hands" parent="rig/Skeleton3D" index="6" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="body_lower" parent="rig/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="head" parent="rig/Skeleton3D" index="7" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_vyejp")
+[node name="clavicles" parent="rig/Skeleton3D" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="lower_arm_l" parent="rig/Skeleton3D" index="8" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="feet" parent="rig/Skeleton3D" index="5"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="lower_arm_r" parent="rig/Skeleton3D" index="9" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="hands" parent="rig/Skeleton3D" index="6"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="neck" parent="rig/Skeleton3D" index="10" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="head" parent="rig/Skeleton3D" index="7"]
+surface_material_override/0 = SubResource("ShaderMaterial_h4ayb")
 
-[node name="shin_l" parent="rig/Skeleton3D" index="11" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="lower_arm_l" parent="rig/Skeleton3D" index="8"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="shin_r" parent="rig/Skeleton3D" index="12" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="lower_arm_r" parent="rig/Skeleton3D" index="9"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="thigh_l" parent="rig/Skeleton3D" index="13" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="neck" parent="rig/Skeleton3D" index="10"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="thigh_r" parent="rig/Skeleton3D" index="14" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="shin_l" parent="rig/Skeleton3D" index="11"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="upper_arm_l" parent="rig/Skeleton3D" index="15" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="shin_r" parent="rig/Skeleton3D" index="12"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
 
-[node name="upper_arm_r" parent="rig/Skeleton3D" index="16" groups=["material_updateable"]]
-surface_material_override/0 = SubResource("ShaderMaterial_tj5kx")
+[node name="thigh_l" parent="rig/Skeleton3D" index="13"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
+
+[node name="thigh_r" parent="rig/Skeleton3D" index="14"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
+
+[node name="upper_arm_l" parent="rig/Skeleton3D" index="15"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
+
+[node name="upper_arm_r" parent="rig/Skeleton3D" index="16"]
+surface_material_override/0 = SubResource("ShaderMaterial_jdru4")
