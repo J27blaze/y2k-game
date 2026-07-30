@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bc6vsxjqp1qbm"
-path="res://.godot/imported/angel_body_final.glb-e6a15517d98e24a3850244043f3537c3.scn"
+uid="uid://cfc8o4480k5ip"
+path="res://.godot/imported/angel_body_final.glb-93c6e238ad02d4f76a4d8b132e0d74ad.scn"
 
 [deps]
 
-source_file="res://Player/Assets/Costumes/angel_body_final.glb"
-dest_files=["res://.godot/imported/angel_body_final.glb-e6a15517d98e24a3850244043f3537c3.scn"]
+source_file="res://Player/Assets/Costumes/Pants/Default_Jeans/angel_body_final.glb"
+dest_files=["res://.godot/imported/angel_body_final.glb-93c6e238ad02d4f76a4d8b132e0d74ad.scn"]
 
 [params]
 

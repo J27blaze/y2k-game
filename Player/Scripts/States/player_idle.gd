@@ -20,5 +20,8 @@ func process_physics(delta: float):
 	player.hit_check()
 	if player.state_tumble_check():
 		return
+		
+	if player.append_weapon_attack("idle"):
+		return
 	
 	player.vel_move_toward(Vector3.ZERO, player.run_accel, delta)

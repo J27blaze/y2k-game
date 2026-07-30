@@ -44,7 +44,7 @@ func get_all_meshes(node, filter=null) :
 
 @export var attachables: Dictionary[String, AttachClothing]
 var attachable_points: Dictionary[String, Node]
-
+#key doesnt matter
 @export var deform_attachables: Dictionary[String, DeformClothing]
 
 func get_attach_points():

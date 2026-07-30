@@ -36,7 +36,7 @@ func process_input(event: InputEvent):
 		buffered_inputs["weapon_dash"] = 10
 	
 	if Input.is_action_just_pressed("weapon_attack"):
-		buffered_inputs["weapon_attack"] = 7
+		buffered_inputs["weapon_attack"] = 10
 		
 	#if Input.is_action_just_pressed("kick"):
 	#	buffered_inputs["kick"] = buffer_length
