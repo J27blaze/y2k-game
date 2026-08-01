@@ -30,7 +30,7 @@ material_override = ExtResource("1_bgrhv")
 use_collision = true
 radius = 6.0
 height = 20.6875
-sides = 16
+sides = 64
 
 [node name="test_ground_enemy" parent="." instance=ExtResource("4_k41yu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -64)

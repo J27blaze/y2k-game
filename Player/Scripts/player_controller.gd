@@ -193,7 +193,7 @@ var attack_stage: int = 0
 
 func _ready() -> void:
 	#debug
-	#DebugDraw3D.set_debug_enabled(false)
+	DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
