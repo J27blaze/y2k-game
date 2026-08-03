@@ -185,9 +185,13 @@ var target: Node = null
 @export_range(-1, 1, 0.005) var weapon_dash_hit_dot_threshold: float = 0
 #endregion
 #region attacks
+@export_group("attack")
 var is_attacking: bool = false
 var attack_stage: int = 0
 @onready var append_attack_state : AppendAttackState = $state_machine/append_attack
+@export var attack_anim_speeds : Array[float] = [0,0,0]
+@export var attack_input_speeds : Array[float] = [0,0,0]
+@export_range(0,2,0.05) var attack_combo_speed := 0.0
 #endregion
 
 
@@ -420,7 +424,7 @@ func state_weapon_dash_check() -> bool:
 
 #attack
 func append_weapon_attack(state: String) -> bool:
-	if input_handler.is_action_buffered("weapon_attack") && !is_attacking:
+	if input_handler.is_action_buffered("weapon_attack") && !is_attacking || Input.is_action_pressed("weapon_attack") && !is_attacking :
 		input_handler.clear_action_buffer("weapon_attack")
 		
 		#hard coding go crazy

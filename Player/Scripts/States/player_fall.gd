@@ -5,7 +5,6 @@ var accel: float = 0.0
 	
 func start():
 	print("fall")
-	player.append_attack_state.parent_state = self
 	
 	timer = 0
 	player.gravity = player.fall_gravity
@@ -14,9 +13,6 @@ func start():
 	
 	#calc state before playing anim
 	play_anim_blend("fall_default", 3, 12, 2)
-
-func exit():
-	player.append_attack_state.exit_attack()
 
 func process_physics(delta: float) -> void:
 	
@@ -34,8 +30,6 @@ func process_physics(delta: float) -> void:
 	
 	if !data:
 		if player.state_dodge_check():
-			return
-		if player.append_weapon_attack("air"):
 			return
 	
 	#coyote time, lockey buggy but its cool
