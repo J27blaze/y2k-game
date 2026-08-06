@@ -31,12 +31,13 @@ func attack(appended_state: String):
 	#timer.start()
 	match state:
 		"run", "idle":
-			var anim: String = str("parameters/" + state + "/attack_" + str(player.attack_stage +1)+ "_oneshot/request")			
+			var anim: String = str("parameters/" +state+"/attack_" + str(player.attack_stage +1)+ "_oneshot/request")			
 			anim_con.animation_tree.set(previous_anim, AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 			
 			previous_anim = anim
 			
 			anim_con.animation_tree.set(anim, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			#anim_con.animation_tree.set(str("parameters/run/attack_" + str(player.attack_stage +1)+ "_oneshot/request"), AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			
 			anim_con.start_blend_t(cur_anim + 0.2, anim_con.f2f(anim_con.animations_frames[state].duringF))
 			anim_con.start_t(anim_con.f2f(1.5))

@@ -27,10 +27,10 @@ func change_state(state: String, data = null):
 func previous_state():
 	return player.state_machine.previous_state()
 	
-func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int):
-	player.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length)
-func play_anim(animation_name: String, step_frame_length: int):
-	player.play_anim(animation_name, step_frame_length)
+func play_anim_blend(animation_name: String, custom_root: String = ""):
+	player.animation_controller.play_anim_blend(animation_name, custom_root)
+func play_anim(animation_name: String):
+	player.animation_controller.play_anim(animation_name)
 
 # process_input
 func process_input(event: InputEvent):

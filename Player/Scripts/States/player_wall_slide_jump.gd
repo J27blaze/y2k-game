@@ -32,7 +32,7 @@ func start():
 
 	initial_vel = player.hor_velocity.normalized()
 	
-	play_anim("wall_slide_jump",1)
+	play_anim("wall_slide_jump")
 
 func exit():
 	player.gravity = player.fall_gravity

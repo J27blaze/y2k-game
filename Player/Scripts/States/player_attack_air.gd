@@ -10,7 +10,7 @@ func start():
 	#print(previous_state())
 	
 	#calc state before playing anim
-	play_anim_blend("fall_default", 3, 12, 2)
+	play_anim_blend("fall_default")
 
 func exit():
 	player.append_attack_state.exit_attack()

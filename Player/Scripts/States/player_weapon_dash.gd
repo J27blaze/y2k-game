@@ -157,7 +157,7 @@ func start():
 	
 	min_dash_time.start()
 	
-	play_anim("weapon_dash", 2)
+	play_anim("weapon_dash")
 	player.model_twist_override_angle = atan2(dir.x, dir.z) + -PI
 	var pos_diff: Vector3 = player.centre - target_position
 	var pitch: float = atan2(-pos_diff.y, pos_diff.length())

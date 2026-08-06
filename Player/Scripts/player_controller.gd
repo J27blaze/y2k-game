@@ -283,12 +283,6 @@ func _process(delta: float):
 	
 	centre = position + Vector3.UP * height/2
 
-func play_anim_blend(animation_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int):
-	animation_controller.play_anim_blend(animation_name, step_frame_length, blend_frames, blend_frame_length)
-	
-func play_anim(animation_name: String, step_frame_length: int):
-	animation_controller.play_anim(animation_name, step_frame_length)
-
 #Global Movement Functions
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):
 	velocity.x = velocity.move_toward(target_vector, accel * delta).x

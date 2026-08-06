@@ -3,7 +3,7 @@ extends PlayerState
 func start():
 	print("run")
 	player.target_speed = clampf(player.speed, player.run_speed, 999999)
-	play_anim_blend("run", 2, 6, 2)
+	play_anim_blend("run")
 	#player.animation_controller.animation_state_machine.travel("run")
 
 func process_physics(delta: float):

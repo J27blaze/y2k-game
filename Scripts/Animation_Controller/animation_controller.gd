@@ -97,19 +97,22 @@ func copy_skeleton_pose() -> void:
 			var pose = skeleton.get_bone_pose(bone_idx)
 			mesh_skeleton.set_bone_pose(bone_idx, pose)
 			
-func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: int, blend_frame_length: int, fb: int = FB) -> void:
+func play_anim_blend(anim_name: String, custom_root: String = "") -> void:
 	previous_anim = current_anim
 	#if current_anim != anim_name:
 	current_anim = anim_name
 	
 	animation_play_back.travel(anim_name, false)
 	if blend_t > 0:
-		#fix blend studd, ALL THIS WILL BE PERPICATED SOON
 		animation_play_back.next()
 		pass
 	#f2f(blend_frames, fb)
-	start_blend_t(f2f(animations_frames[anim_name].startL), f2f(animations_frames[anim_name].duringF))
-	start_t(f2f(animations_frames[anim_name].startF))
+	if custom_root != "":
+		start_blend_t(f2f(animations_frames[custom_root].startL), f2f(animations_frames[custom_root].duringF))
+		start_t(f2f(animations_frames[custom_root].startF))
+	else:
+		start_blend_t(f2f(animations_frames[anim_name].startL), f2f(animations_frames[anim_name].duringF))
+		start_t(f2f(animations_frames[anim_name].startF))
 	
 	#skeleton_animplayer.pause()
 	#skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
@@ -117,7 +120,7 @@ func play_anim_blend(anim_name: String, step_frame_length: int, blend_frames: in
 	skeleton_animplayer.advance(0)
 	copy_skeleton_pose()
 
-func play_anim(anim_name: String, step_frame_length: int, fb: int = FB) -> void:
+func play_anim(anim_name: String) -> void:
 	previous_anim = current_anim
 	current_anim = anim_name
 	
