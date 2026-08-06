@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ucek6cauucs"]
+
+[ext_resource type="PackedScene" uid="uid://du6g71caq5ute" path="res://Player/Assets/Costumes/Shoes/Budget_Converse/budget_converse.glb" id="1_detfa"]
+[ext_resource type="Material" uid="uid://lcx54uqgtunq" path="res://Player/Assets/Costumes/Shoes/Budget_Converse/budget_black_converse.tres" id="2_yv0x3"]
+
+[node name="budget_black_converse" instance=ExtResource("1_detfa")]
+
+[node name="Cube" parent="rig/Skeleton3D" index="0"]
+material_override = ExtResource("2_yv0x3")

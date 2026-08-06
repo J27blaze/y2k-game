@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://lcx54uqgtunq"]
+
+[ext_resource type="Texture2D" uid="uid://dxhe0aykb40y4" path="res://Player/Assets/Costumes/Shoes/Budget_Converse/black_shoe_texture.png" id="1_n7iff"]
+[ext_resource type="Material" uid="uid://b6hor5kjrcaor" path="res://Player/Assets/Costumes/player_outline_shader.tres" id="2_gyjqx"]
+
+[resource]
+next_pass = ExtResource("2_gyjqx")
+albedo_texture = ExtResource("1_n7iff")
+texture_filter = 0

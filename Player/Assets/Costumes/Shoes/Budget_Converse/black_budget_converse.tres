@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DeformClothing" load_steps=3 format=3 uid="uid://dek7xj8jyuxi4"]
+
+[ext_resource type="PackedScene" uid="uid://b5ucek6cauucs" path="res://Player/Assets/Costumes/Shoes/Budget_Converse/budget_black_converse.tscn" id="1_rxvox"]
+[ext_resource type="Script" uid="uid://dw8ebs1h7ueu1" path="res://Player/Assets/Costumes/deform_clothing.gd" id="1_sj1cg"]
+
+[resource]
+script = ExtResource("1_sj1cg")
+display_name = "Black Shoes"
+scene = ExtResource("1_rxvox")
+feet = true
+metadata/_custom_type_script = "uid://dw8ebs1h7ueu1"
