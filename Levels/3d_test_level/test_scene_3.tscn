@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://devmnydmopgav"]
+[gd_scene load_steps=4 format=3 uid="uid://devmnydmopgav"]
 
 [ext_resource type="PackedScene" uid="uid://pcivs6mw0lku" path="res://Levels/3d_test_level/test_mesh.glb" id="2_cfcb3"]
+[ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="3_k2r51"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="3_kubvd"]
 
 [node name="TestScene2" type="Node3D"]
@@ -14,3 +15,9 @@ shadow_enabled = true
 
 [node name="test_mesh" parent="." instance=ExtResource("2_cfcb3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123, 1, -184)
+
+[node name="TestEnemy" parent="." instance=ExtResource("3_k2r51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 54, -19)
+
+[node name="TestEnemy2" parent="." instance=ExtResource("3_k2r51")]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 6, 54, -22)
