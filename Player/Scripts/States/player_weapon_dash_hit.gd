@@ -15,6 +15,7 @@ func start():
 	timer = 0
 	jump_cut = true
 	
+	#player.target_speed = player.weapon_dash_target_speed
 	player.gravity = player.weapon_dash_hit_gravity
 	initial_vel = data
 	initial_dir = initial_vel.normalized()
@@ -65,7 +66,7 @@ func process_physics(delta: float):
 		return
 	
 	move_dir = player.direction * player.target_speed
-	player.vel_move_toward(move_dir, player.weapon_dash_hit_speed_aceel, delta)
+	player.vel_move_toward(move_dir, player.weapon_dash_hit_aceel, delta)
 	
 	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity

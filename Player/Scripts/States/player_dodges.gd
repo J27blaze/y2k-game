@@ -10,6 +10,7 @@ var speed : float = 0
 var timer: int = 0
 
 func start():
+	input_handler.clear_action_buffer("dodge")
 	print(data + " dodge")
 	player.jump_stage = 0
 	
@@ -92,6 +93,8 @@ func process_physics(delta: float):
 		"air":
 			player.calc_wall_slide()
 			if player.state_landing_check():
+				return
+			if Input.is_action_just_pressed("dodge"):
 				return
 		"ground":
 			if dodge_length.is_stopped():

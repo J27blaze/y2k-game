@@ -18,7 +18,8 @@ func start():
 	player.velocity.y *= player.wall_slide_y_vel_cut
 	player.gravity = player.wall_slide_gravity
 	
-	inital_speed = clampf(player.target_speed, player.wall_slide_speed, 999999)
+	var start_speed: float = clampf(player.target_speed, player.speed, 999999)
+	inital_speed = clampf(start_speed, player.wall_slide_speed, 999999)
 	player.target_speed = inital_speed
 	
 	#dictates wall side

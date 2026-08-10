@@ -91,6 +91,8 @@ func process_physics(delta: float) -> void:
 	if !is_dodge_jump:
 		if player.state_dodge_check():
 			return
+	if player.state_air_attack():
+		return
 	
 	#accel
 	var move_dir = player.target_speed * player.direction

@@ -172,7 +172,8 @@ var target: Node = null
 @export_range(0, 60, 0.01) var weapon_dash_speed: float = 0.1
 @export var weapon_dash_speed_timer_scaler: Curve #x = physics frames
 @export_range(0, 60, 0.01) var weapon_dash_target_speed: float = 0.1
-@export_range(0, 60, 0.01) var weapon_dash_hit_speed_aceel: float = 2.
+@export_range(0, 60, 0.01) var weapon_dash_hit_aceel: float = 2.
+@export_range(0, 20, 0.005) var weapon_dash_hit_speed_aceel: float = 2.
 @export_range(0, 1, 0.005) var weapon_dash_hit_y_speed_multiplier: float = 0.8
 @export_range(0, 1, 0.005) var weapon_dash_hit_y_cut: float = 0.8
 @export_range(0, 50, 0.01) var weapon_dash_hit_vel_pulse: float = 2.
@@ -424,6 +425,12 @@ func append_weapon_attack(state: String) -> bool:
 		#hard coding go crazy
 		append_attack_state.attack(state)
 		
+		return true
+	return false
+
+func state_air_attack() -> bool:
+	if input_handler.is_action_buffered("weapon_attack") && !is_attacking || Input.is_action_pressed("weapon_attack") && !is_attacking :
+		state_machine.change_state("attack_air")
 		return true
 	return false
 
