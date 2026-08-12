@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=111 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -317,6 +317,10 @@ xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8hx1r"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qas3k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ntwt4"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sm0op"]
 states/End/position = Vector2(1618, -139)
 states/Start/position = Vector2(-185, 15)
@@ -346,8 +350,8 @@ states/weapon_dash/node = SubResource("AnimationNodeAnimation_iyprq")
 states/weapon_dash/position = Vector2(1239.5654, -65)
 states/weapon_dash_hit/node = SubResource("AnimationNodeAnimation_f4lon")
 states/weapon_dash_hit/position = Vector2(1239.5654, 12)
-transitions = ["fall_default", "idle_land", SubResource("AnimationNodeStateMachineTransition_qs4pp"), "wall_slide_jump", "fall_default", SubResource("AnimationNodeStateMachineTransition_8ynux"), "idle_land", "slide", SubResource("AnimationNodeStateMachineTransition_d30e8"), "slide", "fall_default", SubResource("AnimationNodeStateMachineTransition_6pogt"), "wall_slide_jump", "wall_slide_r", SubResource("AnimationNodeStateMachineTransition_ie76m"), "fall_default", "wall_slide_r", SubResource("AnimationNodeStateMachineTransition_maysp"), "fall_default", "wall_slide_l", SubResource("AnimationNodeStateMachineTransition_1l10g"), "wall_slide_l", "fall_default", SubResource("AnimationNodeStateMachineTransition_6rl0i"), "wall_slide_r", "fall_default", SubResource("AnimationNodeStateMachineTransition_7x5p2"), "weapon_dash", "weapon_dash_hit", SubResource("AnimationNodeStateMachineTransition_6eb1q"), "weapon_dash_hit", "fall_default", SubResource("AnimationNodeStateMachineTransition_wvbyc"), "wall_slide_r", "idle_land", SubResource("AnimationNodeStateMachineTransition_gvnt1"), "wall_slide_l", "idle_land", SubResource("AnimationNodeStateMachineTransition_1kmt7"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_efx54"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_m0h3t"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_iyprq"), "idle_land", "idle", SubResource("AnimationNodeStateMachineTransition_7v2uk"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bbimk"), "idle_land", "run", SubResource("AnimationNodeStateMachineTransition_i4o1l"), "run", "fall_default", SubResource("AnimationNodeStateMachineTransition_j2n6q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f4lon"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_755ss"), "fall_default", "slide", SubResource("AnimationNodeStateMachineTransition_jp1hh"), "jump_default", "fall_default", SubResource("AnimationNodeStateMachineTransition_c4i3b"), "idle_land", "fall_default", SubResource("AnimationNodeStateMachineTransition_c6x0f"), "air_attack_1", "fall_default", SubResource("AnimationNodeStateMachineTransition_dy65m"), "air_attack_1", "idle_land", SubResource("AnimationNodeStateMachineTransition_m6nl3"), "wall_slide_jump", "wall_slide_l", SubResource("AnimationNodeStateMachineTransition_3e3ym"), "air_attack_2", "idle_land", SubResource("AnimationNodeStateMachineTransition_uvbbp"), "air_attack_2", "fall_default", SubResource("AnimationNodeStateMachineTransition_8hx1r")]
-graph_offset = Vector2(268.5655, -209)
+transitions = ["fall_default", "idle_land", SubResource("AnimationNodeStateMachineTransition_qs4pp"), "wall_slide_jump", "fall_default", SubResource("AnimationNodeStateMachineTransition_8ynux"), "idle_land", "slide", SubResource("AnimationNodeStateMachineTransition_d30e8"), "slide", "fall_default", SubResource("AnimationNodeStateMachineTransition_6pogt"), "wall_slide_jump", "wall_slide_r", SubResource("AnimationNodeStateMachineTransition_ie76m"), "fall_default", "wall_slide_r", SubResource("AnimationNodeStateMachineTransition_maysp"), "fall_default", "wall_slide_l", SubResource("AnimationNodeStateMachineTransition_1l10g"), "wall_slide_l", "fall_default", SubResource("AnimationNodeStateMachineTransition_6rl0i"), "wall_slide_r", "fall_default", SubResource("AnimationNodeStateMachineTransition_7x5p2"), "weapon_dash", "weapon_dash_hit", SubResource("AnimationNodeStateMachineTransition_6eb1q"), "weapon_dash_hit", "fall_default", SubResource("AnimationNodeStateMachineTransition_wvbyc"), "wall_slide_r", "idle_land", SubResource("AnimationNodeStateMachineTransition_gvnt1"), "wall_slide_l", "idle_land", SubResource("AnimationNodeStateMachineTransition_1kmt7"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_efx54"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_m0h3t"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_iyprq"), "idle_land", "idle", SubResource("AnimationNodeStateMachineTransition_7v2uk"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bbimk"), "idle_land", "run", SubResource("AnimationNodeStateMachineTransition_i4o1l"), "run", "fall_default", SubResource("AnimationNodeStateMachineTransition_j2n6q"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f4lon"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_755ss"), "fall_default", "slide", SubResource("AnimationNodeStateMachineTransition_jp1hh"), "jump_default", "fall_default", SubResource("AnimationNodeStateMachineTransition_c4i3b"), "idle_land", "fall_default", SubResource("AnimationNodeStateMachineTransition_c6x0f"), "air_attack_1", "fall_default", SubResource("AnimationNodeStateMachineTransition_dy65m"), "air_attack_1", "idle_land", SubResource("AnimationNodeStateMachineTransition_m6nl3"), "wall_slide_jump", "wall_slide_l", SubResource("AnimationNodeStateMachineTransition_3e3ym"), "air_attack_2", "idle_land", SubResource("AnimationNodeStateMachineTransition_uvbbp"), "air_attack_2", "fall_default", SubResource("AnimationNodeStateMachineTransition_8hx1r"), "air_attack_2", "wall_slide_l", SubResource("AnimationNodeStateMachineTransition_qas3k"), "air_attack_1", "wall_slide_r", SubResource("AnimationNodeStateMachineTransition_ntwt4")]
+graph_offset = Vector2(208.56549, -137)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7emwf"]
 radius = 1.3000001
@@ -441,9 +445,11 @@ weapon_dash_hit_backward_speed = 8.93
 weapon_dash_hit_dot_threshold = -0.19999999999999996
 attack_anim_speeds = Array[float]([0.5, 0.541, 0.0])
 attack_input_speeds = Array[float]([0.24, 0.25, 0.0])
-air_attack_anim_speeds = Array[float]([0.75, 0.75, 0.0])
+air_attack_anim_speeds = Array[float]([0.65, 0.65, 0.0])
 air_attack_input_speeds = Array[float]([0.24, 0.25, 0.0])
 attack_combo_speed = 0.55
+air_attack_y_cut = 0.6
+air_attack_fall_y_cut = 0.9
 
 [node name="player_camera_controller" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("10_apopc")
@@ -656,33 +662,33 @@ target = NodePath("..")
 [node name="angel_body_final" parent="model_twist" instance=ExtResource("16_o28un")]
 
 [node name="Skeleton3D" parent="model_twist/angel_body_final/rig" index="0"]
-bones/0/position = Vector3(-1.3832854e-08, 1.1643401, 0.048715882)
-bones/0/rotation = Quaternion(-0.15262924, -0.0032188075, -0.02125151, 0.98804975)
+bones/0/position = Vector3(-1.38459955e-08, 1.1679984, 0.04871587)
+bones/0/rotation = Quaternion(-0.14991182, -0.0031603612, -0.021260286, 0.9884657)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(-1.7500592e-05, 0.17693837, 0.00012921158)
-bones/1/rotation = Quaternion(0.2603707, -0.008479627, 0.030797478, 0.9649802)
+bones/1/position = Vector3(-9.559242e-05, 0.17875206, 0.0007057572)
+bones/1/rotation = Quaternion(0.25704998, -0.00851649, 0.030864473, 0.96586764)
 bones/2/rotation = Quaternion(-0.12706889, -0.0080422135, -0.017390687, 0.9917089)
 bones/3/rotation = Quaternion(0.032178927, -8.6437126e-08, 3.726855e-08, 0.99948215)
 bones/4/position = Vector3(-0.09611825, 0.24966626, 0.014868703)
-bones/4/rotation = Quaternion(0.019502895, 0.15025163, 0.97474223, 0.16407837)
+bones/4/rotation = Quaternion(0.017275633, 0.16309126, 0.97241986, 0.16583851)
 bones/4/scale = Vector3(0.9999998, 0.9999997, 0.9999999)
-bones/5/rotation = Quaternion(-0.057660397, -0.106758624, 0.0801018, 0.98937434)
+bones/5/rotation = Quaternion(-0.080519676, -0.11545653, 0.07539403, 0.9871688)
 bones/5/scale = Vector3(1, 0.99999976, 0.99999994)
-bones/6/rotation = Quaternion(-0.005088171, 0.73984015, -0.007870725, 0.67271745)
-bones/7/position = Vector3(-0.0041277395, 0.10095687, 0.012318693)
-bones/7/rotation = Quaternion(-0.10661744, -0.726264, 0.23828642, 0.6359191)
-bones/8/rotation = Quaternion(-0.012715609, 0.014754341, 0.09397647, 0.9953839)
+bones/6/rotation = Quaternion(0.031782392, 0.7250931, -0.038588136, 0.686834)
+bones/7/position = Vector3(-0.0041463207, 0.10117189, 0.011969287)
+bones/7/rotation = Quaternion(-0.12987545, -0.7224673, 0.2585765, 0.62794244)
+bones/8/rotation = Quaternion(-0.011818147, 0.015482537, 0.15284695, 0.9880579)
 bones/9/position = Vector3(0.05750823, 0.103098, 0.0077835605)
-bones/9/rotation = Quaternion(-0.060907077, -0.6988725, 0.08977914, 0.7069705)
-bones/10/rotation = Quaternion(-0.032964863, 0.7242895, 0.055910055, 0.68643445)
+bones/9/rotation = Quaternion(-0.09539808, -0.6950047, 0.124635324, 0.7016649)
+bones/10/rotation = Quaternion(-0.09150964, 0.7168612, 0.11760613, 0.68110555)
 bones/11/position = Vector3(0.0674085, 0.026889523, -0.010986025)
-bones/11/rotation = Quaternion(-0.5787256, -0.40679175, -0.08438573, 0.7017665)
-bones/12/rotation = Quaternion(0.12200897, -0.0006133265, 0.28592056, 0.9504542)
-bones/13/position = Vector3(0.07802707, 0.282006, 0.00783569)
-bones/13/rotation = Quaternion(0.048070587, -0.3272203, -0.90623325, 0.26335832)
-bones/14/rotation = Quaternion(-0.31703523, 0.10255636, 0.029596483, 0.942388)
+bones/11/rotation = Quaternion(-0.5825845, -0.4012457, -0.07767923, 0.70254046)
+bones/12/rotation = Quaternion(0.15997732, 0.015478982, 0.33697596, 0.92769337)
+bones/13/position = Vector3(0.078806885, 0.284185, 0.009057697)
+bones/13/rotation = Quaternion(0.04431876, -0.32537416, -0.90442914, 0.2723518)
+bones/14/rotation = Quaternion(-0.31029284, 0.095178165, 0.0040006316, 0.9458559)
 bones/14/scale = Vector3(1, 0.9999999, 0.99999994)
-bones/15/rotation = Quaternion(0.2848371, -0.6832555, -0.2573657, 0.62112206)
+bones/15/rotation = Quaternion(0.27998075, -0.6852599, -0.25295103, 0.622933)
 bones/15/scale = Vector3(1.0000001, 1.0000001, 0.9999999)
 bones/16/position = Vector3(0.0041153333, 0.100813694, 0.01255128)
 bones/16/rotation = Quaternion(-0.35503906, 0.6424748, -0.44656125, 0.51162153)
@@ -696,30 +702,30 @@ bones/22/position = Vector3(-0.17255813, 0.14857958, -0.024007767)
 bones/22/rotation = Quaternion(-0.0857075, 0.13987419, 0.5080077, 0.8455872)
 bones/22/scale = Vector3(1, 1.0000001, 0.9999998)
 bones/23/position = Vector3(-0.08933693, 0.009663322, -0.04104165)
-bones/23/rotation = Quaternion(0.98701936, 0.0013471731, 0.0040515894, -0.16054463)
+bones/23/rotation = Quaternion(0.9884835, 0.0024242522, -0.022638142, -0.14960633)
 bones/23/scale = Vector3(1.0000002, 1.0000001, 1.0000025)
-bones/24/rotation = Quaternion(-0.13819388, -0.0020016227, -0.014273445, 0.99030036)
+bones/24/rotation = Quaternion(-0.12460849, -0.0020052947, -0.012869887, 0.9921205)
 bones/24/scale = Vector3(1.0000001, 1.0000002, 0.99999946)
-bones/25/rotation = Quaternion(0.60093766, -0.03672313, 0.09460765, 0.79282707)
-bones/26/position = Vector3(0.08883654, 0.012763429, -0.04268886)
-bones/26/rotation = Quaternion(0.9825665, 0.012180151, -0.0031354402, -0.18548591)
-bones/26/scale = Vector3(1.0000006, 1.0004463, 1.0000067)
-bones/27/rotation = Quaternion(-0.066893525, 0.0020166363, 0.006909162, 0.9977342)
+bones/25/rotation = Quaternion(0.5882444, -0.038445216, 0.09388049, 0.8022949)
+bones/26/position = Vector3(0.08887683, 0.011980813, -0.041889526)
+bones/26/rotation = Quaternion(0.98386914, 0.011748294, -0.003056555, -0.17847759)
+bones/26/scale = Vector3(1.0000018, 1.0029378, 1.0000063)
+bones/27/rotation = Quaternion(-0.058681544, 0.0020176913, 0.006060986, 0.9982563)
 bones/27/scale = Vector3(0.99999976, 1.0000002, 0.9999998)
 bones/28/rotation = Quaternion(0.6630797, 0.020660153, -0.045974325, 0.74685)
-bones/29/position = Vector3(-0.08098053, 0.676023, -0.8964318)
+bones/29/position = Vector3(-0.13321033, 0.676023, -0.8964318)
 bones/29/rotation = Quaternion(-0.706706, -0.023804938, 0.023804942, 0.70670605)
 bones/30/rotation = Quaternion(-0.706706, 0.023804938, -0.023804942, 0.70670605)
-bones/31/position = Vector3(-0.114542894, 0.07039616, 0.16139035)
+bones/31/position = Vector3(-0.11454289, 0.072212204, 0.16139035)
 bones/31/rotation = Quaternion(0.7070358, 0.010026792, 0.01002679, 0.70703566)
 bones/32/position = Vector3(0.060791835, 0.046069287, 0.015487869)
 bones/32/rotation = Quaternion(0.7070358, -0.010026792, -0.01002679, 0.70703566)
 
 [node name="head_2" parent="model_twist/angel_body_final/rig/Skeleton3D" index="0"]
-transform = Transform3D(0.99909264, 0.013660807, -0.040343266, -0.014864297, 0.9994486, -0.02968352, 0.03991554, 0.030256215, 0.9987447, 0.001127785, 1.6996773, 0.0563063)
+transform = Transform3D(0.99909264, 0.0136608165, -0.040343266, -0.014809341, 0.9994893, -0.028308403, 0.03993597, 0.028880186, 0.9987847, 0.0011277918, 1.705614, 0.056741506)
 
 [node name="weapon" parent="model_twist/angel_body_final/rig/Skeleton3D" index="1"]
-transform = Transform3D(-0.102486104, 0.61321265, 0.78324074, -0.5873996, -0.6727531, 0.4498492, 0.8027814, -0.41397256, 0.42914876, 0.51937366, 0.9741293, 0.13220775)
+transform = Transform3D(-0.10782516, 0.5812922, 0.8065187, -0.58297026, -0.6941047, 0.4223318, 0.80530703, -0.42463875, 0.413718, 0.5101327, 0.9739804, 0.13232161)
 
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent", "animation_tree") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")

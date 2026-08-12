@@ -1,6 +1,7 @@
 extends PlayerState
 
 var accel: float = 0.0
+var actionable : bool = false
 
 @onready var anim_timer := $anim_timeout 
 @onready var input_timer := $input_timeout
@@ -9,7 +10,8 @@ var accel: float = 0.0
 func start():
 	print("attack_air")
 	play_anim("air_attack_" + str(player.attack_stage+1))
-	print(player.attack_stage)
+	actionable = false
+	#print(player.attack_stage)
 	
 	if player.attack_stage >= player.max_combo:
 		player.attack_stage = 0
@@ -30,6 +32,8 @@ func start():
 	
 	player.gravity = player.fall_gravity
 	accel = player.fall_accel
+	if player.velocity.y > 0: player.velocity.y *= player.air_attack_y_cut
+	else: player.velocity.y *= player.air_attack_fall_y_cut
 	#print(previous_state())
 	
 	#calc state before playing anim
@@ -42,6 +46,7 @@ func exit():
 func _on_anim_timeout_timeout() -> void:
 	change_state("fall")
 func _on_input_timeout_timeout() -> void:
+	actionable = true
 	player.is_attacking = false
 	combo_timer.start()
 func _on_combo_timer_timeout() -> void:
@@ -50,22 +55,24 @@ func _on_combo_timer_timeout() -> void:
 func process_physics(delta: float) -> void:
 	
 	player.calc_wall_slide()
-	if player.state_wall_slide_check():
-		return
 	if player.state_landing_check():
 		return
 	
 	player.hit_check()
 	if player.state_tumble_check():
 		return
-	
-	if !data:
-		if player.state_dodge_check():
-			return
-	
-	if player.state_air_attack():
-		player.is_attacking = true
+		
+	if player.state_dodge_check():
 		return
+		
+	if actionable:
+		if player.state_wall_slide_check():
+			return
+		if player.state_air_attack():
+			player.is_attacking = true
+			return
+		if player.state_weapon_dash_check():
+			return
 	
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, accel, delta)

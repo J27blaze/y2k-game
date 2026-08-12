@@ -52,8 +52,6 @@ func process_physics(delta: float):
 	player.hit_check()
 	if player.state_tumble_check():
 		return
-	if player.state_air_attack():
-		return
 	
 	#similiar as player jump state
 	
@@ -88,6 +86,10 @@ func process_physics(delta: float):
 		player.vel_move_toward(move_dir, player.wall_slide_jump_accel, delta)
 		player.model_twist_override_angle = -999
 	
+	if timer > player.wall_slide_jump_inital_accel_frames - 3:
+		if player.state_air_attack():
+			return
+			
 	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity
 		player.velocity.y *= player.jump_vel_height_cut

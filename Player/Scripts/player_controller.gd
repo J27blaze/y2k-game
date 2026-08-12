@@ -198,6 +198,9 @@ var attack_stage: int = 0
 
 @export var max_combo: int = 1 #, 0, 1
 @export_range(0,2,0.05) var attack_combo_speed := 0.0
+
+@export_range(0, 1, 0.005) var air_attack_y_cut : float = 0.8
+@export_range(0, 1, 0.005) var air_attack_fall_y_cut : float = 0.8
 #endregion
 
 
@@ -358,7 +361,7 @@ func state_dodge_check() -> bool:
 			"run", "idle", "slide":
 				state_machine.change_state("ground_dodge", "ground")
 				return true
-			"jump", "wall_slide_jump", "fall", _:
+			"jump", "wall_slide_jump", "fall", "air_attack", _:
 				state_machine.change_state("air_dodge", "air")
 				return true
 	else:
