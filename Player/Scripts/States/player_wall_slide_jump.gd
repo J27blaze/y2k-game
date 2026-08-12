@@ -52,6 +52,8 @@ func process_physics(delta: float):
 	player.hit_check()
 	if player.state_tumble_check():
 		return
+	if player.state_air_attack():
+		return
 	
 	#similiar as player jump state
 	

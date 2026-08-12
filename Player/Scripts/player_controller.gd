@@ -190,8 +190,13 @@ var target: Node = null
 var is_attacking: bool = false
 var attack_stage: int = 0
 @onready var append_attack_state : AppendAttackState = $state_machine/append_attack
-@export var attack_anim_speeds : Array[float] = [0,0,0]
+@export var attack_anim_speeds : Array[float] = [0,0,0] # attack one anim length, attack two anim length ...
 @export var attack_input_speeds : Array[float] = [0,0,0]
+
+@export var air_attack_anim_speeds : Array[float] = [0,0,0] # attack one input buffer length, attack two input buffer length ...
+@export var air_attack_input_speeds : Array[float] = [0,0,0]
+
+@export var max_combo: int = 1 #, 0, 1
 @export_range(0,2,0.05) var attack_combo_speed := 0.0
 #endregion
 

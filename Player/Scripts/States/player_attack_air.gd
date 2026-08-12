@@ -8,25 +8,44 @@ var accel: float = 0.0
 
 func start():
 	print("attack_air")
+	play_anim("air_attack_" + str(player.attack_stage+1))
+	print(player.attack_stage)
 	
-	var cur_anim := player.attack_anim_speeds[player.attack_stage]
-	var cur_input := player.attack_input_speeds[player.attack_stage]
+	if player.attack_stage >= player.max_combo:
+		player.attack_stage = 0
+	else:
+		player.attack_stage += 1
+	
+	var cur_anim := player.air_attack_anim_speeds[player.attack_stage]
+	var cur_input := player.air_attack_input_speeds[player.attack_stage]
 	
 	player.is_attacking = true
 	
 	anim_timer.wait_time = cur_anim
 	input_timer.wait_time = cur_input
 	
+	combo_timer.stop()
+	anim_timer.start()
+	input_timer.start()
+	
 	player.gravity = player.fall_gravity
 	accel = player.fall_accel
 	#print(previous_state())
 	
 	#calc state before playing anim
-	play_anim_blend("air_attack_1")
 
 func exit():
 	player.is_attacking = false
-	player.append_attack_state.exit_attack()
+	input_timer.stop()
+	anim_timer.stop()
+
+func _on_anim_timeout_timeout() -> void:
+	change_state("fall")
+func _on_input_timeout_timeout() -> void:
+	player.is_attacking = false
+	combo_timer.start()
+func _on_combo_timer_timeout() -> void:
+	player.attack_stage = 0
 
 func process_physics(delta: float) -> void:
 	
@@ -44,6 +63,10 @@ func process_physics(delta: float) -> void:
 		if player.state_dodge_check():
 			return
 	
+	if player.state_air_attack():
+		player.is_attacking = true
+		return
+	
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, accel, delta)
 	#player.vel_accel_speed(player.run_speed, player.run_max_speed, player.jump_speed_accel, player.jump_speed_accel, delta)
@@ -55,6 +78,6 @@ func process_physics(delta: float) -> void:
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)
 	
 	return
-	
+
 func process_input(event: InputEvent):
 	return

@@ -7,11 +7,7 @@ var state: String = ""
 @onready var input_timer := $input_timeout
 @onready var combo_timer := $combo_timer #started after attack
 
-var max_combo: int = 1 #, 0, 1
 var previous_anim: String = ""
-
-func _ready() -> void:
-	combo_timer.wait_time = 0.25
 
 func attack(appended_state: String):
 	var anim_con := player.animation_controller
@@ -33,6 +29,7 @@ func attack(appended_state: String):
 		"run", "idle":
 			var anim: String = str("parameters/" +state+"/attack_" + str(player.attack_stage +1)+ "_oneshot/request")			
 			anim_con.animation_tree.set(previous_anim, AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+			anim_con.animation_play_back.next()
 			
 			previous_anim = anim
 			
@@ -46,7 +43,7 @@ func attack(appended_state: String):
 		_:
 			print("parent state start assigned not valid")
 	
-	if player.attack_stage >= max_combo:
+	if player.attack_stage >= player.max_combo:
 		player.attack_stage = 0
 		return
 	player.attack_stage += 1
