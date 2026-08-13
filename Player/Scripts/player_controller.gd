@@ -20,8 +20,9 @@ var floor_normal: Vector3 = Vector3.ZERO
 var god_mode: bool = false
 @onready var step_collider := $step_collider
 @onready var step_collider_range := $step_collider/range
-@onready var step_collider_height := $step_collider/height
+@onready var step_collider_height := $step_collider/range/height
 @onready var step_collider_shape := $step_collider/ShapeCast3D
+@onready var step_ray_amount : int = step_collider.get_child_count(false)
 
 #other
 var centre: Vector3 = Vector3.ZERO
@@ -70,6 +71,7 @@ var can_check_hurt_box: bool = true
 @export_range(0, 2, 0.01) var step_max_height : float = 0.5
 @export_range(0, 0.5, 0.001) var step_margin : float = 0.01
 @export_range(1, 3, 0.01) var step_range_vel_multiplier : float = 1.
+@export_range(0, 90, 0.5) var step_angle_range : float = 30
 
 #endregion
 #region fall jump
@@ -430,30 +432,38 @@ func can_wall_slide() -> bool:
 
 func snap_step(delta: float):
 	#setup
+	var i : int = 0
 	var cur_range: float = step_max_range + step_margin + speed*delta*step_range_vel_multiplier
 	var cur_height: float = step_max_height + step_margin
-	print(speed*delta)
+	
+	var correction : Vector3 = direction*-(step_max_range - step_margin)
+	var step_positions : Array[Vector3] = []
+	var step_position_scores : Array[float] = []
+	#print(speed*delta)
 	# set step colliders
-	step_collider_range.position = Vector3(0, cur_height, 0)
-	step_collider_height.position = Vector3(0, cur_height, -cur_range)
-	step_collider_range.target_position = Vector3(0,0,-cur_range)
-	step_collider_height.target_position = Vector3(0,-cur_height + step_margin,0)
-	
-	step_collider_height.force_raycast_update()
-	step_collider_range.force_raycast_update()
-	
-	#calc
-	if !step_collider_range.is_colliding() && step_collider_height.is_colliding():
-		var floor_position : Vector3 = step_collider_height.get_collision_point()
-		var dif_height: float = floor_position.y - position.y
-		var correction : Vector3 = direction*-(step_max_range - step_margin)
+	for ray in step_collider.get_children(false):
+		var range = ray
+		var height = ray.get_child(0)
 		
-		#position.y += dif_height + step_margin
-		position = floor_position + correction
-		dif_height = 0
+		range.rotation.y = deg_to_rad(i*step_angle_range/step_ray_amount*2 - step_angle_range + step_angle_range/step_ray_amount)
+		range.position = Vector3(0, cur_height, 0)
+		height.position = Vector3(0, 0, -cur_range)
+		range.target_position = Vector3(0,0,-cur_range)
+		height.target_position = Vector3(0,-cur_height + step_margin,0)
 		
-	DebugDraw3D.draw_square(position, 0.2, Color.RED)
-
+		range.force_raycast_update()
+		height.force_raycast_update()
+		
+		#calc
+		if !range.is_colliding() && height.is_colliding():
+			step_positions.insert(i, height.get_collision_point())
+			step_position_scores.insert(i, Vector3(height.get_collision_point() - global_position).length())
+			
+			DebugDraw3D.draw_square(step_positions[i], 0.2, Color.RED)
+			
+		i += 1
+	print(step_position_scores)
+	
 func state_wall_slide_jump_check() -> bool:
 	if on_wall && input_handler.is_action_buffered("jump"):
 		state_machine.change_state("wall_slide_jump")

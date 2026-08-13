@@ -133,6 +133,8 @@ func process_physics(delta: float):
 	#print(angle)
 	#print(scaled_floor_accel.length())
 	
+	player.snap_step(delta)
+	
 	player.vel_move_toward(move_dir, 999999, delta)
 	player.target_speed = move_dir.length()
 	slide_timer += 1
