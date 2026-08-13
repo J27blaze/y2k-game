@@ -18,6 +18,10 @@ var wall_slide_rays: Array[Node]
 var wall_rel_centre: Vector3 #0, 1.5, 0
 var floor_normal: Vector3 = Vector3.ZERO
 var god_mode: bool = false
+@onready var step_collider := $step_collider
+@onready var step_collider_range := $step_collider/range
+@onready var step_collider_height := $step_collider/height
+@onready var step_collider_shape := $step_collider/ShapeCast3D
 
 #other
 var centre: Vector3 = Vector3.ZERO
@@ -60,6 +64,13 @@ var can_check_hurt_box: bool = true
 @export_range(0, 20, 0.1) var run_speed: float = 10.0
 @export_range(0, 50, 0.1) var run_accel: float = 10.0
 @export_range(0, 20, 0.05) var run_accel_speed: float = 10.0
+
+@export_subgroup("step controls")
+@export_range(0, 2, 0.01) var step_max_range : float = 0.5
+@export_range(0, 2, 0.01) var step_max_height : float = 0.5
+@export_range(0, 0.5, 0.001) var step_margin : float = 0.01
+@export_range(1, 3, 0.01) var step_range_vel_multiplier : float = 1.
+
 #endregion
 #region fall jump
 @export_group("fall | jump")
@@ -206,7 +217,7 @@ var attack_stage: int = 0
 
 func _ready() -> void:
 	#debug
-	DebugDraw3D.set_debug_enabled(false)
+	#DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
@@ -227,6 +238,9 @@ func _ready() -> void:
 		i += 1
 	
 	wall_rel_centre = wall_slide_colliders.position
+	
+	#set step stuff
+	snap_step(0)
 	
 	height = standing_collider.shape.height
 	gravity = fall_gravity
@@ -251,6 +265,8 @@ func _physics_process(delta: float):
 		
 	if velocity.length() > 0.5:
 		last_velocity = velocity
+	
+	step_collider.global_rotation.y = Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
 	
 	input_handler.process_physics(delta)
 	state_machine.process_physics(delta)
@@ -411,7 +427,33 @@ func can_wall_slide() -> bool:
 	var wall_tan = wall_normal.rotated(Vector3.UP, PI/2)
 	
 	return abs(cur_vel.dot(wall_tan)) > wall_slide_angle_threshold && on_wall && speed > wall_slide_min_speed && abs(direction.dot(wall_tan)) > wall_slide_direction_threshold && direction.length() > 0.1
+
+func snap_step(delta: float):
+	#setup
+	var cur_range: float = step_max_range + step_margin + speed*delta*step_range_vel_multiplier
+	var cur_height: float = step_max_height + step_margin
+	print(speed*delta)
+	# set step colliders
+	step_collider_range.position = Vector3(0, cur_height, 0)
+	step_collider_height.position = Vector3(0, cur_height, -cur_range)
+	step_collider_range.target_position = Vector3(0,0,-cur_range)
+	step_collider_height.target_position = Vector3(0,-cur_height + step_margin,0)
 	
+	step_collider_height.force_raycast_update()
+	step_collider_range.force_raycast_update()
+	
+	#calc
+	if !step_collider_range.is_colliding() && step_collider_height.is_colliding():
+		var floor_position : Vector3 = step_collider_height.get_collision_point()
+		var dif_height: float = floor_position.y - position.y
+		var correction : Vector3 = direction*-(step_max_range - step_margin)
+		
+		#position.y += dif_height + step_margin
+		position = floor_position + correction
+		dif_height = 0
+		
+	DebugDraw3D.draw_square(position, 0.2, Color.RED)
+
 func state_wall_slide_jump_check() -> bool:
 	if on_wall && input_handler.is_action_buffered("jump"):
 		state_machine.change_state("wall_slide_jump")

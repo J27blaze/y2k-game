@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene load_steps=112 format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -74,6 +74,11 @@ script = ExtResource("19_76lrf")
 duringF = 1.5
 metadata/_custom_type_script = "uid://bvca72by0b78t"
 
+[sub_resource type="Resource" id="Resource_f4lon"]
+script = ExtResource("19_76lrf")
+duringF = 1.5
+metadata/_custom_type_script = "uid://bvca72by0b78t"
+
 [sub_resource type="Resource" id="Resource_bbimk"]
 script = ExtResource("19_76lrf")
 startF = 3.0
@@ -134,11 +139,6 @@ metadata/_custom_type_script = "uid://bvca72by0b78t"
 [sub_resource type="Resource" id="Resource_qs4pp"]
 script = ExtResource("19_76lrf")
 duringF = 2.0
-metadata/_custom_type_script = "uid://bvca72by0b78t"
-
-[sub_resource type="Resource" id="Resource_f4lon"]
-script = ExtResource("19_76lrf")
-duringF = 1.5
 metadata/_custom_type_script = "uid://bvca72by0b78t"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_maysp"]
@@ -356,6 +356,9 @@ graph_offset = Vector2(208.56549, -137)
 [sub_resource type="SphereShape3D" id="SphereShape3D_7emwf"]
 radius = 1.3000001
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_755ss"]
+height = 0.14
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b1ygp"]
 radius = 0.43310547
 
@@ -363,12 +366,16 @@ radius = 0.43310547
 collision_layer = 2
 collision_mask = 33
 floor_max_angle = 0.80285144
-floor_snap_length = 0.4
+floor_snap_length = 0.0
+platform_floor_layers = 4278190113
 script = ExtResource("1_v0iea")
 rotation_smoothing = 13.85
 run_speed = 6.1
 run_accel = 50.0
 run_accel_speed = 0.8
+step_max_range = 0.3
+step_margin = 0.015
+step_range_vel_multiplier = 1.05
 fall_gravity = 35.0
 jump_gravity = 17.0
 jump_vel_pulse = 9.2
@@ -662,33 +669,33 @@ target = NodePath("..")
 [node name="angel_body_final" parent="model_twist" instance=ExtResource("16_o28un")]
 
 [node name="Skeleton3D" parent="model_twist/angel_body_final/rig" index="0"]
-bones/0/position = Vector3(-1.38459955e-08, 1.1679984, 0.04871587)
-bones/0/rotation = Quaternion(-0.14991182, -0.0031603612, -0.021260286, 0.9884657)
+bones/0/position = Vector3(-1.3828097e-08, 1.1679065, 0.04871588)
+bones/0/rotation = Quaternion(-0.14996806, -0.00316157, -0.021260101, 0.9884572)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(-9.559242e-05, 0.17875206, 0.0007057572)
-bones/1/rotation = Quaternion(0.25704998, -0.00851649, 0.030864473, 0.96586764)
+bones/1/position = Vector3(-9.229885e-05, 0.17867552, 0.000681365)
+bones/1/rotation = Quaternion(0.2571038, -0.0085158935, 0.03086339, 0.96585333)
 bones/2/rotation = Quaternion(-0.12706889, -0.0080422135, -0.017390687, 0.9917089)
 bones/3/rotation = Quaternion(0.032178927, -8.6437126e-08, 3.726855e-08, 0.99948215)
 bones/4/position = Vector3(-0.09611825, 0.24966626, 0.014868703)
-bones/4/rotation = Quaternion(0.017275633, 0.16309126, 0.97241986, 0.16583851)
+bones/4/rotation = Quaternion(0.017324075, 0.16281247, 0.97247225, 0.16580059)
 bones/4/scale = Vector3(0.9999998, 0.9999997, 0.9999999)
-bones/5/rotation = Quaternion(-0.080519676, -0.11545653, 0.07539403, 0.9871688)
+bones/5/rotation = Quaternion(-0.09494263, -0.12091706, 0.07239405, 0.9854563)
 bones/5/scale = Vector3(1, 0.99999976, 0.99999994)
-bones/6/rotation = Quaternion(0.031782392, 0.7250931, -0.038588136, 0.686834)
-bones/7/position = Vector3(-0.0041463207, 0.10117189, 0.011969287)
-bones/7/rotation = Quaternion(-0.12987545, -0.7224673, 0.2585765, 0.62794244)
-bones/8/rotation = Quaternion(-0.011818147, 0.015482537, 0.15284695, 0.9880579)
+bones/6/rotation = Quaternion(0.008679542, 0.73456836, -0.019344656, 0.67820346)
+bones/7/position = Vector3(-0.004163194, 0.10136702, 0.011652076)
+bones/7/rotation = Quaternion(-0.15646856, -0.7171779, 0.28159082, 0.6179644)
+bones/8/rotation = Quaternion(-0.010725294, 0.016258704, 0.22044228, 0.97520554)
 bones/9/position = Vector3(0.05750823, 0.103098, 0.0077835605)
-bones/9/rotation = Quaternion(-0.09539808, -0.6950047, 0.124635324, 0.7016649)
-bones/10/rotation = Quaternion(-0.09150964, 0.7168612, 0.11760613, 0.68110555)
+bones/9/rotation = Quaternion(-0.09075442, -0.6956264, 0.11994654, 0.7024817)
+bones/10/rotation = Quaternion(-0.08360092, 0.7181775, 0.109280825, 0.6821215)
 bones/11/position = Vector3(0.0674085, 0.026889523, -0.010986025)
-bones/11/rotation = Quaternion(-0.5825845, -0.4012457, -0.07767923, 0.70254046)
-bones/12/rotation = Quaternion(0.15997732, 0.015478982, 0.33697596, 0.92769337)
-bones/13/position = Vector3(0.078806885, 0.284185, 0.009057697)
-bones/13/rotation = Quaternion(0.04431876, -0.32537416, -0.90442914, 0.2723518)
-bones/14/rotation = Quaternion(-0.31029284, 0.095178165, 0.0040006316, 0.9458559)
+bones/11/rotation = Quaternion(-0.62230885, -0.3363548, -0.001776556, 0.70681965)
+bones/12/rotation = Quaternion(0.1762164, 0.022440234, 0.35862944, 0.91642195)
+bones/13/position = Vector3(0.07933871, 0.28567103, 0.009890994)
+bones/13/rotation = Quaternion(0.041943263, -0.3241894, -0.90324056, 0.27802634)
+bones/14/rotation = Quaternion(-0.31387872, 0.10078153, 0.02308556, 0.94381696)
 bones/14/scale = Vector3(1, 0.9999999, 0.99999994)
-bones/15/rotation = Quaternion(0.27998075, -0.6852599, -0.25295103, 0.622933)
+bones/15/rotation = Quaternion(0.28009903, -0.6852115, -0.2530586, 0.6228893)
 bones/15/scale = Vector3(1.0000001, 1.0000001, 0.9999999)
 bones/16/position = Vector3(0.0041153333, 0.100813694, 0.01255128)
 bones/16/rotation = Quaternion(-0.35503906, 0.6424748, -0.44656125, 0.51162153)
@@ -702,30 +709,30 @@ bones/22/position = Vector3(-0.17255813, 0.14857958, -0.024007767)
 bones/22/rotation = Quaternion(-0.0857075, 0.13987419, 0.5080077, 0.8455872)
 bones/22/scale = Vector3(1, 1.0000001, 0.9999998)
 bones/23/position = Vector3(-0.08933693, 0.009663322, -0.04104165)
-bones/23/rotation = Quaternion(0.9884835, 0.0024242522, -0.022638142, -0.14960633)
+bones/23/rotation = Quaternion(0.98864603, 0.0022217685, -0.0029443167, -0.15021847)
 bones/23/scale = Vector3(1.0000002, 1.0000001, 1.0000025)
-bones/24/rotation = Quaternion(-0.12460849, -0.0020052947, -0.012869887, 0.9921205)
+bones/24/rotation = Quaternion(-0.12492898, -0.0020052136, -0.012902992, 0.99207985)
 bones/24/scale = Vector3(1.0000001, 1.0000002, 0.99999946)
-bones/25/rotation = Quaternion(0.5882444, -0.038445216, 0.09388049, 0.8022949)
-bones/26/position = Vector3(0.08887683, 0.011980813, -0.041889526)
-bones/26/rotation = Quaternion(0.98386914, 0.011748294, -0.003056555, -0.17847759)
-bones/26/scale = Vector3(1.0000018, 1.0029378, 1.0000063)
-bones/27/rotation = Quaternion(-0.058681544, 0.0020176913, 0.006060986, 0.9982563)
+bones/25/rotation = Quaternion(0.5954447, -0.037472047, 0.09429482, 0.79696304)
+bones/26/position = Vector3(0.088876136, 0.011994274, -0.04190325)
+bones/26/rotation = Quaternion(0.98383653, 0.011759634, -0.0030584575, -0.17865622)
+bones/26/scale = Vector3(1.0000018, 1.0028958, 1.0000061)
+bones/27/rotation = Quaternion(-0.0588957, 0.0020176657, 0.0060831015, 0.99824363)
 bones/27/scale = Vector3(0.99999976, 1.0000002, 0.9999998)
 bones/28/rotation = Quaternion(0.6630797, 0.020660153, -0.045974325, 0.74685)
-bones/29/position = Vector3(-0.13321033, 0.676023, -0.8964318)
+bones/29/position = Vector3(-0.095255956, 0.676023, -0.8964318)
 bones/29/rotation = Quaternion(-0.706706, -0.023804938, 0.023804942, 0.70670605)
 bones/30/rotation = Quaternion(-0.706706, 0.023804938, -0.023804942, 0.70670605)
-bones/31/position = Vector3(-0.11454289, 0.072212204, 0.16139035)
+bones/31/position = Vector3(-0.114542894, 0.07217118, 0.16139035)
 bones/31/rotation = Quaternion(0.7070358, 0.010026792, 0.01002679, 0.70703566)
 bones/32/position = Vector3(0.060791835, 0.046069287, 0.015487869)
 bones/32/rotation = Quaternion(0.7070358, -0.010026792, -0.01002679, 0.70703566)
 
 [node name="head_2" parent="model_twist/angel_body_final/rig/Skeleton3D" index="0"]
-transform = Transform3D(0.99909264, 0.0136608165, -0.040343266, -0.014809341, 0.9994893, -0.028308403, 0.03993597, 0.028880186, 0.9987847, 0.0011277918, 1.705614, 0.056741506)
+transform = Transform3D(0.99909264, 0.013660822, -0.040343266, -0.014809244, 0.99948937, -0.028305955, 0.039936002, 0.028877739, 0.9987848, 0.00112779, 1.7054358, 0.056720614)
 
 [node name="weapon" parent="model_twist/angel_body_final/rig/Skeleton3D" index="1"]
-transform = Transform3D(-0.10782516, 0.5812922, 0.8065187, -0.58297026, -0.6941047, 0.4223318, 0.80530703, -0.42463875, 0.413718, 0.5101327, 0.9739804, 0.13232161)
+transform = Transform3D(-0.07449496, 0.6143837, 0.78548205, -0.5906582, -0.66182226, 0.46164182, 0.8034756, -0.42956224, 0.41219342, 0.5340738, 0.99220693, 0.12997627)
 
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent", "animation_tree") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
@@ -786,6 +793,20 @@ collision_mask = 12
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 shape = SubResource("SphereShape3D_7emwf")
 debug_color = Color(0.95304054, 1.2513996e-06, 0.55806845, 0.41960785)
+
+[node name="step_collider" type="Node3D" parent="."]
+
+[node name="range" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider"]
+collision_mask = 33
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="step_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_755ss")
+target_position = Vector3(0, 0, 0)
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -906,8 +927,6 @@ visible = false
 player = NodePath("..")
 
 [node name="Debug UI" parent="." instance=ExtResource("19_o28un")]
-
-[node name="step_collider" type="Node3D" parent="."]
 
 [connection signal="timeout" from="state_machine/attack_air/anim_timeout" to="state_machine/attack_air" method="_on_anim_timeout_timeout"]
 [connection signal="timeout" from="state_machine/attack_air/input_timeout" to="state_machine/attack_air" method="_on_input_timeout_timeout"]

@@ -31,6 +31,8 @@ func process_physics(delta: float):
 	if player.append_weapon_attack("run"):
 		return
 	
+	player.snap_step(delta)
+	
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, player.run_accel, delta)
 	player.target_speed = lerpf(player.target_speed, player.run_speed, player.run_accel_speed * delta)
