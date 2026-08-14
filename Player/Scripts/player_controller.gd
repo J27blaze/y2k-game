@@ -71,7 +71,8 @@ var can_check_hurt_box: bool = true
 @export_range(0, 2, 0.01) var step_max_height : float = 0.5
 @export_range(0, 0.5, 0.001) var step_margin : float = 0.01
 @export_range(1, 3, 0.01) var step_range_vel_multiplier : float = 1.
-@export_range(0, 90, 0.5) var step_angle_range : float = 30
+@export_range(0, 180, 0.5) var step_angle_range : float = 30
+@export_range(0, 15, 1) var step_angle_amount_edging_count : float = 3
 
 #endregion
 #region fall jump
@@ -279,6 +280,9 @@ func _physics_process(delta: float):
 		if god_mode:
 			state_machine.change_state("god_mode")
 	
+	#player_slide
+	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
+	
 	move_and_slide()
 	
 	hor_velocity = Vector3(velocity.x, 0, velocity.z)
@@ -287,9 +291,6 @@ func _physics_process(delta: float):
 	#gravity
 	if !is_on_floor():
 		velocity.y = clampf(velocity.y - gravity * delta, -fall_terminal_vel, 999999)
-	
-	#player_slide
-	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
 	
 	#print(jump_stage)
 	
@@ -431,15 +432,18 @@ func can_wall_slide() -> bool:
 	return abs(cur_vel.dot(wall_tan)) > wall_slide_angle_threshold && on_wall && speed > wall_slide_min_speed && abs(direction.dot(wall_tan)) > wall_slide_direction_threshold && direction.length() > 0.1
 
 func snap_step(delta: float):
-	#setup
 	var i : int = 0
 	var cur_range: float = step_max_range + step_margin + speed*delta*step_range_vel_multiplier
 	var cur_height: float = step_max_height + step_margin
 	
-	var correction : Vector3 = direction*-(step_max_range - step_margin)
+	var can_step: bool = true
 	var step_positions : Array[Vector3] = []
-	var step_position_scores : Array[float] = []
+	var step_normals : Vector3 = Vector3.ZERO
+	
+	var final_pos: Vector3 = Vector3.ZERO
+	var correction : Vector3 = Vector3.ZERO
 	#print(speed*delta)
+	#print(floor_normal)
 	# set step colliders
 	for ray in step_collider.get_children(false):
 		var range = ray
@@ -454,15 +458,39 @@ func snap_step(delta: float):
 		range.force_raycast_update()
 		height.force_raycast_update()
 		
+		#if i < step_angle_amount_edging_count || i > step_ray_amount-1 - step_angle_amount_edging_count:
+		var col: float = float(i)/step_ray_amount
+		DebugDraw3D.draw_square(height.global_position , 0.1, Color(col,col,col))
+		
 		#calc
 		if !range.is_colliding() && height.is_colliding():
-			step_positions.insert(i, height.get_collision_point())
-			step_position_scores.insert(i, Vector3(height.get_collision_point() - global_position).length())
+			step_positions.append(height.get_collision_point())
+			step_normals += height.get_collision_normal()
+			final_pos += height.get_collision_point()
 			
-			DebugDraw3D.draw_square(step_positions[i], 0.2, Color.RED)
+			DebugDraw3D.draw_square(height.get_collision_point(), 0.1, Color.RED)
+			
+			if i < step_angle_amount_edging_count || i > step_ray_amount-1 - step_angle_amount_edging_count:
+				can_step = false
 			
 		i += 1
-	print(step_position_scores)
+	
+	step_normals /= step_positions.size()
+	if step_positions.size() > 0 && can_step && step_normals == Vector3.UP:
+		final_pos /= step_positions.size()
+		var corr: Vector3 = final_pos - position
+		correction = Vector3(corr.x, 0, corr.z)
+		#print(correction)
+		
+		#the final formula
+		position = final_pos - (correction.normalized() * (correction.length() - 0.05)) + Vector3.UP * step_margin
+	
+	DebugDraw3D.draw_square(final_pos, 0.2, Color.GREEN)
+	DebugDraw3D.draw_line(final_pos, final_pos + correction, Color.YELLOW)
+	DebugDraw3D.draw_square(position, 0.2, Color.BLUE)
+	
+	#print(final_pos)
+	#print(step_positions.size())
 	
 func state_wall_slide_jump_check() -> bool:
 	if on_wall && input_handler.is_action_buffered("jump"):

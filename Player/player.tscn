@@ -370,10 +370,12 @@ rotation_smoothing = 13.85
 run_speed = 6.1
 run_accel = 50.0
 run_accel_speed = 0.8
-step_max_range = 0.3
+step_max_range = 0.31
+step_max_height = null
 step_margin = 0.003
 step_range_vel_multiplier = 1.05
-step_angle_range = 71.5
+step_angle_range = 135.0
+step_angle_amount_edging_count = null
 fall_gravity = 35.0
 jump_gravity = 17.0
 jump_vel_pulse = 9.2
@@ -452,6 +454,7 @@ attack_anim_speeds = Array[float]([0.5, 0.541, 0.0])
 attack_input_speeds = Array[float]([0.24, 0.25, 0.0])
 air_attack_anim_speeds = Array[float]([0.65, 0.65, 0.0])
 air_attack_input_speeds = Array[float]([0.24, 0.25, 0.0])
+max_combo = null
 attack_combo_speed = 0.55
 air_attack_y_cut = 0.6
 air_attack_fall_y_cut = 0.9
@@ -667,33 +670,33 @@ target = NodePath("..")
 [node name="angel_body_final" parent="model_twist" instance=ExtResource("16_o28un")]
 
 [node name="Skeleton3D" parent="model_twist/angel_body_final/rig" index="0"]
-bones/0/position = Vector3(-1.383169e-08, 1.1662346, 0.048715893)
-bones/0/rotation = Quaternion(-0.15122296, -0.003188561, -0.021256069, 0.988266)
+bones/0/position = Vector3(-1.38252645e-08, 1.1774664, 0.04871587)
+bones/0/rotation = Quaternion(-0.14280897, -0.003007591, -0.021282427, 0.98951685)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(-5.6269295e-05, 0.17783864, 0.0004154322)
-bones/1/rotation = Quaternion(0.25862914, -0.008498979, 0.03083267, 0.9654471)
+bones/1/position = Vector3(-0.0002725593, 0.18286197, 0.0020121145)
+bones/1/rotation = Quaternion(0.24894068, -0.00860595, 0.0310263, 0.9679835)
 bones/2/rotation = Quaternion(-0.12706889, -0.0080422135, -0.017390687, 0.9917089)
 bones/3/rotation = Quaternion(0.032178927, -8.6437126e-08, 3.726855e-08, 0.99948215)
 bones/4/position = Vector3(-0.09611825, 0.24966626, 0.014868703)
-bones/4/rotation = Quaternion(0.018268555, 0.1573731, 0.97347623, 0.16505785)
+bones/4/rotation = Quaternion(0.011598517, 0.1956076, 0.9657338, 0.1701809)
 bones/4/scale = Vector3(0.9999998, 0.9999997, 0.9999999)
-bones/5/rotation = Quaternion(-0.06988782, -0.111417726, 0.077590786, 0.988272)
+bones/5/rotation = Quaternion(-0.15445912, -0.1432237, 0.059769023, 0.9757342)
 bones/5/scale = Vector3(1, 0.99999976, 0.99999994)
-bones/6/rotation = Quaternion(0.016041053, 0.7316348, -0.02547783, 0.6810317)
-bones/7/position = Vector3(-0.0041365856, 0.101059385, 0.012152135)
-bones/7/rotation = Quaternion(-0.11869417, -0.7243882, 0.24884073, 0.63186365)
-bones/8/rotation = Quaternion(-0.01225672, 0.01513771, 0.12448595, 0.9920302)
+bones/6/rotation = Quaternion(0.07375821, 0.7058518, -0.07351858, 0.70066255)
+bones/7/position = Vector3(-0.0041846675, 0.1016151, 0.01124891)
+bones/7/rotation = Quaternion(-0.21332888, -0.70236564, 0.33011502, 0.59346235)
+bones/8/rotation = Quaternion(-0.008191087, 0.017671555, 0.3628627, 0.9316391)
 bones/9/position = Vector3(0.05750823, 0.103098, 0.0077835605)
-bones/9/rotation = Quaternion(-0.08016742, -0.6969259, 0.10925193, 0.7042241)
-bones/10/rotation = Quaternion(-0.06559212, 0.72080845, 0.09031268, 0.68408805)
+bones/9/rotation = Quaternion(-0.1760886, -0.67906207, 0.20590448, 0.68225425)
+bones/10/rotation = Quaternion(-0.22735378, 0.67826796, 0.26014167, 0.6485285)
 bones/11/position = Vector3(0.0674085, 0.026889523, -0.010986025)
-bones/11/rotation = Quaternion(-0.57906926, -0.40630236, -0.08379247, 0.7018376)
-bones/12/rotation = Quaternion(0.1425654, 0.008067804, 0.31363556, 0.9387454)
-bones/13/position = Vector3(0.07841337, 0.2830855, 0.008441014)
-bones/13/rotation = Quaternion(0.046064023, -0.3262367, -0.9052795, 0.26817292)
-bones/14/rotation = Quaternion(-0.3139141, 0.09644716, 0.008902731, 0.9444982)
+bones/11/rotation = Quaternion(-0.6144681, -0.35047376, -0.017912006, 0.70659494)
+bones/12/rotation = Quaternion(0.27174386, 0.06444092, 0.48356026, 0.82956153)
+bones/13/position = Vector3(0.08142803, 0.2915086, 0.013165118)
+bones/13/rotation = Quaternion(0.032076363, -0.31913665, -0.8979208, 0.30143216)
+bones/14/rotation = Quaternion(-0.29900068, 0.09247301, -0.0071326364, 0.9497349)
 bones/14/scale = Vector3(1, 0.9999999, 0.99999994)
-bones/15/rotation = Quaternion(0.28222096, -0.6843403, -0.25498748, 0.62210214)
+bones/15/rotation = Quaternion(0.26759815, -0.6901895, -0.24169493, 0.62738603)
 bones/15/scale = Vector3(1.0000001, 1.0000001, 0.9999999)
 bones/16/position = Vector3(0.0041153333, 0.100813694, 0.01255128)
 bones/16/rotation = Quaternion(-0.35503906, 0.6424748, -0.44656125, 0.51162153)
@@ -707,30 +710,30 @@ bones/22/position = Vector3(-0.17255813, 0.14857958, -0.024007767)
 bones/22/rotation = Quaternion(-0.0857075, 0.13987419, 0.5080077, 0.8455872)
 bones/22/scale = Vector3(1, 1.0000001, 0.9999998)
 bones/23/position = Vector3(-0.08933693, 0.009663322, -0.04104165)
-bones/23/rotation = Quaternion(0.9878505, 0.0019562326, -0.0176133, -0.15439345)
+bones/23/rotation = Quaternion(0.99257356, 0.005925958, -0.03327385, -0.11685674)
 bones/23/scale = Vector3(1.0000002, 1.0000001, 1.0000025)
-bones/24/rotation = Quaternion(-0.13091081, -0.0020036376, -0.013520982, 0.9912999)
+bones/24/rotation = Quaternion(-0.07924667, -0.0020148156, -0.008184541, 0.99681944)
 bones/24/scale = Vector3(1.0000001, 1.0000002, 0.99999946)
-bones/25/rotation = Quaternion(0.5908392, -0.038095612, 0.09403039, 0.800385)
-bones/26/position = Vector3(0.088858075, 0.012345156, -0.042261705)
-bones/26/rotation = Quaternion(0.98326564, 0.011952658, -0.0030928454, -0.18175937)
-bones/26/scale = Vector3(1.0000014, 1.0017211, 1.0000061)
-bones/27/rotation = Quaternion(-0.06255676, 0.0020172105, 0.006461241, 0.9980185)
+bones/25/rotation = Quaternion(0.58083564, -0.039436605, 0.093449086, 0.8076769)
+bones/26/position = Vector3(0.088967785, 0.010213782, -0.040084474)
+bones/26/rotation = Quaternion(0.98758125, 0.010266848, -0.00286104, -0.15674756)
+bones/26/scale = Vector3(1.0000051, 1.0086035, 1.0000056)
+bones/27/rotation = Quaternion(-0.030884136, 0.0020202317, 0.0031900806, 0.9995159)
 bones/27/scale = Vector3(0.99999976, 1.0000002, 0.9999998)
 bones/28/rotation = Quaternion(0.6630797, 0.020660153, -0.045974325, 0.74685)
-bones/29/position = Vector3(-0.12343848, 0.676023, -0.8964318)
+bones/29/position = Vector3(-0.15516327, 0.676023, -0.8964318)
 bones/29/rotation = Quaternion(-0.706706, -0.023804938, 0.023804942, 0.70670605)
 bones/30/rotation = Quaternion(-0.706706, 0.023804938, -0.023804942, 0.70670605)
-bones/31/position = Vector3(-0.114542894, 0.07129768, 0.16139035)
+bones/31/position = Vector3(-0.11454289, 0.076581836, 0.16139035)
 bones/31/rotation = Quaternion(0.7070358, 0.010026792, 0.01002679, 0.70703566)
 bones/32/position = Vector3(0.060791835, 0.046069287, 0.015487869)
 bones/32/rotation = Quaternion(0.7070358, -0.010026792, -0.01002679, 0.70703566)
 
 [node name="head_2" parent="model_twist/angel_body_final/rig/Skeleton3D" index="0"]
-transform = Transform3D(0.99909264, 0.013660792, -0.040343277, -0.014833915, 0.99947137, -0.028923716, 0.03992684, 0.029495891, 0.9987671, 0.0011277735, 1.7027142, 0.05651096)
+transform = Transform3D(0.9990926, 0.013660812, -0.040343262, -0.014713358, 0.99955565, -0.025909252, 0.039971426, 0.026479334, 0.9988497, 0.0011277839, 1.720274, 0.05840826)
 
 [node name="weapon" parent="model_twist/angel_body_final/rig/Skeleton3D" index="1"]
-transform = Transform3D(-0.11112736, 0.58506507, 0.8033361, -0.5845436, -0.6922078, 0.42326927, 0.80371594, -0.4225486, 0.4189193, 0.5084793, 0.96978116, 0.13073096)
+transform = Transform3D(-0.052326694, 0.58678067, 0.8080531, -0.5887751, -0.6716943, 0.4496339, 0.8066013, -0.45223388, 0.38062918, 0.54085577, 1.0139424, 0.13214737)
 
 [node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent", "animation_tree") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
@@ -841,6 +844,90 @@ target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
 [node name="height" type="RayCast3D" parent="step_collider/range7"]
+collision_mask = 33
+
+[node name="range8" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range8"]
+collision_mask = 33
+
+[node name="range9" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range9"]
+collision_mask = 33
+
+[node name="range10" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range10"]
+collision_mask = 33
+
+[node name="range11" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range11"]
+collision_mask = 33
+
+[node name="range12" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range12"]
+collision_mask = 33
+
+[node name="range13" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range13"]
+collision_mask = 33
+
+[node name="range14" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range14"]
+collision_mask = 33
+
+[node name="range15" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range15"]
+collision_mask = 33
+
+[node name="range16" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range16"]
+collision_mask = 33
+
+[node name="range17" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range17"]
+collision_mask = 33
+
+[node name="range18" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range18"]
+collision_mask = 33
+
+[node name="range19" type="RayCast3D" parent="step_collider"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 33
+
+[node name="height" type="RayCast3D" parent="step_collider/range19"]
 collision_mask = 33
 
 [node name="wall_slide_colliders" type="Node3D" parent="."]
