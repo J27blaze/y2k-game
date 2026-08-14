@@ -476,7 +476,7 @@ func snap_step(delta: float):
 		i += 1
 	
 	step_normals /= step_positions.size()
-	if step_positions.size() > 0 && can_step && step_normals == Vector3.UP:
+	if step_positions.size() > 0 && can_step && step_normals.dot(Vector3.UP) > 0.9:
 		final_pos /= step_positions.size()
 		var corr: Vector3 = final_pos - position
 		correction = Vector3(corr.x, 0, corr.z)
@@ -484,7 +484,8 @@ func snap_step(delta: float):
 		
 		#the final formula
 		position = final_pos - (correction.normalized() * (correction.length() - 0.05)) + Vector3.UP * step_margin
-	
+		print("stepped!")
+		
 	DebugDraw3D.draw_square(final_pos, 0.2, Color.GREEN)
 	DebugDraw3D.draw_line(final_pos, final_pos + correction, Color.YELLOW)
 	DebugDraw3D.draw_square(position, 0.2, Color.BLUE)
