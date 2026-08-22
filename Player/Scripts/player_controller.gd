@@ -6,8 +6,7 @@ extends CharacterBody3D
 
 #player related
 @onready var model_twist := $model_twist
-#-999 is default value
-var model_twist_override_angle : float = -999
+var model_twist_override_angle : float = -999 #-999 is default value
 var model_pitch : float = 0
 
 @onready var animation_controller : AnimationController = $model_twist/animation_controller
@@ -220,7 +219,7 @@ var attack_stage: int = 0
 
 func _ready() -> void:
 	#debug
-	#DebugDraw3D.set_debug_enabled(false)
+	DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
@@ -439,6 +438,7 @@ func snap_step(delta: float):
 	var can_step: bool = true
 	var step_positions : Array[Vector3] = []
 	var step_normals : Vector3 = Vector3.ZERO
+	var is_a_flat_normal : bool = false
 	
 	var final_pos: Vector3 = Vector3.ZERO
 	var correction : Vector3 = Vector3.ZERO
@@ -466,6 +466,7 @@ func snap_step(delta: float):
 		if !range.is_colliding() && height.is_colliding():
 			step_positions.append(height.get_collision_point())
 			step_normals += height.get_collision_normal()
+			if height.get_collision_normal() == Vector3.UP: is_a_flat_normal = true
 			final_pos += height.get_collision_point()
 			
 			DebugDraw3D.draw_square(height.get_collision_point(), 0.1, Color.RED)
@@ -476,7 +477,7 @@ func snap_step(delta: float):
 		i += 1
 	
 	step_normals /= step_positions.size()
-	if step_positions.size() > 0 && can_step && step_normals.dot(Vector3.UP) > 0.9:
+	if step_positions.size() > 0 && can_step && step_normals.dot(Vector3.UP) > 0.95 && is_a_flat_normal:
 		final_pos /= step_positions.size()
 		var corr: Vector3 = final_pos - position
 		correction = Vector3(corr.x, 0, corr.z)
@@ -485,6 +486,7 @@ func snap_step(delta: float):
 		#the final formula
 		position = final_pos - (correction.normalized() * (correction.length() - 0.05)) + Vector3.UP * step_margin
 		print("stepped!")
+		
 		
 	DebugDraw3D.draw_square(final_pos, 0.2, Color.GREEN)
 	DebugDraw3D.draw_line(final_pos, final_pos + correction, Color.YELLOW)

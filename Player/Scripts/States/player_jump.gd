@@ -97,6 +97,7 @@ func process_physics(delta: float) -> void:
 	#accel
 	var move_dir = player.target_speed * player.direction
 	if timer <= player.jump_inital_accel_frames && move_dir.length() >= 0.5:
+		player.snap_step(delta)
 		player.vel_move_toward(move_dir, player.jump_inital_accel, delta)
 	else:
 		player.vel_move_toward(move_dir, accel, delta)

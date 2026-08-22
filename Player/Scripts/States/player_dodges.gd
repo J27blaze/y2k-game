@@ -23,9 +23,13 @@ func start():
 			player.gravity = player.air_dodge_gravity
 			
 			player.air_dodges -= 1
+			
+			
 		"ground":
 			player.velocity.y = player.ground_dodge_vel_pulse
 			player.gravity = player.air_dodge_gravity
+			
+			play_anim_blend("ground_dodge")
 	
 	timer = 0
 	
@@ -40,7 +44,9 @@ func get_player_dir():
 	else:
 		input_dir = player.last_dir
 		#print(player.last_dir)
-
+	
+	player.model_twist_override_angle = atan2(input_dir.x, input_dir.z) + -PI
+	
 func exit():
 	player.velocity.y *= 0.9
 	player.gravity = player.fall_gravity
@@ -52,7 +58,9 @@ func exit():
 	if data == "ground":
 		if !player.is_on_floor():
 			player.can_jump = false
-			
+	
+	player.model_twist_override_angle = -999
+	
 	return
 
 func process_physics(delta: float):
