@@ -93,7 +93,7 @@ func _process(delta: float) -> void:
 			return
 	
 func copy_skeleton_pose() -> void:
-	player.model_twist.rotation = player.target_model_angle
+	#player.model_twist.rotation = player.target_model_angle
 	
 	for bone_idx in range(bone_count):
 		if bone_idx != -1:

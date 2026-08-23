@@ -13,7 +13,7 @@ func spawn_particle(particle_name: String, top_level: bool, position: Vector3, r
 		
 		add_child(instance)
 		
-		instance.emitting = true
+		instance.emit()
 		
 		#print(instance.rotation)
 

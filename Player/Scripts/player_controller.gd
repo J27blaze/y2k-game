@@ -309,6 +309,8 @@ func _process(delta: float):
 		target_model_angle.y = lerp_angle(target_model_angle.y, atan2(-last_dir.x, -last_dir.z),  rotation_smoothing * delta)#Vector3.FORWARD.signed_angle_to(last_dir, Vector3.UP)
 	target_model_angle.x = lerp_angle(target_model_angle.x, model_pitch,  rotation_smoothing * delta)
 	
+	model_twist.rotation = target_model_angle
+	
 	state_machine.process_frame(delta)
 	
 	centre = position + Vector3.UP * height/2

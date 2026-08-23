@@ -1,44 +1,96 @@
-[gd_scene load_steps=7 format=3 uid="uid://p1ihnha2fbmq"]
+[gd_scene load_steps=15 format=3 uid="uid://ddvdw2f40n5lp"]
 
-[ext_resource type="Material" uid="uid://dbhp21n3picxr" path="res://VFX/VFX_white.tres" id="1_6yyon"]
-[ext_resource type="ArrayMesh" uid="uid://bk172t62u0p3r" path="res://VFX/Dodge/streak_line.obj" id="2_uighn"]
-[ext_resource type="Script" uid="uid://c3ti5pesyhinp" path="res://VFX/VFX_particle_despawn.gd" id="3_0hfju"]
+[ext_resource type="Material" uid="uid://dbhp21n3picxr" path="res://VFX/VFX_white.tres" id="1_gosqq"]
+[ext_resource type="Script" uid="uid://uba1h3p3ucss" path="res://VFX/VFX_layered_particle.gd" id="1_vxs2s"]
+[ext_resource type="ArrayMesh" uid="uid://bk172t62u0p3r" path="res://VFX/Dodge/streak_line.obj" id="2_yny75"]
+[ext_resource type="Texture2D" uid="uid://tlew8vgf0co2" path="res://VFX/Dodge/dodge_swirl.png" id="3_yny75"]
 
-[sub_resource type="Curve" id="Curve_8t3q7"]
-_data = [Vector2(0, 0), 0.0, 6.639633, 0, 0, Vector2(0.09631728, 1), 0.09827423, 0.09827423, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_vxs2s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.9356979, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_bbimk"]
-curve = SubResource("Curve_8t3q7")
+[sub_resource type="CurveTexture" id="CurveTexture_lmtlj"]
+width = 32
+curve = SubResource("Curve_vxs2s")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ed7ti"]
-emission_shape_offset = Vector3(0, 0.405, -0.665)
-emission_shape_scale = Vector3(0.93, 1, 0.22)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vxs2s"]
+emission_shape_offset = Vector3(0, 0.87, -0.485)
+emission_shape_scale = Vector3(0.67, 1.125, 0.19)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
-angle_min = 1.0728835e-05
-angle_max = 1.0728835e-05
 direction = Vector3(0, 0, 1)
 spread = 0.0
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
+initial_velocity_min = 6.0
+initial_velocity_max = 12.0
 gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.14999999
+scale_curve = SubResource("CurveTexture_lmtlj")
+
+[sub_resource type="Curve" id="Curve_lmtlj"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 45), 0.0, -90.00001, 0, 1, Vector2(1, -45), -90.00001, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_66umt"]
+curve = SubResource("Curve_lmtlj")
+
+[sub_resource type="Curve" id="Curve_yny75"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vxs2s"]
+curve = SubResource("Curve_yny75")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lmtlj"]
+emission_shape_offset = Vector3(0, 0.62, 0)
+angle_min = -179.99998
+angle_max = 180.00002
+angle_curve = SubResource("CurveTexture_66umt")
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0.3, 1)
+spread = 33.927
+initial_velocity_min = 4.0
+initial_velocity_max = 8.75
 linear_accel_min = -2.2351742e-06
 linear_accel_max = -2.2351742e-06
-scale_min = 0.02
-scale_max = 0.19999999
-scale_curve = SubResource("CurveTexture_bbimk")
+scale_min = 0.25
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_vxs2s")
 
-[node name="VFX_dodge_particle" type="GPUParticles3D"]
-material_override = ExtResource("1_6yyon")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66umt"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_yny75")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_vxs2s"]
+material = SubResource("StandardMaterial3D_66umt")
+size = Vector2(0.2, 0.2)
+
+[node name="VFX_DodgeParticle" type="Node3D"]
+script = ExtResource("1_vxs2s")
+
+[node name="streak_lines" type="GPUParticles3D" parent="."]
+material_override = ExtResource("1_gosqq")
 emitting = false
 amount = 6
 lifetime = 0.35000000000000003
 one_shot = true
 explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_ed7ti")
-draw_pass_1 = ExtResource("2_uighn")
-script = ExtResource("3_0hfju")
+process_material = SubResource("ParticleProcessMaterial_vxs2s")
+draw_pass_1 = ExtResource("2_yny75")
 
-[connection signal="finished" from="." to="." method="_on_finished"]
+[node name="swirls" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.67
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_lmtlj")
+draw_pass_1 = SubResource("QuadMesh_vxs2s")
