@@ -71,6 +71,9 @@ func process_physics(delta: float):
 	if timer < player.dodge_initial_redirect_frame:
 		get_player_dir()
 		
+		if timer == 0:
+			player.vfx_controller.spawn_particle("dodge", true, player.position, Vector3(0, atan2(input_dir.x, input_dir.z) + -PI, 0))
+		
 		var angle_clamp_amount: float = 1.0
 		
 		match data:

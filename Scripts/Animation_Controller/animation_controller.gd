@@ -3,6 +3,7 @@ class_name AnimationController
 
 ## Still has anim bug where current step is inccorrect in some blend_anims
 
+@export var player: Player
 @export var parent: Node
 @export var delete_skeleton: bool = true
 @export var animation_tree: AnimationTree
@@ -92,6 +93,8 @@ func _process(delta: float) -> void:
 			return
 	
 func copy_skeleton_pose() -> void:
+	player.model_twist.rotation = player.target_model_angle
+	
 	for bone_idx in range(bone_count):
 		if bone_idx != -1:
 			var pose = skeleton.get_bone_pose(bone_idx)

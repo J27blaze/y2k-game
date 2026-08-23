@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dbhp21n3picxr"]
+
+[resource]
+blend_mode = 4
+cull_mode = 2
+shading_mode = 0
+specular_mode = 2
