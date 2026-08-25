@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfamn4pw7wbj5"]
+
+[ext_resource type="Script" uid="uid://uba1h3p3ucss" path="res://VFX/VFX_layered_particle.gd" id="1_dsnbr"]
+
+[node name="VFX_slide_particle_loop" type="Node3D"]
+script = ExtResource("1_dsnbr")
