@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://by4pc546qjh1a"]
+
+[node name="SunLight" type="DirectionalLight3D"]
+transform = Transform3D(0.7726671, -0.5390189, 0.335327, 0, 0.52823085, 0.8491008, -0.63481146, -0.65607226, 0.4081466, 0, 0, 0)
+light_bake_mode = 1
+shadow_enabled = true

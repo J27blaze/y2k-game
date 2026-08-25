@@ -36,6 +36,7 @@ folder_colors={
 "res://Player/Assets/Scythes/": "orange",
 "res://Scripts/VFX_controller/": "pink",
 "res://VFX/": "pink",
+"res://VFX/Environments/": "blue",
 "res://addons/": "gray",
 "res://examples_dd3d/": "gray"
 }
