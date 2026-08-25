@@ -36,6 +36,7 @@ func start():
 	move_dir = initial_dir.normalized() * player.target_speed
 	
 	play_anim_blend("slide")
+	player.vfx_controller.spawn_looping_particle("slide_loop", false, Vector3.ZERO)
 
 func always_process_physics(delta : float):
 	if player.is_on_floor():
@@ -54,6 +55,8 @@ func exit():
 	
 	player.model_twist_override_angle = -999
 	player.model_pitch = 0
+	
+	player.vfx_controller.stop_looping_particle("slide_loop")
 
 var target_player_dir: float = 0.0
 var target_vel_dir: float = 0.0

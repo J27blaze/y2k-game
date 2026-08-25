@@ -1,6 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfamn4pw7wbj5"]
+[gd_scene load_steps=9 format=3 uid="uid://dfamn4pw7wbj5"]
 
 [ext_resource type="Script" uid="uid://uba1h3p3ucss" path="res://VFX/VFX_layered_particle.gd" id="1_dsnbr"]
+[ext_resource type="Texture2D" uid="uid://3gw5pb0ojedm" path="res://VFX/Slide/star.png" id="2_pb15q"]
+[ext_resource type="Script" uid="uid://c3ti5pesyhinp" path="res://VFX/VFX_particle_despawn.gd" id="4_604j1"]
+
+[sub_resource type="Curve" id="Curve_pb15q"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_604j1"]
+width = 32
+curve = SubResource("Curve_pb15q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e054w"]
+lifetime_randomness = 0.1
+emission_shape_offset = Vector3(-0.124, 0, 0.821)
+angle_min = -44.99999
+angle_max = 45.00001
+direction = Vector3(0, 1, 1)
+spread = 26.387
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -9, 0)
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_604j1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e054w"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_pb15q")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_pb15q"]
+material = SubResource("StandardMaterial3D_e054w")
 
 [node name="VFX_slide_particle_loop" type="Node3D"]
 script = ExtResource("1_dsnbr")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+lifetime = 0.36
+process_material = SubResource("ParticleProcessMaterial_e054w")
+draw_pass_1 = SubResource("QuadMesh_pb15q")
+script = ExtResource("4_604j1")

@@ -1,15 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddvdw2f40n5lp"]
+[gd_scene load_steps=14 format=3 uid="uid://ddvdw2f40n5lp"]
 
 [ext_resource type="Material" uid="uid://dbhp21n3picxr" path="res://VFX/VFX_white.tres" id="1_gosqq"]
 [ext_resource type="Script" uid="uid://uba1h3p3ucss" path="res://VFX/VFX_layered_particle.gd" id="1_vxs2s"]
 [ext_resource type="ArrayMesh" uid="uid://bk172t62u0p3r" path="res://VFX/Dodge/streak_line.obj" id="2_yny75"]
 [ext_resource type="Texture2D" uid="uid://tlew8vgf0co2" path="res://VFX/Dodge/dodge_swirl.png" id="3_yny75"]
+[ext_resource type="Script" uid="uid://c3ti5pesyhinp" path="res://VFX/VFX_particle_despawn.gd" id="4_lmtlj"]
 
 [sub_resource type="Curve" id="Curve_vxs2s"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.9356979, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_lmtlj"]
+[sub_resource type="CurveTexture" id="CurveTexture_66umt"]
 width = 32
 curve = SubResource("Curve_vxs2s")
 
@@ -25,28 +26,19 @@ initial_velocity_max = 12.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.02
 scale_max = 0.14999999
-scale_curve = SubResource("CurveTexture_lmtlj")
-
-[sub_resource type="Curve" id="Curve_lmtlj"]
-_limits = [-360.0, 360.0, 0.0, 1.0]
-_data = [Vector2(0, 45), 0.0, -90.00001, 0, 1, Vector2(1, -45), -90.00001, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_66umt"]
-curve = SubResource("Curve_lmtlj")
+scale_curve = SubResource("CurveTexture_66umt")
 
 [sub_resource type="Curve" id="Curve_yny75"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_vxs2s"]
+[sub_resource type="CurveTexture" id="CurveTexture_lmtlj"]
 curve = SubResource("Curve_yny75")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lmtlj"]
 emission_shape_offset = Vector3(0, 0.62, 0)
 angle_min = -179.99998
 angle_max = 180.00002
-angle_curve = SubResource("CurveTexture_66umt")
 inherit_velocity_ratio = 1.0
 direction = Vector3(0, 0.3, 1)
 spread = 33.927
@@ -54,9 +46,9 @@ initial_velocity_min = 4.0
 initial_velocity_max = 8.75
 linear_accel_min = -2.2351742e-06
 linear_accel_max = -2.2351742e-06
-scale_min = 0.25
-scale_max = 0.79999995
-scale_curve = SubResource("CurveTexture_vxs2s")
+scale_min = 0.79999995
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_lmtlj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66umt"]
 transparency = 1
@@ -85,6 +77,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_vxs2s")
 draw_pass_1 = ExtResource("2_yny75")
+script = ExtResource("4_lmtlj")
 
 [node name="swirls" type="GPUParticles3D" parent="."]
 emitting = false
@@ -94,3 +87,4 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_lmtlj")
 draw_pass_1 = SubResource("QuadMesh_vxs2s")
+script = ExtResource("4_lmtlj")

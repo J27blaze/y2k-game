@@ -5,8 +5,8 @@ class_name VFXController
 
 var loop_particle_store : Dictionary[String, Node]
 
-func spawn_particle(particle_name: String, top_level: bool, position: Vector3, rotation: Vector3 = Vector3.ZERO, scale: Vector3 = Vector3.ONE):
-	if particles[particle_name]:
+func spawn_oneshot_particle(particle_name: String, top_level: bool, position: Vector3, rotation: Vector3 = Vector3.ZERO, scale: Vector3 = Vector3.ONE):
+	if particles.has(particle_name):
 		var instance := particles[particle_name].instantiate()
 		instance.position = position
 		instance.rotation = rotation
@@ -22,7 +22,7 @@ func spawn_particle(particle_name: String, top_level: bool, position: Vector3, r
 		return
 
 func spawn_looping_particle(particle_name: String, top_level: bool, position: Vector3, rotation: Vector3 = Vector3.ZERO, scale: Vector3 = Vector3.ONE):
-	if particles[particle_name]:
+	if particles.has(particle_name):
 		var loop_instance := particles[particle_name].instantiate()
 		loop_instance.position = position
 		loop_instance.rotation = rotation
@@ -38,9 +38,9 @@ func spawn_looping_particle(particle_name: String, top_level: bool, position: Ve
 		return
 
 func stop_looping_particle(particle_name: String):
-	var instance = loop_particle_store[particle_name]
-	if instance:
-		instance.stop_emit()
+	if particles.has(particle_name) && loop_particle_store.has(particle_name):
+		loop_particle_store[particle_name].stop_emit()
+		loop_particle_store.erase(particle_name)
 	else:
 		return
 

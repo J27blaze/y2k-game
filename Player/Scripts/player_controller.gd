@@ -10,7 +10,7 @@ var target_model_angle : Vector3
 #controllers
 @onready var camera_controller := $player_camera_controller
 @onready var animation_controller : AnimationController = $model_twist/animation_controller
-@onready var vfx_controller : VFXController = $VFX_controller
+@onready var vfx_controller : VFXController = $model_twist/VFX_controller
 
 #colliders
 @onready var standing_collider := $standing_collider
