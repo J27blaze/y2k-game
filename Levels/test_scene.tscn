@@ -77,7 +77,7 @@ use_collision = true
 size = Vector3(24, 6, 168)
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 4, -77)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 4, -83)
 material_override = ExtResource("1_dc6q1")
 use_collision = true
 size = Vector3(2, 8, 19)
@@ -225,7 +225,7 @@ height = 30.75
 sides = 16
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5, 10.0125, -71.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.492535, 10.0125, -71.50444)
 material_override = ExtResource("1_dc6q1")
 use_collision = true
 radius = 20.0
