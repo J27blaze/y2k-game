@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d06ffiscqvn0t"]
+[gd_scene load_steps=7 format=3 uid="uid://d06ffiscqvn0t"]
 
 [ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_dc6q1"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="1_g54tn"]
 [ext_resource type="PackedScene" uid="uid://d2cn816da5l7d" path="res://Enemies/Test Ground Enemy/test_ground_enemy.tscn" id="4_d6kn1"]
 [ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="4_q5m1e"]
 [ext_resource type="PackedScene" uid="uid://cx7tkn53wncab" path="res://Enemies/Turret/turret_enemy.tscn" id="5_d6kn1"]
-[ext_resource type="Environment" uid="uid://bhscheerpdegr" path="res://VFX/Environments/blue_sky_environment.tres" id="6_u6qdh"]
-[ext_resource type="PackedScene" uid="uid://by4pc546qjh1a" path="res://VFX/Environments/sun_light.tscn" id="7_qps05"]
+[ext_resource type="PackedScene" uid="uid://dotdbowaksy3e" path="res://Art/Environments/Blue_Heaven/Blue_Heaven_Env.tscn" id="6_u6qdh"]
 
 [node name="TestScene" type="Node3D"]
 
@@ -264,10 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -54.94
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -52.942192)
 
 [node name="TestEnemy38" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -50.942192)
-
-[node name="TestEnemy39" parent="." instance=ExtResource("4_q5m1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -48.942192)
+transform = Transform3D(0.90266794, -0.43033782, 0, 0.43033782, 0.90266794, 0, 0, 0, 1, -47.661106, 3.1000004, -50.942192)
 
 [node name="TestEnemy40" parent="." instance=ExtResource("4_q5m1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.661106, 3.1000004, -46.942192)
@@ -356,7 +352,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -50)
 [node name="turret_enemy" parent="." instance=ExtResource("5_d6kn1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -60)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("6_u6qdh")
-
-[node name="SunLight" parent="." instance=ExtResource("7_qps05")]
+[node name="BlueHeavenEnv" parent="." instance=ExtResource("6_u6qdh")]

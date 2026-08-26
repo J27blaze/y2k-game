@@ -28,6 +28,7 @@ window/stretch/aspect="ignore"
 [file_customization]
 
 folder_colors={
+"res://Art/Environments/": "blue",
 "res://Enemies/": "red",
 "res://Levels/": "yellow",
 "res://Player/": "blue",
@@ -36,7 +37,6 @@ folder_colors={
 "res://Player/Assets/Scythes/": "orange",
 "res://Scripts/VFX_controller/": "pink",
 "res://VFX/": "pink",
-"res://VFX/Environments/": "blue",
 "res://addons/": "gray",
 "res://examples_dd3d/": "gray"
 }

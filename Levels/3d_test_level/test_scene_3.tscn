@@ -1,17 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://devmnydmopgav"]
+[gd_scene load_steps=5 format=3 uid="uid://devmnydmopgav"]
 
 [ext_resource type="PackedScene" uid="uid://pcivs6mw0lku" path="res://Levels/3d_test_level/test_mesh.glb" id="2_cfcb3"]
 [ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="3_k2r51"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="3_kubvd"]
+[ext_resource type="PackedScene" uid="uid://dotdbowaksy3e" path="res://Art/Environments/Blue_Heaven/Blue_Heaven_Env.tscn" id="4_qmlu2"]
 
 [node name="TestScene2" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("3_kubvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 48.216595, -20)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1.1920928e-07, -0.8660255, 0.4999999, 2.7805946e-08, 0.49999994, 0.86602545, -1, -8.933531e-08, 8.3685286e-08, 22.943048, 21.728518, 25.249004)
-shadow_enabled = true
 
 [node name="test_mesh" parent="." instance=ExtResource("2_cfcb3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123, 1, -184)
@@ -21,3 +18,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 54, -19)
 
 [node name="TestEnemy2" parent="." instance=ExtResource("3_k2r51")]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 6, 54, -22)
+
+[node name="BlueHeavenEnv" parent="." instance=ExtResource("4_qmlu2")]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0ia14ctlc5uj"]
+[gd_scene load_steps=5 format=3 uid="uid://b0ia14ctlc5uj"]
 
 [ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_bgrhv"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="2_h1awx"]
+[ext_resource type="PackedScene" uid="uid://dotdbowaksy3e" path="res://Art/Environments/Blue_Heaven/Blue_Heaven_Env.tscn" id="4_bgrhv"]
 [ext_resource type="PackedScene" uid="uid://d2cn816da5l7d" path="res://Enemies/Test Ground Enemy/test_ground_enemy.tscn" id="4_k41yu"]
 
 [node name="TestScene2" type="Node3D"]
@@ -41,3 +42,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -33)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1.1920928e-07, -0.8660255, 0.4999999, 2.7805946e-08, 0.49999994, 0.86602545, -1, -8.933531e-08, 8.3685286e-08, 22.943048, 21.728518, 25.249004)
 shadow_enabled = true
+
+[node name="BlueHeavenEnv" parent="." instance=ExtResource("4_bgrhv")]
