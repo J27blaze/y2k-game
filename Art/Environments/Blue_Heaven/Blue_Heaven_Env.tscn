@@ -14,7 +14,7 @@ environment = ExtResource("1_grycr")
 transform = Transform3D(0.88031185, -0.40897983, 0.2403886, -2.473779e-10, 0.50672615, 0.8621071, -0.47439545, -0.7589233, 0.44607693, 0, 0, 0)
 
 [node name="Heaven" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.9333246, -0.013293987, -0.114042245, 0, 3.9085336, -0.4556206, 0.114814475, 0.45542657, 3.9068694, -393.58652, -60.8351, 390.27643)
+transform = Transform3D(3.9333246, -0.013293987, -0.114042245, 0, 3.9085336, -0.4556206, 0.114814475, 0.45542657, 3.9068694, -383.18686, -60.8351, 390.27643)
 mesh = ExtResource("3_mkq5o")
 surface_material_override/0 = ExtResource("4_1alps")
 surface_material_override/1 = ExtResource("4_1alps")
