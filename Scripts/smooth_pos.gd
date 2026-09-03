@@ -19,5 +19,5 @@ func _process(delta: float) -> void:
 	
 	# Smoothly set the visual position between the old and new physics ticks
 	#idk why 2x works but it does
-	position = lerp(position, target_position, interpolation_fraction * 1.25)
+	position = lerp(position, target_position, interpolation_fraction * 1)
 	#print(target_position)
