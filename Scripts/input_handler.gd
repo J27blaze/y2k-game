@@ -4,6 +4,9 @@ var camera_mouse_sensitivity = 0.001
 
 var buffered_inputs: Dictionary[String, int]
 
+func ready() -> void:
+	debug_draw = false
+
 func process_physics(delta: float):
 	#print(buffered_inputs)
 	
@@ -12,7 +15,8 @@ func process_physics(delta: float):
 			
 			if buffered_inputs[input] > 0:
 				buffered_inputs[input] -= 1
-	
+
+var debug_draw: bool = false #THIS SHOULD NOT BE HERE< ADD IT TO LIKE A GAME MANAGER SCRIPT
 func process_input(event: InputEvent):
 	if Input.is_action_just_pressed("ui_cancel") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -40,6 +44,11 @@ func process_input(event: InputEvent):
 		
 	#if Input.is_action_just_pressed("kick"):
 	#	buffered_inputs["kick"] = buffer_length
+	
+	#DEBUG MODE
+	if Input.is_action_pressed("ui_text_completion_accept"):
+		debug_draw = !debug_draw
+		DebugDraw3D.set_debug_enabled(debug_draw)
 
 #function can only work in process_phyisics, and not process_input
 func is_action_buffered(input: String):

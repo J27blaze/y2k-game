@@ -97,6 +97,11 @@ var can_jump: bool = true
 @export_range(0, 15, 0.05) var air_target_speed_margin: float = 4.
 @export_range(0, 20, 0.05) var air_target_speed_accel: float = 1.
 
+@export_subgroup("step controls")
+@export_range(0, 2, 0.01) var air_step_max_height : float = 0.5
+@export_range(1, 3, 0.005) var air_range_vel_multiplier : float = 1.
+@export_range(0, 20, 0.05) var air_min_vault_speed_threshold : float = 2.
+@export_range(0, 1, 0.01) var air_wall_score_threshold : float = 0.3 # higher the tighter mmmmphhhhhmhmhmm... tight..... k-kachaann...
 var jump_stage: int = 0
 
 @export_group("double_jump")
@@ -222,7 +227,6 @@ var attack_stage: int = 0
 
 func _ready() -> void:
 	#debug
-	DebugDraw3D.set_debug_enabled(false)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
@@ -437,8 +441,6 @@ func can_wall_slide() -> bool:
 
 func snap_step(delta: float):
 	var i : int = 0
-	var cur_range: float = step_max_range + step_margin + speed*delta*step_range_vel_multiplier
-	var cur_height: float = step_max_height + step_margin
 	
 	var can_step: bool = true
 	var step_positions : Array[Vector3] = []
@@ -451,30 +453,19 @@ func snap_step(delta: float):
 	#print(floor_normal)
 	# set step colliders
 	for ray in step_collider.get_children(false):
-		var range = ray
-		var height = ray.get_child(0)
+		var range = ray			#get the forward ray
+		var height_ray = ray.get_child(0)			# get the vertical ray
 		
-		range.rotation.y = deg_to_rad(i*step_angle_range/step_ray_amount*2 - step_angle_range + step_angle_range/step_ray_amount)
-		range.position = Vector3(0, cur_height, 0)
-		height.position = Vector3(0, 0, -cur_range)
-		range.target_position = Vector3(0,0,-cur_range)
-		height.target_position = Vector3(0,-cur_height + step_margin,0)
-		
-		range.force_raycast_update()
-		height.force_raycast_update()
-		
-		#if i < step_angle_amount_edging_count || i > step_ray_amount-1 - step_angle_amount_edging_count:
-		var col: float = float(i)/step_ray_amount
-		DebugDraw3D.draw_square(height.global_position , 0.1, Color(col,col,col))
+		position_snap_step_rays(range, height_ray, i, delta)
 		
 		#calc
-		if !range.is_colliding() && height.is_colliding():
-			step_positions.append(height.get_collision_point())
-			step_normals += height.get_collision_normal()
-			if height.get_collision_normal() == Vector3.UP: is_a_flat_normal = true
-			final_pos += height.get_collision_point()
+		if !range.is_colliding() && height_ray.is_colliding():
+			step_positions.append(height_ray.get_collision_point())
+			step_normals += height_ray.get_collision_normal()
+			if height_ray.get_collision_normal() == Vector3.UP: is_a_flat_normal = true
+			final_pos += height_ray.get_collision_point()
 			
-			DebugDraw3D.draw_square(height.get_collision_point(), 0.1, Color.RED)
+			DebugDraw3D.draw_square(height_ray.get_collision_point(), 0.1, Color.RED)
 			
 			if i < step_angle_amount_edging_count || i > step_ray_amount-1 - step_angle_amount_edging_count:
 				can_step = false
@@ -499,6 +490,69 @@ func snap_step(delta: float):
 	
 	#print(final_pos)
 	#print(step_positions.size())
+
+func position_snap_step_rays(range: Node, height_ray: Node, index: int, delta: float, range_mult : float = step_range_vel_multiplier, cur_height: float = step_max_height + step_margin):
+	var cur_range: float = step_max_range + step_margin + speed*delta*range_mult
+	#var cur_height: float = step_max_height + step_margin
+	
+	range.rotation.y = deg_to_rad(index*step_angle_range/step_ray_amount*2 - step_angle_range + step_angle_range/step_ray_amount)
+	range.position = Vector3(0, cur_height, 0)
+	height_ray.position = Vector3(0, 0, -cur_range)
+	range.target_position = Vector3(0,0,-cur_range)
+	height_ray.target_position = Vector3(0,-cur_height + step_margin,0)
+	
+	range.force_raycast_update()
+	height_ray.force_raycast_update()
+			
+	#if i < step_angle_amount_edging_count || i > step_ray_amount-1 - step_angle_amount_edging_count:
+	var col: float = float(index)/step_ray_amount
+	DebugDraw3D.draw_square(height_ray.global_position , 0.1, Color(col,col,col))
+
+@onready var vault_wall_check : RayCast3D = $vault_wall_check
+func state_vault_snap_step(delta: float) -> bool:
+	#initial conditions
+	if speed > air_min_vault_speed_threshold || velocity.y < 0:
+		var i : int = 0
+		
+		var step_positions : Array[Vector3] = []
+		var final_pos : Vector3 = Vector3.ZERO
+		
+		for ray in step_collider.get_children(false):
+			
+			var range = ray
+			var height_ray = ray.get_child(0)
+			
+			position_snap_step_rays(range, height_ray, i, delta, air_range_vel_multiplier, air_step_max_height + step_margin)
+			
+			if !range.is_colliding() && height_ray.is_colliding():
+				step_positions.append(height_ray.get_collision_point())
+				final_pos += height_ray.get_collision_point()
+				
+				DebugDraw3D.draw_square(height_ray.get_collision_point(), 0.1, Color.RED)
+			
+			i += 1
+		
+		if step_positions.size() > 0:
+			final_pos /= step_positions.size()
+			DebugDraw3D.draw_square(final_pos, 0.2, Color.GREEN)
+			
+			vault_wall_check.enabled = true
+			var vault_wall_pos = Vector3(position.x, final_pos.y - 0.05, position.z)
+			vault_wall_check.position = vault_wall_pos
+			vault_wall_check.target_position = final_pos - Vector3(0, 0.05, 0) - vault_wall_pos
+			
+			var wall_score : float = vault_wall_check.get_collision_normal().dot(last_dir.normalized())
+			
+			DebugDraw3D.draw_line(position, position + vault_wall_check.get_collision_normal() * 3, Color.RED)
+			DebugDraw3D.draw_line(position, position + last_dir.normalized() * 3, Color.YELLOW)
+			
+			print(wall_score)
+			
+			if air_wall_score_threshold < -wall_score && speed > 0.1:
+				state_machine.change_state("vaulting", [final_pos, vault_wall_check.get_collision_normal()])
+				return true
+		
+	return false
 	
 func state_wall_slide_jump_check() -> bool:
 	if on_wall && input_handler.is_action_buffered("jump"):

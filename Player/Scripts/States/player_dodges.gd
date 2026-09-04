@@ -115,6 +115,8 @@ func process_physics(delta: float):
 				else:
 					change_state("fall")
 			
+			player.snap_step(delta)
+			
 			#dodge jump
 			if player.input_handler.is_action_buffered("jump") && player.is_on_floor():
 				final_dir = input_dir * player.target_speed
@@ -125,7 +127,6 @@ func process_physics(delta: float):
 				
 				change_state("dodge_jump")
 				return
-
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)
 	DebugDraw3D.draw_line(player.centre, player.centre + player.hor_velocity *0.5, Color.PURPLE)

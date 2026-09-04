@@ -2,7 +2,7 @@
 
 [resource]
 background_mode = 1
-background_color = Color(0.43275592, 0.89124906, 0.9999997, 1)
+background_color = Color(0.52241355, 0.90493, 0.9999996, 1)
 ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 1
 ssao_enabled = true

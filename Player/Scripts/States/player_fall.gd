@@ -44,6 +44,8 @@ func process_physics(delta: float) -> void:
 		change_state("jump")
 		return
 	
+	if player.state_vault_snap_step(delta): return
+	
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, accel, delta)
 	#player.vel_accel_speed(player.run_speed, player.run_max_speed, player.jump_speed_accel, player.jump_speed_accel, delta)
