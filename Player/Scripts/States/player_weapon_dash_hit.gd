@@ -57,15 +57,11 @@ func process_physics(delta: float):
 	if player.velocity.y < 0:
 		change_state("fall", false)
 		return
-	if player.state_dodge_check():
-		return
-	if player.state_weapon_dash_check():
-		return
-	if player.state_air_attack():
-		return
+	if player.state_dodge_check(): return
+	if player.state_weapon_dash_check(): return
+	if player.state_air_attack(): return
 	player.calc_wall_slide()
-	if player.state_wall_slide_jump_check():
-		return
+	if player.state_wall_slide_jump_check(): return
 	
 	move_dir = player.direction * player.target_speed
 	player.vel_move_toward(move_dir, player.weapon_dash_hit_aceel, delta)

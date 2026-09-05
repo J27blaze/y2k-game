@@ -55,24 +55,19 @@ func _on_combo_timer_timeout() -> void:
 func process_physics(delta: float) -> void:
 	
 	player.calc_wall_slide()
-	if player.state_landing_check():
-		return
+	if player.state_landing_check(): return
 	
 	player.hit_check()
-	if player.state_tumble_check():
-		return
+	if player.state_tumble_check(): return
 		
-	if player.state_dodge_check():
-		return
+	if player.state_dodge_check(): return
 		
 	if actionable:
-		if player.state_wall_slide_check():
-			return
+		if player.state_wall_slide_check(): return
 		if player.state_air_attack():
 			player.is_attacking = true
 			return
-		if player.state_weapon_dash_check():
-			return
+		if player.state_weapon_dash_check(): return
 	
 	var move_dir = player.target_speed * player.direction
 	player.vel_move_toward(move_dir, accel, delta)

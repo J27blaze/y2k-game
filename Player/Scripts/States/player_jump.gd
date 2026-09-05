@@ -77,22 +77,15 @@ func process_physics(delta: float) -> void:
 		return
 	
 	player.hit_check()
-	if player.state_tumble_check():
-		return
-	
-	if player.state_weapon_dash_check():
-		return
-	if player.state_landing_check():
-		return
+	if player.state_tumble_check(): return
+	if player.state_weapon_dash_check(): return
+	if player.state_landing_check(): return
 	
 	player.calc_wall_slide()
-	if player.state_wall_slide_jump_check():
-		return
+	if player.state_wall_slide_jump_check(): return
 	if !is_dodge_jump:
-		if player.state_dodge_check():
-			return
-	if player.state_air_attack():
-		return
+		if player.state_dodge_check(): return
+	if player.state_air_attack(): return
 	
 	#accel
 	var move_dir = player.target_speed * player.direction

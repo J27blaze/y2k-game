@@ -22,22 +22,16 @@ func start():
 func process_physics(delta: float) -> void:
 	
 	player.calc_wall_slide()
-	if player.state_wall_slide_check():
-		return
-	if player.state_landing_check():
-		return
-	if player.state_weapon_dash_check():
-		return
-	if player.state_air_attack():
-		return
+	if player.state_wall_slide_check(): return
+	if player.state_landing_check(): return
+	if player.state_weapon_dash_check(): return
+	if player.state_air_attack(): return
 		
 	player.hit_check()
-	if player.state_tumble_check():
-		return
+	if player.state_tumble_check(): return
 	
 	if !data:
-		if player.state_dodge_check():
-			return
+		if player.state_dodge_check(): return
 	
 	#coyote time, lockey buggy but its cool
 	if timer <= player.jump_coyote_frames && Input.is_action_just_pressed("jump") && player.can_jump:

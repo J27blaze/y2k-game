@@ -99,6 +99,7 @@ var can_jump: bool = true
 
 @export_subgroup("step controls")
 @export_range(0, 2, 0.01) var air_step_max_height : float = 0.5
+@export_range(0, 2, 0.01) var air_vault_max_height : float = 0.5
 @export_range(1, 3, 0.005) var air_range_vel_multiplier : float = 1.
 @export_range(0, 20, 0.05) var air_min_vault_speed_threshold : float = 2.
 @export_range(0, 1, 0.01) var air_wall_score_threshold : float = 0.3 # higher the tighter mmmmphhhhhmhmhmm... tight..... k-kachaann...
@@ -511,7 +512,7 @@ func position_snap_step_rays(range: Node, height_ray: Node, index: int, delta: f
 @onready var vault_wall_check : RayCast3D = $vault_wall_check
 func state_vault_snap_step(delta: float) -> bool:
 	#initial conditions
-	if speed > air_min_vault_speed_threshold || velocity.y < 0:
+	if target_speed > air_min_vault_speed_threshold:#  && velocity.y < 0:
 		var i : int = 0
 		
 		var step_positions : Array[Vector3] = []
@@ -522,7 +523,7 @@ func state_vault_snap_step(delta: float) -> bool:
 			var range = ray
 			var height_ray = ray.get_child(0)
 			
-			position_snap_step_rays(range, height_ray, i, delta, air_range_vel_multiplier, air_step_max_height + step_margin)
+			position_snap_step_rays(range, height_ray, i, delta, air_range_vel_multiplier, air_vault_max_height + step_margin)
 			
 			if !range.is_colliding() && height_ray.is_colliding():
 				step_positions.append(height_ray.get_collision_point())
@@ -546,11 +547,19 @@ func state_vault_snap_step(delta: float) -> bool:
 			DebugDraw3D.draw_line(position, position + vault_wall_check.get_collision_normal() * 3, Color.RED)
 			DebugDraw3D.draw_line(position, position + last_dir.normalized() * 3, Color.YELLOW)
 			
-			print(wall_score)
+			#print(wall_score)
 			
 			if air_wall_score_threshold < -wall_score && speed > 0.1:
-				state_machine.change_state("vaulting", [final_pos, vault_wall_check.get_collision_normal()])
-				return true
+				if abs(final_pos.y - position.y) <= air_step_max_height + step_margin:
+					#step when falling
+					var corr: Vector3 = final_pos - position
+					var correction = Vector3(corr.x, 0, corr.z)
+					position = final_pos - (correction.normalized() * (correction.length() - 0.05)) + Vector3.UP * step_margin
+					print("air stepped!")
+					return false
+				else:
+					state_machine.change_state("vaulting", [final_pos, vault_wall_check.get_collision_normal()])
+					return true
 		
 	return false
 	

@@ -82,16 +82,12 @@ func process_physics(delta: float):
 			state_machine.change_state("run")
 		return
 	if can_input:
-		if player.state_jump():
-			return
-		if player.state_dodge_check():
-			return
-		if player.state_weapon_dash_check():
-			return
+		if player.state_jump(): return
+		if player.state_dodge_check(): return
+		if player.state_weapon_dash_check(): return
 		
 	player.hit_check()
-	if player.state_tumble_check():
-		return
+	if player.state_tumble_check(): return
 	
 	#perfect slide / start slide
 	if !perfect_slided && input_handler.is_action_buffered("slide") && timer < player.perfect_slide_after_frame_window:

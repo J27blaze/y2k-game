@@ -44,14 +44,11 @@ func process_physics(delta: float):
 		return
 	
 	player.calc_wall_slide()
-	if player.state_dodge_check():
-		return
-	if player.state_weapon_dash_check():
-		return
+	if player.state_dodge_check(): return
+	if player.state_weapon_dash_check(): return
 	
 	player.hit_check()
-	if player.state_tumble_check():
-		return
+	if player.state_tumble_check(): return
 	
 	#similiar as player jump state
 	
@@ -87,8 +84,7 @@ func process_physics(delta: float):
 		player.model_twist_override_angle = -999
 	
 	if timer > player.wall_slide_jump_inital_accel_frames - 3:
-		if player.state_air_attack():
-			return
+		if player.state_air_attack(): return
 			
 	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity

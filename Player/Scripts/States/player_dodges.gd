@@ -103,17 +103,14 @@ func process_physics(delta: float):
 	match data:
 		"air":
 			player.calc_wall_slide()
-			if player.state_landing_check():
-				return
-			if Input.is_action_just_pressed("dodge"):
-				return
+			if player.state_landing_check(): return
+			if Input.is_action_just_pressed("dodge"): return
+			if player.state_vault_snap_step(delta): return
 		"ground":
 			if dodge_length.is_stopped():
 				#print("sdfsdf")
-				if player.state_landing_check():
-					return
-				else:
-					change_state("fall")
+				if player.state_landing_check(): return
+				else: change_state("fall")
 			
 			player.snap_step(delta)
 			

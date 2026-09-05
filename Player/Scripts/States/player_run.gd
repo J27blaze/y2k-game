@@ -10,12 +10,9 @@ func process_physics(delta: float):
 	if player.direction == Vector3.ZERO:
 		change_state("idle")
 		return
-	if player.state_jump():
-		return
-	if player.state_dodge_check():
-		return
-	if player.state_weapon_dash_check():
-		return
+	if player.state_jump(): return
+	if player.state_dodge_check(): return
+	if player.state_weapon_dash_check(): return
 	if Input.is_action_pressed("slide"):
 		change_state("slide")
 		return
@@ -25,11 +22,8 @@ func process_physics(delta: float):
 		return
 		
 	player.hit_check()
-	if player.state_tumble_check():
-		return
-	
-	if player.append_weapon_attack("run"):
-		return
+	if player.state_tumble_check(): return
+	if player.append_weapon_attack("run"): return
 	
 	player.snap_step(delta)
 	

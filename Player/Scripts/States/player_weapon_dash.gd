@@ -183,8 +183,7 @@ func exit():
 	return
 
 func process_physics(delta: float):
-	if player.state_dodge_check():
-		return
+	if player.state_dodge_check(): return
 	
 	player.velocity = dir * player.weapon_dash_speed_timer_scaler.sample(timer)
 	weapon_hitbox.position = player.global_position
