@@ -4,6 +4,7 @@ var final_pos: Vector3 = Vector3.ZERO
 var wall_normal: Vector3 = Vector3.ZERO
 
 @export var model_offsets: Vector3 = Vector3.ZERO
+@onready var vault_duration: Timer = $vault_duration
 
 func start():
 	print("vaulting")
