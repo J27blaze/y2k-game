@@ -38,4 +38,4 @@ func process_physics(delta: float):
 	DebugDraw3D.draw_square(final_pos, 0.2, Color.GREEN)
 
 func _on_vault_duration_timeout() -> void:
-	change_state("jump", data)
+	change_state("vault_jump", data)

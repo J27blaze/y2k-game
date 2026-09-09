@@ -8,20 +8,19 @@ var initial_vel: Vector3
 var wall_normal: Vector3
 var vault_pos: Vector3
 
-var accel: float = 0.1
-
 var jump_vel : float = 0
-var jump_cut_amount : float = 0
 
 func start():
+	print("vault_jump")
 	player.can_jump = false
-	
+	player.air_dodges = int(player.max_air_dodges)
+	jump_cut = true
 	#first poart of data is poinr.
 	#second is normal.
 	vault_pos = data[0]
 	wall_normal = data[1]
 	
-	player.position = vault_pos
+	player.position = vault_pos + Vector3.UP * player.step_margin
 	
 	timer = 0 
 	player.input_handler.clear_action_buffer("jump")
@@ -29,18 +28,21 @@ func start():
 	#jump stage
 	player.jump_stage = 0
 	
-	jump_vel = player.dodge_jump_vel_pulse
-	accel = player.dodge_jump_accel
+	jump_vel = player.vault_jump_vel_pulse
 	
+	player.target_speed = clampf(player.target_speed, 0, 999999)
 	initial_vel = player.direction * player.target_speed
+	
 	player.velocity.x = initial_vel.x
 	player.velocity.z = initial_vel.z
+	print(initial_vel)
 	
 	wall_normal = player.wall_normal
 	#initial_vel = player.target_speed
 	
 	player.gravity = player.jump_gravity
 	player.velocity.y = jump_vel
+	
 	play_anim("jump_default")
 
 func exit():
@@ -63,15 +65,15 @@ func process_physics(delta: float) -> void:
 	
 	#accel
 	var move_dir = player.target_speed * player.direction
-	player.vel_move_toward(move_dir, accel, delta)
+	player.vel_move_toward(move_dir, player.vault_jump_accel, delta)
 	
-	if timer > player.jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
+	if timer > player.vault_jump_min_hold_frames && !Input.is_action_pressed("jump") && jump_cut:
 		player.gravity = player.fall_gravity
-		player.velocity.y *= jump_cut_amount
+		player.velocity.y *= player.vault_jump_vel_height_cut
 		jump_cut = false
 	
 	#player.state_wall_slide_jump_check()
-	player.lerp_target_speed(player.air_target_speed_margin, player.air_target_speed_accel, delta)
+	#player.lerp_target_speed(player.air_target_speed_margin, player.air_target_speed_accel, delta)
 	
 	#debug
 	DebugDraw3D.draw_line(player.centre, player.centre + player.direction * player.target_speed * 0.5, Color.YELLOW)

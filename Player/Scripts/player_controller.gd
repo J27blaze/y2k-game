@@ -186,6 +186,17 @@ var air_dodges: int = 1
 @export_range(0, 20, 0.005) var dodge_jump_speed_increase: float = 10.
 @export var dodge_jump_speed_boost_scaling: Curve
 #endregion 
+
+#region vault jump
+@export_group("vault jump")
+@export_range(0, 50, 0.05) var vault_jump_vel_pulse: float = 10.
+@export_range(0, 40, 0.05) var vault_jump_accel: float = 10.
+@export_range(0, 20, 1) var vault_jump_min_hold_frames: float = 4.
+@export_range(0, 1, 0.001) var vault_jump_vel_height_cut: float = 0.8
+
+@export_range(0, 20, 0.1) var vault_min_speed: float = 10.0
+#endregion
+
 #region weapon_dash
 @export_group("dash")
 @export_range(-1, 1, 0.01) var weapon_dash_min_angle: float = 0.1
@@ -493,7 +504,7 @@ func snap_step(delta: float):
 	#print(step_positions.size())
 
 func position_snap_step_rays(range: Node, height_ray: Node, index: int, delta: float, range_mult : float = step_range_vel_multiplier, cur_height: float = step_max_height + step_margin):
-	var cur_range: float = step_max_range + step_margin + speed*delta*range_mult
+	var cur_range: float = (step_max_range + step_margin + speed*delta)*range_mult
 	#var cur_height: float = step_max_height + step_margin
 	
 	range.rotation.y = deg_to_rad(index*step_angle_range/step_ray_amount*2 - step_angle_range + step_angle_range/step_ray_amount)
@@ -510,6 +521,7 @@ func position_snap_step_rays(range: Node, height_ray: Node, index: int, delta: f
 	DebugDraw3D.draw_square(height_ray.global_position , 0.1, Color(col,col,col))
 
 @onready var vault_wall_check : RayCast3D = $vault_wall_check
+@onready var air_step_buffer : Timer = $air_step_buffer
 func state_vault_snap_step(delta: float) -> bool:
 	#initial conditions
 	if target_speed > air_min_vault_speed_threshold:#  && velocity.y < 0:
@@ -549,12 +561,15 @@ func state_vault_snap_step(delta: float) -> bool:
 			
 			#print(wall_score)
 			
-			if air_wall_score_threshold < -wall_score && speed > 0.1:
+			if air_wall_score_threshold < -wall_score && speed > 0.1 && air_step_buffer.is_stopped():
 				if abs(final_pos.y - position.y) <= air_step_max_height + step_margin:
 					#step when falling
 					var corr: Vector3 = final_pos - position
 					var correction = Vector3(corr.x, 0, corr.z)
 					position = final_pos - (correction.normalized() * (correction.length() - 0.05)) + Vector3.UP * step_margin
+					air_step_buffer.start()
+					if velocity.y < 0:
+						state_landing_check()
 					print("air stepped!")
 					return false
 				else:
@@ -562,6 +577,9 @@ func state_vault_snap_step(delta: float) -> bool:
 					return true
 		
 	return false
+
+func _on_air_step_buffer_timeout() -> void:
+	pass # Replace with function body.
 	
 func state_wall_slide_jump_check() -> bool:
 	if on_wall && input_handler.is_action_buffered("jump"):
