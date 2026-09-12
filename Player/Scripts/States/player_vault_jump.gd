@@ -35,7 +35,7 @@ func start():
 	
 	player.velocity.x = initial_vel.x
 	player.velocity.z = initial_vel.z
-	print(initial_vel)
+	#print(initial_vel)
 	
 	wall_normal = player.wall_normal
 	#initial_vel = player.target_speed
