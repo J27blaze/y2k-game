@@ -23,7 +23,7 @@ func start():
 	var model_pos = final_pos + model_offsets.rotated(Vector3.UP, atan2(wall_normal.x, wall_normal.z))
 	player.model_twist.is_lerping = false
 	player.model_twist.position = model_pos
-	print(model_pos)
+	#print(model_pos)
 	
 	player.position.y = final_pos.y + player_offset.y
 	

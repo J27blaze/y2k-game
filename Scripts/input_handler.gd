@@ -29,6 +29,10 @@ func process_input(event: InputEvent):
 	if Input.is_action_just_pressed("jump"):
 		buffered_inputs["jump"] = 7
 	
+	#only used for perfect vaults
+	if Input.is_action_just_pressed("vault"):
+		buffered_inputs["vault"] = 8
+	
 	if Input.is_action_just_pressed("dodge"):
 		buffered_inputs["dodge"] = 7
 		

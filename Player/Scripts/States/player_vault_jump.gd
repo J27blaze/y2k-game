@@ -10,11 +10,13 @@ var vault_pos: Vector3
 
 var jump_vel : float = 0
 
+var is_perfect_vault : bool = false
+
 func start():
-	print("vault_jump")
 	player.can_jump = false
 	player.air_dodges = int(player.max_air_dodges)
 	jump_cut = true
+	
 	#first poart of data is poinr.
 	#second is normal.
 	vault_pos = data[0]
@@ -23,14 +25,30 @@ func start():
 	player.position = vault_pos + Vector3.UP * player.step_margin
 	
 	timer = 0 
+	
+	is_perfect_vault = player.input_handler.is_action_buffered("vault")
+	
 	player.input_handler.clear_action_buffer("jump")
+	player.input_handler.clear_action_buffer("vault")
 	
 	#jump stage
 	player.jump_stage = 0
 	
 	jump_vel = player.vault_jump_vel_pulse
 	
-	player.target_speed = clampf(player.target_speed, 0, 999999)
+	if is_perfect_vault:
+		print("perfect_vault_jump")
+		play_anim("vault_jump_back")
+		
+		var speed_boost:float = player.vault_perfect_speed_boost * player.vault_perfect_speed_boost_scaling.sample(player.speed)
+		#print(speed_boost)
+		player.target_speed = clampf(player.target_speed + speed_boost, player.vault_min_speed + speed_boost, 999999)
+	else:
+		print("vault_jump")
+		play_anim("vault_jump_default")
+		
+		player.target_speed = clampf(player.target_speed, 0, 999999)
+	
 	initial_vel = player.direction * player.target_speed
 	
 	player.velocity.x = initial_vel.x
@@ -42,8 +60,6 @@ func start():
 	
 	player.gravity = player.jump_gravity
 	player.velocity.y = jump_vel
-	
-	play_anim("jump_default")
 
 func exit():
 	player.gravity = player.fall_gravity

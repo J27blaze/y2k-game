@@ -195,6 +195,8 @@ var air_dodges: int = 1
 @export_range(0, 1, 0.001) var vault_jump_vel_height_cut: float = 0.8
 
 @export_range(0, 20, 0.1) var vault_min_speed: float = 10.0
+@export_range(0, 10, 0.1) var vault_perfect_speed_boost: float = 10.0
+@export var vault_perfect_speed_boost_scaling: Curve
 #endregion
 
 #region weapon_dash
