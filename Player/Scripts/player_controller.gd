@@ -476,7 +476,8 @@ func snap_step(delta: float):
 		if !range.is_colliding() && height_ray.is_colliding():
 			step_positions.append(height_ray.get_collision_point())
 			step_normals += height_ray.get_collision_normal()
-			if height_ray.get_collision_normal() == Vector3.UP: is_a_flat_normal = true
+			if height_ray.get_collision_normal().dot(Vector3.UP) > 0.995: is_a_flat_normal = true
+			#print( height_ray.get_collision_normal().dot(Vector3.UP))
 			final_pos += height_ray.get_collision_point()
 			
 			DebugDraw3D.draw_square(height_ray.get_collision_point(), 0.1, Color.RED)
@@ -568,7 +569,7 @@ func state_vault_snap_step(delta: float) -> bool:
 					#step when falling
 					var corr: Vector3 = final_pos - position
 					var correction = Vector3(corr.x, 0, corr.z)
-					position = final_pos - (correction.normalized() * (correction.length() - 0.05)) + Vector3.UP * step_margin
+					position = final_pos + (Vector3.UP * step_margin) - (correction.normalized() * (correction.length() - 0.05))
 					air_step_buffer.start()
 					if velocity.y < 0:
 						state_landing_check()

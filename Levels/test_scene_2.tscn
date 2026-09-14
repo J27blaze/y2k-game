@@ -39,8 +39,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -64)
 [node name="Player" parent="." instance=ExtResource("2_h1awx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -33)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1.1920928e-07, -0.8660255, 0.4999999, 2.7805946e-08, 0.49999994, 0.86602545, -1, -8.933531e-08, 8.3685286e-08, 22.943048, 21.728518, 25.249004)
-shadow_enabled = true
-
 [node name="BlueHeavenEnv" parent="." instance=ExtResource("4_bgrhv")]

@@ -15,6 +15,8 @@ func start():
 	timer = 0
 	jump_cut = true
 	
+	player.air_dodges = int(player.max_air_dodges)
+	
 	#player.target_speed = player.weapon_dash_target_speed
 	player.gravity = player.weapon_dash_hit_gravity
 	initial_vel = data

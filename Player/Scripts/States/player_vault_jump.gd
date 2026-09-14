@@ -36,18 +36,18 @@ func start():
 	
 	jump_vel = player.vault_jump_vel_pulse
 	
+	var speed_boost:float = player.vault_perfect_speed_boost * player.vault_perfect_speed_boost_scaling.sample(player.speed)
 	if is_perfect_vault:
 		print("perfect_vault_jump")
 		play_anim("vault_jump_back")
 		
-		var speed_boost:float = player.vault_perfect_speed_boost * player.vault_perfect_speed_boost_scaling.sample(player.speed)
 		#print(speed_boost)
 		player.target_speed = clampf(player.target_speed + speed_boost, player.vault_min_speed + speed_boost, 999999)
 	else:
 		print("vault_jump")
 		play_anim("vault_jump_default")
 		
-		player.target_speed = clampf(player.target_speed, 0, 999999)
+		player.target_speed = clampf(player.target_speed - speed_boost, 0, 999999)
 	
 	initial_vel = player.direction * player.target_speed
 	
