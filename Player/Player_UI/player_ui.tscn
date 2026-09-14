@@ -1,34 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://begqktbcthhwn"]
+[gd_scene load_steps=3 format=3 uid="uid://begqktbcthhwn"]
 
 [ext_resource type="Script" uid="uid://hc3phsl4a5qy" path="res://Player/Player_UI/player_ui.gd" id="1_8gwm2"]
-[ext_resource type="Texture2D" uid="uid://gopof4a04g1x" path="res://Player/Player_UI/style_meter_empty.png" id="2_ef6wl"]
-[ext_resource type="Texture2D" uid="uid://jjehbrosxn6e" path="res://Player/Player_UI/style_meter.png" id="2_wtu6u"]
-[ext_resource type="Texture2D" uid="uid://dp8pko8d6v8sa" path="res://Player/Player_UI/style_meter_full.png" id="4_flvl7"]
+[ext_resource type="FontFile" uid="uid://bxtl4pgbgw0o5" path="res://UI/Fonts/ZenDots-Regular.ttf" id="2_wtu6u"]
 
 [node name="player_ui" type="CanvasLayer"]
 script = ExtResource("1_8gwm2")
 
-[node name="bottom_right" type="Control" parent="."]
+[node name="speed_display" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -40.0
+offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="bottom_right"]
+[node name="num" type="Label" parent="speed_display"]
 layout_mode = 0
-offset_left = -534.0
-offset_top = -220.0
-offset_right = -22.0
-offset_bottom = 36.0
-max_value = 7.0
-value = 7.0
-texture_under = ExtResource("2_ef6wl")
-texture_over = ExtResource("2_wtu6u")
-texture_progress = ExtResource("4_flvl7")
-tint_progress = Color(0, 0.92075694, 0.23265329, 1)
+offset_left = -774.00006
+offset_top = -356.00003
+offset_right = -549.3334
+offset_bottom = -229.33334
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_wtu6u")
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="speed_display"]
+layout_mode = 0
+offset_left = -98.0
+offset_top = -45.0
+offset_right = -61.0
+offset_bottom = -29.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_wtu6u")
+theme_override_font_sizes/font_size = 12
+text = "km/h"
+horizontal_alignment = 2
+
+[node name="timer_display" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="timer_display"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

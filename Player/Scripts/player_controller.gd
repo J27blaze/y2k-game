@@ -26,6 +26,9 @@ var god_mode: bool = false
 @onready var step_collider_shape := $step_collider/ShapeCast3D
 @onready var step_ray_amount : int = step_collider.get_child_count(false)
 
+#ui
+@onready var ui: PlayerUI = $player_ui
+
 #other
 var centre: Vector3 = Vector3.ZERO
 var height: float = 1.7
@@ -303,10 +306,13 @@ func _physics_process(delta: float):
 	#player_slide
 	floor_normal = floor_collider.get_collision_normal() * int(floor_collider.is_colliding())
 	
+	ui.last_speed = speed
 	move_and_slide()
 	
 	hor_velocity = Vector3(velocity.x, 0, velocity.z)
 	speed = Vector3(velocity.x, 0, velocity.z).length()
+	
+	ui.cur_speed = speed
 	
 	#gravity
 	if !is_on_floor():
