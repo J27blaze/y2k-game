@@ -7,6 +7,8 @@ var cur_speed: float = 0
 var cur_lerp_speed: float = 0
 var last_speed: float = 0
 
+const cur_speed_scaler: float = 1.25
+
 const speed_ui_text_size: int = 30
 const speed_ui_scale_multiplier: float = 0.25
 const speed_ui_scale_diff_multiplier: float = 40
@@ -22,7 +24,7 @@ func _process(delta: float) -> void:
 	#print(cur_lerp_speed)
 	speed_ui.add_theme_font_size_override("font_size", speed_ui_target_size)
 	
-	speed_ui.text = str(roundf(cur_speed)).pad_decimals(0)
+	speed_ui.text = str(roundf(cur_speed * cur_speed_scaler)).pad_decimals(0)
 	
 func _physics_process(delta: float) -> void:
 	cur_lerp_speed = lerpf(cur_lerp_speed, cur_speed, cur_lerp_speed_amount*delta)
