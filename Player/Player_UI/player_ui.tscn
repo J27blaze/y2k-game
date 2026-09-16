@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://begqktbcthhwn"]
 
 [ext_resource type="Script" uid="uid://hc3phsl4a5qy" path="res://Player/Player_UI/player_ui.gd" id="1_8gwm2"]
-[ext_resource type="FontFile" uid="uid://bxtl4pgbgw0o5" path="res://UI/Fonts/ZenDots-Regular.ttf" id="2_wtu6u"]
+[ext_resource type="Theme" uid="uid://bp08lncpsccnd" path="res://UI/Fonts/ZenDots.tres" id="2_wtu6u"]
 
 [node name="player_ui" type="CanvasLayer"]
 script = ExtResource("1_8gwm2")
@@ -26,34 +26,43 @@ grow_vertical = 0
 
 [node name="num" type="Label" parent="camera_wobble/speed_display"]
 layout_mode = 0
-offset_left = -850.0
-offset_top = -413.00003
-offset_right = -625.3333
-offset_bottom = -286.33334
+offset_left = -867.0
+offset_top = -414.00003
+offset_right = -642.3333
+offset_bottom = -287.33334
 scale = Vector2(3, 3)
-theme_override_fonts/font = ExtResource("2_wtu6u")
+theme = ExtResource("2_wtu6u")
 text = "10"
 horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Label2" type="Label" parent="camera_wobble/speed_display"]
 layout_mode = 0
-offset_left = -174.0
-offset_top = -102.0
-offset_right = -137.0
-offset_bottom = -86.0
+offset_left = -183.0
+offset_top = -108.0
+offset_right = -145.0
+offset_bottom = -92.0
 scale = Vector2(3, 3)
-theme_override_fonts/font = ExtResource("2_wtu6u")
+theme = ExtResource("2_wtu6u")
 theme_override_font_sizes/font_size = 12
 text = "km/h"
-horizontal_alignment = 2
 
 [node name="timer_display" type="Control" parent="camera_wobble"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 
-[node name="Label" type="Label" parent="camera_wobble/timer_display"]
+[node name="timer" type="Label" parent="camera_wobble/timer_display"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -720.0
+offset_top = 60.0
+offset_right = -240.0
+offset_bottom = 76.0
+scale = Vector2(3, 3)
+theme = ExtResource("2_wtu6u")
+theme_override_font_sizes/font_size = 12
+text = "00.00"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -3,6 +3,8 @@ class_name PlayerUI
 
 @export var player: Node
 
+##ADD A UPDATE UI FUNTION,
+
 #player
 var cur_speed: float = 0
 var cur_lerp_speed: float = 0
@@ -14,7 +16,7 @@ var camera_dir: Vector2
 var mouse_dir: Vector2
 var target_ui_offset_pos: Vector2 = Vector2.ZERO
 const target_ui_offset_lerp: float = 20
-const  target_ui_offset_scaler: float = 220.
+const  target_ui_offset_scaler: float = 180.
 
 const cur_speed_scaler: float = 1.25
 
@@ -29,6 +31,10 @@ var speed_ui_size: float = 1
 var speed_ui_target_size: float = speed_ui_text_size
 @onready var speed_ui : Label = $camera_wobble/speed_display/num
 
+#timer
+var time_elapsed : float = 0.0
+@onready var timer: Label = $camera_wobble/timer_display/timer
+
 func _process(delta: float) -> void:
 	speed_ui_target_size = lerpf(speed_ui_target_size, speed_ui_size, speed_ui_scale_lerp * delta)
 	#print(cur_lerp_speed)
@@ -40,6 +46,15 @@ func _process(delta: float) -> void:
 	target_ui_offset_pos = lerp(target_ui_offset_pos, ui_offset, target_ui_offset_lerp * delta)
 	
 	camera_wobble.position = -round((target_ui_offset_pos*target_ui_offset_scaler)/3)*3
+	
+	#timer
+	time_elapsed += delta
+	var minutes: int = int(time_elapsed / 60)
+	var seconds: int = int(fmod(time_elapsed, 60))
+	var milliseconds: int = int(fmod(time_elapsed, 1.0) * 100) # Use 1000 f
+	
+	#timer.text = "%02d:%02d" % [seconds, milliseconds]
+	timer.text = "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 	
 func _physics_process(delta: float) -> void:
 	cur_lerp_speed = lerpf(cur_lerp_speed, cur_speed, cur_lerp_speed_amount*delta)

@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bp08lncpsccnd"]
+
+[ext_resource type="FontFile" uid="uid://bxtl4pgbgw0o5" path="res://UI/Fonts/ZenDots-Regular.ttf" id="1_dyst3"]
+
+[resource]
+default_font = ExtResource("1_dyst3")
+default_font_size = 10
+Control/colors/outline_size = Color(0, 0, 0, 1)
+Control/constants/outline_size = 7
