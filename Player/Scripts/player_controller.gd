@@ -8,7 +8,7 @@ var model_pitch : float = 0
 var target_model_angle : Vector3
 
 #controllers
-@onready var camera_controller := $player_camera_controller
+@onready var camera_controller : CameraController = $player_camera_controller
 @onready var animation_controller : AnimationController = $model_twist/animation_controller
 @onready var vfx_controller : VFXController = $model_twist/VFX_controller
 
@@ -323,6 +323,9 @@ func _physics_process(delta: float):
 func _process(delta: float):
 	#adds the camera rot to movement
 	camera_controller.process(delta)
+	#ui
+	ui.camera_dir = camera_controller.camera_dir
+	ui.mouse_dir = camera_controller.export_mouse_dir
 	
 	direction = (camera_controller.twist_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	camera_normal = (-camera_controller.global_transform.basis.z).normalized()

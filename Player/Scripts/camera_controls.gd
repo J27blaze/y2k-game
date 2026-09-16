@@ -34,6 +34,7 @@ var global_transform
 
 var camera_dir: Vector2
 var mouse_dir: Vector2
+var export_mouse_dir:  Vector2 = Vector2.ZERO #USED FOR EXPORTING DATA, NOT THE ACTUAL DATA
 
 func _ready() -> void:
 	twist.position = player.global_position
@@ -56,6 +57,7 @@ func process(delta: float):
 	#pitch clamp values
 	pitch.rotation.x = clamp(pitch.rotation.x, -PI/2, PI/2)
 	
+	export_mouse_dir = mouse_dir
 	mouse_dir = Vector2.ZERO
 	
 	#position

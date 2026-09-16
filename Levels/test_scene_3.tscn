@@ -117,3 +117,9 @@ material = ExtResource("1_7i407")
 
 [node name="TestEnemy" parent="CSGCombiner3D" instance=ExtResource("4_7i407")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -45)
+
+[node name="TestEnemy2" parent="CSGCombiner3D" instance=ExtResource("4_7i407")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 1, -12)
+
+[node name="TestEnemy3" parent="CSGCombiner3D" instance=ExtResource("4_7i407")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 1, 4)
