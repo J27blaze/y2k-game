@@ -8,7 +8,11 @@ script = ExtResource("1_8gwm2")
 
 [node name="camera_wobble" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="speed_display" type="Control" parent="camera_wobble"]
 layout_mode = 1
@@ -17,19 +21,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1400.0
-offset_top = 1040.0
-offset_right = 1440.0
-offset_bottom = 1080.0
 grow_horizontal = 0
 grow_vertical = 0
 
 [node name="num" type="Label" parent="camera_wobble/speed_display"]
 layout_mode = 0
-offset_left = -774.00006
-offset_top = -349.00003
-offset_right = -549.3334
-offset_bottom = -222.33334
+offset_left = -850.0
+offset_top = -413.00003
+offset_right = -625.3333
+offset_bottom = -286.33334
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_wtu6u")
 text = "10"
@@ -38,10 +38,10 @@ vertical_alignment = 2
 
 [node name="Label2" type="Label" parent="camera_wobble/speed_display"]
 layout_mode = 0
-offset_left = -98.0
-offset_top = -38.0
-offset_right = -61.0
-offset_bottom = -22.0
+offset_left = -174.0
+offset_top = -102.0
+offset_right = -137.0
+offset_bottom = -86.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_wtu6u")
 theme_override_font_sizes/font_size = 12
