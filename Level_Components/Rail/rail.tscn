@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7uosfs82tktd"]
+
+[sub_resource type="Curve3D" id="Curve3D_14g8p"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Rail" type="Path3D"]
+curve = SubResource("Curve3D_14g8p")
+debug_custom_color = Color(1.2925738e-10, 0.0010667938, 4.2302417e-10, 1)

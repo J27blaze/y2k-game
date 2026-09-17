@@ -30,6 +30,7 @@ window/stretch/aspect="ignore"
 folder_colors={
 "res://Art/Environments/": "blue",
 "res://Enemies/": "red",
+"res://Level_Components/": "yellow",
 "res://Levels/": "yellow",
 "res://Player/": "blue",
 "res://Player/Assets/Player/": "yellow",
