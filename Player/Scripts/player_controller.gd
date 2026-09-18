@@ -578,6 +578,7 @@ func state_vault_snap_step(delta: float) -> bool:
 					#step when falling
 					var corr: Vector3 = final_pos - position
 					var correction = Vector3(corr.x, 0, corr.z)
+					# fix this code
 					position = final_pos + (Vector3.UP * step_margin) - (correction.normalized() * (correction.length() - 0.05))
 					air_step_buffer.start()
 					if velocity.y < 0:
