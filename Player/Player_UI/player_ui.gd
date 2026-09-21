@@ -16,7 +16,7 @@ var camera_dir: Vector2
 var mouse_dir: Vector2
 var target_ui_offset_pos: Vector2 = Vector2.ZERO
 const target_ui_offset_lerp: float = 20
-const  target_ui_offset_scaler: float = 130.
+const  target_ui_offset_scaler: float = 125.
 
 const cur_speed_scaler: float = 1.25
 
