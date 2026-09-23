@@ -485,7 +485,7 @@ func snap_step(delta: float):
 		if !range.is_colliding() && height_ray.is_colliding():
 			step_positions.append(height_ray.get_collision_point())
 			step_normals += height_ray.get_collision_normal()
-			if height_ray.get_collision_normal().dot(Vector3.UP) > 0.995: is_a_flat_normal = true
+			if height_ray.get_collision_normal().dot(Vector3.UP) > 0.9999: is_a_flat_normal = true
 			#print( height_ray.get_collision_normal().dot(Vector3.UP))
 			final_pos += height_ray.get_collision_point()
 			

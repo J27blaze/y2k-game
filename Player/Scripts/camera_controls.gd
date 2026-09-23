@@ -27,7 +27,9 @@ var pos_smoothing: float = 3.0
 @onready var camera := $camera_twist/camera_pitch/Camera3D
 var z_cam_pos : float = 0
 @onready var col : RayCast3D = $camera_twist/camera_pitch/camera_col
-@export var col_margin_error : float = 0.5
+@export_range(0, 2, 0.01) var col_margin_error : float = 0.5
+@export_range(0, 50, 0.01) var col_lerp : float = 4.
+var col_target_dist : float = 0
 #@onready var player = parent()
 
 #@export var global_offset: bool = true
@@ -43,6 +45,7 @@ func _ready() -> void:
 	twist.position = player.global_position
 	set_offset_smoothing("slow")
 	z_cam_pos = camera.position.z
+	col_target_dist = z_cam_pos 
 	col.target_position = camera.position + -Vector3.FORWARD * col_margin_error
 	
 func _input(event: InputEvent) -> void:
@@ -72,13 +75,15 @@ func process(delta: float):
 	
 	#collision
 	col.force_raycast_update()
+	var dist : float = z_cam_pos
 	if col.is_colliding():
-		var dist : float = col.get_collision_point().distance_to(col.global_position)
-		print(dist)
-		camera.position.z = dist - col_margin_error
+		#print(dist)
+		dist = col.get_collision_point().distance_to(col.global_position) - col_margin_error
+		#camera.position.z = col_target_dist
 	else:
-		print(z_cam_pos)
-		camera.position.z = z_cam_pos
+		dist = z_cam_pos
+	col_target_dist = lerpf(col_target_dist, dist, col_lerp * delta )
+	camera.position.z = col_target_dist
 
 func set_offset(camera_offset: Vector3):
 	target_offset = camera_offset
