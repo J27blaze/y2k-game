@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_bgrhv"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="2_h1awx"]
 [ext_resource type="PackedScene" uid="uid://dotdbowaksy3e" path="res://Art/Environments/Blue_Heaven/Blue_Heaven_Env.tscn" id="4_bgrhv"]
-[ext_resource type="PackedScene" uid="uid://d2cn816da5l7d" path="res://Enemies/Test Ground Enemy/test_ground_enemy.tscn" id="4_k41yu"]
+[ext_resource type="PackedScene" uid="uid://d2cn816da5l7d" path="res://Enemies/Test_Ground_Enemy/test_ground_enemy.tscn" id="4_k41yu"]
 
 [node name="TestScene2" type="Node3D"]
 

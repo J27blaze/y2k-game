@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cffjgxe2w6ojr"]
+
+[ext_resource type="PackedScene" uid="uid://c13k3x73du1x4" path="res://Enemies/Eye_Enemy/eye_enemy.glb" id="1_7j4u5"]
+[ext_resource type="Material" uid="uid://d3equsnkvhpji" path="res://Enemies/Eye_Enemy/eye_enemy_tentacles.tres" id="2_lggun"]
+[ext_resource type="Material" uid="uid://46dsd0iesamq" path="res://Enemies/Eye_Enemy/eye_enemy_eye.tres" id="3_dr012"]
+
+[node name="eye_enemy" instance=ExtResource("1_7j4u5")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_lggun")
+
+[node name="eye" parent="rig/Skeleton3D/eye_2" index="0"]
+surface_material_override/0 = ExtResource("3_dr012")

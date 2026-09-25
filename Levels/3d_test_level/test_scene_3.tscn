@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://devmnydmopgav"]
 
 [ext_resource type="PackedScene" uid="uid://pcivs6mw0lku" path="res://Levels/3d_test_level/test_mesh.glb" id="2_cfcb3"]
-[ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="3_k2r51"]
+[ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test_Enemy/test_enemy.tscn" id="3_k2r51"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="3_kubvd"]
 [ext_resource type="PackedScene" uid="uid://dotdbowaksy3e" path="res://Art/Environments/Blue_Heaven/Blue_Heaven_Env.tscn" id="4_qmlu2"]
 

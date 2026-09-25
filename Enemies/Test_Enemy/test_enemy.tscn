@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmujqc3agkm0h"]
 
-[ext_resource type="Script" uid="uid://bpxviruxn1rdr" path="res://Enemies/Test Enemy/test_enemy.gd" id="1_vraic"]
+[ext_resource type="Script" uid="uid://bpxviruxn1rdr" path="res://Enemies/Test_Enemy/test_enemy.gd" id="1_vraic"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nnqns"]
 height = 1.0

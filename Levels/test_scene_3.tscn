@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3dlu4l0awdkg"]
+[gd_scene load_steps=6 format=3 uid="uid://d3dlu4l0awdkg"]
 
 [ext_resource type="Material" uid="uid://c4vwgfvxc1fcd" path="res://Art/Materials/place_holder.tres" id="1_7i407"]
 [ext_resource type="PackedScene" uid="uid://b6abgalbskt35" path="res://Player/player.tscn" id="3_kcusx"]
-[ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test Enemy/test_enemy.tscn" id="4_7i407"]
+[ext_resource type="PackedScene" uid="uid://bmujqc3agkm0h" path="res://Enemies/Test_Enemy/test_enemy.tscn" id="4_7i407"]
 [ext_resource type="PackedScene" uid="uid://dotdbowaksy3e" path="res://Art/Environments/Blue_Heaven/Blue_Heaven_Env.tscn" id="4_fin0n"]
+[ext_resource type="PackedScene" uid="uid://cffjgxe2w6ojr" path="res://Enemies/Eye_Enemy/eye_enemy.tscn" id="5_kubvd"]
 
 [node name="TestScene2" type="Node3D"]
 
@@ -123,3 +124,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 1, -12)
 
 [node name="TestEnemy3" parent="CSGCombiner3D" instance=ExtResource("4_7i407")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 1, 4)
+
+[node name="eye_enemy" parent="." instance=ExtResource("5_kubvd")]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, -7.8297215, 8.776545, -39.29872)
