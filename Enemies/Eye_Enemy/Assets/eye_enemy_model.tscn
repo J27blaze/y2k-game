@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4lcrydmec1gt"]
+
+[ext_resource type="PackedScene" uid="uid://c13k3x73du1x4" path="res://Enemies/Eye_Enemy/Assets/eye_enemy.glb" id="1_ngts7"]
+[ext_resource type="Material" uid="uid://46dsd0iesamq" path="res://Enemies/Eye_Enemy/Assets/eye_enemy_eye.tres" id="2_khvdp"]
+[ext_resource type="Material" uid="uid://d3equsnkvhpji" path="res://Enemies/Eye_Enemy/Assets/eye_enemy_tentacles.tres" id="3_rh4ko"]
+
+[node name="eye_enemy" instance=ExtResource("1_ngts7")]
+
+[node name="Skeleton3D" parent="rig" index="0"]
+bones/7/rotation = Quaternion(0, 0, 1.12616965e-08, 1)
+bones/14/rotation = Quaternion(0, 0, -1.12616965e-08, 1)
+bones/21/rotation = Quaternion(0, 0, 1.1261697e-08, 1)
+bones/28/rotation = Quaternion(0, 0, -1.12616965e-08, 1)
+bones/35/rotation = Quaternion(0, 0, 1.1261697e-08, 1)
+bones/42/rotation = Quaternion(0, 0, -1.1261697e-08, 1)
+
+[node name="eye" parent="rig/Skeleton3D/eye_2" index="0"]
+material_override = ExtResource("2_khvdp")
+
+[node name="tent_1" parent="rig/Skeleton3D" index="1"]
+material_override = ExtResource("3_rh4ko")
+
+[node name="tent_2" parent="rig/Skeleton3D" index="2"]
+material_override = ExtResource("3_rh4ko")
+
+[node name="tent_3" parent="rig/Skeleton3D" index="3"]
+material_override = ExtResource("3_rh4ko")
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "default"

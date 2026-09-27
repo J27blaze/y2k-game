@@ -125,5 +125,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 1, -12)
 [node name="TestEnemy3" parent="CSGCombiner3D" instance=ExtResource("4_7i407")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71, 1, 4)
 
-[node name="eye_enemy" parent="." instance=ExtResource("5_kubvd")]
-transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, -7.8297215, 8.776545, -39.29872)
+[node name="Eye_Enemy" parent="." instance=ExtResource("5_kubvd")]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, -8, 10, -39)

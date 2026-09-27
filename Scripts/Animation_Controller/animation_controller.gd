@@ -3,7 +3,7 @@ class_name AnimationController
 
 ## Still has anim bug where current step is inccorrect in some blend_anims
 
-@export var player: Player
+#@export var player: Player
 @export var parent: Node
 @export var delete_skeleton: bool = true
 @export var animation_tree: AnimationTree
