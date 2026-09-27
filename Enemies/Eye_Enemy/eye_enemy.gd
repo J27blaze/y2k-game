@@ -4,3 +4,6 @@ extends Enemy
 
 func _ready():
 	anim_controller.play_anim_blend("idle")
+
+func damage(damage: int) -> void:
+	return #do nothing
