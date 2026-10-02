@@ -6,6 +6,7 @@ class_name AnimationController
 #@export var player: Player
 @export var parent: Node
 @export var delete_skeleton: bool = true
+@export var anim_copy_on_start : bool = false
 @export var animation_tree: AnimationTree
 @onready var animation_play_back: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 @onready var animation_state_machine: AnimationNodeStateMachine = animation_tree.tree_root
@@ -121,7 +122,7 @@ func play_anim_blend(anim_name: String, custom_root: String = "") -> void:
 	#skeleton_animplayer.play(anim_name, f2f(blend_frames, fb))
 	
 	skeleton_animplayer.advance(0)
-	copy_skeleton_pose()
+	if anim_copy_on_start: copy_skeleton_pose()
 
 func play_anim(anim_name: String) -> void:
 	previous_anim = current_anim
@@ -134,7 +135,7 @@ func play_anim(anim_name: String) -> void:
 	start_t(f2f(animations_frames[anim_name].duringF))
 	
 	skeleton_animplayer.advance(0)
-	copy_skeleton_pose()
+	if anim_copy_on_start: copy_skeleton_pose()
 
 func start_t(length: float) -> void:
 	step_time = length
