@@ -127,7 +127,7 @@ func play_anim_blend(anim_name: String, custom_root: String = "") -> void:
 func play_anim(anim_name: String) -> void:
 	previous_anim = current_anim
 	current_anim = anim_name
-	
+	#ertert
 	animation_play_back.start(anim_name)
 	
 	blend_step_t = 0
