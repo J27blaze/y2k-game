@@ -7,6 +7,7 @@ _**Files to keep:**_
 res://Scripts/VFX_controller/VFX_controller.gd
 
 **Animation Controller:**
+
 res://Scripts/Animation_Controller/animation_controller.gd
 res://Scripts/Animation_Controller/animation_controller.tscn
 res://Scripts/Animation_Controller/animation_frame.gd
@@ -16,6 +17,7 @@ res://Scripts/Animation_Controller/animation_frame.gd
 - The animations dont have per anim frame steps like an actual low-fps animation
 
 **Player / Regular State Machine**
+
 res://Player/Scripts/State_Machine/player_state.gd
 res://Player/Scripts/State_Machine/player_state_machine.gd
 like this _physic_process part of player_controller.gd
@@ -24,7 +26,7 @@ like this _physic_process part of player_controller.gd
 + Good system that i enjoy to use
 + Easy to debug
 
-
+---------------------------------------------------------
 
 _**What I DIDNT Like**_
 
