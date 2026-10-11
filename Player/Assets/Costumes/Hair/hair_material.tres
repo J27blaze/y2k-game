@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://c8ne1tevc2rgx"]
+[gd_resource type="VisualShader" format=3 uid="uid://c8ne1tevc2rgx"]
 
 [ext_resource type="Texture2D" uid="uid://btp3lkj3p0o2v" path="res://Player/Assets/PlayerFinal/angel_body.png" id="1_s43c5"]
 
@@ -22,39 +22,6 @@ parameter_name = "hair_map"
 texture_filter = 1
 
 [resource]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx;
-
-uniform vec4 hair_colour : source_color = vec4(0.861377, 0.000002, 0.479335, 1.000000);
-uniform sampler2D hair_map : filter_nearest;
-
-
-
-void fragment() {
-// ColorParameter:5
-	vec4 n_out5p0 = hair_colour;
-
-
-// ColorOp:2
-	vec3 n_in2p1 = vec3(0.00000, 0.00000, 0.00000);
-	vec3 n_out2p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out5p0.xyz)) * (vec3(1.0) - n_in2p1);
-
-
-	vec4 n_out4p0;
-// Texture2D:4
-	n_out4p0 = texture(hair_map, UV);
-
-
-// VectorOp:3
-	vec3 n_out3p0 = n_out2p0 * vec3(n_out4p0.xyz);
-
-
-// Output:0
-	ALBEDO = n_out3p0;
-
-
-}
-"
 modes/cull = 2
 nodes/fragment/0/position = Vector2(400, 140)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorOp_4ut7b")

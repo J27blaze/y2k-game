@@ -18,10 +18,7 @@ func process_physics(delta: float):
 
 var debug_draw: bool = false #THIS SHOULD NOT BE HERE< ADD IT TO LIKE A GAME MANAGER SCRIPT
 func process_input(event: InputEvent):
-	if Input.is_action_just_pressed("ui_cancel") && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	elif Input.is_action_just_pressed("ui_cancel") && Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#if InputEvent is InputEventAction:
 	
 	#idk how else to program this to be scalable for menus and different buffer windows
 	#but for now the buffered inputs are hard coded EW

@@ -245,7 +245,7 @@ var attack_stage: int = 0
 func _ready() -> void:
 	#debug
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	state_machine.init(self)
 	camera_controller.set_smoothing("mid")
 	camera_controller.set_offset_smoothing("slow")
@@ -341,6 +341,12 @@ func _process(delta: float):
 	state_machine.process_frame(delta)
 	
 	centre = position + Vector3.UP * height/2
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 #Global Movement Functions
 func vel_move_toward(target_vector: Vector3, accel: float, delta: float):

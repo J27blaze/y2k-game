@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://b6abgalbskt35"]
+[gd_scene format=3 uid="uid://b6abgalbskt35"]
 
 [ext_resource type="Script" uid="uid://tf7tf63sur25" path="res://Player/Scripts/State_Machine/player_state_machine.gd" id="1_btcbx"]
 [ext_resource type="Script" uid="uid://mi5im2tltcp5" path="res://Player/Scripts/player_controller.gd" id="1_v0iea"]
@@ -458,7 +458,7 @@ radius = 1.3000001
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b1ygp"]
 radius = 0.43310547
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=1125632798]
 collision_layer = 2
 collision_mask = 33
 floor_max_angle = 0.80285144
@@ -566,7 +566,7 @@ attack_combo_speed = 0.55
 air_attack_y_cut = 0.6
 air_attack_fall_y_cut = 0.9
 
-[node name="player_camera_controller" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="player_camera_controller" type="Node" parent="." unique_id=282647503 node_paths=PackedStringArray("player")]
 script = ExtResource("10_apopc")
 player = NodePath("..")
 fast_smoothing = 16.2
@@ -578,20 +578,20 @@ slow_offset_smoothing = 3.3
 col_margin_error = 0.75
 col_lerp = 35.0
 
-[node name="camera_twist" type="Node3D" parent="player_camera_controller"]
+[node name="camera_twist" type="Node3D" parent="player_camera_controller" unique_id=119983409]
 top_level = true
 
-[node name="camera_pitch" type="Node3D" parent="player_camera_controller/camera_twist"]
+[node name="camera_pitch" type="Node3D" parent="player_camera_controller/camera_twist" unique_id=1264033364]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8390335, 0)
 
-[node name="Camera3D" type="Camera3D" parent="player_camera_controller/camera_twist/camera_pitch"]
+[node name="Camera3D" type="Camera3D" parent="player_camera_controller/camera_twist/camera_pitch" unique_id=1427355059]
 transform = Transform3D(1, -8.742278e-08, 1.5142069e-07, 8.742278e-08, 1, 1.3237617e-14, -1.5142069e-07, 0, 1, 0, 0, 4)
 
-[node name="camera_col" type="RayCast3D" parent="player_camera_controller/camera_twist/camera_pitch"]
+[node name="camera_col" type="RayCast3D" parent="player_camera_controller/camera_twist/camera_pitch" unique_id=1627104920]
 visible = false
 target_position = Vector3(0, 0, 0)
 
-[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("states")]
+[node name="state_machine" type="Node" parent="." unique_id=14908307 node_paths=PackedStringArray("states")]
 script = ExtResource("1_btcbx")
 states = {
 "air_dodge": NodePath("air_dodge"),
@@ -615,222 +615,222 @@ states = {
 "weapon_dash_hit": NodePath("weapon_dash_hit")
 }
 
-[node name="god_mode" type="Node" parent="state_machine"]
+[node name="god_mode" type="Node" parent="state_machine" unique_id=128765927]
 script = ExtResource("3_5htga")
 
-[node name="idle" type="Node" parent="state_machine"]
+[node name="idle" type="Node" parent="state_machine" unique_id=520809315]
 script = ExtResource("4_gwnis")
 
-[node name="run" type="Node" parent="state_machine"]
+[node name="run" type="Node" parent="state_machine" unique_id=1929557144]
 script = ExtResource("4_fhl08")
 
-[node name="jump" type="Node" parent="state_machine"]
+[node name="jump" type="Node" parent="state_machine" unique_id=826285816]
 script = ExtResource("5_k53q1")
 jump_stage = 1
 
-[node name="double_jump" type="Node" parent="state_machine"]
+[node name="double_jump" type="Node" parent="state_machine" unique_id=2142070666]
 script = ExtResource("5_k53q1")
 jump_stage = 2
 
-[node name="triple_jump" type="Node" parent="state_machine"]
+[node name="triple_jump" type="Node" parent="state_machine" unique_id=708874209]
 script = ExtResource("5_k53q1")
 jump_stage = 3
 
-[node name="fall" type="Node" parent="state_machine"]
+[node name="fall" type="Node" parent="state_machine" unique_id=1811651363]
 script = ExtResource("6_fhl08")
 
-[node name="attack_air" type="Node" parent="state_machine"]
+[node name="attack_air" type="Node" parent="state_machine" unique_id=1846672849]
 script = ExtResource("9_efx54")
 
-[node name="anim_timeout" type="Timer" parent="state_machine/attack_air"]
+[node name="anim_timeout" type="Timer" parent="state_machine/attack_air" unique_id=1735168066]
 process_callback = 0
 wait_time = 0.001
 one_shot = true
 
-[node name="input_timeout" type="Timer" parent="state_machine/attack_air"]
+[node name="input_timeout" type="Timer" parent="state_machine/attack_air" unique_id=965617567]
 process_callback = 0
 wait_time = 0.001
 one_shot = true
 
-[node name="combo_timer" type="Timer" parent="state_machine/attack_air"]
+[node name="combo_timer" type="Timer" parent="state_machine/attack_air" unique_id=242907395]
 process_callback = 0
 one_shot = true
 
-[node name="wall_slide" type="Node" parent="state_machine"]
+[node name="wall_slide" type="Node" parent="state_machine" unique_id=1315185669]
 script = ExtResource("7_vtle1")
 
-[node name="wall_slide_jump" type="Node" parent="state_machine"]
+[node name="wall_slide_jump" type="Node" parent="state_machine" unique_id=1026663391]
 script = ExtResource("8_od3ui")
 
-[node name="slide" type="Node" parent="state_machine"]
+[node name="slide" type="Node" parent="state_machine" unique_id=239752815]
 script = ExtResource("9_x3vf3")
 model_twist_smoothing = 1.15
 model_twist_smoothing2 = 9.7
 model_twist_clamp = 0.7
 
-[node name="input_delay" type="Timer" parent="state_machine/slide"]
+[node name="input_delay" type="Timer" parent="state_machine/slide" unique_id=1264201445]
 process_callback = 0
 wait_time = 0.00999999999999999
 one_shot = true
 
-[node name="cancel_delay" type="Timer" parent="state_machine/slide"]
+[node name="cancel_delay" type="Timer" parent="state_machine/slide" unique_id=331755072]
 process_callback = 0
 wait_time = 0.35
 one_shot = true
 
-[node name="ground_dodge" type="Node" parent="state_machine"]
+[node name="ground_dodge" type="Node" parent="state_machine" unique_id=1847215499]
 script = ExtResource("11_p5o4e")
 
-[node name="dodge_length" type="Timer" parent="state_machine/ground_dodge"]
+[node name="dodge_length" type="Timer" parent="state_machine/ground_dodge" unique_id=1187247643]
 process_callback = 0
 wait_time = 0.35
 one_shot = true
 
-[node name="invunerable_length" type="Timer" parent="state_machine/ground_dodge"]
+[node name="invunerable_length" type="Timer" parent="state_machine/ground_dodge" unique_id=414510274]
 process_callback = 0
 wait_time = 0.3
 one_shot = true
 
-[node name="air_dodge" type="Node" parent="state_machine"]
+[node name="air_dodge" type="Node" parent="state_machine" unique_id=734156982]
 script = ExtResource("11_p5o4e")
 
-[node name="dodge_length" type="Timer" parent="state_machine/air_dodge"]
+[node name="dodge_length" type="Timer" parent="state_machine/air_dodge" unique_id=133953597]
 process_callback = 0
 wait_time = 0.3
 one_shot = true
 
-[node name="invunerable_length" type="Timer" parent="state_machine/air_dodge"]
+[node name="invunerable_length" type="Timer" parent="state_machine/air_dodge" unique_id=905223417]
 process_callback = 0
 wait_time = 0.3
 one_shot = true
 
-[node name="dodge_jump" type="Node" parent="state_machine"]
+[node name="dodge_jump" type="Node" parent="state_machine" unique_id=724031037]
 script = ExtResource("5_k53q1")
 is_dodge_jump = true
 jump_stage = -999
 
-[node name="weapon_dash" type="Node" parent="state_machine"]
+[node name="weapon_dash" type="Node" parent="state_machine" unique_id=766634886]
 script = ExtResource("12_gu6f8")
 raycast_pool_size = 32
 enemy_pos_targeting_offset = Vector3(0, 0.5, 0)
 player_pos_targeting_offset = Vector3(0, 2.2, 0)
 
-[node name="enemy_targeting_collider" type="Area3D" parent="state_machine/weapon_dash"]
+[node name="enemy_targeting_collider" type="Area3D" parent="state_machine/weapon_dash" unique_id=226349515]
 visible = false
 collision_layer = 0
 collision_mask = 8
 
-[node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
+[node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider" unique_id=973228842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19375, 0)
 shape = SubResource("CylinderShape3D_gu6f8")
 debug_color = Color(0.38774818, 0.68192416, 0, 0.38039216)
 
-[node name="shape2" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider"]
+[node name="shape2" type="CollisionShape3D" parent="state_machine/weapon_dash/enemy_targeting_collider" unique_id=1778013578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("SphereShape3D_gu6f8")
 debug_color = Color(0.30839157, 0.62816155, 0, 0.44313726)
 
-[node name="base" type="Node3D" parent="state_machine/weapon_dash"]
+[node name="base" type="Node3D" parent="state_machine/weapon_dash" unique_id=1564088779]
 visible = false
 
-[node name="ray" type="RayCast3D" parent="state_machine/weapon_dash/base"]
+[node name="ray" type="RayCast3D" parent="state_machine/weapon_dash/base" unique_id=1970527737]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 enabled = false
 target_position = Vector3(0, 0, 0)
 
-[node name="min_dash_time" type="Timer" parent="state_machine/weapon_dash"]
+[node name="min_dash_time" type="Timer" parent="state_machine/weapon_dash" unique_id=967350216]
 process_callback = 0
 wait_time = 0.7
 one_shot = true
 
-[node name="weapon_hitbox" type="Area3D" parent="state_machine/weapon_dash"]
+[node name="weapon_hitbox" type="Area3D" parent="state_machine/weapon_dash" unique_id=442878516]
 collision_layer = 0
 collision_mask = 12
 
-[node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/weapon_hitbox"]
+[node name="shape" type="CollisionShape3D" parent="state_machine/weapon_dash/weapon_hitbox" unique_id=1239084042]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_dkpta")
 disabled = true
 debug_color = Color(0.953206, 2.5990605e-06, 0.56156665, 0.41960785)
 
-[node name="weapon_dash_hit" type="Node" parent="state_machine"]
+[node name="weapon_dash_hit" type="Node" parent="state_machine" unique_id=10367116]
 script = ExtResource("13_dkpta")
 
-[node name="vaulting" type="Node" parent="state_machine"]
+[node name="vaulting" type="Node" parent="state_machine" unique_id=1405217976]
 script = ExtResource("17_j2n6q")
 model_offsets = Vector3(-0.2, -1, 0.5)
 player_offset = Vector3(0, -0.5, 0)
 
-[node name="vault_duration" type="Timer" parent="state_machine/vaulting"]
+[node name="vault_duration" type="Timer" parent="state_machine/vaulting" unique_id=2053971128]
 process_callback = 0
 wait_time = 0.2
 one_shot = true
 
-[node name="vault_jump" type="Node" parent="state_machine"]
+[node name="vault_jump" type="Node" parent="state_machine" unique_id=1623907802]
 script = ExtResource("18_c6x0f")
 
-[node name="append_attack" type="Node" parent="state_machine"]
+[node name="append_attack" type="Node" parent="state_machine" unique_id=1223869399]
 script = ExtResource("15_sm0op")
 
-[node name="anim_timeout" type="Timer" parent="state_machine/append_attack"]
+[node name="anim_timeout" type="Timer" parent="state_machine/append_attack" unique_id=1714998008]
 process_callback = 0
 wait_time = 0.001
 one_shot = true
 
-[node name="input_timeout" type="Timer" parent="state_machine/append_attack"]
+[node name="input_timeout" type="Timer" parent="state_machine/append_attack" unique_id=882694856]
 process_callback = 0
 wait_time = 0.001
 one_shot = true
 
-[node name="combo_timer" type="Timer" parent="state_machine/append_attack"]
+[node name="combo_timer" type="Timer" parent="state_machine/append_attack" unique_id=602397795]
 process_callback = 0
 wait_time = 0.25
 one_shot = true
 
-[node name="standing_collider" type="CollisionShape3D" parent="."]
+[node name="standing_collider" type="CollisionShape3D" parent="." unique_id=816417719]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_00tjw")
 debug_color = Color(3.946722e-06, 0.5877552, 0.7692518, 0.41960785)
 
-[node name="model_twist" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+[node name="model_twist" type="Node3D" parent="." unique_id=1365291140 node_paths=PackedStringArray("target")]
 script = ExtResource("15_7emwf")
 target = NodePath("..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="model_twist"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="model_twist" unique_id=1704950396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_c6x0f")
 
-[node name="angel_body_final" parent="model_twist" instance=ExtResource("16_o28un")]
+[node name="angel_body_final" parent="model_twist" unique_id=614018720 instance=ExtResource("16_o28un")]
 
 [node name="Skeleton3D" parent="model_twist/angel_body_final/rig" index="0"]
-bones/0/position = Vector3(-1.383416e-08, 1.1638476, 0.048715875)
-bones/0/rotation = Quaternion(-0.15304755, -0.0032278053, -0.02125015, 0.98798513)
+bones/0/position = Vector3(-1.383838e-08, 1.1655381, 0.04871588)
+bones/0/rotation = Quaternion(-0.1517718, -0.0032003657, -0.021254297, 0.9881818)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(-2.380248e-06, 0.17658722, 1.7615728e-05)
-bones/1/rotation = Quaternion(0.26081944, -0.008474634, 0.030788383, 0.9648593)
+bones/1/position = Vector3(-4.364751e-05, 0.17754556, 0.00032218915)
+bones/1/rotation = Quaternion(0.25922006, -0.008492415, 0.03082074, 0.9652891)
 bones/2/rotation = Quaternion(-0.12706889, -0.0080422135, -0.017390687, 0.9917089)
 bones/3/rotation = Quaternion(0.032178927, -8.6437126e-08, 3.726855e-08, 0.99948215)
 bones/4/position = Vector3(-0.09611825, 0.24966626, 0.014868703)
-bones/4/rotation = Quaternion(0.019644273, 0.14943494, 0.9748839, 0.1639656)
+bones/4/rotation = Quaternion(0.018683888, 0.15497845, 0.9739081, 0.16472934)
 bones/4/scale = Vector3(0.9999998, 0.9999997, 0.9999999)
-bones/5/rotation = Quaternion(-0.05519871, -0.1058188, 0.08060532, 0.9895749)
+bones/5/rotation = Quaternion(-0.07171222, -0.1121116, 0.0772147, 0.9880923)
 bones/5/scale = Vector3(1, 0.99999976, 0.99999994)
-bones/6/rotation = Quaternion(-0.0059816497, 0.74017256, -0.0071259434, 0.6723526)
-bones/7/position = Vector3(-0.004117052, 0.10083324, 0.012519637)
-bones/7/rotation = Quaternion(-0.103083566, -0.72677404, 0.2351904, 0.63707054)
-bones/8/rotation = Quaternion(-0.012846902, 0.014640165, 0.08508072, 0.99618375)
+bones/6/rotation = Quaternion(8.722786e-05, 0.7378912, -0.0121844085, 0.67480975)
+bones/7/position = Vector3(-0.00414622, 0.10117067, 0.011971209)
+bones/7/rotation = Quaternion(-0.12543747, -0.723251, 0.25471643, 0.62951815)
+bones/8/rotation = Quaternion(-0.011993753, 0.015346904, 0.14158137, 0.98973507)
 bones/9/position = Vector3(0.05750823, 0.103098, 0.0077835605)
-bones/9/rotation = Quaternion(-0.058867283, -0.69904727, 0.08771557, 0.7072295)
-bones/10/rotation = Quaternion(-0.02940603, 0.72456956, 0.05215467, 0.68659604)
+bones/9/rotation = Quaternion(-0.072152704, -0.6978011, 0.101151414, 0.70543325)
+bones/10/rotation = Quaternion(-0.051987387, 0.7224605, 0.075973496, 0.68525624)
 bones/11/position = Vector3(0.0674085, 0.026889523, -0.010986025)
-bones/11/rotation = Quaternion(-0.57424724, -0.41308945, -0.09204679, 0.7008028)
-bones/12/rotation = Quaternion(0.118169114, -0.0022268503, 0.28072476, 0.95248353)
-bones/13/position = Vector3(0.077870496, 0.2815685, 0.0075903325)
-bones/13/rotation = Quaternion(0.048468053, -0.327414, -0.90641916, 0.26240316)
-bones/14/rotation = Quaternion(-0.31735075, 0.102734014, 0.030249279, 0.9422416)
+bones/11/rotation = Quaternion(-0.60146916, -0.37234068, -0.04330648, 0.705494)
+bones/12/rotation = Quaternion(0.14247973, 0.008031486, 0.31352043, 0.9387971)
+bones/13/position = Vector3(0.078475356, 0.28325874, 0.00853819)
+bones/13/rotation = Quaternion(0.045767736, -0.3260908, -0.90513647, 0.268883)
+bones/14/rotation = Quaternion(-0.31592134, 0.10192959, 0.027294936, 0.9428993)
 bones/14/scale = Vector3(1, 0.9999999, 0.99999994)
-bones/15/rotation = Quaternion(0.2853114, -0.6830576, -0.2577969, 0.6209432)
+bones/15/rotation = Quaternion(0.28315273, -0.68395525, -0.25583452, 0.6217543)
 bones/15/scale = Vector3(1.0000001, 1.0000001, 0.9999999)
 bones/16/position = Vector3(0.0041153333, 0.100813694, 0.01255128)
 bones/16/rotation = Quaternion(-0.35503906, 0.6424748, -0.44656125, 0.51162153)
@@ -844,32 +844,32 @@ bones/22/position = Vector3(-0.17255813, 0.14857958, -0.024007767)
 bones/22/rotation = Quaternion(-0.0857075, 0.13987419, 0.5080077, 0.8455872)
 bones/22/scale = Vector3(1, 1.0000001, 0.9999998)
 bones/23/position = Vector3(-0.08933693, 0.009663322, -0.04104165)
-bones/23/rotation = Quaternion(0.9868852, 0.0012821998, 0.0046214503, -0.16135235)
+bones/23/rotation = Quaternion(0.98761797, 0.0016495876, 0.0014956362, -0.1568623)
 bones/23/scale = Vector3(1.0000002, 1.0000001, 1.0000025)
-bones/24/rotation = Quaternion(-0.13921541, -0.002001329, -0.01437899, 0.9901557)
+bones/24/rotation = Quaternion(-0.13350682, -0.0020029312, -0.013789183, 0.9909499)
 bones/24/scale = Vector3(1.0000001, 1.0000002, 0.99999946)
-bones/25/rotation = Quaternion(0.6014866, -0.036647987, 0.09463875, 0.79241043)
-bones/26/position = Vector3(0.0888271, 0.012946826, -0.042876184)
-bones/26/rotation = Quaternion(0.9824403, 0.0122201955, -0.0031431904, -0.18615015)
-bones/26/scale = Vector3(1.0000002, 1.0000613, 1.0000068)
-bones/27/rotation = Quaternion(-0.06765944, 0.0020165301, 0.006988269, 0.99768203)
+bones/25/rotation = Quaternion(0.59898126, -0.03699053, 0.09449658, 0.79430693)
+bones/26/position = Vector3(0.08885287, 0.012446289, -0.042364933)
+bones/26/rotation = Quaternion(0.9830156, 0.012035158, -0.0031079839, -0.18310067)
+bones/26/scale = Vector3(1.0000011, 1.0012357, 1.0000064)
+bones/27/rotation = Quaternion(-0.06411349, 0.0020170086, 0.0066220267, 0.99791867)
 bones/27/scale = Vector3(0.99999976, 1.0000002, 0.9999998)
 bones/28/rotation = Quaternion(0.6630797, 0.020660153, -0.045974325, 0.74685)
-bones/29/position = Vector3(-0.080053136, 0.676023, -0.8964318)
+bones/29/position = Vector3(-0.0863498, 0.676023, -0.8964318)
 bones/29/rotation = Quaternion(-0.706706, -0.023804938, 0.023804942, 0.70670605)
 bones/30/rotation = Quaternion(-0.706706, 0.023804938, -0.023804942, 0.70670605)
-bones/31/position = Vector3(-0.114542894, 0.070044585, 0.16139035)
+bones/31/position = Vector3(-0.114542894, 0.07100414, 0.16139035)
 bones/31/rotation = Quaternion(0.7070358, 0.010026792, 0.01002679, 0.70703566)
 bones/32/position = Vector3(0.060791835, 0.046069287, 0.015487869)
 bones/32/rotation = Quaternion(0.7070358, -0.010026792, -0.01002679, 0.70703566)
 
 [node name="head_2" parent="model_twist/angel_body_final/rig/Skeleton3D" index="0"]
-transform = Transform3D(0.99909264, 0.013660824, -0.040343266, -0.014867631, 0.99944615, -0.029766362, 0.03991431, 0.030339103, 0.9987423, 0.0011277929, 1.6987659, 0.056193948)
+transform = Transform3D(0.99909264, 0.013660815, -0.040343266, -0.014838443, 0.99946797, -0.029036455, 0.03992516, 0.029608745, 0.99876374, 0.0011277861, 1.7016444, 0.056363016)
 
 [node name="weapon" parent="model_twist/angel_body_final/rig/Skeleton3D" index="1"]
-transform = Transform3D(-0.10424256, 0.613505, 0.78277993, -0.58703357, -0.6732931, 0.44951904, 0.80282295, -0.4126594, 0.4303338, 0.5185383, 0.9723935, 0.13213661)
+transform = Transform3D(-0.09189926, 0.6139746, 0.7839574, -0.58854085, -0.6685501, 0.45459884, 0.8032272, -0.419614, 0.42278844, 0.52502364, 0.9806851, 0.13129213)
 
-[node name="animation_controller" parent="model_twist" node_paths=PackedStringArray("parent", "animation_tree") instance=ExtResource("16_n471f")]
+[node name="animation_controller" parent="model_twist" unique_id=1853656392 node_paths=PackedStringArray("parent", "animation_tree") instance=ExtResource("16_n471f")]
 parent = NodePath("../angel_body_final")
 anim_copy_on_start = true
 animation_tree = NodePath("../AnimationTree")
@@ -892,7 +892,7 @@ animations_frames = Dictionary[String, ExtResource("19_76lrf")]({
 "weapon_dash_hit": SubResource("Resource_qs4pp")
 })
 
-[node name="AnimationTree" type="AnimationTree" parent="model_twist"]
+[node name="AnimationTree" type="AnimationTree" parent="model_twist" unique_id=1167230285]
 root_node = NodePath("../angel_body_final")
 tree_root = SubResource("AnimationNodeStateMachine_sm0op")
 advance_expression_base_node = NodePath("../..")
@@ -910,7 +910,7 @@ parameters/run/attack_2_oneshot/active = false
 parameters/run/attack_2_oneshot/internal_active = false
 parameters/run/attack_2_oneshot/request = 0
 
-[node name="costume_controller" parent="model_twist" node_paths=PackedStringArray("anim_controller") instance=ExtResource("15_pisgm")]
+[node name="costume_controller" parent="model_twist" unique_id=1879837666 node_paths=PackedStringArray("anim_controller") instance=ExtResource("15_pisgm")]
 anim_controller = NodePath("../animation_controller")
 attachables = Dictionary[String, ExtResource("19_8mwp6")]({
 "hair": ExtResource("21_8viyr"),
@@ -925,282 +925,282 @@ skin_colour = Color(0.9685872, 5.679429e-06, 7.70092e-07, 1)
 iris_colour = Color(0, 0, 0, 1)
 hair_colour = Color(0.10219026, 0.11246427, 0.15700859, 1)
 
-[node name="weapon_hitbox" type="Area3D" parent="model_twist"]
+[node name="weapon_hitbox" type="Area3D" parent="model_twist" unique_id=730204556]
 collision_layer = 0
 collision_mask = 12
 
-[node name="shape" type="CollisionShape3D" parent="model_twist/weapon_hitbox"]
+[node name="shape" type="CollisionShape3D" parent="model_twist/weapon_hitbox" unique_id=1627662565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 shape = SubResource("SphereShape3D_7emwf")
 debug_color = Color(0.95304054, 1.2513996e-06, 0.55806845, 0.41960785)
 
-[node name="VFX_controller" parent="model_twist" instance=ExtResource("31_bbimk")]
+[node name="VFX_controller" parent="model_twist" unique_id=528786822 instance=ExtResource("31_bbimk")]
 particles = Dictionary[String, PackedScene]({
 "dodge": ExtResource("32_m0h3t"),
 "slide_loop": ExtResource("33_i4o1l")
 })
 
-[node name="vault_wall_check" type="RayCast3D" parent="."]
+[node name="vault_wall_check" type="RayCast3D" parent="." unique_id=1441811780]
 top_level = true
 
-[node name="air_step_buffer" type="Timer" parent="."]
+[node name="air_step_buffer" type="Timer" parent="." unique_id=1202588781]
 process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="step_collider" type="Node3D" parent="."]
+[node name="step_collider" type="Node3D" parent="." unique_id=728033546]
 
-[node name="range" type="RayCast3D" parent="step_collider"]
+[node name="range" type="RayCast3D" parent="step_collider" unique_id=1271883435]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range"]
+[node name="height" type="RayCast3D" parent="step_collider/range" unique_id=1664124698]
 collision_mask = 33
 
-[node name="range2" type="RayCast3D" parent="step_collider"]
+[node name="range2" type="RayCast3D" parent="step_collider" unique_id=1495200626]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range2"]
+[node name="height" type="RayCast3D" parent="step_collider/range2" unique_id=1647335243]
 collision_mask = 33
 
-[node name="range3" type="RayCast3D" parent="step_collider"]
+[node name="range3" type="RayCast3D" parent="step_collider" unique_id=2110037322]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range3"]
+[node name="height" type="RayCast3D" parent="step_collider/range3" unique_id=689223840]
 collision_mask = 33
 
-[node name="range4" type="RayCast3D" parent="step_collider"]
+[node name="range4" type="RayCast3D" parent="step_collider" unique_id=1975158110]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range4"]
+[node name="height" type="RayCast3D" parent="step_collider/range4" unique_id=503614396]
 collision_mask = 33
 
-[node name="range5" type="RayCast3D" parent="step_collider"]
+[node name="range5" type="RayCast3D" parent="step_collider" unique_id=1050318813]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range5"]
+[node name="height" type="RayCast3D" parent="step_collider/range5" unique_id=2055247625]
 collision_mask = 33
 
-[node name="range6" type="RayCast3D" parent="step_collider"]
+[node name="range6" type="RayCast3D" parent="step_collider" unique_id=59301972]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range6"]
+[node name="height" type="RayCast3D" parent="step_collider/range6" unique_id=773315377]
 collision_mask = 33
 
-[node name="range7" type="RayCast3D" parent="step_collider"]
+[node name="range7" type="RayCast3D" parent="step_collider" unique_id=1769170421]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range7"]
+[node name="height" type="RayCast3D" parent="step_collider/range7" unique_id=1072675810]
 collision_mask = 33
 
-[node name="range8" type="RayCast3D" parent="step_collider"]
+[node name="range8" type="RayCast3D" parent="step_collider" unique_id=76942172]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range8"]
+[node name="height" type="RayCast3D" parent="step_collider/range8" unique_id=266378366]
 collision_mask = 33
 
-[node name="range9" type="RayCast3D" parent="step_collider"]
+[node name="range9" type="RayCast3D" parent="step_collider" unique_id=203798052]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range9"]
+[node name="height" type="RayCast3D" parent="step_collider/range9" unique_id=1390030601]
 collision_mask = 33
 
-[node name="range10" type="RayCast3D" parent="step_collider"]
+[node name="range10" type="RayCast3D" parent="step_collider" unique_id=574736059]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range10"]
+[node name="height" type="RayCast3D" parent="step_collider/range10" unique_id=1455351904]
 collision_mask = 33
 
-[node name="range11" type="RayCast3D" parent="step_collider"]
+[node name="range11" type="RayCast3D" parent="step_collider" unique_id=645857825]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range11"]
+[node name="height" type="RayCast3D" parent="step_collider/range11" unique_id=2130504915]
 collision_mask = 33
 
-[node name="range12" type="RayCast3D" parent="step_collider"]
+[node name="range12" type="RayCast3D" parent="step_collider" unique_id=1916554955]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range12"]
+[node name="height" type="RayCast3D" parent="step_collider/range12" unique_id=1442334786]
 collision_mask = 33
 
-[node name="range13" type="RayCast3D" parent="step_collider"]
+[node name="range13" type="RayCast3D" parent="step_collider" unique_id=52929989]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range13"]
+[node name="height" type="RayCast3D" parent="step_collider/range13" unique_id=934294250]
 collision_mask = 33
 
-[node name="range14" type="RayCast3D" parent="step_collider"]
+[node name="range14" type="RayCast3D" parent="step_collider" unique_id=866909527]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range14"]
+[node name="height" type="RayCast3D" parent="step_collider/range14" unique_id=698680736]
 collision_mask = 33
 
-[node name="range15" type="RayCast3D" parent="step_collider"]
+[node name="range15" type="RayCast3D" parent="step_collider" unique_id=1914641173]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range15"]
+[node name="height" type="RayCast3D" parent="step_collider/range15" unique_id=469245058]
 collision_mask = 33
 
-[node name="range16" type="RayCast3D" parent="step_collider"]
+[node name="range16" type="RayCast3D" parent="step_collider" unique_id=902062274]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range16"]
+[node name="height" type="RayCast3D" parent="step_collider/range16" unique_id=684404119]
 collision_mask = 33
 
-[node name="range17" type="RayCast3D" parent="step_collider"]
+[node name="range17" type="RayCast3D" parent="step_collider" unique_id=1485630194]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range17"]
+[node name="height" type="RayCast3D" parent="step_collider/range17" unique_id=1744685524]
 collision_mask = 33
 
-[node name="range18" type="RayCast3D" parent="step_collider"]
+[node name="range18" type="RayCast3D" parent="step_collider" unique_id=460795968]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range18"]
+[node name="height" type="RayCast3D" parent="step_collider/range18" unique_id=516172116]
 collision_mask = 33
 
-[node name="range19" type="RayCast3D" parent="step_collider"]
+[node name="range19" type="RayCast3D" parent="step_collider" unique_id=1183023909]
 target_position = Vector3(0, 0, -1)
 collision_mask = 33
 
-[node name="height" type="RayCast3D" parent="step_collider/range19"]
+[node name="height" type="RayCast3D" parent="step_collider/range19" unique_id=907391337]
 collision_mask = 33
 
-[node name="wall_slide_colliders" type="Node3D" parent="."]
+[node name="wall_slide_colliders" type="Node3D" parent="." unique_id=1785525149]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="ray" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray" type="RayCast3D" parent="wall_slide_colliders" unique_id=282837950]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray2" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray2" type="RayCast3D" parent="wall_slide_colliders" unique_id=777698823]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray3" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray3" type="RayCast3D" parent="wall_slide_colliders" unique_id=1499612873]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray4" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray4" type="RayCast3D" parent="wall_slide_colliders" unique_id=269585860]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray5" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray5" type="RayCast3D" parent="wall_slide_colliders" unique_id=2049284707]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray6" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray6" type="RayCast3D" parent="wall_slide_colliders" unique_id=547144974]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray7" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray7" type="RayCast3D" parent="wall_slide_colliders" unique_id=1829306843]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray8" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray8" type="RayCast3D" parent="wall_slide_colliders" unique_id=1345125543]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray9" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray9" type="RayCast3D" parent="wall_slide_colliders" unique_id=1568299302]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray10" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray10" type="RayCast3D" parent="wall_slide_colliders" unique_id=111943763]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray11" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray11" type="RayCast3D" parent="wall_slide_colliders" unique_id=229136210]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray12" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray12" type="RayCast3D" parent="wall_slide_colliders" unique_id=858557775]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray13" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray13" type="RayCast3D" parent="wall_slide_colliders" unique_id=1427174208]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray14" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray14" type="RayCast3D" parent="wall_slide_colliders" unique_id=1555906254]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray15" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray15" type="RayCast3D" parent="wall_slide_colliders" unique_id=2026453349]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray16" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray16" type="RayCast3D" parent="wall_slide_colliders" unique_id=671688310]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray17" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray17" type="RayCast3D" parent="wall_slide_colliders" unique_id=167815660]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray18" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray18" type="RayCast3D" parent="wall_slide_colliders" unique_id=510856103]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray19" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray19" type="RayCast3D" parent="wall_slide_colliders" unique_id=2007987935]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray20" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray20" type="RayCast3D" parent="wall_slide_colliders" unique_id=287907124]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray21" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray21" type="RayCast3D" parent="wall_slide_colliders" unique_id=129060889]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray22" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray22" type="RayCast3D" parent="wall_slide_colliders" unique_id=870658667]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray23" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray23" type="RayCast3D" parent="wall_slide_colliders" unique_id=1900660905]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray24" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray24" type="RayCast3D" parent="wall_slide_colliders" unique_id=1314324494]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray25" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray25" type="RayCast3D" parent="wall_slide_colliders" unique_id=1500907549]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray26" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray26" type="RayCast3D" parent="wall_slide_colliders" unique_id=1739234187]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray27" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray27" type="RayCast3D" parent="wall_slide_colliders" unique_id=286547362]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray28" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray28" type="RayCast3D" parent="wall_slide_colliders" unique_id=1054914750]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray29" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray29" type="RayCast3D" parent="wall_slide_colliders" unique_id=471043917]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="ray30" type="RayCast3D" parent="wall_slide_colliders"]
+[node name="ray30" type="RayCast3D" parent="wall_slide_colliders" unique_id=1449444378]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="floor_collider" type="RayCast3D" parent="."]
+[node name="floor_collider" type="RayCast3D" parent="." unique_id=575196110]
 target_position = Vector3(0, -0.8, 0)
 
-[node name="hurt_box" type="Area3D" parent="."]
+[node name="hurt_box" type="Area3D" parent="." unique_id=369293772]
 collision_layer = 2
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hurt_box"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurt_box" unique_id=150843665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_b1ygp")
 debug_color = Color(0.96228343, 1.0588765e-06, 0.508266, 0.41960785)
 
-[node name="jump_stage_timer" type="Timer" parent="."]
+[node name="jump_stage_timer" type="Timer" parent="." unique_id=2045101317]
 process_callback = 0
 wait_time = 0.24
 one_shot = true
 
-[node name="on_hurt_timer" type="Timer" parent="."]
+[node name="on_hurt_timer" type="Timer" parent="." unique_id=43541830]
 process_callback = 0
 one_shot = true
 
-[node name="player_ui" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_00tjw")]
+[node name="player_ui" parent="." unique_id=1149400296 node_paths=PackedStringArray("player") instance=ExtResource("9_00tjw")]
 player = NodePath("..")
 
-[node name="Debug UI" parent="." instance=ExtResource("19_o28un")]
+[node name="Debug UI" parent="." unique_id=1050494904 instance=ExtResource("19_o28un")]
 
 [connection signal="timeout" from="state_machine/attack_air/anim_timeout" to="state_machine/attack_air" method="_on_anim_timeout_timeout"]
 [connection signal="timeout" from="state_machine/attack_air/input_timeout" to="state_machine/attack_air" method="_on_input_timeout_timeout"]
