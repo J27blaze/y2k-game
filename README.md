@@ -26,6 +26,10 @@ like this _physic_process part of player_controller.gd
 + Good system that i enjoy to use
 + Easy to debug
 
+**DEBUG DRAW 3D**
+
++ so friggen nice to use omg cant believe something like this doesnt exist in godot already.
+
 ---------------------------------------------------------
 
 _**What I DIDNT Like**_
