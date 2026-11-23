@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dotdbowaksy3e"]
+[gd_scene format=3 uid="uid://dotdbowaksy3e"]
 
 [ext_resource type="Environment" uid="uid://bhscheerpdegr" path="res://Art/Environments/Blue_Heaven/Assets/blue_sky_environment.tres" id="1_grycr"]
 [ext_resource type="PackedScene" uid="uid://by4pc546qjh1a" path="res://Art/Environments/sun_light.tscn" id="2_blobs"]
 
-[node name="BlueHeavenEnv" type="Node3D"]
+[node name="BlueHeavenEnv" type="Node3D" unique_id=1455349636]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=688535505]
 environment = ExtResource("1_grycr")
 
-[node name="SunLight" parent="." instance=ExtResource("2_blobs")]
+[node name="SunLight" parent="." unique_id=1535181675 instance=ExtResource("2_blobs")]
 transform = Transform3D(0.88031185, -0.40897983, 0.2403886, -2.473779e-10, 0.50672615, 0.8621071, -0.47439545, -0.7589233, 0.44607693, 0, 0, 0)
