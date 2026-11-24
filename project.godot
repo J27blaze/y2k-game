@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="y2k_game"
-run/main_scene="uid://d3dlu4l0awdkg"
+run/main_scene="uid://d06ffiscqvn0t"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -195,4 +195,5 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.6094101, 0.8611989, 1, 1)

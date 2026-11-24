@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7a1vg7ug34nh"
 path.s3tc="res://.godot/imported/white_square.png-bb1a7f46bddf8198e41afce9cf3edd01.s3tc.ctex"
+path.etc2="res://.godot/imported/white_square.png-bb1a7f46bddf8198e41afce9cf3edd01.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/Textures/white_square.png"
-dest_files=["res://.godot/imported/white_square.png-bb1a7f46bddf8198e41afce9cf3edd01.s3tc.ctex"]
+dest_files=["res://.godot/imported/white_square.png-bb1a7f46bddf8198e41afce9cf3edd01.s3tc.ctex", "res://.godot/imported/white_square.png-bb1a7f46bddf8198e41afce9cf3edd01.etc2.ctex"]
 
 [params]
 
